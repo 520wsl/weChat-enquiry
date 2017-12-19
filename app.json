@@ -1,12 +1,37 @@
 {
-  "pages":[
-    "pages/index/index",
-    "pages/logs/logs"
-  ],
-  "window":{
-    "backgroundTextStyle":"light",
-    "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "WeChat",
-    "navigationBarTextStyle":"black"
-  }
+    "pages": [
+        "pages/home/home",
+        "pages/enquiry/enquiry",
+        "pages/personal/personal",
+        "pages/index/index",
+        "pages/logs/logs",
+        "pages/personal/bindPhone/bindPhone"
+    ],
+    "window": {
+        "backgroundColor": "#f54203",
+        "backgroundTextStyle": "light",
+        "navigationBarBackgroundColor": "#fff",
+        "navigationBarTitleText": "四喜旺旺服务豪华版",
+        "navigationBarTextStyle": "black"
+    },
+    "tabBar": {
+        "color": "#5a5a5a",
+        "selectedColor": "#7e6eff",
+        "borderStyle": "black",
+        "backgroundColor": "#fff",
+        "list": [
+            {
+                "pagePath": "pages/home/home",
+                "text": "首页"
+            },
+            {
+                "pagePath": "pages/enquiry/enquiry",
+                "text": "询盘"
+            },
+            {
+                "pagePath": "pages/personal/personal",
+                "text": "我的"
+            }
+        ]
+    }
 }

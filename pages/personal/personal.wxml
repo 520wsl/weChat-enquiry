@@ -1,0 +1,4 @@
+<!--pages/personal/personal.wxml-->
+<text>pages/personal/personal.wxml 我的主页</text>
+
+<navigator url="/pages/personal/bindPhone/bindPhone" >去绑定</navigator>
