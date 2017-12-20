@@ -1,6 +1,7 @@
 //app.js
-import api from '/utils/api.js';
-import time from '/utils/time.js';
+import api from '/utils/api';
+import time from '/utils/time';
+import utils from '/utils/utils';
 App({
   onLaunch: function () {
     // 展示本地存储能力
@@ -39,5 +40,6 @@ App({
   },
   get: api.get,
   post: api.post,
-  time: time
+  time,
+  utils
 })
