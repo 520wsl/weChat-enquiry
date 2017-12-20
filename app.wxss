@@ -1,5 +1,42 @@
 /**app.wxss**/
-.main{
-  margin: 0 32rpx;
-  overflow: hidden;
+
+/* 主题背景颜色 */
+
+.theme-bg {
+    background-color: #f2f2f2;
+}
+
+/* 线的颜色 */
+
+.hr {
+    border-color: #e0e0e0;
+    border-bottom: 1px solid;
+}
+
+/* 主标题 */
+
+.title {
+    color: #333;
+}
+
+/* 副标题 1 */
+
+.second-title {
+    color: #666;
+}
+
+/* 副标题 2 */
+
+.second-title2 {
+    color: #999;
+}
+
+.main {
+    margin: 0 32rpx;
+    overflow: hidden;
+}
+
+.pic image {
+    max-width: 100%;
+    max-height: 100%;
 }
