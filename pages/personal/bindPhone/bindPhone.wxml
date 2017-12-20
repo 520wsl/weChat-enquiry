@@ -1,8 +1,15 @@
 <!--pages/personal/bindPhone/bindPhone.wxml-->
 <view class="main">
-  <view>
-  <text>pages/personal/bindPhone/bindPhone.wxml</text>
+    <form>
+        <view>
+            <view><image></image></view>
+            <input name="input" placeholder="请输入您的手机号" />
+            <view><button>获取验证码</button></view>
+        </view>
+         <view>
+            <view><image></image></view>
+            <input name="input" placeholder="请输入收到的验证码" />
+        </view>
+        <button>绑定</button>
+    </form>
 </view>
-  <p>绑定手机</p>
-</view>
-
