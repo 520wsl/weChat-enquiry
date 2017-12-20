@@ -1,2 +1,101 @@
 <!--pages/home/home.wxml-->
-<text>pages/home/home.wxml 首页</text>
+<view class='home'>
+  <!-- banner -->
+  <view class="banner">
+    <component-roasting indicatorDots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" circular="{{circular}}" indicatorActiveColor="{{indicatorActiveColor}}" imgUrls="{{imgUrls}}"></component-roasting>
+  </view>
+  <view class="title">{{company}}</view>
+
+  <!-- 询盘统计 -->
+  <view class="enquiry">
+    <view class="header">
+      <text class="text">询盘统计分析</text>
+    </view>
+    <!-- 日期选择控件 -->
+    <view class="date-control">
+      <view class="control-item gradient-bg">一周</view>
+      <view class="control-item">一月</view>
+      <view class="control-item">半年</view>
+      <view class="control-item">一年</view>
+    </view>
+    <view class="section">
+      <view class="bg-setion bg-shadow"></view>
+      <view class="real-setion bg-shadow">
+        <navigator wx:if="{{enquire.totalValue}}" url="" class="navigator" hover-class="">
+          <image src="/images/home/enquiry_1@2x.png" class='icon' />
+          <view class="left">
+            <text class='t1'>{{'本周'}}询盘</text>
+            <text class='t2'>总价值</text>
+          </view>
+          <view class="right">
+            <text>￥{{enquire.totalValue}}</text>
+            <image src="/images/home/right@2x.png" class="img" />
+          </view>
+        </navigator>
+        <navigator wx:if="{{enquire.tranValue}}" url="" class="navigator" hover-class="">
+          <image src="/images/home/enquiry_2@2x.png" class='icon' />
+          <view class="left">
+            <text class='t1'>{{'本周'}}询盘</text>
+            <text class='t2'>成交价值</text>
+          </view>
+          <view class="right">
+            <text>￥{{enquire.tranValue}}</text>
+            <image src="/images/home/right@2x.png" class="img" />
+          </view>
+        </navigator>
+        <navigator wx:if="{{enquire.enquireValue}}" url="" class="navigator" hover-class="">
+          <image src="/images/home/enquiry_3@2x.png" class='icon' />
+          <view class="left">
+            <text class='t1'>{{'本周'}}询盘</text>
+            <text class='t2'>跟单价值</text>
+          </view>
+          <view class="right">
+            <text>￥{{enquire.enquireValue}}</text>
+            <image src="/images/home/right@2x.png" class="img" />
+          </view>
+        </navigator>
+        <navigator wx:if="{{enquire.lossValue}}" url="" class="navigator" hover-class="">
+          <image src="/images/home/enquiry_4@2x.png" class='icon' />
+          <view class="left">
+            <text class='t1'>{{'本周'}}询盘</text>
+            <text class='t2'>流失价值</text>
+          </view>
+          <view class="right">
+            <text>￥{{enquire.lossValue}}</text>
+            <image src="/images/home/right@2x.png" class="img" />
+          </view>
+        </navigator>
+      </view>
+    </view>
+  </view>
+
+  <!-- 客户地区 -->
+  <view class="custom-area">
+    <view class="header">
+      <text class="text">客户地区分布统计</text>
+    </view>
+    <!-- 日期选择控件 -->
+    <view class="date-control">
+      <view class="control-item">一周</view>
+      <view class="control-item gradient-bg">一月</view>
+      <view class="control-item">半年</view>
+      <view class="control-item">一年</view>
+    </view>
+    <!-- 图表 -->
+    <view class="canvas">
+      <canvas canvas-id="columnCanvas" class="canvas"></canvas>
+    </view>
+    <view class="list">
+      <view class="list-item" wx:for="{{customerarea}}" wx:key="{{index}}">
+        <view class="left">
+          <image src="/images/home/localize@2x.png" class="icon" />
+          <text>{{item.province}}</text>
+        </view>
+        <view class="right">
+          <text class="t1">{{item.peopleNum}}人</text>
+          <text class="t2">￥{{item.money}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
