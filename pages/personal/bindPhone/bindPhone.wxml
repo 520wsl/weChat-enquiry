@@ -1,15 +1,23 @@
 <!--pages/personal/bindPhone/bindPhone.wxml-->
-<view class="main">
-    <form>
-        <view class='row'>
-            <view class='pic'><image mode='aspectFit' src="http://1.img.dianjiangla.com/enquiryAssets/icon-phone.png"></image></view>
-            <input name="input" placeholder="请输入您的手机号" placeholder-class='second-title2' />
-            <view><button>获取验证码</button></view>
-        </view>
-         <view  class='row'>
-            <view class='pic'><image mode='aspectFit' src="http://1.img.dianjiangla.com/enquiryAssets/icon-yzm.png"></image></view>
-            <input name="input" placeholder="请输入收到的验证码" placeholder-class='second-title2' />
-        </view>
-        <button class='gradient-bg'>绑定</button>
-    </form>
+<view class='theme-bg'>
+    <view class="main">
+        <form>
+            <view class='row hr'>
+                <view class='pic'>
+                    <image mode='aspectFit' src="http://1.img.dianjiangla.com/enquiryAssets/icon-phone.png"></image>
+                </view>
+                <input name="input" placeholder="请输入您的手机号" placeholder-class='second-title2' />
+                <view>
+                    <button class='gradient-bg btn-yzm'>获取验证码</button>
+                </view>
+            </view>
+            <view class='row hr'>
+                <view class='pic'>
+                    <image mode='aspectFit' src="http://1.img.dianjiangla.com/enquiryAssets/icon-yzm.png"></image>
+                </view>
+                <input name="input" placeholder="请输入收到的验证码" placeholder-class='second-title2' />
+            </view>
+            <button class='btn-bd gradient-bg btn-bd-default'>绑定</button>
+        </form>
+    </view>
 </view>

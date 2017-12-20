@@ -1,4 +1,9 @@
 /**app.wxss**/
+/* 页面默认背景色 */
+page{
+    height: 100%;
+    background-color: #f2f2f2;
+}
 
 /* 主题背景颜色 */
 
@@ -16,8 +21,8 @@
 /* 线的颜色 */
 
 .hr {
-    border-color: #e0e0e0;
     border-bottom: 1px solid;
+    border-color: #e0e0e0;
 }
 
 /* 主标题 */
