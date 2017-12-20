@@ -6,6 +6,13 @@
     background-color: #f2f2f2;
 }
 
+/* 渐变背景色 */
+
+.gradient-bg {
+    color: #fff;
+    background-image: linear-gradient(-225deg, #55abf6 0%, #7b73fe 100%);
+}
+
 /* 线的颜色 */
 
 .hr {

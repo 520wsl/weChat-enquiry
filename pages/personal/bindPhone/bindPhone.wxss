@@ -5,8 +5,15 @@
     line-height: 80rpx;
     overflow: hidden;
     font-size: 28rpx;
+    justify-content: space-between;
+}
+.row input{
+    height: 80rpx;
+    flex: 1
 }
 .pic{
     width: 24rpx;
     height: 80rpx;
+    overflow: hidden;
+    margin-right: 16rpx;
 }
