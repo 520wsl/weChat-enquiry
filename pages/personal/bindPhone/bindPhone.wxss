@@ -29,6 +29,7 @@
     line-height: 88rpx;
     border-radius: 3rpx;
     font-size: 32rpx;
+    margin-top: 96rpx;
 }
 .btn-bd-default{
     background: #CCCCCC;
