@@ -1,2 +1,22 @@
 <!--pages/enquiry/enquiry.wxml-->
-<text>pages/enquiry/enquiry.wxml 询盘列表</text>
+<view class='list'>
+    <view class='item'>
+        <view class='pic head-portrait'>
+            <image mode='aspectFit' src='http://1.img.dianjiangla.com/enquiryAssets/icon-touxiang.png'></image>
+        </view>
+        <view class='info'>
+            <view class='txt'>
+                <text>买家旺旺：</text><text class='second-title'>杀杀杀</text>
+            </view>
+            <view class='txt'>
+                <text>联系电话：</text><text class='second-title'>13625719920</text>
+            </view>
+        </view>
+        <view class='time'>
+            <view class='second-title2'>12-20 21:33</view>
+            <view class='pic arrow'>
+                <image mode='aspectFit' src='http://1.img.dianjiangla.com/enquiryAssets/icon_right.png'></image>
+            </view>
+        </view>
+    </view>
+</view>

@@ -44,7 +44,7 @@ page{
 }
 
 .main {
-    margin: 0 32rpx;
+    margin: 0 30rpx;
     overflow: hidden;
 }
 
