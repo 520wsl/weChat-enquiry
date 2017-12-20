@@ -17,3 +17,19 @@
     overflow: hidden;
     margin-right: 16rpx;
 }
+.btn-yzm{
+    width: 180rpx;
+    height: 60rpx;
+    line-height: 60rpx;
+    font-size: 24rpx;
+    border-radius: 3px;
+}
+.btn-bd{
+    height: 88rpx;
+    line-height: 88rpx;
+    border-radius: 3rpx;
+    font-size: 32rpx;
+}
+.btn-bd-default{
+    background: #CCCCCC;
+}
