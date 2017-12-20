@@ -1,14 +1,12 @@
 {
     "pages": [
         "pages/home/home",
+        "pages/personal/bindPhone/bindPhone",
         "pages/enquiry/enquiry",
-        "pages/personal/personal",
-        "pages/index/index",
-        "pages/logs/logs",
-        "pages/personal/bindPhone/bindPhone"
+        "pages/personal/personal"
     ],
     "window": {
-        "backgroundColor": "#f54203",
+        "backgroundColor": "#fff",
         "backgroundTextStyle": "light",
         "navigationBarBackgroundColor": "#fff",
         "navigationBarTitleText": "四喜旺旺服务豪华版",
