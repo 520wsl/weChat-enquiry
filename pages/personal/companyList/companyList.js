@@ -1,5 +1,6 @@
-// pages/personal/personal.js
+// pages/personal/companyList/companyList.js
 Page({
+
   /**
    * 页面的初始数据
    */
@@ -11,32 +12,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+  
+  },
 
-  },
-  toCompany: function(){
-    wx.navigateTo({
-      url: "./companyList/companyList"
-    })
-  },
-  callPhone: function(){
-    wx.makePhoneCall({
-      phoneNumber: '0571-88888888'
-    })
-  },
-  // 退出登录事件
-  logOut: function(){
-    wx.showModal({
-      title: '提示',
-      content: '确认退出登录？',
-      success: function (res) {
-        if (res.confirm) {
-          console.log('用户点击确定')
-        } else if (res.cancel) {
-          console.log('用户点击取消')
-        }
-      }
-    })
-  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
