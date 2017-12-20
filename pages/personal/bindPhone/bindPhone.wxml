@@ -2,14 +2,14 @@
 <view class="main">
     <form>
         <view class='row'>
-            <view class='pic'><image mode='aspectFit' src="http://3.img.dianjiangla.com/uploads/1498805277508_E8AEBEE8AEA1E5B888E5A4B4E5838F.jpg!37x45"></image></view>
-            <input name="input" placeholder="请输入您的手机号" />
+            <view class='pic'><image mode='aspectFit' src="http://1.img.dianjiangla.com/enquiryAssets/icon-phone.png"></image></view>
+            <input name="input" placeholder="请输入您的手机号" placeholder-class='second-title2' />
             <view><button>获取验证码</button></view>
         </view>
          <view  class='row'>
-            <view class='pic'><image mode='aspectFit' src="http://3.img.dianjiangla.com/uploads/1498805277508_E8AEBEE8AEA1E5B888E5A4B4E5838F.jpg!37x45"></image></view>
-            <input name="input" placeholder="请输入收到的验证码" />
+            <view class='pic'><image mode='aspectFit' src="http://1.img.dianjiangla.com/enquiryAssets/icon-yzm.png"></image></view>
+            <input name="input" placeholder="请输入收到的验证码" placeholder-class='second-title2' />
         </view>
-        <button>绑定</button>
+        <button class='gradient-bg'>绑定</button>
     </form>
 </view>
