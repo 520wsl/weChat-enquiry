@@ -1,4 +1,8 @@
 <!--pages/personal/bindPhone/bindPhone.wxml-->
-<text>pages/personal/bindPhone/bindPhone.wxml</text>
+<view class="main">
+  <view>
+  <text>pages/personal/bindPhone/bindPhone.wxml</text>
+</view>
+  <p>绑定手机</p>
+</view>
 
-<p>绑定手机</p>
