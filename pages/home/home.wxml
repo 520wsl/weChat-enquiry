@@ -17,47 +17,47 @@
       <view class="bg-setion bg-shadow"></view>
       <view class="real-setion bg-shadow">
         <navigator wx:if="{{enquire.totalValue}}" url="/pages/home/enquiry/enquiry" class="navigator" hover-class="">
-          <image src="/images/home/enquiry_1@2x.png" class='icon' />
+          <image src="http://1.img.dianjiangla.com/enquiryAssets/enquiry_1.png" class='icon' />
           <view class="left">
             <text class='t1'>{{'本周'}}询盘</text>
             <text class='t2'>总价值</text>
           </view>
           <view class="right">
             <text>￥{{enquire.totalValue}}</text>
-            <image src="/images/home/right@2x.png" class="img" />
+            <image src="http://1.img.dianjiangla.com/enquiryAssets/icon_right.png" class="img" />
           </view>
         </navigator>
         <navigator wx:if="{{enquire.tranValue}}" url="/pages/home/enquiry/enquiry" class="navigator" hover-class="">
-          <image src="/images/home/enquiry_2@2x.png" class='icon' />
+          <image src="http://1.img.dianjiangla.com/enquiryAssets/enquiry_2.png" class='icon' />
           <view class="left">
             <text class='t1'>{{'本周'}}询盘</text>
             <text class='t2'>成交价值</text>
           </view>
           <view class="right">
             <text>￥{{enquire.tranValue}}</text>
-            <image src="/images/home/right@2x.png" class="img" />
+            <image src="http://1.img.dianjiangla.com/enquiryAssets/icon_right.png" class="img" />
           </view>
         </navigator>
         <navigator wx:if="{{enquire.enquireValue}}" url="/pages/home/enquiry/enquiry" class="navigator" hover-class="">
-          <image src="/images/home/enquiry_3@2x.png" class='icon' />
+          <image src="http://1.img.dianjiangla.com/enquiryAssets/enquiry_3.png" class='icon' />
           <view class="left">
             <text class='t1'>{{'本周'}}询盘</text>
             <text class='t2'>跟单价值</text>
           </view>
           <view class="right">
             <text>￥{{enquire.enquireValue}}</text>
-            <image src="/images/home/right@2x.png" class="img" />
+            <image src="http://1.img.dianjiangla.com/enquiryAssets/icon_right.png" class="img" />
           </view>
         </navigator>
         <navigator wx:if="{{enquire.lossValue}}" url="/pages/home/enquiry/enquiry" class="navigator" hover-class="">
-          <image src="/images/home/enquiry_4@2x.png" class='icon' />
+          <image src="http://1.img.dianjiangla.com/enquiryAssets/enquiry_4.png" class='icon' />
           <view class="left">
             <text class='t1'>{{'本周'}}询盘</text>
             <text class='t2'>流失价值</text>
           </view>
           <view class="right">
             <text>￥{{enquire.lossValue}}</text>
-            <image src="/images/home/right@2x.png" class="img" />
+            <image src="http://1.img.dianjiangla.com/enquiryAssets/icon_right.png" class="img" />
           </view>
         </navigator>
       </view>
@@ -77,7 +77,7 @@
     </view>
     <view class="list">
       <view class="list-item" wx:for="{{customerarea}}" wx:key="{{index}}">
-        <image src="/images/home/localize@2x.png" class="icon" />
+        <image src="http://1.img.dianjiangla.com/enquiryAssets/localize.png" class="icon" />
         <view class="left">
           <text>{{item.province}}</text>
         </view>
