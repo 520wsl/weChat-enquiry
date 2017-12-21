@@ -3,12 +3,13 @@
   <view class='top'>
     <view class='img-box'>
       <view class='default_heads'>
-         <image src='' class='img'/> 
+         <image src='{{info.avatar}}' class='img'/> 
       </view>
     </view>
-     <!-- <button class='login_btn'>登录</button>  -->
-      <text class='text'>浙江长风机械有限公司</text>  
+      <button wx:if="{{!info.login}}" class='login_btn'>登录</button>  
+      <text wx:if="{{info.login}}" class='text'>{{info.companyName}}</text>  
   </view>
+
   <view class='list-box'>
     <view class='list list1 margin-bottom20' bindtap="toCompany">
       <view class='horizontal_alignment'>
@@ -16,8 +17,8 @@
         <text class='list_text'>公司列表</text>
       </view>
       <image src='http://1.img.dianjiangla.com/enquiryAssets/icon_right.png' class='icon_right'/>
-    </view> 
-  </view> 
+    </view>
+  </view>
 
   <view class='list-box'>
     <view class='list list1'>
@@ -36,7 +37,7 @@
       <view class='list_phone_box'>
         <image src='http://1.img.dianjiangla.com/enquiryAssets/icon_phone.png' class='icon'/>
         <view class='list_phone_text'>
-          <text class='list_text'>客服电话：0571-88888888</text>
+          <text class='list_text'>客服电话：{{info.phone}}</text>
           <text class='desc'>（服务时间：9:00-21:00）</text>
         </view>
       </view>
@@ -44,7 +45,7 @@
     </view>
   </view>
 
-  <view class='tc_btn_box'>
+  <view class='tc_btn_box' wx:if="{{info.login}}">
     <button class='gradient-bg tc_btn' bindtap='logOut'>退  出</button>
   </view>
 </view>
