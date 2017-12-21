@@ -3,11 +3,13 @@ import echarts from "../../utils/resources/wxcharts.js";
 
 var columnChart = null;
 var chartData = {
-  main: {
-    title: '总成交量',
-    data: [282, 182, 232, 144, 182],
-    categories: ['浙江', '山东', '广东', '安徽', '江苏']
-  }
+  setColor: [
+    { start: '#FF731D', end: '#FEA449' },
+    { start: '#7B73FE', end: '#55ABF6' },
+    { start: '#7B73FE', end: '#55ABF6' },
+    { start: '#7B73FE', end: '#55ABF6' },
+    { start: '#7B73FE', end: '#55ABF6' },
+  ]
 };
 
 const app = getApp();
@@ -22,7 +24,7 @@ Page({
     // banner
     /**轮播数据 */
     imgUrls: [
-      'http://3.img.dianjiangla.com/uploads/1d6a35a4a970560b71127986c78b1653391418.jpg'
+      '/images/home/banner-1.png'
     ],
     indicatorDots: false,      //是否显示面板指示点
 
@@ -140,14 +142,13 @@ Page({
     let categories = this.data.customerarea.map(item => {
       return item.province;
     });
-    let series = {};
-    series.data = this.data.customerarea.map(item => {
+    chartData.seriesData = this.data.customerarea.map(item => {
       return item.money;
     });
     let subCategories = this.data.customerarea.map(item => {
       return item.peopleNum + '人';
     });
-    
+
     columnChart = new echarts({
       canvasId: 'columnCanvas',
       type: 'column',
@@ -157,17 +158,11 @@ Page({
       subCategories: subCategories,
       subCategoriesColor: 'rgba(0, 0, 0, .3)',
       series: [{
-        data: series.data,
+        data: chartData.seriesData,
         format: function (val) {
           return val;
         },
-        setColor: [
-          { start: 'rgb(255, 0, 255)', end: 'rgba(255, 0, 255, .3)' },
-          { start: 'rgb(255, 0, 255)', end: 'rgba(255, 0, 255, .3)' },
-          { start: 'rgb(255, 0, 255)', end: 'rgba(255, 0, 255, .3)' },
-          { start: 'rgb(255, 0, 255)', end: 'rgba(255, 0, 255, .3)' },
-          { start: 'rgb(255, 0, 255)', end: 'rgba(255, 0, 255, .3)' },
-        ],
+        setColor: chartData.setColor,
         isGradation: true,
       }],
       yAxis: {
@@ -186,17 +181,34 @@ Page({
         }
       },
       width: windowWidth,
-      height: 200,
+      height: windowWidth * 223 / 375,
+    });
+    console.log(windowWidth)
+  },
+  touchHandler: function (e) {
+    var index = columnChart.getCurrentDataIndex(e);
+    let color = chartData.setColor.map((item, i) => {
+      item.start = '#7B73FE';
+      item.end = '#55ABF6';
+      if(i == index){
+        item.start = '#FF731D';
+        item.end = '#FEA449';
+      }
+      return item;
+    });
+    console.log(color);
+    columnChart.updateData({
+      series: [{
+        data: chartData.seriesData,
+        setColor: color,
+        isGradation: true,
+      }],
     });
   },
-  // touchHandler: function (e) {
-  //   var index = columnChart.getCurrentDataIndex(e);
-  //   columnChart.updateData({
-  //     series: [{
-  //       name: '成交量',
-  //       data: chartData.main.data,
-  //       setColor: ['rgba(255, 0, 255, .8)', 'rgba(0, 0, 255, .8)', 'rgba(0, 255, 255, .8)', 'rgba(0, 255, 255, .8)', 'rgba(0, 255, 255, .8)']
-  //     }],
-  //   });
-  // },
+  // 获取时间
+  getTime(e){
+    this.data.startTime = e.detail.time.startTime;
+    this.data.endTime = e.detail.time.endTime;
+    console.log(e);
+  }
 })
