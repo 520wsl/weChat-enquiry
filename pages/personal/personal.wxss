@@ -18,7 +18,7 @@
 }
 .default_heads{
   width:172rpx;
-  height:172rpx;
+  height:166rpx;
   background: url('http://1.img.dianjiangla.com/enquiryAssets/default_heads.png') no-repeat;
   background-size: 172rpx 172rpx;
   display: flex;
@@ -28,6 +28,7 @@
 .img{
   height: 136rpx;
   width: 136rpx; 
+  border-radius: 100%;
 }
 .text{
   font-size: 32rpx;
