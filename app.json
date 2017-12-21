@@ -22,15 +22,21 @@
         "list": [
             {
                 "pagePath": "pages/home/home",
-                "text": "首页"
+                "text": "首页",
+                "selectedIconPath": "images/home.png",
+                "iconPath": "images/home_2.png"
             },
             {
                 "pagePath": "pages/enquiry/enquiry",
-                "text": "询盘"
+                "text": "询盘",
+                "selectedIconPath": "images/enquiry.png",
+                "iconPath": "images/enquiry_2.png"
             },
             {
                 "pagePath": "pages/personal/personal",
-                "text": "我的"
+                "text": "我的",
+                "selectedIconPath": "images/personal.png",
+                "iconPath": "images/personal_2.png"
             }
         ]
     }

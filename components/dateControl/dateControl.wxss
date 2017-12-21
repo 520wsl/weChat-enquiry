@@ -1,0 +1,30 @@
+/* components/dateControl/dateControl.wxss */
+/* 日期选择控件 */
+
+.date-control {
+  margin: 18rpx 30rpx;
+  background: #fff;
+  border: 2rpx solid #e0e0e0;
+  border-radius: 6rpx;
+  display: flex;
+  text-align: center;
+  height: 74rpx;
+  line-height: 74rpx;
+}
+
+.date-control .control-item {
+  font-size: 26rpx;
+  color: #666;
+  flex: 1;
+  border-left: 2rpx solid rgba(0, 0, 0, 0.1);
+}
+
+.date-control .control-item.gradient-bg {
+  color: #fff;
+  border-color: #55abf6;
+  background-image:linear-gradient(-225deg, #55abf6 0%, #7b73fe 100%);
+}
+
+.date-control .control-item:first-child {
+  border: none;
+}

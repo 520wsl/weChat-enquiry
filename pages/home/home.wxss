@@ -1,8 +1,8 @@
 /* pages/home/home.wxss */
 
 .home {
-  max-width: 414px;
-  margin: auto;
+  /* max-width: 414px; */
+  /* margin: auto; */
 }
 
 .banner {
@@ -116,26 +116,31 @@
 }
 
 .custom-area .list {
+  
 }
 
 .custom-area .list .list-item {
   display: flex;
   padding: 0 30rpx;
+  height: 124rpx;
+  align-items: center;
+  box-shadow: 0 2rpx 0 0 #E0E0E0;
 }
 
 .custom-area .list .left {
   flex: 1;
+  font-size: 28rpx;
+  color: #434343;
 }
 
 .custom-area .list .icon {
   width: 40rpx;
   height: 40rpx;
+  margin-right: 16rpx;
 }
 
 .custom-area .list .right {
   flex: 1;
-  font-size: 28rpx;
-  color: #434343;
 }
 
 .custom-area .list .t1, .custom-area .list .t2 {
@@ -154,11 +159,13 @@
 }
 
 /* 图表 */
-
+.canvas{
+  padding-top: 20rpx;  
+  border-bottom: 1rpx solid #E0E0E0;
+}
 canvas {
-  margin-top: 30rpx;
   width: 100%;
-  height: 300rpx;
+  height: 446rpx;
   background: #fff;
 }
 
@@ -199,30 +206,4 @@ canvas {
   background: #fea449;
 }
 
-/* 日期选择控件 */
 
-.date-control {
-  margin: 18rpx 30rpx;
-  background: #fff;
-  border: 2rpx solid #e0e0e0;
-  border-radius: 6rpx;
-  display: flex;
-  text-align: center;
-  height: 74rpx;
-  line-height: 74rpx;
-}
-
-.date-control .control-item {
-  font-size: 26rpx;
-  color: #666;
-  flex: 1;
-  border-left: 2rpx solid rgba(0, 0, 0, 0.1);
-}
-
-.date-control .control-item.gradient-bg {
-  color: #fff;
-}
-
-.date-control .control-item:first-child {
-  border: none;
-}

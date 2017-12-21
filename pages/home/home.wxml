@@ -12,12 +12,7 @@
       <text class="text">询盘统计分析</text>
     </view>
     <!-- 日期选择控件 -->
-    <view class="date-control">
-      <view class="control-item gradient-bg">一周</view>
-      <view class="control-item">一月</view>
-      <view class="control-item">半年</view>
-      <view class="control-item">一年</view>
-    </view>
+    <component-date-control bindgetTime="getTime" />
     <view class="section">
       <view class="bg-setion bg-shadow"></view>
       <view class="real-setion bg-shadow">
@@ -75,20 +70,15 @@
       <text class="text">客户地区分布统计</text>
     </view>
     <!-- 日期选择控件 -->
-    <view class="date-control">
-      <view class="control-item">一周</view>
-      <view class="control-item gradient-bg">一月</view>
-      <view class="control-item">半年</view>
-      <view class="control-item">一年</view>
-    </view>
+    <component-date-control />
     <!-- 图表 -->
     <view class="canvas">
-      <canvas canvas-id="columnCanvas" class="canvas"></canvas>
+      <canvas canvas-id="columnCanvas" class="canvas" bindtouchstart="touchHandler"></canvas>
     </view>
     <view class="list">
       <view class="list-item" wx:for="{{customerarea}}" wx:key="{{index}}">
+        <image src="/images/home/localize@2x.png" class="icon" />
         <view class="left">
-          <image src="/images/home/localize@2x.png" class="icon" />
           <text>{{item.province}}</text>
         </view>
         <view class="right">

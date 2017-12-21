@@ -1,0 +1,4 @@
+<!--components/dateControl/dateControl.wxml-->
+<view class="date-control">
+  <view wx:for="{{data}}" wx:key="{{index}}" data-index="{{index}}" bindtap='clickHandle' class="{{active == index ? 'gradient-bg' : ''}} control-item">{{item.label}}</view>
+</view>

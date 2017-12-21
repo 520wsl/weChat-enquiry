@@ -1,5 +1,6 @@
 {
   "usingComponents": {
-    "component-roasting": "/components/roasting/roasting"
+    "component-roasting": "/components/roasting/roasting",
+    "component-date-control": "/components/dateControl/dateControl"
   }
 }
