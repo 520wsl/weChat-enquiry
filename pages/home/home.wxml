@@ -21,7 +21,7 @@
     <view class="section">
       <view class="bg-setion bg-shadow"></view>
       <view class="real-setion bg-shadow">
-        <navigator wx:if="{{enquire.totalValue}}" url="" class="navigator" hover-class="">
+        <navigator wx:if="{{enquire.totalValue}}" url="/pages/home/enquiry/enquiry" class="navigator" hover-class="">
           <image src="/images/home/enquiry_1@2x.png" class='icon' />
           <view class="left">
             <text class='t1'>{{'本周'}}询盘</text>
@@ -32,7 +32,7 @@
             <image src="/images/home/right@2x.png" class="img" />
           </view>
         </navigator>
-        <navigator wx:if="{{enquire.tranValue}}" url="" class="navigator" hover-class="">
+        <navigator wx:if="{{enquire.tranValue}}" url="/pages/home/enquiry/enquiry" class="navigator" hover-class="">
           <image src="/images/home/enquiry_2@2x.png" class='icon' />
           <view class="left">
             <text class='t1'>{{'本周'}}询盘</text>
@@ -43,7 +43,7 @@
             <image src="/images/home/right@2x.png" class="img" />
           </view>
         </navigator>
-        <navigator wx:if="{{enquire.enquireValue}}" url="" class="navigator" hover-class="">
+        <navigator wx:if="{{enquire.enquireValue}}" url="/pages/home/enquiry/enquiry" class="navigator" hover-class="">
           <image src="/images/home/enquiry_3@2x.png" class='icon' />
           <view class="left">
             <text class='t1'>{{'本周'}}询盘</text>
@@ -54,7 +54,7 @@
             <image src="/images/home/right@2x.png" class="img" />
           </view>
         </navigator>
-        <navigator wx:if="{{enquire.lossValue}}" url="" class="navigator" hover-class="">
+        <navigator wx:if="{{enquire.lossValue}}" url="/pages/home/enquiry/enquiry" class="navigator" hover-class="">
           <image src="/images/home/enquiry_4@2x.png" class='icon' />
           <view class="left">
             <text class='t1'>{{'本周'}}询盘</text>

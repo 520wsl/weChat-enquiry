@@ -1,5 +1,5 @@
 {
-    "navigationBarTitleText": "询盘记录",
+    "navigationBarTitleText": "本周询盘记录",
     "usingComponents": {
         "itemEnquiry": "/components/itemEnquiry/itemEnquiry"
     }

@@ -2,33 +2,3 @@
 .list{
     background-color: #fff;
 }
-
-.item{
-    padding: 30rpx;
-    display: flex;
-    justify-content: space-between;
-}
-
-.head-portrait{
-    width: 120rpx;
-    height: 120rpx;
-    margin-right: 20rpx;
-}
-.info{
-    line-height: 60rpx;
-    font-size: 28rpx;
-    flex: 1;
-}
-.info .txt{
-    height: 60rpx;
-    overflow: hidden;
-    color: #151515;
-}
-.time{
-    font-size: 24rpx;
-}
-
-.arrow{
-    width: 14rpx;
-    height: 80rpx;
-}

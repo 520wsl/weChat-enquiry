@@ -1,0 +1,24 @@
+<!--components/itemEnquiry/itemEnquiry.wxml-->
+<navigator url="/pages/enquiry/info/info?id={{item.buyerId}}">
+    <view class='item hr'>
+        <view class='pic head-portrait'>
+            <image mode='aspectFit' src='http://1.img.dianjiangla.com/enquiryAssets/icon-touxiang.png'></image>
+        </view>
+        <view class='info'>
+            <view class='txt'>
+                <view class='name'>买家旺旺：</view>
+                <view class='second-title'>{{item.aliTM}}</view>
+            </view>
+            <view class='txt'>
+                <view class='name'>联系电话：</view>
+                <view class='second-title'>{{item.phone}}</view>
+            </view>
+        </view>
+        <view class='time'>
+            <view class='second-title2'>{{item.gmtCreate}}</view>
+            <view class='pic arrow'>
+                <image mode='aspectFit' src='http://1.img.dianjiangla.com/enquiryAssets/icon_right.png'></image>
+            </view>
+        </view>
+    </view>
+</navigator>

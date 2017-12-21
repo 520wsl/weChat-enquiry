@@ -1,0 +1,4 @@
+/* pages/home/enquiry/enquiry.wxss */
+.list{
+    background-color: #fff;
+}
