@@ -17,22 +17,26 @@ Component({
     data: [
       {
         label: '一周',
-        startTime: moment().subtract(1, 'weeks').format(),
+        startTime: app.time.getTimeLimit(1, 'weeks'),
+        endTime: app.time.getTimeLimit(),
         type: 0
       },
       {
         label: '一月',
-        startTime: moment().subtract(1, 'months').format(),
+        startTime: app.time.getTimeLimit(1, 'months'),
+        endTime: app.time.getTimeLimit(),
         type: 1
       },
       {
         label: '半年',
-        startTime: moment().subtract(6, 'months').format(),
+        startTime: app.time.getTimeLimit(6, 'months'),
+        endTime: app.time.getTimeLimit(),
         type: 2
       },
       {
         label: '一年',
-        startTime: moment().subtract(1, 'years').format(),
+        startTime: app.time.getTimeLimit(1, 'years'),
+        endTime: app.time.getTimeLimit(),
         type: 3
       }
     ],
@@ -42,7 +46,6 @@ Component({
 
   ready(){
     this.triggerEvent('getTime', { time: this.data.data[0] });
-    console.log(app);
   },
 
   /**

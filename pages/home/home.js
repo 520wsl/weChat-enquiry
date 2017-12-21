@@ -28,12 +28,24 @@ Page({
     ],
     indicatorDots: false,      //是否显示面板指示点
 
-    endTime: '',
-    startTime: '',
     // 询盘
     enquire: {},
+    images: {
+      totalValue: 'http://1.img.dianjiangla.com/enquiryAssets/enquiry_1.png',
+      tranValue: 'http://1.img.dianjiangla.com/enquiryAssets/enquiry_2.png',
+      enquireValue: 'http://1.img.dianjiangla.com/enquiryAssets/enquiry_3.png',
+      lossValue: 'http://1.img.dianjiangla.com/enquiryAssets/enquiry_4.png',
+    },
+    enquireName: {
+      totalValue: '总价值',
+      tranValue: '成交价值',
+      enquireValue: '跟单价值',
+      lossValue: '流失价值',
+    },
+    enquireTime: {},
     // 客户地区
     customerarea: [],
+    customerareaTime: {},
     // 公司
     company: app.title,
   },
@@ -43,18 +55,10 @@ Page({
    */
   onLoad: function (options) {
 
-    // 请求接口
-    this.getAjax();
   },
 
-  getAjax() {
-    // 客户地区
-    this.getCustomArea();
-    // 询盘统计
-    this.getEnquire();
-  },
   // 客户地区
-  getCustomArea() {
+  getCustomArea({ startTime = '', endTime = '' }) {
     this.setData({
       customerarea: [
         {
@@ -90,8 +94,8 @@ Page({
     this.getEcharts();
     return;
     app.get('/enquire/customerarea', {
-      startTime: this.data.startTime,
-      endTime: this.data.endTime
+      startTime: startTime,
+      endTime: endTime
     }).then(res => {
       this.setData({
         customerarea: res.data
@@ -102,26 +106,28 @@ Page({
     });
   },
   // 询盘统计
-  getEnquire() {
+  getEnquire({ startTime = '', endTime = ''}) {
     this.setData({
       enquire: {
-        // 跟单价值
-        enquireValue: '213200',
-        // 丢失价值
-        lossValue: '213200',
         // 总价值
-        totalValue: '213200',
+        totalValue: '2132001',
         // 成交价值
-        tranValue: '213200'
-      }
+        tranValue: '2132002',
+        // 跟单价值
+        enquireValue: '2132003',
+        // 丢失价值
+        lossValue: '2132004',
+      },
+      enquireTime: this.data.enquireTime
     });
     return;
     app.get('/enquire/statistics', {
-      startTime: this.data.startTime,
-      endTime: this.data.endTime
+      startTime: startTime,
+      endTime: endTime
     }).then(res => {
       this.setData({
-        enquire: res.data
+        enquire: res.data,
+        enquireTime: this.data.enquireTime
       })
     }).catch(res => {
       console.log(res);
@@ -138,7 +144,6 @@ Page({
     } catch (e) {
       console.error('getSystemInfoSync failed!');
     }
-    console.log(this.data.customerarea);
     let categories = this.data.customerarea.map(item => {
       return item.province;
     });
@@ -183,7 +188,6 @@ Page({
       width: windowWidth,
       height: windowWidth * 223 / 375,
     });
-    console.log(windowWidth)
   },
   touchHandler: function (e) {
     var index = columnChart.getCurrentDataIndex(e);
@@ -196,7 +200,6 @@ Page({
       }
       return item;
     });
-    console.log(color);
     columnChart.updateData({
       series: [{
         data: chartData.seriesData,
@@ -205,10 +208,14 @@ Page({
       }],
     });
   },
-  // 获取时间
-  getTime(e){
-    this.data.startTime = e.detail.time.startTime;
-    this.data.endTime = e.detail.time.endTime;
-    console.log(e);
+  // 获取时间-询盘
+  getTimeEnquiry(e){
+    this.data.enquireTime = e.detail.time;
+    this.getEnquire(e.detail.time);
+  },
+  // 获取时间-地区
+  getTimeErea(e){
+    this.data.customerareaTime = e.detail.time;
+    this.getCustomArea(e.detail.time);
   }
 })
