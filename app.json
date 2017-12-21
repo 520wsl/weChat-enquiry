@@ -1,9 +1,11 @@
 {
     "pages": [
         "pages/home/home",
-        "pages/personal/bindPhone/bindPhone",
         "pages/enquiry/enquiry",
-        "pages/personal/personal"
+        "pages/personal/bindPhone/bindPhone",
+        "pages/personal/personal",
+        "pages/enquiry/info/info",
+        "pages/home/enquiry/enquiry"
     ],
     "window": {
         "backgroundColor": "#f2f2f2",

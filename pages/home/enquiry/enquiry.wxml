@@ -1,0 +1,4 @@
+<!--pages/home/enquiry/enquiry.wxml-->
+<view class='list'>
+    <itemEnquiry item="{{item}}"></itemEnquiry>
+</view>

@@ -1,4 +1,4 @@
-// pages/enquiry/enquiry.js
+// pages/home/enquiry/enquiry.js
 Page({
 
     /**

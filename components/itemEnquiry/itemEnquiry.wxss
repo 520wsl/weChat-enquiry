@@ -1,0 +1,73 @@
+/* components/itemEnquiry/itemEnquiry.wxss */
+
+/* 副标题 1 */
+
+.second-title {
+    color: #666;
+}
+
+/* 副标题 2 */
+
+.second-title2 {
+    color: #999;
+}
+
+/* 线的颜色 */
+
+.hr {
+    border-bottom: 1px solid;
+    border-color: #e0e0e0;
+}
+
+.pic image {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.item {
+    padding: 30rpx;
+    display: flex;
+    justify-content: space-between;
+}
+
+.head-portrait {
+    width: 120rpx;
+    height: 120rpx;
+    margin-right: 20rpx;
+}
+
+.info {
+    line-height: 60rpx;
+    font-size: 28rpx;
+    flex: 1;
+    overflow: hidden;
+}
+
+.info .txt {
+    height: 60rpx;
+    overflow: hidden;
+    color: #151515;
+    display: flex;
+}
+
+.info .txt .name {
+    width: 150rpx;
+}
+
+.info .txt .second-title {
+    flex: 1;
+    overflow: hidden;
+}
+
+.time {
+    font-size: 24rpx;
+    display: flex;
+    flex-direction: column;
+}
+
+.arrow {
+    width: 14rpx;
+    height: 80rpx;
+    align-items: right;
+    align-self: flex-end;
+}
