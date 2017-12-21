@@ -87,5 +87,15 @@ util.startTime = function (time = new Date(), norms = 'YYYY-MM-DD') {
 util.endTime = function (time = new Date(), norms = 'YYYY-MM-DD', addNum = 1, addNorms = 'days') {
     return (util.formatInitTime(time) && moment(util.formatInitTime(time)).add(addNum, addNorms).format(norms)) || '';
 };
+
+/**
+ * 获取时间期限
+ * n 时间段 p 时间类型 norms 时间格式
+ * 例如 n:1 p:weeks norms:YYYY-MM-DD HH:mm:ss
+ */
+util.getTimeLimit = function (n = 0, p = 'days', norms = 'YYYY-MM-DD HH:mm:ss'){
+  return util.startTime(moment().subtract(n, p).format(norms), 'x');
+}
+
 // export default util;
 module.exports = util

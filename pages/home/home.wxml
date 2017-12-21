@@ -12,51 +12,18 @@
       <text class="text">询盘统计分析</text>
     </view>
     <!-- 日期选择控件 -->
-    <component-date-control bindgetTime="getTime" />
-    <view class="section">
+    <component-date-control bindgetTime="getTimeEnquiry" />
+    <view class="section" wx:if="{{enquire.totalValue || enquire.tranValue || enquire.enquireValue || enquire.lossValue}}">
       <view class="bg-setion bg-shadow"></view>
       <view class="real-setion bg-shadow">
-        <navigator wx:if="{{enquire.totalValue}}" url="/pages/home/enquiry/enquiry" class="navigator" hover-class="">
-          <image src="http://1.img.dianjiangla.com/enquiryAssets/enquiry_1.png" class='icon' />
+        <navigator wx:for="{{enquire}}" wx:key="{{index}}" wx:if="{{item}}" url="/pages/home/enquiry/enquiry" class="navigator" hover-class="">
+          <image src="{{images[index]}}" class='icon' />
           <view class="left">
-            <text class='t1'>{{'本周'}}询盘</text>
-            <text class='t2'>总价值</text>
+            <text class='t1'>{{enquireTime.label}}询盘</text>
+            <text class='t2'>{{enquireName[index]}}</text>
           </view>
           <view class="right">
-            <text>￥{{enquire.totalValue}}</text>
-            <image src="http://1.img.dianjiangla.com/enquiryAssets/icon_right.png" class="img" />
-          </view>
-        </navigator>
-        <navigator wx:if="{{enquire.tranValue}}" url="/pages/home/enquiry/enquiry" class="navigator" hover-class="">
-          <image src="http://1.img.dianjiangla.com/enquiryAssets/enquiry_2.png" class='icon' />
-          <view class="left">
-            <text class='t1'>{{'本周'}}询盘</text>
-            <text class='t2'>成交价值</text>
-          </view>
-          <view class="right">
-            <text>￥{{enquire.tranValue}}</text>
-            <image src="http://1.img.dianjiangla.com/enquiryAssets/icon_right.png" class="img" />
-          </view>
-        </navigator>
-        <navigator wx:if="{{enquire.enquireValue}}" url="/pages/home/enquiry/enquiry" class="navigator" hover-class="">
-          <image src="http://1.img.dianjiangla.com/enquiryAssets/enquiry_3.png" class='icon' />
-          <view class="left">
-            <text class='t1'>{{'本周'}}询盘</text>
-            <text class='t2'>跟单价值</text>
-          </view>
-          <view class="right">
-            <text>￥{{enquire.enquireValue}}</text>
-            <image src="http://1.img.dianjiangla.com/enquiryAssets/icon_right.png" class="img" />
-          </view>
-        </navigator>
-        <navigator wx:if="{{enquire.lossValue}}" url="/pages/home/enquiry/enquiry" class="navigator" hover-class="">
-          <image src="http://1.img.dianjiangla.com/enquiryAssets/enquiry_4.png" class='icon' />
-          <view class="left">
-            <text class='t1'>{{'本周'}}询盘</text>
-            <text class='t2'>流失价值</text>
-          </view>
-          <view class="right">
-            <text>￥{{enquire.lossValue}}</text>
+            <text>￥{{item}}</text>
             <image src="http://1.img.dianjiangla.com/enquiryAssets/icon_right.png" class="img" />
           </view>
         </navigator>
@@ -70,7 +37,7 @@
       <text class="text">客户地区分布统计</text>
     </view>
     <!-- 日期选择控件 -->
-    <component-date-control />
+    <component-date-control bindgetTime="getTimeErea" />
     <!-- 图表 -->
     <view class="canvas">
       <canvas canvas-id="columnCanvas" class="canvas" bindtouchstart="touchHandler"></canvas>
