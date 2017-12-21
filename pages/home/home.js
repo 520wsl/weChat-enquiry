@@ -24,7 +24,7 @@ Page({
     // banner
     /**轮播数据 */
     imgUrls: [
-      '/images/home/banner-1.png'
+      'http://1.img.dianjiangla.com/enquiryAssets/banner-1.png'
     ],
     indicatorDots: false,      //是否显示面板指示点
 

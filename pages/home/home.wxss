@@ -1,8 +1,7 @@
 /* pages/home/home.wxss */
 
 .home {
-  /* max-width: 414px; */
-  /* margin: auto; */
+  /* max-width: 414px; *//* margin: auto; */
 }
 
 .banner {
@@ -116,7 +115,6 @@
 }
 
 .custom-area .list {
-  
 }
 
 .custom-area .list .list-item {
@@ -124,13 +122,22 @@
   padding: 0 30rpx;
   height: 124rpx;
   align-items: center;
-  box-shadow: 0 2rpx 0 0 #E0E0E0;
+  box-shadow: 0 2rpx 0 0 #e0e0e0;
 }
 
 .custom-area .list .left {
   flex: 1;
   font-size: 28rpx;
   color: #434343;
+}
+
+.custom-area .list .left text{
+  display: block;
+}
+
+.custom-area .list .left .v {
+  font-size: 24rpx;
+  color: #999;
 }
 
 .custom-area .list .icon {
@@ -159,10 +166,12 @@
 }
 
 /* 图表 */
-.canvas{
-  padding-top: 20rpx;  
-  border-bottom: 1rpx solid #E0E0E0;
+
+.canvas {
+  padding-top: 20rpx;
+  border-bottom: 1rpx solid #e0e0e0;
 }
+
 canvas {
   width: 100%;
   height: 446rpx;
@@ -205,5 +214,3 @@ canvas {
   height: 28rpx;
   background: #fea449;
 }
-
-

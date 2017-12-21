@@ -47,6 +47,7 @@
         <image src="http://1.img.dianjiangla.com/enquiryAssets/localize.png" class="icon" />
         <view class="left">
           <text>{{item.province}}</text>
+          <text class="v">成交价值</text>
         </view>
         <view class="right">
           <text class="t1">{{item.peopleNum}}人</text>
