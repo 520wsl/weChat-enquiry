@@ -10,7 +10,7 @@
       <text wx:if="{{info.login}}" class='text'>{{info.companyName}}</text>  
   </view>
 
-  <view class='list-box'>
+  <view class='list-box' wx:if="{{isShowCompany}}">
     <view class='list list1 margin-bottom20' bindtap="toCompany">
       <view class='horizontal_alignment'>
         <image src='http://1.img.dianjiangla.com/enquiryAssets/icon_company.png' class='icon'/>
@@ -32,12 +32,12 @@
     </view>
   </view>
 
-  <view class='list-box'>
+  <view class='list-box' wx:for="{{info.customerServices}}" wx:for-index="index"  wx:for-item="item" wx:key="index">
     <view class='list list2' bindtap='callPhone'>
       <view class='list_phone_box'>
         <image src='http://1.img.dianjiangla.com/enquiryAssets/icon_phone.png' class='icon'/>
         <view class='list_phone_text'>
-          <text class='list_text'>客服电话：{{info.phone}}</text>
+          <text class='list_text'>客服电话：{{item.phone}}</text>
           <text class='desc'>（服务时间：9:00-21:00）</text>
         </view>
       </view>
