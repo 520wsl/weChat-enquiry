@@ -42,6 +42,12 @@ Page({
       enquireValue: '跟单价值',
       lossValue: '流失价值',
     },
+    enquiryType: {
+      totalValue: 1,
+      tranValue: 2,
+      enquireValue: 3,
+      lossValue: 4,
+    },
     enquireTime: {},
     // 客户地区
     customerarea: [],
@@ -96,6 +102,11 @@ Page({
     app.get('/enquire/customerarea', {
       type: type,
     }).then(res => {
+      if (res.status != 200) {
+        app.utils.showModel('错误提示', res.msg);
+        return;
+      }
+      
       this.setData({
         customerarea: res.data
       });
@@ -123,6 +134,11 @@ Page({
     app.get('/enquire/statistics', {
       type: type,
     }).then(res => {
+      if (res.status != 200) {
+        app.utils.showModel('错误提示', res.msg);
+        return;
+      }
+
       this.setData({
         enquire: res.data,
         enquireTime: this.data.enquireTime

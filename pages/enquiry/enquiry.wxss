@@ -22,7 +22,7 @@
   float: right;
 }
 
-.buy-type .right .time{
+.buy-type .right .time {
   font-size: 20rpx;
   color: #666;
   float: right;
@@ -34,3 +34,25 @@
   background-color: #fff;
   margin-top: 18rpx;
 }
+
+/* 空数据 */
+
+.no-data {
+  text-align: center;
+  font-size: 28rpx;
+  color: #ccc;
+  margin-top: 212rpx;
+}
+
+.no-data .img {
+  display: block;
+  width: 190rpx;
+  height: 178rpx;
+  margin: auto;
+}
+
+.no-data .txt {
+  margin-top: 40rpx;
+  display: block;
+}
+
