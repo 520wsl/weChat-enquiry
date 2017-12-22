@@ -1,4 +1,36 @@
 /* pages/enquiry/enquiry.wxss */
-.list{
-    background-color: #fff;
+
+.buy-type {
+  display: flex;
+  padding: 0 30rpx;
+  align-items: center;
+}
+
+.buy-type .left {
+  flex: 1;
+  font-size: 24rpx;
+  color: #666;
+}
+
+.buy-type .right {
+  flex: 1;
+}
+
+.buy-type .right .img {
+  width: 40rpx;
+  height: 40rpx;
+  float: right;
+}
+
+.buy-type .right .time{
+  font-size: 20rpx;
+  color: #666;
+  float: right;
+  line-height: 40rpx;
+  margin-left: 10rpx;
+}
+
+.list {
+  background-color: #fff;
+  margin-top: 18rpx;
 }

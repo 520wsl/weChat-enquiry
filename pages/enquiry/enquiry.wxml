@@ -1,6 +1,16 @@
 <!--pages/enquiry/enquiry.wxml-->
-<view class='list'>
-    <itemEnquiry item="{{item}}"></itemEnquiry>
-    <itemEnquiry item="{{item}}"></itemEnquiry>
-    <itemEnquiry item="{{item}}"></itemEnquiry>
+<view class="enquiry">
+  <component-date-control active="{{active}}" bindgetTime="getTime" />
+  <view class="buy-type">
+    <view class="left">买家类型</view>
+    <view class="right">
+      <navigator url='/pages/enquiry/time/time'>
+        <text class="time" wx:if="{{enquiryTime}}">{{enquiryTime.startTime}} 至 {{enquiryTime.endTime}}</text>
+        <image class="img" src="http://1.img.dianjiangla.com/enquiryAssets/icon_date.png" />
+      </navigator>
+    </view>
+  </view>
+  <view class='list'>
+    <itemEnquiry wx:for="{{list}}" wx:key="{{index}}" item="{{item}}"></itemEnquiry>
+  </view>
 </view>

@@ -58,7 +58,7 @@ Page({
   },
 
   // 客户地区
-  getCustomArea({ startTime = '', endTime = '' }) {
+  getCustomArea({ type = 0 }) {
     this.setData({
       customerarea: [
         {
@@ -94,8 +94,7 @@ Page({
     this.getEcharts();
     return;
     app.get('/enquire/customerarea', {
-      startTime: startTime,
-      endTime: endTime
+      type: type,
     }).then(res => {
       this.setData({
         customerarea: res.data
@@ -106,7 +105,7 @@ Page({
     });
   },
   // 询盘统计
-  getEnquire({ startTime = '', endTime = ''}) {
+  getEnquire({ type = 0}) {
     this.setData({
       enquire: {
         // 总价值
@@ -122,8 +121,7 @@ Page({
     });
     return;
     app.get('/enquire/statistics', {
-      startTime: startTime,
-      endTime: endTime
+      type: type,
     }).then(res => {
       this.setData({
         enquire: res.data,

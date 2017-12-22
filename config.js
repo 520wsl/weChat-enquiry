@@ -3,7 +3,8 @@
  */
 
 // 此处主机域名修改成腾讯云解决方案分配的域名
-var host = 'http://www.dianjiangla.com';
+// var host = 'http://192.168.2.203:8082';
+var host = 'http://dev.xp.yumc.pw';
 
 var config = {
 

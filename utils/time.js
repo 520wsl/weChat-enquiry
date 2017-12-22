@@ -97,5 +97,20 @@ util.getTimeLimit = function (n = 0, p = 'days', norms = 'YYYY-MM-DD HH:mm:ss'){
   return util.startTime(moment().subtract(n, p).format(norms), 'x');
 }
 
+/**
+ * 获取昨天、今天判断
+ * time 时间 type 时间类型 1 昨天 2 今天
+ * 例如 time:new Date() type:1
+ */
+util.isDayType = function (time = new Date(), type = 1) {
+  if(type == 1){
+    return moment(time).isBetween(util.formatSubtractTime(2), util.formatSubtractTime(0));
+  }
+  if(type == 2){
+    return moment(time).isBetween(util.formatSubtractTime(1), util.formatSubtractTime(-1));
+  }
+  return false;
+}
+
 // export default util;
 module.exports = util

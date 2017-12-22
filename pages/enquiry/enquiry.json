@@ -1,6 +1,7 @@
 {
     "navigationBarTitleText": "询盘记录",
     "usingComponents": {
-        "itemEnquiry": "/components/itemEnquiry/itemEnquiry"
+        "itemEnquiry": "/components/itemEnquiry/itemEnquiry",
+        "component-date-control": "/components/dateControl/dateControl"
     }
 }
