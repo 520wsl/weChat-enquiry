@@ -31,6 +31,10 @@ Component({
     imgUrls: {
       type: Array,
       value: []
+    },
+    height: {
+      type: String,
+      value: '240rpx'
     }
   },
 

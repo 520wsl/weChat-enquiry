@@ -1,6 +1,10 @@
 {
-    "navigationBarTitleText": "本周询盘记录",
-    "usingComponents": {
-        "itemEnquiry": "/components/itemEnquiry/itemEnquiry"
-    }
+  "navigationBarTitleText": "首页询盘记录",
+  "usingComponents": {
+    "component-roasting": "/components/roasting/roasting",
+    "itemEnquiry": "/components/itemEnquiry/itemEnquiry",
+    "component-date-control": "/components/dateControl/dateControl"
+  },
+  "enablePullDownRefresh": true,
+  "onReachBottomDistance": 5
 }

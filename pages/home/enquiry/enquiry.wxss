@@ -1,4 +1,50 @@
-/* pages/home/enquiry/enquiry.wxss */
-.list{
-    background-color: #fff;
+/* pages/enquiry/enquiry.wxss */
+
+.banner {
+  width: 100%;
+  height: 160rpx;
+}
+
+.buy-type {
+  display: flex;
+  padding: 0 30rpx;
+  align-items: center;
+  font-size: 24rpx;
+  color: #666;
+  height: 72rpx;
+}
+
+.buy-type .left {
+  flex: 1;
+}
+
+.buy-type .right {
+  flex: 1;
+  text-align: right;
+}
+
+.list {
+  background-color: #fff;
+  margin-top: 18rpx;
+}
+
+/* 空数据 */
+
+.no-data {
+  text-align: center;
+  font-size: 28rpx;
+  color: #ccc;
+  margin-top: 212rpx;
+}
+
+.no-data .img {
+  display: block;
+  width: 190rpx;
+  height: 178rpx;
+  margin: auto;
+}
+
+.no-data .txt {
+  margin-top: 40rpx;
+  display: block;
 }

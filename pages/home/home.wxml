@@ -2,7 +2,7 @@
 <view class='home'>
   <!-- banner -->
   <view class="banner">
-    <component-roasting indicatorDots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" circular="{{circular}}" indicatorActiveColor="{{indicatorActiveColor}}" imgUrls="{{imgUrls}}"></component-roasting>
+    <component-roasting indicatorDots="{{indicatorDots}}" imgUrls="{{imgUrls}}"></component-roasting>
   </view>
   <view class="title">{{company}}</view>
 
@@ -16,7 +16,7 @@
     <view class="section" wx:if="{{enquire.totalValue || enquire.tranValue || enquire.enquireValue || enquire.lossValue}}">
       <view class="bg-setion bg-shadow"></view>
       <view class="real-setion bg-shadow">
-        <navigator wx:for="{{enquire}}" wx:key="{{index}}" wx:if="{{item}}" url="/pages/home/enquiry/enquiry" class="navigator" hover-class="">
+        <navigator wx:for="{{enquire}}" wx:key="{{index}}" wx:if="{{item}}" url="/pages/home/enquiry/enquiry?countType={{enquiryType[index]}}&timeType={{enquireTime.type}}&label={{enquireTime.label}}" class="navigator" hover-class="">
           <image src="{{images[index]}}" class='icon' />
           <view class="left">
             <text class='t1'>{{enquireTime.label}}询盘</text>

@@ -1,4 +1,18 @@
-<!--pages/home/enquiry/enquiry.wxml-->
-<view class='list'>
-    <itemEnquiry item="{{item}}"></itemEnquiry>
+<!--pages/enquiry/enquiry.wxml-->
+<view class="enquiry">
+  <!-- banner -->
+  <view class="banner">
+    <component-roasting height="160rpx" indicatorDots="{{indicatorDots}}" imgUrls="{{imgUrls}}"></component-roasting>
+  </view>
+  <view class="buy-type">
+    <view class="left">买家信息</view>
+    <view class="right">本周</view>
+  </view>
+  <view class='list'>
+    <itemEnquiry wx:for="{{list}}" wx:key="{{index}}" item="{{item}}"></itemEnquiry>
+  </view>
+  <view wx:if="{{list.length == 0}}" class="no-data">
+    <image src="/images/enquiry/record_no.png" class="img" />
+    <text class="txt">抱歉!没有找到符合条件的记录</text>
+  </view>
 </view>

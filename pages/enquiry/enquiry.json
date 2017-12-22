@@ -3,5 +3,7 @@
     "usingComponents": {
         "itemEnquiry": "/components/itemEnquiry/itemEnquiry",
         "component-date-control": "/components/dateControl/dateControl"
-    }
+    },
+    "enablePullDownRefresh": true,
+    "onReachBottomDistance": 5
 }
