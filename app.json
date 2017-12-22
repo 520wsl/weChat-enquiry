@@ -6,7 +6,8 @@
         "pages/personal/bindPhone/bindPhone",
         "pages/enquiry/info/info",
         "pages/home/enquiry/enquiry",
-        "pages/personal/companyList/companyList"
+        "pages/personal/companyList/companyList",
+        "pages/enquiry/time/time"
     ],
     "window": {
         "backgroundColor": "#f2f2f2",

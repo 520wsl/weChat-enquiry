@@ -1,12 +1,15 @@
 // components/dateControl/dateControl.js
 const app = getApp();
-import moment from '../../utils/resources/moment.min.js';
 Component({
   /**
    * 组件的属性列表
    */
   properties: {
-    
+    // 选择项
+    active: {
+      type: Number,
+      value: 0
+    }
   },
 
   /**
@@ -19,29 +22,27 @@ Component({
         label: '一周',
         startTime: app.time.getTimeLimit(1, 'weeks'),
         endTime: app.time.getTimeLimit(),
-        type: 0
+        type: 1
       },
       {
         label: '一月',
         startTime: app.time.getTimeLimit(1, 'months'),
         endTime: app.time.getTimeLimit(),
-        type: 1
+        type: 2
       },
       {
         label: '半年',
         startTime: app.time.getTimeLimit(6, 'months'),
         endTime: app.time.getTimeLimit(),
-        type: 2
+        type: 3
       },
       {
         label: '一年',
         startTime: app.time.getTimeLimit(1, 'years'),
         endTime: app.time.getTimeLimit(),
-        type: 3
+        type: 4
       }
     ],
-    // 选择项
-    active: 0
   },
 
   ready(){
