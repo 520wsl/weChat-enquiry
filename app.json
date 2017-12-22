@@ -1,11 +1,11 @@
 {
     "pages": [
+        "pages/personal/personal",
         "pages/home/home",
         "pages/enquiry/enquiry",
         "pages/personal/bindPhone/bindPhone",
         "pages/enquiry/info/info",
         "pages/home/enquiry/enquiry",
-        "pages/personal/personal",
         "pages/personal/companyList/companyList"
     ],
     "window": {

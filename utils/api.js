@@ -32,7 +32,7 @@ var api = {
                 data: data,
                 dataType: "json",
                 header: {
-                    'content-type': 'application/x-www-form-urlencoded',
+                    // 'content-type': 'application/x-www-form-urlencoded',
                     'Cookie': api.cookie || ''
                 },
                 success: function (e) {

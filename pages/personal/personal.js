@@ -15,7 +15,7 @@ Page({
   },
   //登录后获取到页面数据
   getInfo: function(){
-    app.get('account/my').then(res=>{
+    app.get('/account/my').then(res=>{
       res = {
         "data": {
           "avatar": "",
