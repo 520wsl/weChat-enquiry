@@ -1,44 +1,45 @@
 {
-  "pages": [
-    "pages/home/home",
-    "pages/enquiry/enquiry",
-    "pages/personal/bindPhone/bindPhone",
-    "pages/personal/personal",
-    "pages/enquiry/info/info",
-    "pages/home/enquiry/enquiry",
-    "pages/enquiry/time/time"
-  ],
-  "window": {
-    "backgroundColor": "#f2f2f2",
-    "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "四喜旺旺服务豪华版",
-    "navigationBarTextStyle": "black"
-  },
-  "tabBar": {
-    "color": "#a4aab3",
-    "selectedColor": "#6495f9",
-    "borderStyle": "black",
-    "backgroundColor": "#fff",
-    "list": [
-      {
-        "pagePath": "pages/home/home",
-        "text": "首页",
-        "selectedIconPath": "images/home.png",
-        "iconPath": "images/home_2.png"
-      },
-      {
-        "pagePath": "pages/enquiry/enquiry",
-        "text": "询盘",
-        "selectedIconPath": "images/enquiry.png",
-        "iconPath": "images/enquiry_2.png"
-      },
-      {
-        "pagePath": "pages/personal/personal",
-        "text": "我的",
-        "selectedIconPath": "images/personal.png",
-        "iconPath": "images/personal_2.png"
-      }
-    ]
-  }
+    "pages": [
+        "pages/personal/personal",
+        "pages/home/home",
+        "pages/enquiry/enquiry",
+        "pages/personal/bindPhone/bindPhone",
+        "pages/enquiry/info/info",
+        "pages/home/enquiry/enquiry",
+        "pages/personal/companyList/companyList",
+        "pages/enquiry/time/time"
+    ],
+    "window": {
+        "backgroundColor": "#f2f2f2",
+        "backgroundTextStyle": "light",
+        "navigationBarBackgroundColor": "#fff",
+        "navigationBarTitleText": "四喜旺旺服务豪华版",
+        "navigationBarTextStyle": "black"
+    },
+    "tabBar": {
+        "color": "#a4aab3",
+        "selectedColor": "#6495f9",
+        "borderStyle": "black",
+        "backgroundColor": "#fff",
+        "list": [
+            {
+                "pagePath": "pages/home/home",
+                "text": "首页",
+                "selectedIconPath": "images/home.png",
+                "iconPath": "images/home_2.png"
+            },
+            {
+                "pagePath": "pages/enquiry/enquiry",
+                "text": "询盘",
+                "selectedIconPath": "images/enquiry.png",
+                "iconPath": "images/enquiry_2.png"
+            },
+            {
+                "pagePath": "pages/personal/personal",
+                "text": "我的",
+                "selectedIconPath": "images/personal.png",
+                "iconPath": "images/personal_2.png"
+            }
+        ]
+    }
 }
