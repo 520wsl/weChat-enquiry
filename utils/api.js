@@ -39,7 +39,7 @@ var api = {
                     api.setCookie(e);
                     resolve(e.data);
                 },
-                fail: function(e){
+                fail: function (e) {
                     reject(e.data);
                 }
             })
@@ -55,4 +55,7 @@ like.forEach(method => {
     };
 });
 
-module.exports = api
+export {
+    api,
+    apiName
+}

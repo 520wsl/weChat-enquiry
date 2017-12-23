@@ -34,3 +34,8 @@
 .btn-bd-default{
     background: #CCCCCC;
 }
+.pic-yzm{
+    width: 160rpx;
+    height: 60rpx;
+    overflow: hidden;
+}
