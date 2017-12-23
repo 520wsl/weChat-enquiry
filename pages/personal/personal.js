@@ -53,17 +53,17 @@ Page({
     })
   },
   // 退出登录事件
-  logOut: function(){
-    wx.showModal({
-      title: '提示',
-      content: '确认退出登录？',
-      success: function (res) {
-        if (res.confirm) {
+  // logOut: function(){
+  //   wx.showModal({
+  //     title: '提示',
+  //     content: '确认退出登录？',
+  //     success: function (res) {
+  //       if (res.confirm) {
           
-        } else if (res.cancel) {
-          return
-        }
-      }
-    })
-  }
+  //       } else if (res.cancel) {
+  //         return
+  //       }
+  //     }
+  //   })
+  // }
 })
