@@ -6,7 +6,7 @@
          <image src='{{info.avatar}}' class='img'/> 
       </view>
     </view>
-      <button wx:if="{{!info.login}}" class='login_btn'>登录</button>  
+      <button wx:if="{{!info.login}}" bindtap='login' class='login_btn'>登录</button>  
       <text wx:if="{{info.login}}" class='text'>{{info.companyName}}</text>  
   </view>
 
@@ -45,7 +45,7 @@
     </view>
   </view>
 
-  <view class='tc_btn_box' wx:if="{{info.login}}">
+  <!-- <view class='tc_btn_box' wx:if="{{info.login}}">
     <button class='gradient-bg tc_btn' bindtap='logOut'>退  出</button>
-  </view>
+  </view> -->
 </view>

@@ -1,4 +1,5 @@
 // pages/personal/companyList/companyList.js
+import utils from '../../../utils/utils';
 var app = getApp()
 Page({
   /**
@@ -7,27 +8,36 @@ Page({
   data: {
     lists: []
   },
-
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
-    this.setData({
-      lists: JSON.parse(options.lists)
+  onLoad: function () {
+    this.getList()
+  },
+  getList: function () {
+    app.get('/company/list').then(res => {
+      // console.log(res);
+      if (res.status === 200) {
+        this.setData({
+          lists: res.data
+        })
+      } else {
+        utils.showModel('获取公司失败', res.msg)
+      }
     })
   },
-  changeCompany: function(event){
-    app.post('/auth/setcompany', { aliAccountId: event.target.dataset.id})
-    wx.navigateTo({
-      url: '../personal'
+  // 选择公司
+  changeCompany: function (event) {
+    app.post('/auth/setcompany', {aliAccountId: event.target.dataset.id})
+    .then(res=>{
+      if(res.status !== 200){
+        utils.showModel('选择公司失败', res.msg)
+        return
+      }else{
+        wx.switchTab({
+          url: '/pages/home/home'
+        })
+      }
     })
-    // wx.navigateBack()
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-  
   }
 })
