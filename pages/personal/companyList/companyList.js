@@ -33,10 +33,11 @@ Page({
       if(res.status !== 200){
         utils.showModel('选择公司失败', res.msg)
         return
+      }else{
+        wx.switchTab({
+          url: '/pages/home/home'
+        })
       }
-    })
-    wx.switchTab({
-      url: '/pages/home/home'
     })
   }
 })
