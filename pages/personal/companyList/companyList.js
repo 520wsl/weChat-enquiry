@@ -16,7 +16,7 @@ Page({
   },
   getList: function () {
     app.get('/company/list').then(res => {
-      console.log(res);
+      // console.log(res);
       if (res.status === 200) {
         this.setData({
           lists: res.data
