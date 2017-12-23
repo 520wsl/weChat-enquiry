@@ -7,7 +7,7 @@ Page({
    */
   data: {
     info: {},
-    isShowCompany: false
+    isShowCompany: true
   },
   /**
    * 生命周期函数--监听页面加载
@@ -24,12 +24,12 @@ Page({
   //获取页面数据
   getInfo: function(){
     app.get('/account/my').then(res=>{
-      if (res.status == 200) {
+      if (res.status === 200) {
         this.setData({
           info: res.data
         })
       }else{
-        utils.showModel('获取页面数据失败：', res.errMsg)
+        utils.showModel('获取页面数据失败：', res.msg)
         return
       }
     })
@@ -41,7 +41,7 @@ Page({
   // 选择公司列表
   toCompany: function(){
     wx.navigateTo({
-      url: "./companyList/companyList?lists=" + JSON.stringify(this.data.info.companies)
+      url: "./companyList/companyList"
     })
   },
   callPhone: function(){
@@ -59,18 +59,11 @@ Page({
       content: '确认退出登录？',
       success: function (res) {
         if (res.confirm) {
-          console.log('用户点击确定')
+          
         } else if (res.cancel) {
-          console.log('用户点击取消')
+          return
         }
       }
     })
-  },
-  
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-  
   }
 })
