@@ -1,2 +1,52 @@
-<!--pages/enquiry/info/info.wxml-->
-<text>pages/enquiry/info/info.wxml</text>
+<view class='top'>
+        <view class='headerLeft'>
+            <view class='money' wx:if="{{item.saleStatus == 1}}">成交金额：<text class='moneyA'>{{item.amount}}</text></view>
+            <view class='money' wx:if="{{item.saleStatus == 2}}">跟踪金额：<text class='moneyA'>{{item.amount}}</text></view>
+            <view class='money' wx:if="{{item.saleStatus == 3}}">流失金额：<text class='moneyA'>{{item.amount}}</text></view>
+            <view class='status' wx:if="{{item.saleStatus == 1}}">跟单状态：<text class='statusA'>已成交</text></view>
+            <view class='status' wx:if="{{item.saleStatus == 2}}">跟单状态：<text class='statusA'>跟单中</text></view>
+            <view class='status' wx:if="{{item.saleStatus == 3}}">跟单状态：<text class='statusA'>已流失</text></view>
+            <view class='buyer'>卖家旺旺：<text class='buyerA'>{{item.aliTM}}</text></view>        
+        </view>
+        <view wx:if="{{item.saleStatus == 1}}" class='headerRight1'></view>
+        <view wx:if="{{item.saleStatus == 2}}" class='headerRight2'></view>
+        <view wx:if="{{item.saleStatus == 3}}" class='headerRight3'></view>
+    </view>
+    <view class='content'>
+            <view class='mains'>
+                <view wx:for="{{item.list}}" wx:for-index="idx" wx:for-item="itemName" class='record'>
+                    <view class='recordP'><text class='recordT'>跟单记录 {{item.list.length-idx}}</text><image data-index="{{idx}}" bindtap='slelet' class="img" src='{{idx == number?sleletUrl:sleletUrlS}}'></image><text class='time'>{{itemName.gmtCreate}} </text></view>
+                    <view wx:if="{{idx == number}}">
+                            <view  class='recordUl'>
+                                    <view class='recordList'><text class='statusL'>买家类型：</text><text class='statusR'>{{itemName.type}}</text></view>
+                                    <view class='recordList'><text class='statusL'>买家职位：</text><text class='statusR'>{{itemName.position}}</text></view>
+                                    <view class='recordList'><text class='statusL'>联系方式：</text><text class='statusR'>{{itemName.phone}}</text></view>
+                                    <view class='recordList'><text class='statusL'>买家地址：</text><text class='statusR'>{{itemName.cityId}}</text></view>
+                                    <view class='recordList'><text class='statusL'>加 微 信：</text><text class='statusR'>{{itemName.isWechat}}</text></view>
+                            </view>
+                            <view class='recordUl'>
+                                    <view class='recordList'><text class='statusL'>产　　品：</text><text class='statusR'>{{itemName.productName}}</text></view>
+                                    <view class='recordList'><text class='statusL'>数　　量：</text><text class='statusR'>{{itemName.num}}</text></view>
+                                    <view class='recordList'><text class='statusL'>产品报价：</text><text class='statusR'>{{itemName.price}}</text></view>
+                                    <view class='recordList'><text class='statusL'>买家意向：</text><text class='statusR'>{{itemName.buyerIntention}}</text></view>
+                            </view>
+                            <view class='recordUl'>
+                                    <view class='recordList'><text class='statusL'>同行报价：</text><text class='statusR'>{{itemName.peerPrice}}</text></view>
+                                    <view class='recordList'><text class='statusL'>未成交原因：</text><text class='statusR'>{{itemName.noDealReason}}</text></view>
+                                    <view class='recordList'><text class='statusL'>有无去同行购买：</text><text class='statusR'>{{itemName.peerBuy}}</text></view>
+                                    <view class='recordList'><text class='statusL'>同 行 名：</text><text class='statusR'>{{itemName.peerName}}</text></view>
+                                    <view class='recordList'><text class='statusL'>备　　注：</text><text class='statusR'>{{itemName.remark}}</text></view>
+                            </view>
+                    </view>
+                </view>
+                <!-- <view class='record' bindtap='logOut'>
+                        <view class='recordP'><text class='recordT'>跟单记录 2</text><text class='time'>￥12800.00</text></view>
+                </view>
+                <view class='record' bindtap='logOut'>
+                        <view class='recordP'><text class='recordT'>跟单记录 1</text><text class='time'>￥12800.00</text></view>
+                </view> -->
+                
+                
+            </view>
+    </view>
+    
