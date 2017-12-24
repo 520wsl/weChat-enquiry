@@ -7,6 +7,8 @@ Page({
    */
   data: {
     info: {},
+    avatarUrl: '',
+    companyName:'',
     isShowCompany: false
   },
   /**
@@ -14,38 +16,47 @@ Page({
    */
   onLoad: function (options) {
     // 公司列表长度大于1时显示选择公司链接
-    if (app.globalData.customeInfo && app.globalData.customeInfo.companies){
-      this.setData({
-        isShowCompany: app.globalData.customeInfo.companies.length > 1 ? true : false
-      })
-    }
+   app.login();
+  },
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function () {
     this.getInfo();
+    // console.log('aaaaaaaaaaaaaaaaaaaaa=>')
+    // app.login();
+    // app.ifBindPhone();
   },
   //获取页面数据
-  getInfo: function(){
-    app.get('/account/my').then(res=>{
-      if (res.status === 200) {
+  getInfo: function () {
+    // app.getCustome(res => {
+      // console.log(app.globalData.customeInfo.companyName)
+      console.log('res',app.globalData.customeInfo)
+      if (app.globalData.customeInfo && app.globalData.customeInfo.companyName) {
         this.setData({
-          info: res.data
+          info: app.globalData.customeInfo,
+          avatarUrl: app.globalData.userInfo.avatarUrl || '',
+          companyName:app.globalData.customeInfo.companyName,
+          isShowCompany: app.globalData.customeInfo.companies.length > 1 ? true : false
         })
-      }else{
-        utils.showModel('获取页面数据失败：', res.msg)
-        return
       }
-    })
+    // })
+
+    
+    
   },
   // 点击登录
-  login: function(){
-    app.login()
+  login: function () {
+    app.ifcheckSession()
   },
   // 选择公司列表
-  toCompany: function(){
+  toCompany: function () {
     wx.navigateTo({
       url: "./companyList/companyList"
     })
   },
-  callPhone: function(){
-    if (!this.data.info.phone){
+  callPhone: function () {
+    if (!this.data.info.phone) {
       return
     }
     wx.makePhoneCall({
@@ -59,7 +70,7 @@ Page({
   //     content: '确认退出登录？',
   //     success: function (res) {
   //       if (res.confirm) {
-          
+
   //       } else if (res.cancel) {
   //         return
   //       }

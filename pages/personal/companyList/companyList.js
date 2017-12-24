@@ -28,16 +28,7 @@ Page({
   },
   // 选择公司
   changeCompany: function (event) {
-    app.post('/auth/setcompany', {aliAccountId: event.target.dataset.id})
-    .then(res=>{
-      if(res.status !== 200){
-        utils.showModel('选择公司失败', res.msg)
-        return
-      }else{
-        wx.switchTab({
-          url: '/pages/home/home'
-        })
-      }
-    })
+    console.log('changeCompany', event)
+    app.setcompany(event.target.dataset.aliaccountid)
   }
 })

@@ -4,7 +4,8 @@
         <view class='pic'>
             <image mode='aspectFit' src="http://1.img.dianjiangla.com/enquiryAssets/icon-phone.png"></image>
         </view>
-        <input name="phone" value="{{params.phone}}" bindinput="setPhone" placeholder="请输入您的手机号" placeholder-class='second-title2' />
+        <input name="phone" value="{{params.phone}}" bindinput="setPhone" placeholder="请输入您的手机号" placeholder-class='second-title2'
+        />
         <view>
             <button bindtap="getSendcode" class='gradient-bg btn-yzm'>获取验证码</button>
         </view>
@@ -13,7 +14,8 @@
         <view class='pic'>
             <image mode='aspectFit' src="http://1.img.dianjiangla.com/enquiryAssets/icon-phone.png"></image>
         </view>
-        <input name="code" value="{{params.code}}" bindinput="setCode" placeholder="请输入您的手机号" placeholder-class='second-title2' />
+        <input name="verifycode" maxlength="4" value="{{params.verifycode}}" bindinput="setVerifycode" placeholder="请输入图片验证码" placeholder-class='second-title2'
+        />
         <view class="pic pic-yzm" bindtap="setYzm">
             <image mode='aspectFit' src="{{yzm}}"></image>
         </view>
@@ -22,7 +24,8 @@
         <view class='pic'>
             <image mode='aspectFit' src="http://1.img.dianjiangla.com/enquiryAssets/icon-yzm.png"></image>
         </view>
-        <input name="verifycode" value="{{params.verifycode}}" bindinput="setVerifycode" placeholder="请输入收到的验证码" placeholder-class='second-title2' />
+        <input name="code"  maxlength="6" value="{{params.code}}" bindinput="setCode" placeholder="请输入收到的验证码" placeholder-class='second-title2'
+        />
     </view>
     <button bindtap="verifyBindphone" class='btn-bd gradient-bg btn-bd-default'>绑定</button>
 </view>

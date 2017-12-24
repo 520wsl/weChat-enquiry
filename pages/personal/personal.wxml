@@ -3,13 +3,12 @@
   <view class='top'>
     <view class='img-box'>
       <view class='default_heads'>
-         <image src='{{info.avatar}}' class='img'/> 
+         <image src='{{avatarUrl}}' class='img'/> 
       </view>
     </view>
       <button wx:if="{{!info.login}}" bindtap='login' class='login_btn'>登录</button>  
-      <text wx:if="{{info.login}}" class='text'>{{info.companyName}}</text>  
+      <text wx:if="{{info.login}}" class='text'>{{companyName}}</text>  
   </view>
-
   <view class='list-box' wx:if="{{isShowCompany}}">
     <view class='list list1 margin-bottom20' bindtap="toCompany">
       <view class='horizontal_alignment'>
