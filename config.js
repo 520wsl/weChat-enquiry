@@ -12,6 +12,7 @@ var config = {
     // 下面的地址配合云端 Demo 工作
     service: {
         host,
+        imgUrl: 'http://1.img.dianjiangla.com/enquiryAssets/',
         // 数据接口 api
         apiUrl: `${host}`
     }

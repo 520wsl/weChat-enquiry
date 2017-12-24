@@ -2,7 +2,7 @@
 <navigator url="/pages/enquiry/info/info?id={{item.buyerId}}">
     <view class='item hr'>
         <view class='pic head-portrait'>
-            <image mode='aspectFit' src='http://1.img.dianjiangla.com/enquiryAssets/icon-touxiang.png'></image>
+            <image mode='aspectFit' src='{{CDN}}icon-touxiang.png'></image>
         </view>
         <view class='info'>
             <view class='txt'>
@@ -17,7 +17,7 @@
         <view class='time'>
             <view class='second-title2'>{{item.gmtModified}}</view>
             <view class='pic arrow'>
-                <image mode='aspectFit' src='http://1.img.dianjiangla.com/enquiryAssets/icon_right.png'></image>
+                <image mode='aspectFit' src='{{CDN}}icon_right.png'></image>
             </view>
         </view>
     </view>

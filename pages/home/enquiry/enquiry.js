@@ -6,9 +6,10 @@ Page({
    * 页面的初始数据
    */
   data: {
+    CDN: app.CDN,
     // banner
     imgUrls: [
-      'http://1.img.dianjiangla.com/enquiryAssets/banner-2.png'
+      app.CDN+'banner-2.png'
     ],
     indicatorDots: false,
 
@@ -21,7 +22,7 @@ Page({
       timeType: '',//	1:7天；2:30天；3:180天；4:365天
     },
     label: '',
-    isMore: true,//默认 加载
+    count: 0,//默认 list总数
   },
 
   /**
@@ -57,7 +58,7 @@ Page({
    */
   onReachBottom: function () {
     console.log('触底')
-    if (this.data.isMore) {
+    if (this.data.list.length < this.data.count) {
       this.data.params.pageNum++;
       this.getList();
     }
@@ -65,17 +66,20 @@ Page({
 
   // 获取列表
   getList(cb) {
-    app.get('/enquiry/list', this.data.params).then(res => {
-      if(res.status != 200){
-        app.utils.showModel('错误提示', res.msg);
-        return ;
+    app.get('/enquiry/statisticslist', this.data.params).then(res => {
+      if (res.status != 200) {
+        // app.utils.showModel('错误提示', res.msg);
+        return;
       }
       let formatData = res.data.list;
-      if (formatData.length == 0) {
-        this.data.isMore = false;
-      }
+      this.data.count = res.data.count;
       formatData.forEach(item => {
-        var time = item.gmtModified;
+        // 电话换算
+        if (item.phone) {
+          item.phone = item.phone.replace(/^(\d{3})\d{4}(\d+)$/, '$1****$2');
+        }
+        // 时间换算
+        var time = item.gmtCreate;
         var yestoday = app.time.isDayType(time, 1);
         var today = app.time.isDayType(time, 2);
         if (yestoday) {

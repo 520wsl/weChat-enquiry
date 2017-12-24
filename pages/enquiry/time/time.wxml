@@ -10,7 +10,7 @@
         <view class="weui-input">{{time.endTime ? time.endTime : '结束日期'}}</view>
       </picker>
     </view>
-    <image bindtap='clearHandle' src="http://1.img.dianjiangla.com/enquiryAssets/icon_delete.png" class="icon" />
+    <image bindtap='clearHandle' src="{{CDN}}icon_delete.png" class="icon" />
     <text class="tip">目前仅支持查找12个月跨度的询盘记录</text>
   </view>
   <button class="confirm-btn gradient-bg" bindtap='confirmHandle'>完成</button>

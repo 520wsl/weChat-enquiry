@@ -6,7 +6,7 @@
     <view class="right">
       <navigator url='/pages/enquiry/time/time'>
         <text class="time" wx:if="{{enquiryTime}}">{{enquiryTime.startTime}} 至 {{enquiryTime.endTime}}</text>
-        <image class="img" src="http://1.img.dianjiangla.com/enquiryAssets/icon_date.png" />
+        <image class="img" src="{{CDN}}icon_date.png" />
       </navigator>
     </view>
   </view>
@@ -14,7 +14,7 @@
     <itemEnquiry wx:for="{{list}}" wx:key="{{index}}" item="{{item}}"></itemEnquiry>
   </view>
   <view wx:if="{{list.length == 0}}" class="no-data">
-    <image src="/images/enquiry/record_no.png" class="img" />
+    <image src="{{CDN}}record_no.png" class="img" />
     <text class="txt">抱歉!没有找到符合条件的记录</text>
   </view>
 </view>

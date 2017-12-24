@@ -6,19 +6,19 @@ Page({
    * 页面的初始数据
    */
   data: {
+    CDN: app.CDN,
     list: [],
     enquiryTime: null,
     active: 0,
 
     params: {
-      endTime: '',
+      endTime: app.time.getTimeLimit(),
       pageNum: 1,
       pageSize: 10,
-      startTime: '',
-      // status: null  //			成交状态：null全部，1：成交，2：跟进，3：流失，4：总价
+      startTime: app.time.getTimeLimit(1, 'weeks'),
     },
 
-    isMore: true,//默认 加载
+    count: 0,//默认 list总数
   },
 
   /**
@@ -29,6 +29,9 @@ Page({
   },
 
   onShow: function () {
+    // 初始化
+    console.log('onShow');
+    // 更新时间
     if (app.enquiryTime) {
       let time = app.enquiryTime;
       this.data.params.startTime = app.time.formatInitTime(time.startTime, 'x');
@@ -41,25 +44,20 @@ Page({
       });
       this.data.list = [];
       this.getList();
+      return;
     }
+    this.data.list = [];
+    this.getList();
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-    // this.data.params.startTime = app.time.getTimeLimit(1, 'weeks');
-    // this.data.params.endTime = app.time.getTimeLimit();
     this.data.params.pageNum = 1;
     this.data.list = [];
     this.getList(() => {
       wx.stopPullDownRefresh();
-
-      // app.enquiryTime = null;
-      // this.setData({
-      //   active: 0,
-      //   enquiryTime: app.enquiryTime,
-      // })
     });
   },
 
@@ -68,8 +66,7 @@ Page({
    */
   onReachBottom: function () {
     console.log('触底')
-    // if (this.data.list.length % this.data.params.pageSize == 0){
-    if (this.data.isMore) {
+    if (this.data.list.length < this.data.count) {
       this.data.params.pageNum++;
       this.getList();
     }
@@ -92,76 +89,20 @@ Page({
 
   // 获取列表
   getList(cb) {
-    // var formatData = [
-    //   {
-    //     aliTM: 'aliTM',
-    //     buyerId: 'buyerId',
-    //     gmtCreate: 1513872000000,
-    //     phone: 'phone',
-    //   },
-    //   {
-    //     aliTM: 'aliTM',
-    //     buyerId: 'buyerId',
-    //     gmtCreate: 1513785600000,
-    //     phone: 'phone',
-    //   },
-    //   {
-    //     aliTM: 'aliTM',
-    //     buyerId: 'buyerId',
-    //     gmtCreate: 1513267200000,
-    //     phone: 'phone',
-    //   },
-    //   {
-    //     aliTM: 'aliTM',
-    //     buyerId: 'buyerId',
-    //     gmtCreate: 1513612800000,
-    //     phone: 'phone',
-    //   },
-    //   {
-    //     aliTM: 'aliTM',
-    //     buyerId: 'buyerId',
-    //     gmtCreate: 1513612800000,
-    //     phone: 'phone',
-    //   },
-    //   {
-    //     aliTM: 'aliTM',
-    //     buyerId: 'buyerId',
-    //     gmtCreate: 1513612800000,
-    //     phone: 'phone',
-    //   },
-    // ];
-    // formatData.forEach(item => {
-    //   var time = item.gmtCreate;
-    //   var yestoday = app.time.isDayType(time, 1);
-    //   var today = app.time.isDayType(time, 2);
-    //   if (yestoday) {
-    //     item.gmtCreate = '昨天' + app.time.formatTime(time, ' HH:mm');
-    //     return;
-    //   }
-    //   if (today) {
-    //     item.gmtCreate = '今天' + app.time.formatTime(time, ' HH:mm');
-    //     return;
-    //   }
-    //   item.gmtCreate = app.time.formatTime(time, 'MM-DD HH:mm');
-    // });
-    // this.setData({
-    //   list: formatData
-    // });
-    // if (typeof cb == 'function') {
-    //   cb();
-    // }
-    // return;
     app.get('/enquiry/list', this.data.params).then(res => {
       if (res.status != 200) {
-        app.utils.showModel('错误提示', res.msg);
+        // app.utils.showModel('错误提示', res.msg);
         return;
       }
       
       let formatData = res.data.list;
-      if (formatData.length == 0){
-        this.data.isMore = false;
-      }
+      this.data.count = res.data.count;
       formatData.forEach(item => {
+        // 电话换算
+        if(item.phone){
+          item.phone = item.phone.replace(/^(\d{3})\d{4}(\d+)$/, '$1****$2');
+        }
+      // 时间换算
         var time = item.gmtModified;
         var yestoday = app.time.isDayType(time, 1);
         var today = app.time.isDayType(time, 2);

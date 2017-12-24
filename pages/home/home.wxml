@@ -24,7 +24,7 @@
           </view>
           <view class="right">
             <text>￥{{item}}</text>
-            <image src="http://1.img.dianjiangla.com/enquiryAssets/icon_right.png" class="img" />
+            <image src="{{CDN}}icon_right.png" class="img" />
           </view>
         </navigator>
       </view>
@@ -44,14 +44,14 @@
     </view>
     <view class="list">
       <view class="list-item" wx:for="{{customerarea}}" wx:key="{{index}}">
-        <image src="http://1.img.dianjiangla.com/enquiryAssets/localize.png" class="icon" />
+        <image src="{{CDN}}localize.png" class="icon" />
         <view class="left">
-          <text>{{item.province}}</text>
+          <text>{{item.provinceName}}</text>
           <text class="v">成交价值</text>
         </view>
         <view class="right">
-          <text class="t1">{{item.peopleNum}}人</text>
-          <text class="t2">￥{{item.money}}</text>
+          <text class="t1">{{item.num}}人</text>
+          <text class="t2">￥{{item.sumGmvAmount}}</text>
         </view>
       </view>
     </view>
