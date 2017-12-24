@@ -34,14 +34,14 @@ Page({
   },
   // 获取图片验证码
   setYzm: function () {
-    app.download(app.apiName('/auth/verifycode') + '?time=' + app.time.formatTime(new Date(), 'x')).then(path=>{
+    app.download(app.apiName('/auth/verifycode') + '?time=' + app.time.formatTime(new Date(), 'x')).then(path => {
       console.log(path)
       this.setData({
         yzm: path
       })
     })
-    
-    console.log( app.time.formatTime(new Date(), 'x'))
+
+    console.log(app.time.formatTime(new Date(), 'x'))
   },
   setPhone: function (res) {
     this.setData({
@@ -58,6 +58,7 @@ Page({
       "params.code": res.detail.value
     })
   },
+
   // 获取短信验证码
   getSendcode: function () {
     let params = { ...this.data.params };
@@ -69,14 +70,24 @@ Page({
       app.utils.showModel('', '请填写正确的图片验证码')
       return;
     }
+
     app
       .post('/auth/sendcode?time=' + app.time.formatTime(new Date(), 'x'), params)
       .then(res => {
         console.log(res)
         if (res.status !== 200) {
           app.utils.showModel('', res.msg)
-          this.setData({ isShowYzm: true })
+          console.log(this.data.isShowYzm)
+          clearInterval(this.data.update)
+          if (this.data.isShowYzm) {
+            this.setData({ isGetCode: false })
+            this.update();
+          }
+          this.setData({
+            isShowYzm: true
+          })
           this.setYzm();
+
           return;
         }
         this.setData({
@@ -85,6 +96,19 @@ Page({
 
       })
   },
+  update: function () {
+    this.data.update = setInterval(() => {
+      this.data.codeIntervalTime--
+      let codeIntervalTime = this.data.codeIntervalTime;
+      if (codeIntervalTime <= 0) {
+        codeIntervalTime = 60;
+        this.setData({ isGetCode: true })
+        clearInterval(this.data.update);
+      }
+      this.setData({ codeIntervalTime: codeIntervalTime })
+    }, 1000)
+  },
+
   formSubmit: function (e) {
     console.log('form发生了submit事件，携带数据为：', e.detail.value)
   },
@@ -97,6 +121,9 @@ Page({
   data: {
     yzm: '',
     isShowYzm: false,
+    isGetCode: true,
+    codeIntervalTime: 60,
+    update: 0,
     params: {
       verifycode: '',
       phone: '',
