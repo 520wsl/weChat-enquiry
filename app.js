@@ -2,6 +2,7 @@
 import { api, apiName } from '/utils/api';
 import time from '/utils/time';
 import utils from '/utils/utils';
+import configA from '/config';
 const config = {
   onLaunch: function () {
     // this.login()
@@ -223,7 +224,8 @@ const config = {
   },
   apiName: apiName,
   time,
-  utils
+  utils,
+  CDN: configA.service.imgUrl
 }
 for (var name in api) {
   config[name] = api[name]

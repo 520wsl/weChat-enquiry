@@ -6,6 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    CDN: app.CDN,
     time: {
       startTime: null,
       endTime: null,
@@ -33,7 +34,6 @@ Page({
     // 校验
     if (this.isNull(this.data.time.startTime) || this.isNull(this.data.time.endTime)) {
       wx.showModal({
-        // title: '提示',
         content: '请选择开始日期或结束日期！',
         showCancel: false,
         success: function (res) {

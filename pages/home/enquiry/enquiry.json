@@ -6,5 +6,5 @@
     "component-date-control": "/components/dateControl/dateControl"
   },
   "enablePullDownRefresh": true,
-  "onReachBottomDistance": 5
+  "onReachBottomDistance": 10
 }

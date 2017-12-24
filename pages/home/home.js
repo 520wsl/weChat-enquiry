@@ -13,7 +13,6 @@ var chartData = {
 };
 
 const app = getApp();
-app.title = '杭州长风五金机械制造有限公司';
 
 Page({
 
@@ -21,20 +20,20 @@ Page({
    * 页面的初始数据
    */
   data: {
+    CDN: app.CDN,
     // banner
-    /**轮播数据 */
     imgUrls: [
-      'http://1.img.dianjiangla.com/enquiryAssets/banner-1.png'
+      app.CDN + 'banner-1.png'
     ],
     indicatorDots: false,      //是否显示面板指示点
 
     // 询盘
-    enquire: {},
+    enquire: null,
     images: {
-      totalValue: 'http://1.img.dianjiangla.com/enquiryAssets/enquiry_1.png',
-      tranValue: 'http://1.img.dianjiangla.com/enquiryAssets/enquiry_2.png',
-      enquireValue: 'http://1.img.dianjiangla.com/enquiryAssets/enquiry_3.png',
-      lossValue: 'http://1.img.dianjiangla.com/enquiryAssets/enquiry_4.png',
+      totalValue: app.CDN + 'enquiry_1.png',
+      tranValue: app.CDN + 'enquiry_2.png',
+      enquireValue: app.CDN + 'enquiry_3.png',
+      lossValue: app.CDN + 'enquiry_4.png',
     },
     enquireName: {
       totalValue: '总价值',
@@ -53,7 +52,7 @@ Page({
     customerarea: [],
     customerareaTime: {},
     // 公司
-    company: app.title,
+    company: '杭州长风五金机械制造有限公司',//app.globalData.customeInfo.companyName,
   },
 
   /**
@@ -63,52 +62,29 @@ Page({
 
   },
 
+  onShow() {
+    // 初始化操作
+    console.log('show');
+    this.getEnquire(this.data.enquireTime);
+    this.getCustomArea(this.data.customerareaTime);
+  },
+
   // 客户地区
-  getCustomArea({ type = 0 }) {
-    this.setData({
-      customerarea: [
-        {
-          // 金额
-          money: '33333.33',
-          // 人数
-          peopleNum: '15',
-          // 地区名称
-          province: '浙江省'
-        },
-        {
-          money: '11111.00',
-          peopleNum: '12',
-          province: '山东省'
-        },
-        {
-          money: '22222.33',
-          peopleNum: '10',
-          province: '湖南省'
-        },
-        {
-          money: '11111.00',
-          peopleNum: '9',
-          province: '四川省'
-        },
-        {
-          money: '22222.33',
-          peopleNum: '8',
-          province: '江苏省'
-        }
-      ]
-    });
-    this.getEcharts();
-    return;
-    app.get('/enquire/customerarea', {
+  getCustomArea({ type = 1 }) {
+    app.get('/enquiry/customerarea', {
       type: type,
     }).then(res => {
       if (res.status != 200) {
-        app.utils.showModel('错误提示', res.msg);
+        // app.utils.showModel('错误提示', res.msg);
         return;
       }
-      
+
+      let formatData = res.data;
+      formatData.forEach(item => {
+        item.sumGmvAmount = item.sumGmvAmount.toFixed(2);
+      });
       this.setData({
-        customerarea: res.data
+        customerarea: formatData
       });
       this.getEcharts();
     }).catch(res => {
@@ -116,31 +92,21 @@ Page({
     });
   },
   // 询盘统计
-  getEnquire({ type = 0}) {
-    this.setData({
-      enquire: {
-        // 总价值
-        totalValue: '2132001',
-        // 成交价值
-        tranValue: '2132002',
-        // 跟单价值
-        enquireValue: '2132003',
-        // 丢失价值
-        lossValue: '2132004',
-      },
-      enquireTime: this.data.enquireTime
-    });
-    return;
-    app.get('/enquire/statistics', {
+  getEnquire({ type = 1 }) {
+    app.get('/enquiry/statistics', {
       type: type,
     }).then(res => {
       if (res.status != 200) {
-        app.utils.showModel('错误提示', res.msg);
+        // app.utils.showModel('错误提示', res.msg);
         return;
       }
 
+      let formatData = res.data;
+      for (let i in formatData) {
+        formatData[i] = formatData[i].toFixed(2);
+      }
       this.setData({
-        enquire: res.data,
+        enquire: formatData,
         enquireTime: this.data.enquireTime
       })
     }).catch(res => {
@@ -152,20 +118,18 @@ Page({
     var windowWidth = 320;
     try {
       var res = wx.getSystemInfoSync();
-      windowWidth =
-
-        res.windowWidth;
+      windowWidth = res.windowWidth;
     } catch (e) {
       console.error('getSystemInfoSync failed!');
     }
     let categories = this.data.customerarea.map(item => {
-      return item.province;
+      return item.provinceName;
     });
     chartData.seriesData = this.data.customerarea.map(item => {
-      return item.money;
+      return item.sumGmvAmount;
     });
     let subCategories = this.data.customerarea.map(item => {
-      return item.peopleNum + '人';
+      return item.num + '人';
     });
 
     columnChart = new echarts({
@@ -185,6 +149,7 @@ Page({
         isGradation: true,
       }],
       yAxis: {
+        gridColor: 'rgba(204, 204, 204, .25)',
         format: function (val) {
           return val;
         },
@@ -208,7 +173,7 @@ Page({
     let color = chartData.setColor.map((item, i) => {
       item.start = '#7B73FE';
       item.end = '#55ABF6';
-      if(i == index){
+      if (i == index) {
         item.start = '#FF731D';
         item.end = '#FEA449';
       }
@@ -223,12 +188,12 @@ Page({
     });
   },
   // 获取时间-询盘
-  getTimeEnquiry(e){
+  getTimeEnquiry(e) {
     this.data.enquireTime = e.detail.time;
     this.getEnquire(e.detail.time);
   },
   // 获取时间-地区
-  getTimeErea(e){
+  getTimeErea(e) {
     this.data.customerareaTime = e.detail.time;
     this.getCustomArea(e.detail.time);
   }

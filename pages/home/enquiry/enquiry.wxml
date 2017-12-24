@@ -12,7 +12,7 @@
     <itemEnquiry wx:for="{{list}}" wx:key="{{index}}" item="{{item}}"></itemEnquiry>
   </view>
   <view wx:if="{{list.length == 0}}" class="no-data">
-    <image src="/images/enquiry/record_no.png" class="img" />
+    <image src="{{CDN}}record_no.png" class="img" />
     <text class="txt">抱歉!没有找到符合条件的记录</text>
   </view>
 </view>
