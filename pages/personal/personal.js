@@ -8,7 +8,7 @@ Page({
   data: {
     info: {},
     avatarUrl: '',
-    companyName:'',
+    companyName: '',
     isShowCompany: false
   },
   /**
@@ -16,7 +16,7 @@ Page({
    */
   onLoad: function (options) {
     // 公司列表长度大于1时显示选择公司链接
-   app.login();
+    app.login();
   },
   /**
    * 生命周期函数--监听页面显示
@@ -29,21 +29,15 @@ Page({
   },
   //获取页面数据
   getInfo: function () {
-    // app.getCustome(res => {
-      // console.log(app.globalData.customeInfo.companyName)
-      console.log('res',app.globalData.customeInfo)
-      if (app.globalData.customeInfo && app.globalData.customeInfo.companyName) {
-        this.setData({
-          info: app.globalData.customeInfo,
-          avatarUrl: app.globalData.userInfo.avatarUrl || '',
-          companyName:app.globalData.customeInfo.companyName,
-          isShowCompany: app.globalData.customeInfo.companies.length > 1 ? true : false
-        })
-      }
-    // })
-
-    
-    
+    console.log('res', app.globalData.customeInfo)
+    if (app.globalData.customeInfo && app.globalData.customeInfo.companyName) {
+      this.setData({
+        info: app.globalData.customeInfo,
+        avatarUrl: app.globalData.userInfo.avatarUrl || '',
+        companyName: app.globalData.customeInfo.companyName,
+        isShowCompany: app.globalData.customeInfo.companies.length > 1 ? true : false
+      })
+    }
   },
   // 点击登录
   login: function () {
