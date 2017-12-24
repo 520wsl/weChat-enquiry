@@ -1,1 +1,126 @@
-/* pages/enquiry/info/info.wxss */
+/* components/itemEnquiry/itemEnquiry.wxss */
+
+/* 副标题 1 */
+
+.second-title {
+    color: #666;
+}
+
+/* 副标题 2 */
+
+.second-title2 {
+    color: #999;
+}
+
+/* 线的颜色 */
+
+.hr {
+    border-bottom: 1px solid;
+    border-color: #e0e0e0;
+}
+.top{
+    height: 215rpx; 
+    color: #fff;
+    border-color: #55abf6;
+    background-image:linear-gradient(-225deg, #55abf6 0%, #7b73fe 100%);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.headerLeft{
+    flex:5;
+    padding-left:70rpx;
+}
+.money,.status{
+    font-size: 32rpx;
+    color: #fff;
+    margin-top: 12rpx;
+    text-shadow: 0 2px 2px #2A60A0;
+}
+.buyer{
+    font-size: 26rpx;
+    color: #fff;
+    margin-top: 12rpx;
+    text-shadow: 0 2px 2px #2A60A0;
+}
+.moneyA{
+    color: #F8DD32;
+}
+.headerRight1{
+    flex:2;
+    width:172rpx;
+    height:172rpx;
+    background: url('http://1.img.dianjiangla.com/enquiryAssets/deal.png') no-repeat;
+    background-size: 122rpx 122rpx;
+    background-position:center;
+}
+.headerRight2{
+    flex:2;
+    width:172rpx;
+    height:172rpx;
+    background: url('http://1.img.dianjiangla.com/enquiryAssets/documentary.png') no-repeat;
+    background-size: 122rpx 122rpx;
+    background-position:center;
+}
+.headerRight3{
+    flex:2;
+    width:172rpx;
+    height:172rpx;
+    background: url('http://1.img.dianjiangla.com/enquiryAssets/loss.png') no-repeat;
+    background-size: 122rpx 122rpx;
+    background-position:center;
+}
+.content{
+    margin-top:10rpx; 
+}
+.mains{
+    font-size: 26rpx;
+    height:auto;
+    width: 100%;
+}
+.record{
+    height:auto;
+    width: 100%;
+    margin-top:18rpx;
+    background-color:#f2f2f2;
+}
+.recordT{
+    margin:40rpx 0 0 16rpx;
+    padding-left: 50rpx;
+    background: url('http://1.img.dianjiangla.com/enquiryAssets/documentaryRecord.png') no-repeat;
+    background-size: 40rpx 30rpx;
+}
+.recordP{
+    height: 70rpx;
+    line-height: 70rpx;
+    width: 100%;
+    background-color:#fff;
+    /* padding:0 50rpx; */
+}
+.time{
+    color: #999999;
+    float: right;
+}
+.img{
+    width:25rpx;
+    height:25rpx;
+    margin:20rpx 20rpx;
+    float: right;
+}
+.recordUl{
+    background-color:#fff;
+    height:auto;
+    width: 100%;
+    margin-top:10rpx;
+    padding:0 16rpx;
+}
+.recordList{
+    min-height: 62rpx;
+    line-height: 62rpx;
+    height: auto;
+}
+.statusL{
+    color: #999999;
+    max-width:20rpx;
+    height: auto;word-wrap:break-word;
+}
