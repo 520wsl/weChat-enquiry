@@ -5,15 +5,15 @@ Page({
   verifyBindphone: function () {
     console.log({ ...this.data.params })
     let params = { ...this.data.params };
-    if (!params.phone) {
+    if (!params.phone || !/^1[34578]\d{9}$/.test(params.phone)) {
       app.utils.showModel('', '请填写正确的手机号')
       return;
     }
-    if (!params.verifycode) {
+    if (!params.code) {
       app.utils.showModel('', '请填写正确的短信验证码')
       return;
     }
-    if (!params.code && this.data.isShowYzm) {
+    if (!params.verifycode && this.data.isShowYzm) {
       app.utils.showModel('', '请填写正确的图片验证码')
       return;
     }
@@ -23,13 +23,6 @@ Page({
     app
       .post('/auth/bindphone', { ...this.data.params })
       .then(res => {
-        if (res.status === 400) {
-          this.setData({ isShowYzm: true })
-          this.setYzm();
-          app.utils.showModel('', '请填写正确的图片验证码')
-          return;
-        }
-
         if (res.status !== 200) {
           app.utils.showModel('', res.msg)
           return;
@@ -41,9 +34,14 @@ Page({
   },
   // 获取图片验证码
   setYzm: function () {
-    this.setData({
-      yzm: app.apiName('/auth/verifycode') + '?time=' + app.time.formatTime(new Date(), 'x')
+    app.download(app.apiName('/auth/verifycode') + '?time=' + app.time.formatTime(new Date(), 'x')).then(path=>{
+      console.log(path)
+      this.setData({
+        yzm: path
+      })
     })
+    
+    console.log( app.time.formatTime(new Date(), 'x'))
   },
   setPhone: function (res) {
     this.setData({
@@ -62,16 +60,27 @@ Page({
   },
   // 获取短信验证码
   getSendcode: function () {
+    let params = { ...this.data.params };
+    if (!params.phone || !/^1[34578]\d{9}$/.test(params.phone)) {
+      app.utils.showModel('', '请填写正确的手机号')
+      return;
+    }
+    if ((!params.verifycode && this.data.isShowYzm) || (params.verifycode && params.verifycode.length !== 4)) {
+      app.utils.showModel('', '请填写正确的图片验证码')
+      return;
+    }
     app
-      .post('/auth/sendcode', { ...this.data.params })
+      .post('/auth/sendcode?time=' + app.time.formatTime(new Date(), 'x'), params)
       .then(res => {
         console.log(res)
         if (res.status !== 200) {
           app.utils.showModel('', res.msg)
+          this.setData({ isShowYzm: true })
+          this.setYzm();
           return;
         }
         this.setData({
-          'params.verifycode': res.data
+          'params.code': res.data
         })
 
       })
@@ -112,7 +121,6 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    this.setYzm()
   },
 
   /**

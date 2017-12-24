@@ -2,9 +2,9 @@
 import { api, apiName } from '/utils/api';
 import time from '/utils/time';
 import utils from '/utils/utils';
-App({
+const config = {
   onLaunch: function () {
-    this.ifcheckSession()
+    // this.login()
   },
   // 1、判断登录是否过期
   ifcheckSession: function () {
@@ -105,21 +105,28 @@ App({
   },
   // 3、获取客户信息
   accountMy: function () {
+    this.getCustome(res => {
+      this.ifBindPhone();
+    })
+  },
+  getCustome: function (cb) {
     api.get('/account/my').then(res => {
       console.log('3、获取客户信息', res)
       if (res.status !== 200) {
         console.log('获取客户信息失败：' + res.msg)
-        utils.showModel('获取客户信息', '获取客户信息失败：' + res.msg)
+        // utils.showModel('获取客户信息', '获取客户信息失败：' + res.msg)
+        this.ifBindPhone();
         return;
       }
       this.globalData.customeInfo = res.data;
-      this.ifBindPhone();
+      cb(this.globalData)
     })
   },
   // 4、判断 是否绑定手机
   ifBindPhone: function () {
-    console.log('4、判断 是否绑定手机: ', this.globalData.customeInfo)
-    if (!this.globalData.customeInfo.phone) {
+    let customeInfo = this.globalData.customeInfo;
+    console.log('4、判断 是否绑定手机: ', customeInfo)
+    if (!customeInfo || !customeInfo.phone) {
       this.showBindPhone();
       return;
     }
@@ -144,22 +151,38 @@ App({
   },
   // 6、判断是否选择公司
   ifBindCustome: function () {
-    console.log('6、判断是否选择公司');
-    if (!this.globalData.customeInfo.companyName) {
-      this.bindCustome();
+    let customeInfo = this.globalData.customeInfo;
+    console.log('6、判断是否选择公司', customeInfo);
+    if (!customeInfo || !customeInfo.companyName) {
+      this.getCompanies();
       return;
     }
     wx.switchTab({
       url: '/pages/personal/personal'
     })
   },
-  // 6.1、判断有几家客户
-  bindCustome: function (params) {
-    console.log('6.1、判断有几家客户', this.globalData.customeInfo.companies.length)
-    let companies = this.globalData.customeInfo.companies;
+  // 6.1、获取客户列表
+  getCompanies: function () {
+    api.get('/company/list').then(res => {
+      console.log('6.1、获取客户列表', this.globalData.customeInfo)
+      // console.log(res);
+      if (res.status === 200) {
+        this.globalData.companies = res.data
+        this.bindCustome()
+      }
+    })
+  },
+  // 6.2、判断有几家客户
+  bindCustome: function () {
+    console.log('6.2、判断有几家客户', this.globalData.companies)
+    let companies = this.globalData.companies;
+    let companyName = this.globalData.customeInfo.companyName;
     let num = companies.length;
+    if (companyName) {
+      return;
+    }
     if (num < 1) {
-      utils.showModel('', '您拥有' + num + '家公司，请联系客服绑定!')
+      utils.showModel('', '您拥有 ' + num + ' 家公司，请联系客服绑定!')
       wx.switchTab({
         url: '/pages/personal/personal'
       })
@@ -173,12 +196,12 @@ App({
       return;
     }
     wx.navigateTo({
-      url: 'pages/personal/companyList/companyList'
+      url: '/pages/personal/companyList/companyList'
     })
   },
-  // 6.2 选择公司
+  // 6.3 选择公司
   setcompany: function (aliAccountId) {
-    console.log('6.2 选择公司', aliAccountId)
+    console.log('6.3 选择公司', aliAccountId)
     api
       .post('/auth/setcompany', { aliAccountId: aliAccountId })
       .then(res => {
@@ -186,18 +209,23 @@ App({
           utils.showModel('', res.msg)
           return;
         }
-        wx.switchTab({
-          url: '/pages/personal/personal'
+        this.getCustome(e => {
+          wx.switchTab({
+            url: '/pages/personal/personal'
+          })
         })
       })
   },
   globalData: {
     userInfo: null,
-    customeInfo: null
+    customeInfo: null,
+    companies: null
   },
-  get: api.get,
-  post: api.post,
   apiName: apiName,
   time,
   utils
-})
+}
+for (var name in api) {
+  config[name] = api[name]
+}
+App(config)
