@@ -126,6 +126,9 @@ Page({
       }
     }).catch(res => {
       console.log(res);
+      if (typeof cb == 'function') {
+        cb();
+      }
     });
   },
 })

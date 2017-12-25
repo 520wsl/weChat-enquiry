@@ -46,7 +46,7 @@ Component({
   },
 
   ready(){
-    this.triggerEvent('getTime', { time: this.data.data[0] });
+    // this.triggerEvent('getTime', { time: this.data.data[0] });
   },
 
   /**
