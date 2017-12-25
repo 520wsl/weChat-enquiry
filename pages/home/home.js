@@ -65,6 +65,7 @@ Page({
   onShow() {
     // 初始化操作
     console.log('show');
+    app.isBindPhoneOrBindCustome();
     this.getEnquire(this.data.enquireTime);
     this.getCustomArea(this.data.customerareaTime);
   },

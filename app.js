@@ -217,6 +217,19 @@ const config = {
         })
       })
   },
+  isBindPhoneOrBindCustome:function(){
+    let customeInfo = this.globalData.customeInfo;
+    console.log('7-phone、判断 是否绑定手机: ', customeInfo)
+    if (!customeInfo || !customeInfo.phone) {
+      this.showBindPhone();
+      return;
+    }
+    console.log('7-custom、判断是否选择公司', customeInfo);
+    if (!customeInfo || !customeInfo.companyName) {
+      this.getCompanies();
+      return;
+    }
+  },
   globalData: {
     userInfo: null,
     customeInfo: null,

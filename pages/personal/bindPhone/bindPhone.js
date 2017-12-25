@@ -29,7 +29,7 @@ Page({
         }
 
         // 判断是否需要选择公司
-        app.ifBindCustome();
+        app.accountMy();
       })
   },
   // 获取图片验证码
@@ -47,18 +47,31 @@ Page({
     this.setData({
       "params.phone": res.detail.value
     })
+    this.setSubmit()
   },
   setVerifycode: function (res) {
     this.setData({
       "params.verifycode": res.detail.value
     })
+    this.setSubmit()
   },
   setCode: function (res) {
     this.setData({
       "params.code": res.detail.value
     })
+    this.setSubmit()
   },
-
+  setSubmit: function () {
+    if (this.data.params.code && this.data.params.phone) {
+      this.setData({
+        isSubmit: true
+      })
+    } else {
+      this.setData({
+        isSubmit: false
+      })
+    }
+  },
   // 获取短信验证码
   getSendcode: function () {
     let params = { ...this.data.params };
@@ -119,9 +132,11 @@ Page({
    * 页面的初始数据
    */
   data: {
+    CDN: app.CDN,
     yzm: '',
     isShowYzm: false,
     isGetCode: true,
+    isSubmit: false,
     codeIntervalTime: 60,
     update: 0,
     params: {

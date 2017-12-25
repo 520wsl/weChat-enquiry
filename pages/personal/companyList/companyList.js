@@ -6,6 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    CDN: app.CDN,
     lists: []
   },
   /**
@@ -15,20 +16,24 @@ Page({
     this.getList()
   },
   getList: function () {
-    app.get('/company/list').then(res => {
-      // console.log(res);
-      if (res.status === 200) {
-        this.setData({
-          lists: res.data
-        })
-      } else {
-        utils.showModel('获取公司失败', res.msg)
-      }
-    })
+    // app.get('/company/list').then(res => {
+    //   // console.log(res);
+    //   if (res.status === 200) {
+    //     this.setData({
+    //       lists: res.data
+    //     })
+    //   } else {
+    //     utils.showModel('获取公司失败', res.msg)
+    //   }
+    // })
+    if (app.globalData.companies)
+      this.setData({
+        lists: app.globalData.companies
+      })
   },
   // 选择公司
   changeCompany: function (event) {
     console.log('changeCompany', event)
-    app.setcompany(event.target.dataset.aliaccountid)
+    app.setcompany(event.currentTarget.dataset.aliaccountid)
   }
 })
