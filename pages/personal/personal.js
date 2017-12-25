@@ -6,9 +6,11 @@ Page({
    * 页面的初始数据
    */
   data: {
+    CDN: app.CDN,
     info: {},
     avatarUrl: '',
     companyName: '',
+    services:[],
     isShowCompany: false
   },
   /**
@@ -16,7 +18,8 @@ Page({
    */
   onLoad: function (options) {
     // 公司列表长度大于1时显示选择公司链接
-    app.login();
+    this.login();
+    this.getServices();
   },
   /**
    * 生命周期函数--监听页面显示
@@ -27,21 +30,39 @@ Page({
     // app.login();
     // app.ifBindPhone();
   },
+  getServices: function () {
+    app
+      .get('/common/services')
+      .then(res => {
+        if (res.status !== 200) {
+          console.log('获取客服接口', res)
+          return;
+        }
+        this.setData({
+          services:res.data
+        })
+      })
+  },
   //获取页面数据
   getInfo: function () {
     console.log('res', app.globalData.customeInfo)
     if (app.globalData.customeInfo && app.globalData.customeInfo.companyName) {
       this.setData({
         info: app.globalData.customeInfo,
-        avatarUrl: app.globalData.userInfo.avatarUrl || '',
         companyName: app.globalData.customeInfo.companyName,
         isShowCompany: app.globalData.customeInfo.companies.length > 1 ? true : false
+      })
+    }
+    if (app.globalData.userInfo && app.globalData.userInfo.avatarUrl) {
+      let avatarUrl = app.globalData.userInfo.avatarUrl || ''
+      this.setData({
+        avatarUrl: avatarUrl
       })
     }
   },
   // 点击登录
   login: function () {
-    app.ifcheckSession()
+    app.login()
   },
   // 选择公司列表
   toCompany: function () {

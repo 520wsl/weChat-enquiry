@@ -12,35 +12,35 @@
   <view class='list-box' wx:if="{{isShowCompany}}">
     <view class='list list1 margin-bottom20' bindtap="toCompany">
       <view class='horizontal_alignment'>
-        <image src='http://1.img.dianjiangla.com/enquiryAssets/icon_company.png' class='icon'/>
+        <image src='{{CDN}}icon_company.png' class='icon'/>
         <text class='list_text'>公司列表</text>
       </view>
-      <image src='http://1.img.dianjiangla.com/enquiryAssets/icon_right.png' class='icon_right'/>
+      <image src='{{CDN}}icon_right.png' class='icon_right'/>
     </view>
   </view>
 
   <view class='list-box'>
     <view class='list list1'>
       <view class='horizontal_alignment'>
-        <image src='http://1.img.dianjiangla.com/enquiryAssets/icon_zxkf.png' class='icon'/>
+        <image src='{{CDN}}icon_zxkf.png' class='icon'/>
         <button plain="true" open-type="contact" class='list_text contact_text'>在线咨询客服</button>
       </view>
       <button plain="true" open-type="contact" class='contact_text contact_icon'>
-        <image src='http://1.img.dianjiangla.com/enquiryAssets/icon_right.png' class='icon_right'/>
+        <image src='{{CDN}}icon_right.png' class='icon_right'/>
       </button>
     </view>
   </view>
 
-  <view class='list-box' wx:for="{{info.customerServices}}" wx:for-index="index"  wx:for-item="item" wx:key="index">
+  <view class='list-box' wx:for="{{services}}" wx:for-index="index"  wx:for-item="item" wx:key="index">
     <view class='list list2' bindtap='callPhone'>
       <view class='list_phone_box'>
-        <image src='http://1.img.dianjiangla.com/enquiryAssets/icon_phone.png' class='icon'/>
+        <image src='{{CDN}}icon_phone.png' class='icon'/>
         <view class='list_phone_text'>
           <text class='list_text'>客服电话：{{item.phone}}</text>
           <text class='desc'>（服务时间：9:00-21:00）</text>
         </view>
       </view>
-      <image src='http://1.img.dianjiangla.com/enquiryAssets/icon_right.png' class='icon_right'/>
+      <image src='{{CDN}}icon_right.png' class='icon_right'/>
     </view>
   </view>
 

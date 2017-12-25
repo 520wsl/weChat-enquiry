@@ -27,10 +27,10 @@ Page({
   onLoad: function (options) {
     console.log('onLoad')
   },
-
   onShow: function () {
     // 初始化
     console.log('onShow');
+    app.isBindPhoneOrBindCustome()
     // 更新时间
     if (app.enquiryTime) {
       let time = app.enquiryTime;
