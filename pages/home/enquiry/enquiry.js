@@ -69,6 +69,7 @@ Page({
     app.get('/enquiry/statisticslist', this.data.params).then(res => {
       if (res.status != 200) {
         // app.utils.showModel('错误提示', res.msg);
+        console.log(res);
         return;
       }
       let formatData = res.data.list;
@@ -101,6 +102,9 @@ Page({
       }
     }).catch(res => {
       console.log(res);
+      if (typeof cb == 'function') {
+        cb();
+      }
     });
   },
 })
