@@ -2,11 +2,11 @@
 <view class="enquiry-time">
   <view class="time-choise">
     <view class="time-range">
-      <picker mode="date" value="{{time.startTime}}" class="{{time.startTime ? 'ac' : ''}} start-time" start="{{defaultTime.start}}" end="{{defaultTime.end >= time.endTime ? time.endTime : defaultTime.end }}" bindchange="startTimeChange">
+      <picker mode="date" value="{{time.startTime}}" class="{{time.startTime ? 'ac' : ''}} start-time" start="{{defaultTime.start}}" end="{{defaultTime.end}}" bindchange="startTimeChange">
         <view class="weui-input">{{time.startTime ? time.startTime : '开始日期'}}</view>
       </picker>
       <text class="txt">至</text>
-      <picker mode="date" value="{{time.endTime}}" class="{{time.endTime ? 'ac' : ''}} end-time" start="{{defaultTime.start < time.startTime ? time.startTime : defaultTime.start}}" end="{{defaultTime.end}}" bindchange="endTimeChange">
+      <picker mode="date" value="{{time.endTime}}" class="{{time.endTime ? 'ac' : ''}} end-time" start="{{defaultTime.start}}" end="{{defaultTime.end}}" bindchange="endTimeChange">
         <view class="weui-input">{{time.endTime ? time.endTime : '结束日期'}}</view>
       </picker>
     </view>
