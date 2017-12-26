@@ -36,18 +36,24 @@ Page({
       let time = app.enquiryTime;
       this.data.params.startTime = app.time.formatInitTime(time.startTime, 'x');
       this.data.params.endTime = app.time.endTime(time.endTime, 'x');
-      this.data.params.pageNum = 1;
+      // this.data.params.pageNum = 1;
       // 设置时间
       this.setData({
         enquiryTime: time,
         active: -1,
       });
-      this.data.list = [];
-      this.getList();
-      return;
+      // this.data.list = [];
+      // this.getList();
+      // return;
     }
+    this.data.params.pageNum = 1;
     this.data.list = [];
     this.getList();
+  },
+  onHide(){
+    this.setData({
+      list: []
+    })
   },
 
   /**
