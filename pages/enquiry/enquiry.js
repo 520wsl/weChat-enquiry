@@ -100,21 +100,21 @@ Page({
       this.data.count = res.data.count;
       formatData.forEach(item => {
         // 电话换算
-        if(item.phone){
-          item.phone = item.phone.replace(/^(\d{3})\d{4}(\d+)$/, '$1****$2');
-        }
+        // if(item.phone){
+        //   item.phone = item.phone.replace(/^(\d{3})\d{4}(\d+)$/, '$1****$2');
+        // }
       // 时间换算
         let time = item.gmtModified;
-        let yestoday = app.time.isDayType(time, 2);
-        // var today = app.time.isDayType(time, 2);
+        let yestoday = app.time.isDayType(time, 1);
+        var today = app.time.isDayType(time, 2);
         if (yestoday) {
           item.gmtModified = '昨天' + app.time.formatTime(time, ' HH:mm');
           return;
         }
-        // if (today) {
-        //   item.gmtModified = '今天' + app.time.formatTime(time, ' HH:mm');
-        //   return;
-        // }
+        if (today) {
+          item.gmtModified = '今天' + app.time.formatTime(time, ' HH:mm');
+          return;
+        }
         item.gmtModified = app.time.formatTime(time, 'MM-DD HH:mm');
       });
       this.data.list.push(...formatData);

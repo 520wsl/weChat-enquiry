@@ -104,10 +104,10 @@ util.getTimeLimit = function (n = 0, p = 'days', norms = 'YYYY-MM-DD HH:mm:ss'){
  */
 util.isDayType = function (time = new Date(), type = 1) {
   if(type == 1){
-    return moment(time).isBetween(util.formatSubtractTime(2), util.formatSubtractTime(0));
+    return moment(time).isBetween(util.formatSubtractTime(2), util.formatSubtractTime(0), 'day');
   }
   if(type == 2){
-    return moment(time).isBetween(util.formatSubtractTime(1), util.formatSubtractTime(-1));
+    return moment(time).isBetween(util.formatSubtractTime(1), util.formatSubtractTime(-1), 'day');
   }
   return false;
 }
