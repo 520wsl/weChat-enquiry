@@ -142,7 +142,7 @@ const config = {
       return;
     }
     wx.switchTab({
-      url: '/pages/personal/personal'
+      url: '/pages/home/home'
     })
   },
   // 6.1、获取客户列表
