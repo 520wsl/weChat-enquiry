@@ -52,23 +52,6 @@ const config = {
         this.getUserInfo();
       })
   },
-  // 2、判断是否已经授权用户信息 userInfo
-  // ifAuthUserInfo: function () {
-  //     console.log('2、判断是否已经授权用户信息 userInfo')
-  //     wx.getSetting({
-  //         success: res => {
-  //             if (res.authSetting['scope.userInfo']) {
-  //                 console.log('2-flase、未授权 用户信息 ', res)
-  //                 this.getUserInfo()
-  //                 return;
-  //             }
-  //             console.log('已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框')
-  //             this.getUserInfo()
-
-  //         }
-  //     })
-
-  // },
   // 2、小程序 获取用户信息
   getUserInfo: function () {
     wx.getUserInfo({

@@ -16,16 +16,6 @@ Page({
     this.getList()
   },
   getList: function () {
-    // app.get('/company/list').then(res => {
-    //   // console.log(res);
-    //   if (res.status === 200) {
-    //     this.setData({
-    //       lists: res.data
-    //     })
-    //   } else {
-    //     utils.showModel('获取公司失败', res.msg)
-    //   }
-    // })
     if (app.globalData.companies)
       this.setData({
         lists: app.globalData.companies
