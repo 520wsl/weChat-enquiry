@@ -52,7 +52,7 @@ Page({
     customerarea: [],
     customerareaTime: {},
     // 公司
-    company: '杭州长风五金机械制造有限公司',//app.globalData.customeInfo.companyName,
+    company: '',
   },
 
   /**
@@ -68,6 +68,12 @@ Page({
     app.isBindPhoneOrBindCustome();
     this.getEnquire(this.data.enquireTime);
     this.getCustomArea(this.data.customerareaTime);
+
+    if (app.globalData.customeInfo){
+      this.setData({
+        company: app.globalData.customeInfo.companyName
+      });
+    }
   },
 
   // 客户地区
@@ -118,6 +124,9 @@ Page({
   },
   // 图表
   getEcharts() {
+    if (this.data.customerarea.length == 0){
+      return;
+    }
     var windowWidth = 320;
     try {
       var res = wx.getSystemInfoSync();

@@ -192,7 +192,7 @@ const config = {
     if (num === 1) {
       this.setcompany(companies[0]['aliAccountId'])
       wx.switchTab({
-        url: '/pages/personal/personal'
+        url: '/pages/home/home'
       })
       return;
     }
@@ -212,23 +212,35 @@ const config = {
         }
         this.getCustome(e => {
           wx.switchTab({
-            url: '/pages/personal/personal'
+            url: '/pages/home/home'
           })
         })
       })
   },
-  isBindPhoneOrBindCustome:function(){
-    let customeInfo = this.globalData.customeInfo;
-    console.log('7-phone、判断 是否绑定手机: ', customeInfo)
-    if (!customeInfo || !customeInfo.phone) {
-      this.showBindPhone();
-      return;
-    }
-    console.log('7-custom、判断是否选择公司', customeInfo);
-    if (!customeInfo || !customeInfo.companyName) {
-      this.getCompanies();
-      return;
-    }
+  isBindPhoneOrBindCustome: function () {
+    wx.getUserInfo({
+      success: res => {
+        let customeInfo = this.globalData.customeInfo;
+        console.log('7-phone、判断 是否绑定手机: ', customeInfo)
+        if (!customeInfo || !customeInfo.phone) {
+          this.showBindPhone();
+          return;
+        }
+        console.log('7-custom、判断是否选择公司', customeInfo);
+        if (!customeInfo || !customeInfo.companyName) {
+          this.getCompanies();
+          return;
+        }
+      },
+      fail: res => {
+        this.openSetting();
+        return;
+      }
+    })
+
+
+
+
   },
   globalData: {
     userInfo: null,

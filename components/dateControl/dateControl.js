@@ -21,25 +21,25 @@ Component({
       {
         label: '一周',
         startTime: app.time.getTimeLimit(1, 'weeks'),
-        endTime: app.time.getTimeLimit(),
+        endTime: app.time.getTimeLimit(-1),
         type: 1
       },
       {
         label: '一月',
         startTime: app.time.getTimeLimit(1, 'months'),
-        endTime: app.time.getTimeLimit(),
+        endTime: app.time.getTimeLimit(-1),
         type: 2
       },
       {
         label: '半年',
         startTime: app.time.getTimeLimit(6, 'months'),
-        endTime: app.time.getTimeLimit(),
+        endTime: app.time.getTimeLimit(-1),
         type: 3
       },
       {
         label: '一年',
         startTime: app.time.getTimeLimit(1, 'years'),
-        endTime: app.time.getTimeLimit(),
+        endTime: app.time.getTimeLimit(-1),
         type: 4
       }
     ],

@@ -12,7 +12,7 @@ Page({
     active: 0,
 
     params: {
-      endTime: app.time.getTimeLimit(),
+      endTime: app.time.getTimeLimit(-1),
       pageNum: 1,
       pageSize: 10,
       startTime: app.time.getTimeLimit(1, 'weeks'),
@@ -35,7 +35,7 @@ Page({
     if (app.enquiryTime) {
       let time = app.enquiryTime;
       this.data.params.startTime = app.time.formatInitTime(time.startTime, 'x');
-      this.data.params.endTime = app.time.formatInitTime(time.endTime, 'x');
+      this.data.params.endTime = app.time.endTime(time.endTime, 'x');
       this.data.params.pageNum = 1;
       // 设置时间
       this.setData({
@@ -104,17 +104,17 @@ Page({
           item.phone = item.phone.replace(/^(\d{3})\d{4}(\d+)$/, '$1****$2');
         }
       // 时间换算
-        var time = item.gmtModified;
-        var yestoday = app.time.isDayType(time, 1);
-        var today = app.time.isDayType(time, 2);
+        let time = item.gmtModified;
+        let yestoday = app.time.isDayType(time, 2);
+        // var today = app.time.isDayType(time, 2);
         if (yestoday) {
           item.gmtModified = '昨天' + app.time.formatTime(time, ' HH:mm');
           return;
         }
-        if (today) {
-          item.gmtModified = '今天' + app.time.formatTime(time, ' HH:mm');
-          return;
-        }
+        // if (today) {
+        //   item.gmtModified = '今天' + app.time.formatTime(time, ' HH:mm');
+        //   return;
+        // }
         item.gmtModified = app.time.formatTime(time, 'MM-DD HH:mm');
       });
       this.data.list.push(...formatData);
