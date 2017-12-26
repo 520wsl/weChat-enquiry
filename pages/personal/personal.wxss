@@ -48,8 +48,12 @@
   font-size: 32rpx;
 }
 .list-box{
-   padding-left: 30rpx; 
+  padding-left: 30rpx;
   background-color: #fff; 
+}
+.contact_btn{
+  padding-right:0;
+  border-radius:0;
 }
 .list{
   padding-left: 30rpx;
@@ -62,6 +66,7 @@
 .list1{
   height:144rpx;
 }
+
 .list2{
   height:150rpx;
 }
@@ -112,4 +117,7 @@
 }
 .margin-bottom20{
   margin-bottom: 20rpx
+}
+button::after{
+  border: 0;
 }
