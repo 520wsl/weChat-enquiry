@@ -1,5 +1,5 @@
 <!--components/itemEnquiry/itemEnquiry.wxml-->
-<navigator url="/pages/enquiry/info/info?id={{item.buyerId}}">
+<navigator url="/pages/enquiry/info/info?id={{item.enquiryId}}">
     <view class='item hr'>
         <view class='pic head-portrait'>
             <image mode='aspectFit' src='{{CDN}}icon-touxiang.png'></image>

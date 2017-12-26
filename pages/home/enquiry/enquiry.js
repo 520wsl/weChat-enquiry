@@ -34,6 +34,9 @@ Page({
     this.data.params.timeType = options.timeType;
     this.data.label = options.label;
     this.getList();
+    this.setData({
+      label: this.data.label
+    })
   },
 
   onReady() {

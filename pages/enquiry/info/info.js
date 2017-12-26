@@ -8,7 +8,7 @@ Page({
   data: {
     CDN: app.CDN,
     params: {
-      buyerId: '',
+      enquiryId: '',
       pageNum: 1,
       pageSize: 12,
       count: 0
@@ -70,7 +70,7 @@ Page({
    */
   onLoad: function (options) {
     // 请求接口
-    this.data.params.buyerId = options.id || 55;
+    this.data.params.enquiryId = options.id || 55;
     this.getInfo();
   },
 

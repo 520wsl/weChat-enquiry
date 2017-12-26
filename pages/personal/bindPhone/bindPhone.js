@@ -103,6 +103,7 @@ Page({
 
           return;
         }
+        app.utils.showSuccess('已发送')
         this.setData({
           'params.code': res.data
         })
