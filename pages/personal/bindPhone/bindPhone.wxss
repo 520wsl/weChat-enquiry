@@ -18,7 +18,7 @@
     margin-right: 16rpx;
 }
 .btn-yzm{
-    width: 180rpx;
+    width: 200rpx;
     height: 60rpx;
     line-height: 60rpx;
     font-size: 24rpx;

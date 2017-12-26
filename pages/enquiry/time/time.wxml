@@ -2,7 +2,7 @@
 <view class="enquiry-time">
   <view class="time-choise">
     <view class="time-range">
-      <picker mode="date" value="{{time.startTime}}" class="{{time.startTime ? 'ac' : ''}} start-time" start="{{defaultTime.start}}" end="{{defaultTime.yesterday >= time.endTime ? time.endTime : defaultTime.yesterday }}" bindchange="startTimeChange">
+      <picker mode="date" value="{{time.startTime}}" class="{{time.startTime ? 'ac' : ''}} start-time" start="{{defaultTime.start}}" end="{{defaultTime.end >= time.endTime ? time.endTime : defaultTime.end }}" bindchange="startTimeChange">
         <view class="weui-input">{{time.startTime ? time.startTime : '开始日期'}}</view>
       </picker>
       <text class="txt">至</text>

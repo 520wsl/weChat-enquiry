@@ -34,6 +34,16 @@ Page({
   // 选择公司
   changeCompany: function (event) {
     console.log('changeCompany', event)
-    app.setcompany(event.currentTarget.dataset.aliaccountid)
+    wx.showModal({
+      title: '提示',
+      content: '是否切换公司?',
+      success: function (res) {
+        if (res.confirm) {
+          app.setcompany(event.currentTarget.dataset.aliaccountid)
+        } else if (res.cancel) {
+          console.log('用户点击取消')
+        }
+      }
+    })
   }
 })

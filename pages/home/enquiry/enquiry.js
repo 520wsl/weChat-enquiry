@@ -79,9 +79,9 @@ Page({
       this.data.count = res.data.count;
       formatData.forEach(item => {
         // 电话换算
-        if (item.phone) {
-          item.phone = item.phone.replace(/^(\d{3})\d{4}(\d+)$/, '$1****$2');
-        }
+        // if (item.phone) {
+        //   item.phone = item.phone.replace(/^(\d{3})\d{4}(\d+)$/, '$1****$2');
+        // }
         // 时间换算
         var time = item.gmtCreate;
         var yestoday = app.time.isDayType(time, 1);
