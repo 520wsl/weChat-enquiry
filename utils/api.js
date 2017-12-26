@@ -1,4 +1,5 @@
 var config = require('../config')
+var utils = require('./utils')
 
 /**
  * 组装接口完整的路径名称
@@ -37,6 +38,9 @@ var api = {
                 },
                 success: function (e) {
                     api.setCookie(e);
+                    if(e.data.status!=200){
+                        utils.showModel('',e.data.msg)
+                    }
                     resolve(e.data);
                 },
                 fail: function (e) {
