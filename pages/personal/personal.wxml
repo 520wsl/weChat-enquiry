@@ -19,7 +19,7 @@
     </view>
   </view>
 
-  <view class='list-box'>
+  <button open-type="contact" class='list-box contact_btn'>
     <view class='list list1'>
       <view class='horizontal_alignment'>
         <image src='{{CDN}}icon_zxkf.png' class='icon'/>
@@ -29,7 +29,7 @@
         <image src='{{CDN}}icon_right.png' class='icon_right'/>
       </button>
     </view>
-  </view>
+  </button>
 
   <view class='list-box' wx:for="{{services}}" wx:for-index="index"  wx:for-item="item" wx:key="index">
     <view class='list list2' bindtap='callPhone'>
