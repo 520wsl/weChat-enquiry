@@ -32,7 +32,7 @@
   </button>
 
   <view class='list-box' wx:for="{{services}}" wx:for-index="index"  wx:for-item="item" wx:key="index">
-    <view class='list list2' bindtap='callPhone'>
+    <view class='list list2' data-phone="{{item.phone}}" bindtap='callPhone'>
       <view class='list_phone_box'>
         <image src='{{CDN}}icon_phone.png' class='icon'/>
         <view class='list_phone_text'>
