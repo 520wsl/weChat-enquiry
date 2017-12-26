@@ -10,7 +10,7 @@ Page({
     info: {},
     avatarUrl: '',
     companyName: '',
-    services:[],
+    services: [],
     isShowCompany: false
   },
   /**
@@ -39,7 +39,7 @@ Page({
           return;
         }
         this.setData({
-          services:res.data
+          services: res.data
         })
       })
   },
@@ -70,12 +70,12 @@ Page({
       url: "./companyList/companyList"
     })
   },
-  callPhone: function () {
-    if (!this.data.info.phone) {
+  callPhone: function (res) {
+    if (!res.currentTarget.dataset.phone) {
       return
     }
     wx.makePhoneCall({
-      phoneNumber: this.data.info.phone
+      phoneNumber: res.currentTarget.dataset.phone
     })
   },
   // 退出登录事件
