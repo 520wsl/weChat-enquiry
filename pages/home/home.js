@@ -47,7 +47,12 @@ Page({
       enquireValue: 3,
       lossValue: 4,
     },
-    enquireTime: {},
+    enquireTime: {
+      label: '一周',
+      startTime: app.time.getTimeLimit(1, 'weeks'),
+      endTime: app.time.getTimeLimit(-1),
+      type: 1
+    },
     // 客户地区
     customerarea: [],
     customerareaTime: {},
