@@ -15,6 +15,12 @@ Page({
   onLoad: function () {
     this.getList()
   },
+  onShareAppMessage: function () {
+    return {
+      title: '四喜E伙伴',
+      path: '/pages/personal/companyList/companyList'
+    }
+  },
   getList: function () {
     if (app.globalData.companies)
       this.setData({
@@ -29,7 +35,12 @@ Page({
       content: '是否切换公司?',
       success: function (res) {
         if (res.confirm) {
-          app.setcompany(event.currentTarget.dataset.aliaccountid)
+          wx.showLoading({title: '加载中...'});
+          setTimeout(() => {
+            app.setcompany(event.currentTarget.dataset.aliaccountid, () => {
+              wx.hideLoading();
+            })
+          }, 2000);
         } else if (res.cancel) {
           // console.log('用户点击取消')
         }

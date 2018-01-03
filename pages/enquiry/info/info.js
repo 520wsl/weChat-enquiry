@@ -78,6 +78,12 @@ Page({
     this.data.params.enquiryId = options.id;
     this.getInfo();
   },
+  onShareAppMessage: function () {
+    return {
+      title: '四喜E伙伴',
+      path: '/pages/enquiry/info/info?id=' + this.data.params.enquiryId
+    }
+  },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
