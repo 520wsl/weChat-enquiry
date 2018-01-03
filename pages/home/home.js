@@ -20,10 +20,11 @@ Page({
    * 页面的初始数据
    */
   data: {
+    isShowChart: true,
     CDN: app.CDN,
     // banner
     imgUrls: [
-      app.CDN + 'banner-1.png'
+      app.CDN + 'banner-1.png?id=1'
     ],
     indicatorDots: false,      //是否显示面板指示点
 
@@ -69,7 +70,7 @@ Page({
 
   onShow() {
     // 初始化操作
-    console.log('show');
+    // console.log('show');
     app.isBindPhoneOrBindCustome();
     this.getEnquire(this.data.enquireTime);
     this.getCustomArea(this.data.customerareaTime);
@@ -88,20 +89,32 @@ Page({
     }).then(res => {
       if (res.status != 200) {
         // app.utils.showModel('错误提示', res.msg);
-        console.log(res);
+        // console.log(res);
         return;
       }
 
       let formatData = res.data;
+      if (formatData.length == 0){
+          this.setData({
+              customerarea: [],
+              isShowChart: false
+          });
+          return;
+      }
       formatData.forEach(item => {
         item.sumGmvAmount = item.sumGmvAmount.toFixed(2);
       });
       this.setData({
-        customerarea: formatData
+        customerarea: formatData,
+        isShowChart: true
       });
       this.getEcharts();
     }).catch(res => {
-      console.log(res);
+        this.setData({
+            customerarea: [],
+            isShowChart: false
+        });
+      // console.log(res);
     });
   },
   // 询盘统计
@@ -111,20 +124,26 @@ Page({
     }).then(res => {
       if (res.status != 200) {
         // app.utils.showModel('错误提示', res.msg);
-        console.log(res);
+        // console.log(res);
         return;
       }
 
       let formatData = res.data;
       for (let i in formatData) {
-        formatData[i] = formatData[i].toFixed(2);
+        if (formatData[i]){
+            formatData[i] = formatData[i].toFixed(2);
+        }
       }
       this.setData({
         enquire: formatData,
         enquireTime: this.data.enquireTime
       })
     }).catch(res => {
-      console.log(res);
+        this.setData({
+            enquire: null,
+            enquireTime: this.data.enquireTime
+        })
+      // console.log(res);
     });
   },
   // 图表
@@ -186,6 +205,9 @@ Page({
     });
   },
   touchHandler: function (e) {
+    if (this.data.customerarea.length == 0) {
+        return;
+    }
     var index = columnChart.getCurrentDataIndex(e);
     let color = chartData.setColor.map((item, i) => {
       item.start = '#7B73FE';

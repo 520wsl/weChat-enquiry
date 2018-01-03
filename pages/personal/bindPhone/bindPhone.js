@@ -3,20 +3,20 @@
 const app = getApp()
 Page({
   verifyBindphone: function () {
-    console.log({ ...this.data.params })
+    // console.log({ ...this.data.params })
     let params = { ...this.data.params };
     if (!params.phone || !/^1[34578]\d{9}$/.test(params.phone)) {
-      app.utils.showModel('', '请填写正确的手机号')
+      app.utils.showModel('绑定手机号', '请填写正确的手机号')
       return;
     }
     if (!params.code) {
-      app.utils.showModel('', '请填写正确的短信验证码')
+        app.utils.showModel('绑定手机号', '请填写正确的短信验证码')
       return;
     }
     if (!params.verifycode && this.data.isShowYzm) {
-      app.utils.showModel('', '请填写正确的图片验证码')
+        app.utils.showModel('绑定手机号', '请填写正确的图片验证码')
       return;
-    }
+    } 
     this.bindphone();
   },
   bindphone: function () {
@@ -24,7 +24,7 @@ Page({
       .post('/auth/bindphone', { ...this.data.params })
       .then(res => {
         if (res.status !== 200) {
-          app.utils.showModel('', res.msg)
+            app.utils.showModel('绑定手机号', res.msg)
           return;
         }
 
@@ -35,13 +35,13 @@ Page({
   // 获取图片验证码
   setYzm: function () {
     app.download(app.apiName('/auth/verifycode') + '?time=' + app.time.formatTime(new Date(), 'x')).then(path => {
-      console.log(path)
+      // console.log(path)
       this.setData({
         yzm: path
       })
     })
 
-    console.log(app.time.formatTime(new Date(), 'x'))
+    // console.log(app.time.formatTime(new Date(), 'x'))
   },
   setPhone: function (res) {
     this.setData({
@@ -76,21 +76,21 @@ Page({
   getSendcode: function () {
     let params = { ...this.data.params };
     if (!params.phone || !/^1[34578]\d{9}$/.test(params.phone)) {
-      app.utils.showModel('', '请填写正确的手机号')
+        app.utils.showModel('绑定手机号', '请填写正确的手机号')
       return;
     }
     if ((!params.verifycode && this.data.isShowYzm) || (params.verifycode && params.verifycode.length !== 4)) {
-      app.utils.showModel('', '请填写正确的图片验证码')
+        app.utils.showModel('绑定手机号', '请填写正确的图片验证码')
       return;
     }
 
     app
       .post('/auth/sendcode?time=' + app.time.formatTime(new Date(), 'x'), params)
       .then(res => {
-        console.log(res)
+        // console.log(res)
         if (res.status !== 200) {
-          app.utils.showModel('', res.msg)
-          console.log(this.data.isShowYzm)
+            app.utils.showModel('绑定手机号', res.msg)
+          // console.log(this.data.isShowYzm)
           clearInterval(this.data.update)
           if (this.data.isShowYzm) {
             this.setData({ isGetCode: false })
@@ -124,10 +124,10 @@ Page({
   },
 
   formSubmit: function (e) {
-    console.log('form发生了submit事件，携带数据为：', e.detail.value)
+    // console.log('form发生了submit事件，携带数据为：', e.detail.value)
   },
   formReset: function () {
-    console.log('form发生了reset事件')
+    // console.log('form发生了reset事件')
   },
   /**
    * 页面的初始数据

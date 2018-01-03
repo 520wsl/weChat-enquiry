@@ -26,7 +26,7 @@
       <view class='recordUl'>
         <view class='recordList'>
           <text class='statusL'>买家类型：</text>
-          <text class='statusR'>{{typeName[itemName.type]}}</text>
+          <text class='statusR'>{{itemName.buyerType}}</text>
         </view>
         <view class='recordList'>
           <text class='statusL'>买家职位：</text>
@@ -38,7 +38,7 @@
         </view>
         <view class='recordList'>
           <text class='statusL'>买家地址：</text>
-          <text class='statusR'>{{itemName.cityId}}</text>
+          <text class='statusR'>{{itemName.cityName}}</text>
         </view>
         <view class='recordList'>
           <text class='statusL'>加 微 信：</text>

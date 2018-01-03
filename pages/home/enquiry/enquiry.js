@@ -9,7 +9,7 @@ Page({
     CDN: app.CDN,
     // banner
     imgUrls: [
-      app.CDN+'banner-2.png'
+        app.CDN +'banner-2.png?id=1'
     ],
     indicatorDots: false,
 
@@ -29,7 +29,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log('onLoad');
+    // console.log('onLoad');
     this.data.params.countType = options.countType;
     this.data.params.timeType = options.timeType;
     this.data.label = options.label;
@@ -60,7 +60,7 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-    console.log('触底')
+    // console.log('触底')
     if (this.data.list.length < this.data.count) {
       this.data.params.pageNum++;
       this.getList();
@@ -72,7 +72,7 @@ Page({
     app.get('/enquiry/statisticslist', this.data.params).then(res => {
       if (res.status != 200) {
         // app.utils.showModel('错误提示', res.msg);
-        console.log(res);
+        // console.log(res);
         return;
       }
       let formatData = res.data.list;
@@ -104,7 +104,7 @@ Page({
         cb();
       }
     }).catch(res => {
-      console.log(res);
+      // console.log(res);
       if (typeof cb == 'function') {
         cb();
       }

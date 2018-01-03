@@ -39,7 +39,12 @@ Page({
     list: [],
     // 买家类型
     typeName: {
-      1: '阿里账户'// 和设计图上有出入
+      0: '',
+      1: '淘卖',
+      2: '经销商',
+      3: '微商',
+      4: '外贸',
+      5: '其他',
     },
     // 买家意向
     buyerIntentionName: {
@@ -70,7 +75,7 @@ Page({
    */
   onLoad: function (options) {
     // 请求接口
-    this.data.params.enquiryId = options.id || 55;
+    this.data.params.enquiryId = options.id;
     this.getInfo();
   },
 
@@ -99,7 +104,7 @@ Page({
   getInfo(cb) {
     app.get('/enquiry/listinfo', this.data.params).then(res => {
       if (res.status != 200) {
-        console.log(res);
+        // console.log(res);
         return;
       }
 
@@ -132,7 +137,7 @@ Page({
         cb();
       }
     }).catch(res => {
-      console.log(res);
+      // console.log(res);
       if (typeof cb == 'function') {
         cb();
       }

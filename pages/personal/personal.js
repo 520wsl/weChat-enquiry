@@ -35,7 +35,7 @@ Page({
       .get('/common/services')
       .then(res => {
         if (res.status !== 200) {
-          console.log('获取客服接口', res)
+          // console.log('获取客服接口', res)
           return;
         }
         this.setData({
@@ -45,7 +45,7 @@ Page({
   },
   //获取页面数据
   getInfo: function () {
-    console.log('res', app.globalData.customeInfo)
+    // console.log('res', app.globalData.customeInfo)
     if (app.globalData.customeInfo && app.globalData.customeInfo.companyName) {
       this.setData({
         info: app.globalData.customeInfo,
