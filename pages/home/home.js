@@ -81,6 +81,12 @@ Page({
       });
     }
   },
+  onShareAppMessage: function () {
+    return {
+      title: '四喜E伙伴',
+      path: '/pages/home/home'
+    }
+  },
 
   // 客户地区
   getCustomArea({ type = 1 }) {

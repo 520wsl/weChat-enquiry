@@ -24,10 +24,13 @@ const config = {
     })
   },
   // 1.1、 小程序登录 获取code
-  login: function () {
+  login: function (cb) {
     console.log('1.1、 小程序登录 获取code')
     wx.login({
       success: res => {
+        if (typeof cb == 'function') {
+          cb();
+        }
         if (!res.code) {
           utils.showModel('用户登录', '登录失败:' + res.errMsg)
           console.log('1.1-flase、获取用户登录态失败！' + res.errMsg)
@@ -184,11 +187,14 @@ const config = {
     })
   },
   // 6.3 选择公司
-  setcompany: function (aliAccountId) {
+  setcompany: function (aliAccountId, cb) {
     console.log('6.3 选择公司', aliAccountId)
     api
       .post('/auth/setcompany', { aliAccountId: aliAccountId })
       .then(res => {
+        if (typeof cb == 'function') {
+          cb();
+        }
         if (res.status !== 200) {
           utils.showModel('', res.msg)
           return;

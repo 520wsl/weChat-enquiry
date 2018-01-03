@@ -44,6 +44,15 @@ Page({
       title: this.data.label + '询盘记录'
     });
   },
+  onShareAppMessage: function () {
+    let countType = this.data.params.countType;
+    let timeType = this.data.params.timeType;
+    let label = this.data.params.label;
+    return {
+      title: '四喜E伙伴',
+      path: '/pages/home/enquiry/enquiry?countType=' + countType + '&timeType=' + timeType + '&label=' + label
+    }
+  },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作

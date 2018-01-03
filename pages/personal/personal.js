@@ -6,6 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    dbLogin: true,
     CDN: app.CDN,
     info: {},
     avatarUrl: '',
@@ -29,6 +30,12 @@ Page({
     // console.log('aaaaaaaaaaaaaaaaaaaaa=>')
     // app.login();
     // app.ifBindPhone();
+  },
+  onShareAppMessage: function () {
+    return {
+      title: '四喜E伙伴',
+      path: '/pages/personal/personal'
+    }
   },
   getServices: function () {
     app
@@ -62,7 +69,14 @@ Page({
   },
   // 点击登录
   login: function () {
-    app.login()
+    if (this.data.dbLogin){
+      this.data.dbLogin = false;
+      app.login(() => {
+        setTimeout(() => {
+          this.data.dbLogin = true;
+        }, 3000);
+      });
+    }
   },
   // 选择公司列表
   toCompany: function () {
