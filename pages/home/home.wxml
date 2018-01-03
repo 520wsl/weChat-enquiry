@@ -39,7 +39,7 @@
     <!-- 日期选择控件 -->
     <component-date-control bindgetTime="getTimeErea" />
     <!-- 图表 -->
-    <view class="canvas">
+    <view hidden="{{!isShowChart}}" class="canvas">
       <canvas canvas-id="columnCanvas" class="canvas" bindtouchstart="touchHandler"></canvas>
     </view>
     <view class="list">

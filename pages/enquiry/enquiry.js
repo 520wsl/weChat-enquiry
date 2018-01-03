@@ -25,11 +25,11 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log('onLoad')
+    // console.log('onLoad')
   },
   onShow: function () {
     // 初始化
-    console.log('onShow');
+    // console.log('onShow');
     app.isBindPhoneOrBindCustome()
     // 更新时间
     if (app.enquiryTime) {
@@ -71,7 +71,7 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-    console.log('触底')
+    // console.log('触底')
     if (this.data.list.length < this.data.count) {
       this.data.params.pageNum++;
       this.getList();
@@ -98,7 +98,7 @@ Page({
     app.get('/enquiry/list', this.data.params).then(res => {
       if (res.status != 200) {
         // app.utils.showModel('错误提示', res.msg);
-        console.log(res);
+        // console.log(res);
         return;
       }
       
@@ -131,7 +131,7 @@ Page({
         cb();
       }
     }).catch(res => {
-      console.log(res);
+      // console.log(res);
       if (typeof cb == 'function') {
         cb();
       }

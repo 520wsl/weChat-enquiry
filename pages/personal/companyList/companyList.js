@@ -23,7 +23,7 @@ Page({
   },
   // 选择公司
   changeCompany: function (event) {
-    console.log('changeCompany', event)
+    // console.log('changeCompany', event)
     wx.showModal({
       title: '提示',
       content: '是否切换公司?',
@@ -31,7 +31,7 @@ Page({
         if (res.confirm) {
           app.setcompany(event.currentTarget.dataset.aliaccountid)
         } else if (res.cancel) {
-          console.log('用户点击取消')
+          // console.log('用户点击取消')
         }
       }
     })

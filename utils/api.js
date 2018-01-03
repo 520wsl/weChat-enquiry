@@ -38,8 +38,9 @@ var api = {
                 },
                 success: function (e) {
                     api.setCookie(e);
-                    if(e.data.status!=200){
-                        utils.showModel('',e.data.msg)
+                    if (e.data.status != 200) {
+                        // utils.showModel('',e.data.msg)
+                        console.log('全局拦截：', e.data)
                     }
                     resolve(e.data);
                 },
@@ -62,8 +63,8 @@ like.forEach(method => {
 api['download'] = function (url) {
     return new Promise(function (resolve, reject) {
         wx.downloadFile({
-            url:url, //仅为示例，并非真实的资源
-            header:{
+            url: url, //仅为示例，并非真实的资源
+            header: {
                 // 'content-type': 'application/x-www-form-urlencoded',
                 'Cookie': api.cookie || ''
             },
