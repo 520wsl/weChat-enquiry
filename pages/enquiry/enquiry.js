@@ -86,6 +86,16 @@ Page({
 
   // 选择时间
   getTime(e) {
+    var animation = wx.createAnimation({
+      duration: 500,
+      timingFunction: 'ease-in',
+    })
+    animation.opacity(0).step()
+    animation.opacity(1).step()
+    this.setData({
+      animationList: animation.export()
+    })
+
     let time = e.detail.time;
     this.data.params.startTime = time.startTime;
     this.data.params.endTime = time.endTime;

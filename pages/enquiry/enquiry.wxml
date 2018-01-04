@@ -10,7 +10,7 @@
       </navigator>
     </view>
   </view>
-  <view class='list'>
+  <view class='list' animation="{{animationList}}">
     <itemEnquiry wx:for="{{list}}" wx:key="{{index}}" item="{{item}}"></itemEnquiry>
   </view>
   <view wx:if="{{list.length == 0}}" class="no-data">
