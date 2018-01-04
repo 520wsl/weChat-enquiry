@@ -20,7 +20,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    isShowChart: true,
+    isShowChart: false,
     CDN: app.CDN,
     // banner
     imgUrls: [
@@ -71,9 +71,10 @@ Page({
   onShow() {
     // 初始化操作
     // console.log('show');
-    app.isBindPhoneOrBindCustome();
-    this.getEnquire(this.data.enquireTime);
-    this.getCustomArea(this.data.customerareaTime);
+    // app.isBindPhoneOrBindCustome();
+    this.getEnquire(this.data.enquireTime, () => {
+        this.getCustomArea(this.data.customerareaTime);
+    });
 
     if (app.globalData.customeInfo){
       this.setData({
@@ -112,7 +113,7 @@ Page({
       });
       this.setData({
         customerarea: formatData,
-        isShowChart: true
+        // isShowChart: true
       });
       this.getEcharts();
     }).catch(res => {
@@ -124,10 +125,13 @@ Page({
     });
   },
   // 询盘统计
-  getEnquire({ type = 1 }) {
+  getEnquire({ type = 1 }, cb) {
     app.get('/enquiry/statistics', {
       type: type,
     }).then(res => {
+        if (typeof cb == 'function') {
+            cb();
+        }
       if (res.status != 200) {
         // app.utils.showModel('错误提示', res.msg);
         // console.log(res);
@@ -208,6 +212,9 @@ Page({
       },
       width: windowWidth,
       height: windowWidth * 223 / 375,
+    });
+    this.setData({
+        isShowChart: true
     });
   },
   touchHandler: function (e) {

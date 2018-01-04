@@ -5,7 +5,8 @@
 // 此处主机域名修改成腾讯云解决方案分配的域名
 // var host = 'http://172.30.34.41:8082';
 // var host = 'http://172.30.34.3:8082';
-var host = 'http://dev.xp.yumc.pw/api';
+// var host = 'http://dev.xp.yumc.pw/api';
+var host = 'https://e.cnsixi.com/api';
 
 var config = {
 
