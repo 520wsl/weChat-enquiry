@@ -38,10 +38,7 @@ var api = {
                 },
                 success: function (e) {
                     api.setCookie(e);
-                    if (e.data.status != 200) {
-                        // utils.showModel('',e.data.msg)
-                        console.log('全局拦截：', url, e.data)
-                    }
+                    console.log('全局拦截：', url, e.data)
                     resolve(e.data);
                 },
                 fail: function (e) {
