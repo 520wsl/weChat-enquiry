@@ -25,6 +25,8 @@ const config = {
   },
   // 1.1、 小程序登录 获取code
   login: function (cb) {
+      this.reset();
+      wx.showLoading({title: '加载中...'});
     // console.log('1.1、 小程序登录 获取code')
     wx.login({
       success: res => {
@@ -38,6 +40,9 @@ const config = {
         }
         //发起网络请求
         this.authorize(res.code)
+      },
+      complete: res => {
+          wx.hideLoading();
       }
     });
   },
@@ -139,11 +144,13 @@ const config = {
   // 6、判断是否选择公司
   ifBindCustome: function () {
     let customeInfo = this.globalData.customeInfo;
-    // console.log('6、判断是否选择公司', customeInfo);
+    console.log('6、判断是否选择公司', customeInfo);
     if (!customeInfo || !customeInfo.companyName) {
+        console.log('6-flase、判断是否选择公司')
       this.getCompanies();
       return;
     }
+    console.log('6-true、判断是否选择公司')
     wx.switchTab({
       url: '/pages/home/home'
     })
@@ -177,9 +184,9 @@ const config = {
     }
     if (num >= 1) {
       this.setcompany(companies[0]['aliAccountId'])
-      wx.switchTab({
-        url: '/pages/home/home'
-      })
+    //   wx.switchTab({
+    //     url: '/pages/home/home'
+    //   })
       return;
     }
     wx.navigateTo({

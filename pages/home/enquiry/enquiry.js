@@ -79,6 +79,9 @@ Page({
   // 获取列表
   getList(cb) {
     app.get('/enquiry/statisticslist', this.data.params).then(res => {
+      if (typeof cb == 'function') {
+        cb();
+      }
       if (res.status != 200) {
         // app.utils.showModel('错误提示', res.msg);
         // console.log(res);
@@ -109,9 +112,6 @@ Page({
       this.setData({
         list: this.data.list,
       });
-      if (typeof cb == 'function') {
-        cb();
-      }
     }).catch(res => {
       // console.log(res);
       if (typeof cb == 'function') {

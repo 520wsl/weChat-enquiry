@@ -86,15 +86,15 @@ Page({
 
   // 选择时间
   getTime(e) {
-    var animation = wx.createAnimation({
-      duration: 500,
-      timingFunction: 'ease-in',
-    })
-    animation.opacity(0).step()
-    animation.opacity(1).step()
-    this.setData({
-      animationList: animation.export()
-    })
+    // var animation = wx.createAnimation({
+    //   duration: 100,
+    //   timingFunction: 'ease-in',
+    // })
+    // animation.opacity(0.3).step()
+    // animation.opacity(1).step()
+    // this.setData({
+    //   animationList: animation.export()
+    // })
 
     let time = e.detail.time;
     this.data.params.startTime = time.startTime;
@@ -112,6 +112,9 @@ Page({
   // 获取列表
   getList(cb) {
     app.get('/enquiry/list', this.data.params).then(res => {
+        if (typeof cb == 'function') {
+            cb();
+        }
       if (res.status != 200) {
         // app.utils.showModel('错误提示', res.msg);
         // console.log(res);
@@ -143,9 +146,6 @@ Page({
       this.setData({
         list: this.data.list,
       });
-      if (typeof cb == 'function') {
-        cb();
-      }
     }).catch(res => {
       // console.log(res);
       if (typeof cb == 'function') {

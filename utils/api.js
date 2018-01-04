@@ -32,7 +32,7 @@ var api = {
                 method: method.toUpperCase(),
                 data: data,
                 dataType: "json",
-                header: {
+                header: { 
                     // 'content-type': 'application/x-www-form-urlencoded',
                     'Cookie': api.cookie || ''
                 },
@@ -40,7 +40,7 @@ var api = {
                     api.setCookie(e);
                     if (e.data.status != 200) {
                         // utils.showModel('',e.data.msg)
-                        console.log('全局拦截：', e.data)
+                        console.log('全局拦截：', url, e.data)
                     }
                     resolve(e.data);
                 },
