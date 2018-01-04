@@ -16,7 +16,7 @@
     <view class="section" wx:if="{{enquire.totalValue || enquire.tranValue || enquire.enquireValue || enquire.lossValue}}">
       <view class="bg-setion bg-shadow"></view>
       <view class="real-setion bg-shadow">
-        <navigator animation="{{animationEnquiry}}" wx:for="{{enquire}}" wx:key="{{index}}" wx:if="{{item}}" url="/pages/home/enquiry/enquiry?countType={{enquiryType[index]}}&timeType={{enquireTime.type}}&label={{enquireTime.label}}" class="navigator" hover-class="">
+        <navigator wx:for="{{enquire}}" wx:key="{{index}}" wx:if="{{item}}" url="/pages/home/enquiry/enquiry?countType={{enquiryType[index]}}&timeType={{enquireTime.type}}&label={{enquireTime.label}}" class="navigator" hover-class="">
           <image src="{{images[index]}}" class='icon' />
           <view class="left">
             <text class='t1'>{{enquireTime.label}}询盘</text>
@@ -43,7 +43,7 @@
       <canvas canvas-id="columnCanvas" class="canvas" bindtouchstart="touchHandler"></canvas>
     </view>
     <view class="list">
-      <view animation="{{animationErea}}" class="list-item" wx:for="{{customerarea}}" wx:key="{{index}}">
+      <view class="list-item" wx:for="{{customerarea}}" wx:key="{{index}}">
         <image src="{{CDN}}localize.png" class="icon" />
         <view class="left">
           <text>{{item.provinceName}}</text>

@@ -49,7 +49,7 @@ Page({
       lossValue: 4,
     },
     enquireTime: {
-      label: '一周',
+      label: '近一周',
       startTime: app.time.getTimeLimit(1, 'weeks'),
       endTime: app.time.getTimeLimit(-1),
       type: 1
@@ -241,32 +241,32 @@ Page({
   },
   // 获取时间-询盘
   getTimeEnquiry(e) {
-    var animation = wx.createAnimation({
-      duration: 500,
-      timingFunction: 'ease-in',
-    })
-    animation.opacity(0).rotate3d(0, 1, 0, 90).step()
-    animation.opacity(1).rotate3d(0, 0, 0, 0).step()
+    // var animation = wx.createAnimation({
+    //   duration: 200,
+    //   timingFunction: 'ease-in',
+    // })
+    // animation.opacity(.3).rotate3d(0, 1, 0, 90).step()
+    // animation.opacity(1).rotate3d(0, 0, 0, 0).step()
 
-    this.setData({
-      animationEnquiry: animation.export()
-    })
+    // this.setData({
+    //   animationEnquiry: animation.export()
+    // })
 
     this.data.enquireTime = e.detail.time;
     this.getEnquire(e.detail.time);
   },
   // 获取时间-地区
   getTimeErea(e) {
-    var animation = wx.createAnimation({
-      duration: 600,
-      timingFunction: 'ease-in',
-    })
-    animation.opacity(0).step()
-    animation.opacity(1).step()
+    // var animation = wx.createAnimation({
+    //   duration: 200,
+    //   timingFunction: 'ease-in',
+    // })
+    // animation.opacity(0.3).step()
+    // animation.opacity(1).step()
 
-    this.setData({
-      animationErea: animation.export()
-    })
+    // this.setData({
+    //   animationErea: animation.export()
+    // })
 
     this.data.customerareaTime = e.detail.time;
     this.getCustomArea(e.detail.time);

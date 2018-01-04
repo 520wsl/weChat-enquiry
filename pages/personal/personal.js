@@ -18,7 +18,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    // 公司列表长度大于1时显示选择公司链接
+    // 我的公司长度大于1时显示选择公司链接
     // this.login();
     this.getServices();
   },
@@ -70,16 +70,19 @@ Page({
   // 点击登录
   login: function () {
     if (this.data.dbLogin){
+        this.setData({
+            isTiYan: false
+        });
       app.reset();
       this.data.dbLogin = false;
       app.login(() => {
-        // setTimeout(() => {
+        setTimeout(() => {
           this.data.dbLogin = true;
-        // }, 3000);
+        }, 3000);
       });
     }
   },
-  // 选择公司列表
+  // 选择我的公司
   toCompany: function () {
     wx.navigateTo({
       url: "./companyList/companyList"
@@ -115,15 +118,21 @@ Page({
   },
     // 体验版切换
   toggleHandle(){
+      wx.showLoading({ title: '加载中...' });
+    this.setData({
+        isTiYan: true
+    });
     app.reset();
       app
         .post('/auth/experience')
         .then(res => {
+            wx.hideLoading();
             if (res.status !== 200) {
                 return;
             }
             console.log(res);
-            app.accountMy();
+            app.getUserInfo();
+        
         })
   }
 })

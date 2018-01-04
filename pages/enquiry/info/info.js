@@ -109,6 +109,9 @@ Page({
   // 获取详情
   getInfo(cb) {
     app.get('/enquiry/listinfo', this.data.params).then(res => {
+      if (typeof cb == 'function') {
+        cb();
+      }
       if (res.status != 200) {
         // console.log(res);
         return;
@@ -139,9 +142,6 @@ Page({
         'params.pageNum': this.data.params.pageNum,
         'params.count': data.count,
       });
-      if (typeof cb == 'function') {
-        cb();
-      }
     }).catch(res => {
       // console.log(res);
       if (typeof cb == 'function') {

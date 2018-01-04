@@ -19,25 +19,25 @@ Component({
 // 数据
     data: [
       {
-        label: '一周',
+        label: '近一周',
         startTime: app.time.getTimeLimit(1, 'weeks'),
         endTime: app.time.getTimeLimit(-1),
         type: 1
       },
       {
-        label: '一月',
+        label: '近一月',
         startTime: app.time.getTimeLimit(1, 'months'),
         endTime: app.time.getTimeLimit(-1),
         type: 2
       },
       {
-        label: '半年',
+        label: '近半年',
         startTime: app.time.getTimeLimit(6, 'months'),
         endTime: app.time.getTimeLimit(-1),
         type: 3
       },
       {
-        label: '一年',
+        label: '近一年',
         startTime: app.time.getTimeLimit(1, 'years'),
         endTime: app.time.getTimeLimit(-1),
         type: 4
