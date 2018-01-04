@@ -70,6 +70,7 @@ Page({
   // 点击登录
   login: function () {
     if (this.data.dbLogin){
+      app.reset();
       this.data.dbLogin = false;
       app.login(() => {
         // setTimeout(() => {
@@ -114,6 +115,7 @@ Page({
   },
     // 体验版切换
   toggleHandle(){
+    app.reset();
       app
         .post('/auth/experience')
         .then(res => {
