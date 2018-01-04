@@ -47,7 +47,7 @@ Page({
   onShareAppMessage: function () {
     let countType = this.data.params.countType;
     let timeType = this.data.params.timeType;
-    let label = this.data.params.label;
+    let label = this.data.label;
     return {
       title: '四喜E伙伴',
       path: '/pages/home/enquiry/enquiry?countType=' + countType + '&timeType=' + timeType + '&label=' + label

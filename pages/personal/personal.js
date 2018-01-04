@@ -19,7 +19,7 @@ Page({
    */
   onLoad: function (options) {
     // 公司列表长度大于1时显示选择公司链接
-    this.login();
+    // this.login();
     this.getServices();
   },
   /**
@@ -72,9 +72,9 @@ Page({
     if (this.data.dbLogin){
       this.data.dbLogin = false;
       app.login(() => {
-        setTimeout(() => {
+        // setTimeout(() => {
           this.data.dbLogin = true;
-        }, 3000);
+        // }, 3000);
       });
     }
   },
@@ -111,5 +111,17 @@ Page({
         }
       }
     })
+  },
+    // 体验版切换
+  toggleHandle(){
+      app
+        .post('/auth/experience')
+        .then(res => {
+            if (res.status !== 200) {
+                return;
+            }
+            console.log(res);
+            app.accountMy();
+        })
   }
 })

@@ -22,10 +22,18 @@ Page({
     }
   },
   getList: function () {
-    if (app.globalData.companies)
-      this.setData({
-        lists: app.globalData.companies
-      })
+    // if (app.globalData.companies)
+    //   this.setData({
+    //     lists: app.globalData.companies
+    //   })
+    app.get('/company/list').then(res => {
+        if (res.status === 200) {
+            app.globalData.companies = res.data
+            this.setData({
+                lists: app.globalData.companies
+            })
+        }
+    })
   },
   // 选择公司
   changeCompany: function (event) {
@@ -36,11 +44,11 @@ Page({
       success: function (res) {
         if (res.confirm) {
           wx.showLoading({title: '加载中...'});
-          setTimeout(() => {
+        //   setTimeout(() => {
             app.setcompany(event.currentTarget.dataset.aliaccountid, () => {
               wx.hideLoading();
             })
-          }, 2000);
+        //   }, 2000);
         } else if (res.cancel) {
           // console.log('用户点击取消')
         }
