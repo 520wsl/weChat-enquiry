@@ -227,6 +227,11 @@ const config = {
       }
     })
   },
+  // 重置
+  reset() {
+    this.globalData.customeInfo = null;
+    this.globalData.companies = null;
+  },
   globalData: {
     userInfo: null,
     customeInfo: null,
