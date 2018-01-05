@@ -14,10 +14,10 @@
 </view>
 
 <view class='content mains'>
-  <view wx:for="{{list}}" wx:key="idx" wx:for-index="idx" wx:for-item="itemName" class="{{idx == acIndex && toggel ? 'ac' : ''}} record">
-    <view class='recordP'>
+  <view wx:for="{{list}}" wx:key="idx" wx:for-index="idx" wx:for-item="itemName" class="{{idx == acIndex && toggle[idx].isDB ? 'ac' : ''}} record">
+    <view class='recordP' data-index="{{idx}}" bindtap='extendHandle'>
       <text class='recordT'>跟单记录 {{params.count - idx}}</text>
-      <view class="recordP-right" data-index="{{idx}}" bindtap='extendHandle'>
+      <view class="recordP-right">
         <text class='time'>{{itemName.gmtCreate}} </text>
         <image data-index="{{idx}}" class="img" src='{{CDN}}icon_right.png'></image>
       </view>

@@ -67,7 +67,7 @@ Page({
 
     // 默认项
     acIndex: 0,
-    toggel: true,
+    toggle: [],
   },
   
   /**
@@ -112,6 +112,22 @@ Page({
       if (typeof cb == 'function') {
         cb();
       }
+      if (res.status == 401) {
+        wx.showModal({
+          title: '提示',
+          content: '登录超时或未登录，请重新登录',
+          success: res => {
+            if (res.confirm) {
+              app.reset();
+              wx.switchTab({
+                url: '/pages/personal/personal'
+              })
+            } else if (res.cancel) {
+            }
+          }
+        })
+        return;
+      }
       if (res.status != 200) {
         // console.log(res);
         return;
@@ -142,6 +158,17 @@ Page({
         'params.pageNum': this.data.params.pageNum,
         'params.count': data.count,
       });
+
+      this.data.list.forEach((item, index) => {
+        if (index == 0) {
+          this.data.toggle[index] = { isDB: true };
+          return;
+        }
+        this.data.toggle[index] = { isDB: false };
+      });
+      this.setData({
+        toggle: this.data.toggle
+      })
     }).catch(res => {
       // console.log(res);
       if (typeof cb == 'function') {
@@ -152,10 +179,19 @@ Page({
 
   // 选中操作
   extendHandle(e){
+    
     let index = e.currentTarget.dataset.index;
+    
+    this.data.toggle.forEach((item, i) => {
+      if (index == i) {
+        this.data.toggle[i].isDB = !this.data.toggle[i].isDB;
+        return;
+      }
+      this.data.toggle[i].isDB = false;
+    })
     this.setData({
       acIndex: index,
-      toggel: !this.data.toggel
+      toggle: this.data.toggle
     });
   }
 })

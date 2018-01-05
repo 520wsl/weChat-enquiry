@@ -27,6 +27,22 @@ Page({
     //     lists: app.globalData.companies
     //   })
     app.get('/company/list').then(res => {
+      if (res.status == 401) {
+        wx.showModal({
+          title: '提示',
+          content: '登录超时或未登录，请重新登录',
+          success: res => {
+            if (res.confirm) {
+              app.reset();
+              wx.switchTab({
+                url: '/pages/personal/personal'
+              })
+            } else if (res.cancel) {
+            }
+          }
+        })
+        return;
+      }
         if (res.status === 200) {
             app.globalData.companies = res.data
             this.setData({
