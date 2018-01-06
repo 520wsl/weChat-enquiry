@@ -72,8 +72,9 @@ Page({
     // 初始化操作
     // console.log('show');
     // app.isBindPhoneOrBindCustome();
-    this.getEnquire(this.data.enquireTime);
-    this.getCustomArea(this.data.customerareaTime);
+    this.getEnquire(this.data.enquireTime, () => {
+        this.getCustomArea(this.data.customerareaTime);
+    });
 
     if (app.globalData.customeInfo){
       this.setData({
@@ -102,19 +103,6 @@ Page({
           customerarea: [],
           isShowChart: false
         });
-        wx.showModal({
-          title: '提示',
-          content: '登录超时或未登录，请重新登录',
-          success: res => {
-            if (res.confirm) {
-              app.reset();
-              wx.switchTab({
-                url: '/pages/personal/personal'
-              })
-            } else if (res.cancel) {
-            }
-          }
-        })
         return;
       }
       if (res.status != 200) {
@@ -148,10 +136,13 @@ Page({
     });
   },
   // 询盘统计
-  getEnquire({ type = 1 }) {
+  getEnquire({ type = 1 }, cb) {
     app.get('/enquiry/statistics', {
       type: type,
     }).then(res => {
+      if (typeof cb == 'function') {
+        cb();
+      }
       if (res.status == 401) {
         this.setData({
           enquire: null,
