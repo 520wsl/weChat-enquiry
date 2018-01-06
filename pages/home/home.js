@@ -103,19 +103,6 @@ Page({
           customerarea: [],
           isShowChart: false
         });
-        wx.showModal({
-          title: '提示',
-          content: '登录超时或未登录，请重新登录',
-          success: res => {
-            if (res.confirm) {
-              app.reset();
-              wx.switchTab({
-                url: '/pages/personal/personal'
-              })
-            } else if (res.cancel) {
-            }
-          }
-        })
         return;
       }
       if (res.status != 200) {
@@ -153,9 +140,9 @@ Page({
     app.get('/enquiry/statistics', {
       type: type,
     }).then(res => {
-        if (typeof cb == 'function') {
-            cb();
-        }
+      if (typeof cb == 'function') {
+        cb();
+      }
       if (res.status == 401) {
         this.setData({
           enquire: null,
