@@ -19,8 +19,8 @@
         <navigator wx:for="{{enquire}}" wx:key="{{index}}" wx:if="{{item}}" url="/pages/home/enquiry/enquiry?countType={{enquiryType[index]}}&timeType={{enquireTime.type}}&label={{enquireTime.label}}" class="navigator" hover-class="">
           <image src="{{images[index]}}" class='icon' />
           <view class="left">
-            <text class='t1'>{{enquireTime.label}}询盘</text>
-            <text class='t2'>{{enquireName[index]}}</text>
+            <!-- <text class='t1'>{{enquireTime.label}}询盘</text> -->
+            <text class='t2'>询盘{{enquireName[index]}}</text>
           </view>
           <view class="right">
             <text>￥{{item}}</text>

@@ -105,6 +105,15 @@ Page({
       this.getInfo();
     }
   },
+  // 调启微信电话接口
+  callPhone: function (res) {
+      if (!res.currentTarget.dataset.phone || res.currentTarget.dataset.phone.length <= 0) {
+          return
+      }
+      wx.makePhoneCall({
+          phoneNumber: res.currentTarget.dataset.phone
+      })
+  },
 
   // 获取详情
   getInfo(cb) {
