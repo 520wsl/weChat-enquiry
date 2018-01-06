@@ -72,9 +72,8 @@ Page({
     // 初始化操作
     // console.log('show');
     // app.isBindPhoneOrBindCustome();
-    this.getEnquire(this.data.enquireTime, () => {
-        this.getCustomArea(this.data.customerareaTime);
-    });
+    this.getEnquire(this.data.enquireTime);
+    this.getCustomArea(this.data.customerareaTime);
 
     if (app.globalData.customeInfo){
       this.setData({
@@ -149,13 +148,10 @@ Page({
     });
   },
   // 询盘统计
-  getEnquire({ type = 1 }, cb) {
+  getEnquire({ type = 1 }) {
     app.get('/enquiry/statistics', {
       type: type,
     }).then(res => {
-        if (typeof cb == 'function') {
-            cb();
-        }
       if (res.status == 401) {
         this.setData({
           enquire: null,
