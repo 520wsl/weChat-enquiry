@@ -153,7 +153,7 @@
   font-size: 24rpx;
 }
 
-.img {
+.recordP-right .img {
   width: 14rpx;
   height: 28rpx;
   margin-left: 36rpx;
@@ -170,6 +170,8 @@
 .recordList {
   display: flex;
   padding: 26rpx 0;
+  display: flex;
+  justify-content: space-between;
 }
 
 .statusL {
@@ -181,6 +183,7 @@
 
 .statusR {
   color: #333;
+  flex: 1
 }
 
 /* 补充样式 */
@@ -219,4 +222,13 @@
 .no-data .txt {
   margin-top: 40rpx;
   display: block;
+}
+
+.pic-phone{
+    width: 152rpx;
+    height: 48rpx;
+}
+
+.txt-phone{
+    color: #6495F9;
 }

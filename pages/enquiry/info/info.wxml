@@ -32,9 +32,10 @@
           <text class='statusL'>买家职位：</text>
           <text class='statusR'>{{itemName.position}}</text>
         </view>
-        <view class='recordList'>
+        <view class='recordList' data-phone="{{itemName.phone}}" bindtap='callPhone'>
           <text class='statusL'>联系方式：</text>
-          <text class='statusR'>{{itemName.phone}}</text>
+          <text class='statusR txt-phone'>{{itemName.phone}}</text>
+          <view class='pic pic-phone' wx:if="{{itemName.phone.length > 0}}"><image src="{{CDN}}call_phone.png" /></view>
         </view>
         <view class='recordList'>
           <text class='statusL'>买家地址：</text>
