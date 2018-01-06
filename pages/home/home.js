@@ -80,6 +80,10 @@ Page({
       this.setData({
         company: app.globalData.customeInfo.companyName
       });
+    }else{
+      this.setData({
+        company: ''
+      });
     }
   },
   onShareAppMessage: function () {
@@ -95,6 +99,10 @@ Page({
       type: type,
     }).then(res => {
       if (res.status == 401) {
+        this.setData({
+          customerarea: [],
+          isShowChart: false
+        });
         wx.showModal({
           title: '提示',
           content: '登录超时或未登录，请重新登录',
@@ -149,6 +157,10 @@ Page({
             cb();
         }
       if (res.status == 401) {
+        this.setData({
+          enquire: null,
+          enquireTime: this.data.enquireTime
+        })
         wx.showModal({
           title: '提示',
           content: '登录超时或未登录，请重新登录',
@@ -175,7 +187,7 @@ Page({
         if (formatData[i]){
             formatData[i] = formatData[i].toFixed(2);
         }
-      }
+      } 
       this.setData({
         enquire: formatData,
         enquireTime: this.data.enquireTime

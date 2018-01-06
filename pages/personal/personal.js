@@ -103,13 +103,17 @@ Page({
       content: '确认退出登录？',
       success: res => {
         if (res.confirm) {
-          this.setData({
-            info: {},
-            avatarUrl: '',
-            companyName: '',
-            isShowCompany: false
-          })
-
+          app
+            .post('/auth/logout')
+            .then(res => {
+              app.reset();
+              this.setData({
+                info: {},
+                avatarUrl: '',
+                companyName: '',
+                isShowCompany: false
+              })
+            })
         } else if (res.cancel) {
           return
         }
