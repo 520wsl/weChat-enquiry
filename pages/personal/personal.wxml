@@ -45,9 +45,9 @@
   </view>
 
   <view class='tc_btn_box' wx:if="{{info.login}}">
-    <button class='gradient-bg tc_btn' bindtap='logOut'>{{isTiYan ? '退出体验版' : '退  出'}}</button>
+    <button class='gradient-bg tc_btn' bindtap='logOut'>退  出</button>
   </view>
-  <view class='tc_btn_box' wx:else>
+  <!-- <view class='tc_btn_box' wx:else>
     <button style="" class='gradient-bg tc_btn' bindtap='toggleHandle'>切换体验版</button>
-  </view>
+  </view> -->
 </view>
