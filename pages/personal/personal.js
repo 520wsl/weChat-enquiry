@@ -121,22 +121,22 @@ Page({
     })
   },
     // 体验版切换
-  toggleHandle(){
-      wx.showLoading({ title: '加载中...' });
-    this.setData({
-        isTiYan: true
-    });
-    app.reset();
-      app
-        .post('/auth/experience')
-        .then(res => {
-            wx.hideLoading();
-            if (res.status !== 200) {
-                return;
-            }
-            console.log(res);
-            app.getUserInfo();
+//   toggleHandle(){
+//       wx.showLoading({ title: '加载中...' });
+//     this.setData({
+//         isTiYan: true
+//     });
+//     app.reset();
+//       app
+//         .post('/auth/experience')
+//         .then(res => {
+//             wx.hideLoading();
+//             if (res.status !== 200) {
+//                 return;
+//             }
+//             console.log(res);
+//             app.getUserInfo();
         
-        })
-  }
+//         })
+//   }
 })
