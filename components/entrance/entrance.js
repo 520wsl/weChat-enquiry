@@ -16,17 +16,20 @@ Component({
       {
         label: '产品排行',
         navUrl: '/pages/home/productList/productList',
-        imgUrl: '/images/icon_entrance_ph.png'
+        imgUrl: '/images/icon_entrance_ph.png',
+        type: 'ph',
       },
       {
         label: '标王记录',
         navUrl: '/pages/home/priceTrend/priceTrend',
-        imgUrl: '/images/icon_entrance_bw.png'
+        imgUrl: '/images/icon_entrance_bw.png',
+        type: 'jl',
       },
       {
         label: '价格分布',
         navUrl: '/pages/home/priceTrend/priceTrend',
-        imgUrl: '/images/icon_entrance_fb.png'
+        imgUrl: '/images/icon_entrance_fb.png',
+        type: 'fb',
       }
     ],
     categoryId: ''
@@ -37,6 +40,13 @@ Component({
    */
   methods: {
     jumpPage(e) {
+      if (e.currentTarget.dataset.type == 'jl'){
+        wx.navigateTo({
+          url: '/pages/home/hasRecord/hasRecord'
+        });
+        return;
+      }
+
       console.log(e);
       let link = e.currentTarget.dataset.link;
       if (app.globalData.customeInfo) {
