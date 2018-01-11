@@ -1,13 +1,14 @@
 <!--pages/home/home.wxml-->
 <view class='home'>
-    <view class='title'>
-        <text class='title-txt'>{{company}}</text>
-    </view>
-    <!-- banner -->
-    <view class="banner">
-        <component-roasting indicatorDots="{{indicatorDots}}" imgUrls="{{imgUrls}}"></component-roasting>
-    </view>
-
+  <view class="company">
+    <view wx:if="{{company}}" class="title">{{company}}</view>
+  </view>
+  <!-- banner -->
+  <view class="banner">
+    <component-roasting indicatorDots="{{indicatorDots}}" imgUrls="{{imgUrls}}"></component-roasting>
+  </view>
+  <!-- 入口 -->
+  <component-entrance></component-entrance>
     <!-- 询盘统计 -->
     <view class="enquiry">
         <view class="header">
@@ -49,7 +50,7 @@
                 <image src="{{CDN}}localize.png" class="icon" />
                 <view class="left">
                     <text>{{item.provinceName}}</text>
-                    <text class="v">成交价值</text>
+                    <text class="v">成交金额</text>
                 </view>
                 <view class="right">
                     <text class="t1">{{item.num}}人</text>
