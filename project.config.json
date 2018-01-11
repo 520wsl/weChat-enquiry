@@ -22,7 +22,15 @@
 		},
 		"miniprogram": {
 			"current": -1,
-			"list": []
+			"list": [
+				{
+					"id": 0,
+					"name": "扫码",
+					"pathName": "pages/personal/personal",
+					"query": "scene=action%3De%26data%3Df2355765",
+					"scene": "1047"
+				}
+			]
 		}
 	}
 }

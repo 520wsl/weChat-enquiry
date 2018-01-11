@@ -38,6 +38,11 @@ var api = {
                 },
                 success: function (e) {
                     api.setCookie(e);
+                    if(e.status == 500){
+                      utils.showModel('', '服务器错误')
+                      reject(e.data);
+                      return ;
+                    }
                     console.log('全局拦截：', url, e.data)
                     resolve(e.data);
                 },
