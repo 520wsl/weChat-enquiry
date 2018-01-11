@@ -6,7 +6,7 @@
   <view class='switching'>
     <component-switching labels="{{labels}}" acIndex="{{acIndex}}" bindgetAcItem="getAcItem"></component-switching>
   </view>
-  <block wx:if="{{list.length > 0}}">
+  <view hidden="{{list.length == 0}}">
     <!-- 图表 -->
     <view class="canvas">
       <canvas canvas-id="columnCanvas" class="canvas"></canvas>
@@ -18,7 +18,7 @@
         <view class="value">{{item.value}}%</view>
       </view>
     </view>
-  </block>
+  </view>
   <!-- 没数据 -->
-  <component-no-data wx:else text="当前无搜索结果"></component-no-data>
+  <component-no-data wx:if="{{list.length == 0}}" text="当前无搜索结果"></component-no-data>
 </view>

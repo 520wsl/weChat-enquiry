@@ -3,20 +3,24 @@
   <!-- 搜索 -->
   <view class="form">
     <view class="form-group">
-      <image class="img" src=""></image>
-      <input class="form-control" />
+      <icon type="search" size="15" color="#999" />
+      <input bindinput="searchHandle" placeholder-class="placeholder" class="form-control" value="{{searchName}}" placeholder="产品关键字" />
+      <image wx:if="{{searchName != ''}}" bindtap="delSearch" class="del" src="{{CDN}}/icon_search_del.png"></image>
     </view>
-    <a class="cancle">取消</a>
+    <a bindtap="back" class="cancle">取消</a>
   </view>
-  <!-- 热词搜索 -->
-  <view class="hot-word" wx:if="{{list.length > 0}}">
-    <view class="title">热词搜索</view>
-    <view class="words">
-      <view bindtap='jumpPage' class="word" wx:for="{{list}}" wx:key="{{index}}" data-categoryName="{{item.text}}" data-categoryId="{{item.id}}" data-classify="{{item.classify}}">{{item.text}}</view>
+  <!-- 内容 -->
+  <view class="content">
+    <!-- 热词搜索 -->
+    <view class="hot-word" wx:if="{{list.length > 0 && searchName == ''}}">
+      <view class="title">热词搜索</view>
+      <view class="words">
+        <view bindtap='jumpPage' class="word" wx:for="{{list}}" wx:key="{{index}}" data-categoryName="{{item.text}}" data-categoryId="{{item.id}}" data-classify="{{item.classify}}">{{item.text}}</view>
+      </view>
     </view>
-  </view>
-  <!-- 搜索列表 -->
-  <view class="list">
-    <view class="item"></view>
+    <!-- 搜索列表 -->
+    <view class="list">
+      <view class="item" wx:for="{{result}}" wx:key="{{index}}">{{item.text}}</view>
+    </view>
   </view>
 </view>

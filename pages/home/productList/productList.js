@@ -6,6 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    CDN: app.CDN,
     params: {
       cat: '',//	关键词id	number	
       dim: 'trade',//	显示纬度	string	交易: trade （流量: flow目前不开放）

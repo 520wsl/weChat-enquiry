@@ -1,6 +1,6 @@
 <!--components/entrance/entrance.wxml-->
 <view class="entrance">
-  <view wx:for="{{entrance}}" wx:key="{{index}}" class="nav" data-type="{{item.type}}" data-link="{{item.navUrl}}" bindtap='jumpPage'>
+  <view wx:for="{{entrance}}" wx:key="{{index}}" class="nav" data-signs="{{item.signs}}" data-type="{{item.type}}" data-link="{{item.navUrl}}" bindtap='jumpPage'>
     <image class="img" src="{{item.imgUrl}}"></image>
     <text class="txt">{{item.label}}</text>
   </view>
