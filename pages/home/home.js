@@ -37,10 +37,10 @@ Page({
       lossValue: app.CDN + 'enquiry_4.png',
     },
     enquireName: {
-      totalValue: '总价值',
-      tranValue: '成交价值',
-      enquireValue: '跟单价值',
-      lossValue: '流失价值',
+      totalValue: '总金额',
+      tranValue: '成交金额',
+      enquireValue: '跟单金额',
+      lossValue: '流失金额',
     },
     enquiryType: {
       totalValue: 1,

@@ -9,6 +9,10 @@
   height: 240rpx;
 }
 
+.company {
+  background: #fff;
+}
+
 .title {
   height: 72rpx;
   line-height: 72rpx;
@@ -16,9 +20,6 @@
   background: #fff;
   border-top: 1px solid;
   border-color: #e0e0e0;
-}
-
-.title-txt {
   font-size: 32rpx;
   background: -webkit-linear-gradient(left, #55abf6, #7b73fe);
   -webkit-background-clip: text;
@@ -26,11 +27,14 @@
 }
 
 /* 询盘 */
-
-
+.enquiry{
+  background: #fff;
+  padding-bottom: 36rpx;
+  margin-bottom: 20rpx;
+}
 .enquiry .section {
   margin: 0 30rpx;
-  margin-bottom: 26rpx;
+  /* margin-bottom: 26rpx; */
   position: relative;
 }
 

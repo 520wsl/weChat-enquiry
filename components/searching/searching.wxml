@@ -1,0 +1,8 @@
+<!--components/searching/searching.wxml-->
+<view class="search">
+<navigator url='{{url}}' class="searching">
+  <!-- <image class='img' src='{{CDN}}icon-touxiang.png'></image> -->
+  <image class='img' src='/images/icon_search.png'></image>
+  <text class='label'>{{label}}</text>
+</navigator >
+</view>

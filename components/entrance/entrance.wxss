@@ -1,0 +1,28 @@
+/* components/entrance/entrance.wxss */
+/* 入口导航 */
+
+.entrance {
+  display: flex;
+  text-align: center;
+  background: #fff;
+  padding: 20rpx 0;
+  margin-bottom: 20rpx;
+}
+
+.entrance .nav {
+  flex: 1;
+}
+
+.entrance .nav .img {
+  width: 100rpx;
+  height: 100rpx;
+  display: block;
+  margin: auto;
+}
+
+.entrance .nav .txt {
+  font-size: 24rpx;
+  color: #333;
+  display: block;
+  margin-top: 10rpx;
+}

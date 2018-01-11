@@ -1,0 +1,22 @@
+<!--pages/searchWord/searchWord.wxml-->
+<view class="search-word">
+  <!-- 搜索 -->
+  <view class="form">
+    <view class="form-group">
+      <image class="img" src=""></image>
+      <input class="form-control" />
+    </view>
+    <a class="cancle">取消</a>
+  </view>
+  <!-- 热词搜索 -->
+  <view class="hot-word" wx:if="{{list.length > 0}}">
+    <view class="title">热词搜索</view>
+    <view class="words">
+      <view bindtap='jumpPage' class="word" wx:for="{{list}}" wx:key="{{index}}" data-categoryName="{{item.text}}" data-categoryId="{{item.id}}" data-classify="{{item.classify}}">{{item.text}}</view>
+    </view>
+  </view>
+  <!-- 搜索列表 -->
+  <view class="list">
+    <view class="item"></view>
+  </view>
+</view>
