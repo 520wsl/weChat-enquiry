@@ -10,10 +10,16 @@
 }
 
 .title {
-  font-size: 32rpx;
-  text-align: center;
   height: 72rpx;
   line-height: 72rpx;
+  text-align: center;
+  background: #fff;
+  border-top: 1px solid;
+  border-color: #e0e0e0;
+}
+
+.title-txt {
+  font-size: 32rpx;
   background: -webkit-linear-gradient(left, #55abf6, #7b73fe);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -21,8 +27,6 @@
 
 /* 询盘 */
 
-.enquiry {
-}
 
 .enquiry .section {
   margin: 0 30rpx;
@@ -131,7 +135,7 @@
   color: #434343;
 }
 
-.custom-area .list .left text{
+.custom-area .list .left text {
   display: block;
 }
 

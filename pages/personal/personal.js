@@ -21,6 +21,23 @@ Page({
     // 我的公司长度大于1时显示选择公司链接
     // this.login();
     this.getServices();
+    if (typeof options.scene !== "string") {
+      return;
+    }
+
+    let scene = decodeURIComponent(options.scene)
+    let param = scene.split('&');
+    let actions = param[0].split('=');
+    let secrets = param[1].split('=');
+    if (actions[1] !== 'e') {
+      return;
+    }
+    let secret = secrets[1];
+    if (!secret) {
+      app.utils.showModel('体验版登录', '登录失败，请联系客户重新获取体验码！')
+      return;
+    }
+    this.toggleHandle(secret);
   },
   /**
    * 生命周期函数--监听页面显示
@@ -69,10 +86,10 @@ Page({
   },
   // 点击登录
   login: function () {
-    if (this.data.dbLogin){
-        this.setData({
-            isTiYan: false
-        });
+    if (this.data.dbLogin) {
+      this.setData({
+        isTiYan: false
+      });
       app.reset();
       this.data.dbLogin = false;
       app.login(() => {
@@ -120,23 +137,24 @@ Page({
       }
     })
   },
-    // 体验版切换
-//   toggleHandle(){
-//       wx.showLoading({ title: '加载中...' });
-//     this.setData({
-//         isTiYan: true
-//     });
-//     app.reset();
-//       app
-//         .post('/auth/experience')
-//         .then(res => {
-//             wx.hideLoading();
-//             if (res.status !== 200) {
-//                 return;
-//             }
-//             console.log(res);
-//             app.getUserInfo();
-        
-//         })
-//   }
+  // 体验版切换
+  toggleHandle(secret) {
+    wx.showLoading({ title: '加载中...' });
+    this.setData({
+      isTiYan: true
+    });
+    app.reset();
+    app
+      .post('/auth/experience', {
+        secret: secret
+      })
+      .then(res => {
+        wx.hideLoading();
+        if (res.status !== 200) {
+          app.utils.showModel('体验版登录', res.msg)
+          return;
+        }
+        app.getUserInfo();
+      })
+  }
 })
