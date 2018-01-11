@@ -16,20 +16,20 @@ Component({
       {
         label: '产品排行',
         navUrl: '/pages/home/productList/productList',
-        imgUrl: app.CDN+'/home-pro.png',
+        imgUrl: app.CDN + '/home-pro.png',
         type: 'ph',
         signs: 0,
       },
       {
         label: '标王记录',
         navUrl: '/pages/home/priceTrend/priceTrend',
-        imgUrl: app.CDN +'/home-bw.png',
+        imgUrl: app.CDN + '/home-bw.png',
         type: 'jl',
       },
       {
         label: '价格分布',
         navUrl: '/pages/home/priceTrend/priceTrend',
-        imgUrl: app.CDN +'/home-jg.png',
+        imgUrl: app.CDN + '/home-jg.png',
         type: 'fb',
         signs: 1
       }
@@ -42,27 +42,38 @@ Component({
    */
   methods: {
     jumpPage(e) {
+      // 是否登录
+      if (!app.globalData.customeInfo) {
+        wx.showModal({
+          title: '提示',
+          content: '登录超时或未登录，请重新登录',
+          success: res => {
+            if (res.confirm) {
+              app.reset();
+              wx.switchTab({
+                url: '/pages/personal/personal'
+              })
+            } else if (res.cancel) {
+            }
+          }
+        })
+        return;
+      }
+      // 标王
       if (e.currentTarget.dataset.type == 'jl') {
         wx.navigateTo({
           url: '/pages/home/hasRecord/hasRecord'
         });
         return;
       }
-
-      console.log(e);
+      // 其他
       let link = e.currentTarget.dataset.link;
-      if (app.globalData.customeInfo) {
-        let categoryId = app.globalData.customeInfo.categoryId;
-        let categoryName = app.globalData.customeInfo.categoryName;
-        let classify = app.globalData.customeInfo.classify;
-        this.data.categoryId = categoryId || '';
-        this.data.categoryName = categoryName || '';
-        this.data.classify = classify || '';
-      } else {
-        this.data.categoryId = '';
-        this.data.categoryName = '';
-        this.data.classify = '';
-      }
+      let categoryId = app.globalData.customeInfo.categoryId;
+      let categoryName = app.globalData.customeInfo.categoryName;
+      let classify = app.globalData.customeInfo.classify;
+      this.data.categoryId = categoryId || '';
+      this.data.categoryName = categoryName || '';
+      this.data.classify = classify || '';
       if (this.data.categoryId && this.data.classify) {
         wx.navigateTo({
           url: link + '?categoryId=' + this.data.categoryId + '&categoryName=' + this.data.categoryName + '&classify=' + this.data.classify

@@ -29,7 +29,7 @@ Page({
   onLoad: function (options) {
     // 不同页面入口进来，需要一个标识
     this.data.signs = options.signs || 0;
-    this.data.params.categoryId = options.categoryId || 3;
+    this.data.params.categoryId = options.categoryId || '';
 
     this.getWords()
   },
@@ -63,6 +63,8 @@ Page({
 
       let data = res.data;
       if (data && data.length > 0) {
+        // 校验字符
+        data = this.checkString(data);
         this.data.list.push(...data);
         this.setData({
           list: this.data.list
@@ -73,6 +75,32 @@ Page({
     }).catch((res) => {
       console.log(res);
     });
+  },
+
+  // 校验字符
+  checkString(arr, length = 14) {
+    arr.forEach((item, index) => {
+      var str = item.text,
+        count = 0,
+        zw = 0;
+      for (var i = 0, len = str.length; i < len; i++) {
+        if (count > length - 1) {
+          break;
+        }
+        if (str.charCodeAt(i) > 255) {
+          count += 2;
+          zw++;
+          continue;
+        }
+        count++; 
+      }
+      if (count >= length) {
+        item.text = str.slice(0, length - zw)+'...';
+      }
+    });
+
+    console.log(arr);
+    return arr;
   },
 
   // 重置 热词搜索
@@ -90,7 +118,7 @@ Page({
   },
 
   // 删除搜索关键词
-  delSearch(){
+  delSearch() {
     this.setData({
       searchName: ''
     })

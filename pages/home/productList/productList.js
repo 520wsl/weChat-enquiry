@@ -29,7 +29,7 @@ Page({
     periodType: ['week', 'month'],
 
     // 搜索
-    searchUrl: '',
+    searchUrl: '/pages/searchWord/searchWord?signs=0&categoryId=',
     searchLabel: '产品关键词',
 
     // 弹窗
@@ -46,7 +46,8 @@ Page({
     // 获取产品关键词
     this.data.params.cat = options.classify || '';
     this.setData({
-      searchLabel: options.categoryName || '产品关键词'
+      searchLabel: options.categoryName || '产品关键词',
+      searchUrl: this.data.searchUrl + (options.categoryId || '')
     })
 
     this.getList();
@@ -56,7 +57,6 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-    this.data.list = [];
     this.getList(() => {
       // 关闭刷新
       wx.stopPullDownRefresh();
@@ -97,65 +97,6 @@ Page({
 
   // 获取产品列表
   getList(cb) {
-    // let data = [
-    //   {
-    //     comName: '浙江方盛管业有限公司',//	公司名称	string	
-    //     flow: 100,//	流量	number	
-    //     imgUrl: 'icon-touxiang.png',//	产品图片	string	
-    //     price: 102,//	价格	number	
-    //     sameGoodUrl: {
-    //       type: String,
-    //       value: ''
-    //     },//	产品链接	string	
-    //     title: '海尔美迪斯PPR管产家批发海尔美迪斯PPR管产家批发PPR管产家批发PPR管',//	标题	string	
-    //     trade: 100,//	交易量	number	
-    //   },
-    //   {
-    //     comName: '浙江方盛管业有限公司',
-    //     flow: 100,//
-    //     imgUrl: 'icon-touxiang.png',
-    //     price: 102,
-    //     title: '海尔美迪斯PPR管产家批发海尔美迪斯PPR管产家批发PPR管产家批发PPR管',
-    //     trade: 100,
-    //   },
-    //   {
-    //     comName: '浙江方盛管业有限公司',
-    //     flow: 100,//
-    //     imgUrl: 'icon-touxiang.png',
-    //     price: 102,
-    //     title: '海尔美迪斯PPR管产家批发海尔美迪斯PPR管产家批发PPR管产家批发PPR管',
-    //     trade: 100,
-    //   },
-    //   {
-    //     comName: '浙江方盛管业有限公司',
-    //     flow: 100,//
-    //     imgUrl: 'icon-touxiang.png',
-    //     price: 102,
-    //     title: '海尔美迪斯PPR管产家批发海尔美迪斯PPR管产家批发PPR管产家批发PPR管',
-    //     trade: 100,
-    //   },
-    //   {
-    //     comName: '浙江方盛管业有限公司',
-    //     flow: 100,//
-    //     imgUrl: 'icon-touxiang.png',
-    //     price: 102,
-    //     title: '海尔美迪斯PPR管产家批发海尔美迪斯PPR管产家批发PPR管产家批发PPR管',
-    //     trade: 100,
-    //   },
-    //   {
-    //     comName: '浙江方盛管业有限公司',
-    //     flow: 100,//
-    //     imgUrl: 'icon-touxiang.png',
-    //     price: 102,
-    //     title: '海尔美迪斯PPR管产家批发海尔美迪斯PPR管产家批发PPR管产家批发PPR管',
-    //     trade: 100,
-    //   }
-    // ];
-    // this.data.list.push(...data);
-    // this.setData({
-    //   list: this.data.list
-    // });
-    // return;
     wx.showLoading({ title: '加载中...' });
     app.get('/product/offer/rank', this.data.params).then((res) => {
       console.log(res);
@@ -189,9 +130,13 @@ Page({
 
       let data = res.data;
       if (data && data.length > 0) {
-        this.data.list.push(...data);
+        // 图片+头
+        data.forEach((item, index) => {
+          item.imgUrl = 'http:' + item.imgUrl;
+        })
+
         this.setData({
-          list: this.data.list
+          list: data
         });
         return;
       }
@@ -216,7 +161,6 @@ Page({
     console.log(e);
     let index = e.detail.acIndex;
     this.data.params.period = this.data.periodType[index];
-    this.data.list = [];
     this.getList();
   },
 
@@ -225,7 +169,6 @@ Page({
     console.log(e);
     let index = e.detail.acIndex;
     this.data.params.rankType = this.data.rankType[index];
-    this.data.list = [];
     this.getList();
   },
 
