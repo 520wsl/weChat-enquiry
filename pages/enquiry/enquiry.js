@@ -48,7 +48,7 @@ Page({
     }else{
         this.setData({
             enquiryTime: null,
-            active: 0,
+            active: 0
         });
     }
     this.data.params.pageNum = 1;

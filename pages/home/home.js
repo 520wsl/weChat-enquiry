@@ -271,14 +271,14 @@ Page({
             }],
         });
     },
-    // 获取时间-询盘
-    getTimeEnquiry(e) {
-        // var animation = wx.createAnimation({
-        //   duration: 200,
-        //   timingFunction: 'ease-in',
-        // })
-        // animation.opacity(.3).rotate3d(0, 1, 0, 90).step()
-        // animation.opacity(1).rotate3d(0, 0, 0, 0).step()
+  // 获取时间-询盘
+  getTimeEnquiry(e) {
+    // var animation = wx.createAnimation({
+    //   duration: 200,
+    //   timingFunction: 'ease-in',
+    // })
+    // animation.opacity(.3).rotate3d(0, 1, 0, 90).step()
+    // animation.opacity(1).rotate3d(0, 0, 0, 0).step()
 
         // this.setData({
         //   animationEnquiry: animation.export()
