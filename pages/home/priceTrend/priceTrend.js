@@ -89,7 +89,7 @@ Page({
       }
       this.reset();
     }).catch((res) => {
-      wx.hideLoading();
+      // wx.hideLoading();
     });
   },
 

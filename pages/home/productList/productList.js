@@ -50,7 +50,10 @@ Page({
       searchUrl: this.data.searchUrl + (options.categoryId || '')
     })
 
-    this.getList();
+    wx.showLoading({ title: '加载中...' });
+    this.getList(() => {
+      wx.hideLoading();
+    });
   },
 
   /**
@@ -97,10 +100,10 @@ Page({
 
   // 获取产品列表
   getList(cb) {
-    wx.showLoading({ title: '加载中...' });
+    // wx.showLoading({ title: '加载中...' });
     app.get('/product/offer/rank', this.data.params).then((res) => {
       console.log(res);
-      wx.hideLoading();
+      // wx.hideLoading();
       if (typeof cb == 'function') {
         cb();
       }
@@ -161,7 +164,10 @@ Page({
     console.log(e);
     let index = e.detail.acIndex;
     this.data.params.period = this.data.periodType[index];
-    this.getList();
+    wx.showLoading({ title: '加载中...' });
+    this.getList(() => {
+      wx.hideLoading();
+    });
   },
 
   // 获取选中榜
@@ -169,7 +175,10 @@ Page({
     console.log(e);
     let index = e.detail.acIndex;
     this.data.params.rankType = this.data.rankType[index];
-    this.getList();
+    wx.showLoading({ title: '加载中...' });
+    this.getList(() => {
+      wx.hideLoading();
+    });
   },
 
   // 显隐弹窗
