@@ -45,6 +45,11 @@ Page({
       // this.data.list = [];
       // this.getList();
       // return;
+    }else{
+        this.setData({
+            enquiryTime: null,
+            active: 0
+        });
     }
     this.data.params.pageNum = 1;
     this.data.list = [];

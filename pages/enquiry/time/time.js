@@ -43,9 +43,7 @@ Page({
       return;
     }
     app.enquiryTime = this.data.time;
-    wx.switchTab({
-      url: '/pages/enquiry/enquiry'
-    })
+    wx.navigateBack()
   },
 
   // 开始时间

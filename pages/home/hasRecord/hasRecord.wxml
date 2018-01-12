@@ -1,2 +1,61 @@
 <!--pages/home/hasRecord/hasRecord.wxml-->
-<text>pages/home/hasRecord/hasRecord.wxml</text>
+<view wx:if="{{isSelectTime}}" class='time'>
+    <navigator class='time' url="/pages/enquiry/time/time">
+        <text class='txt'>{{params.startTime}}</text>
+        <text>至</text>
+        <text class='txt'>{{params.endTime}}</text>
+        <view class='pic'>
+            <image mode='aspectFit' src='{{CDN}}icon_right.png'></image>
+        </view>
+    </navigator>
+</view>
+<view wx:else>
+    <navigator class='time' url="/pages/enquiry/time/time">
+        <text> 时间选择</text>
+        <view class='pic'>
+            <image mode='aspectFit' src='{{CDN}}icon_right.png'></image>
+        </view>
+    </navigator>
+</view>
+<view class='list'>
+    <block wx:for="{{list}}" wx:key="{{id}}">
+        <view class='item'>
+            <view class='title'>
+                <view class='txt'>{{item.keyword}}（{{item.typeName}}）</view>
+                <view class='result'>
+                    <view class='pic'>
+                        <image mode='aspectFit' src='{{CDN}}icon-time.png'></image>
+                    </view>
+                    <view>竞拍中</view>
+                </view>
+            </view>
+            <view class='info'>
+                <view class='row'>
+                    <text>标王公司：</text>
+                    <text class='name'>{{item.customName}}</text>
+                    <image></image>
+                </view>
+                <view class='row'>
+                    <text>最终价格：</text>
+                    <text class='red'>{{item.finalprice}}元</text>
+                </view>
+                <view class='row'>
+                    <text>最高出价：</text>
+                    <text class='red'>{{item.money}}元</text>
+                </view>
+                <view class='row'>
+                    <text>起 拍 价 ：</text>
+                    <text>{{item.startprice}}元</text>
+                </view>
+                <view class='row'>
+                    <text>流　　量：</text>
+                    <text>{{item.flow}}</text>
+                </view>
+                <view class='row'>
+                    <text>竞拍时间：</text>
+                    <text>{{item.addtime}}</text>
+                </view>
+            </view>
+        </view>
+    </block>
+</view>
