@@ -19,6 +19,8 @@ Page({
     },
 
     count: 0,//默认 list总数
+
+    isClear: false,
   },
 
   /**
@@ -36,18 +38,20 @@ Page({
       let time = app.enquiryTime;
       this.data.params.startTime = app.time.formatInitTime(time.startTime, 'x');
       this.data.params.endTime = app.time.endTime(time.endTime, 'x');
+      this.data.enquiryTime = time;
       // this.data.params.pageNum = 1;
       // 设置时间
       this.setData({
-        enquiryTime: time,
         active: -1,
       });
       // this.data.list = [];
       // this.getList();
       // return;
     }else{
+      this.data.params.startTime = app.time.getTimeLimit(1, 'weeks');
+      this.data.params.endTime = app.time.getTimeLimit(-1);
+      this.data.enquiryTime = null;
         this.setData({
-            enquiryTime: null,
             active: 0
         });
     }
@@ -85,6 +89,7 @@ Page({
     // console.log('触底')
     if (this.data.list.length < this.data.count) {
       this.data.params.pageNum++;
+      this.data.isClear = true;
       this.getList();
     }
   },
@@ -107,9 +112,7 @@ Page({
     this.data.params.pageNum = 1;
     // 重置时间
     app.enquiryTime = null;
-    this.setData({
-      enquiryTime: app.enquiryTime,
-    });
+    this.data.enquiryTime = null;
     this.data.list = [];
     this.getList();
   },
@@ -163,9 +166,14 @@ Page({
         }
         item.gmtModified = app.time.formatTime(time, 'MM-DD HH:mm');
       });
+      if(!this.data.isClear){
+        this.data.list = [];
+      }
+      this.data.isClear = false;
       this.data.list.push(...formatData);
       this.setData({
         list: this.data.list,
+        enquiryTime: this.data.enquiryTime,
       });
     }).catch(res => {
       // console.log(res);
