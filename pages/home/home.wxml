@@ -9,54 +9,55 @@
   </view>
   <!-- 入口 -->
   <component-entrance></component-entrance>
-    <!-- 询盘统计 -->
-    <view class="enquiry">
-        <view class="header">
-            <text class="text">询盘统计分析</text>
-        </view>
-        <!-- 日期选择控件 -->
-        <component-date-control bindgetTime="getTimeEnquiry" />
-        <view class="section" wx:if="{{enquire.totalValue || enquire.tranValue || enquire.enquireValue || enquire.lossValue}}">
-            <view class="bg-setion bg-shadow"></view>
-            <view class="real-setion bg-shadow">
-                <navigator wx:for="{{enquire}}" wx:key="{{index}}" wx:if="{{item}}" url="/pages/home/enquiry/enquiry?countType={{enquiryType[index]}}&timeType={{enquireTime.type}}&label={{enquireTime.label+enquireName[index]}}" class="navigator" hover-class="">
-                    <image src="{{images[index]}}" class='icon' />
-                    <view class="left">
-                        <!-- <text class='t1'>{{enquireTime.label}}询盘</text> -->
-                        <text class='t2'>询盘{{enquireName[index]}}</text>
-                    </view>
-                    <view class="right">
-                        <text>￥{{item}}</text>
-                        <image src="{{CDN}}icon_right.png" class="img" />
-                    </view>
-                </navigator>
-            </view>
-        </view>
+  <!-- 询盘统计 -->
+  <view class="enquiry">
+    <view class="header">
+      <text class="text">询盘统计分析</text>
     </view>
+    <!-- 日期选择控件 -->
+    <component-date-control bindgetTime="getTimeEnquiry" />
+    <view class="section" wx:if="{{enquire.totalValue || enquire.tranValue || enquire.enquireValue || enquire.lossValue}}">
+      <view class="bg-setion bg-shadow"></view>
+      <view class="real-setion bg-shadow">
+        <navigator wx:for="{{enquire}}" wx:key="{{index}}" wx:if="{{item}}" url="/pages/home/enquiry/enquiry?countType={{enquiryType[index]}}&timeType={{enquireTime.type}}&label={{enquireTime.label+enquireName[index]}}" class="navigator" hover-class="">
+          <image src="{{images[index]}}" class='icon' />
+          <view class="left">
+            <!-- <text class='t1'>{{enquireTime.label}}询盘</text> -->
+            <text class='t2'>询盘{{enquireName[index]}}</text>
+          </view>
+          <view class="right">
+            <text>￥{{item}}</text>
+            <image src="{{CDN}}icon_right.png" class="img" />
+          </view>
+        </navigator>
+      </view>
+    </view>
+  </view>
 
-    <!-- 客户地区 -->
-    <view class="custom-area">
-        <view class="header">
-            <text class="text">客户地区分布统计</text>
-        </view>
-        <!-- 日期选择控件 -->
-        <component-date-control bindgetTime="getTimeErea" />
-        <!-- 图表 -->
-        <view hidden="{{!isShowChart}}" class="canvas">
-            <canvas canvas-id="columnCanvas" class="canvas" bindtouchstart="touchHandler"></canvas>
-        </view>
-        <view class="list">
-            <view class="list-item" wx:for="{{customerarea}}" wx:key="{{index}}">
-                <image src="{{CDN}}localize.png" class="icon" />
-                <view class="left">
-                    <text>{{item.provinceName}}</text>
-                    <text class="v">成交金额</text>
-                </view>
-                <view class="right">
-                    <text class="t1">{{item.num}}人</text>
-                    <text class="t2">￥{{item.sumGmvAmount}}</text>
-                </view>
-            </view>
-        </view>
+  <!-- 客户地区 -->
+  <view class="custom-area">
+    <view class="header">
+      <text class="text">客户地区分布统计</text>
     </view>
+    <!-- 日期选择控件 -->
+    <component-date-control bindgetTime="getTimeErea" />
+    <!-- 图表 -->
+    <view hidden="{{!isShowChart}}" class="canvas">
+      <!-- bindtouchstart="touchHandler" -->
+      <canvas canvas-id="columnCanvas" class="canvas"></canvas>
+    </view>
+    <view class="list">
+      <view class="list-item" wx:for="{{customerarea}}" wx:key="{{index}}">
+        <image src="{{CDN}}localize.png" class="icon" />
+        <view class="left">
+          <text>{{item.provinceName}}</text>
+          <text class="v">成交金额</text>
+        </view>
+        <view class="right">
+          <text class="t1">{{item.num}}人</text>
+          <text class="t2">￥{{item.sumGmvAmount}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
 </view>

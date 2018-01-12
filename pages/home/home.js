@@ -248,28 +248,28 @@ Page({
         isShowChart: true
     });
   },
-  touchHandler: function (e) {
-    if (this.data.customerarea.length == 0) {
-        return;
-    }
-    var index = columnChart.getCurrentDataIndex(e);
-    let color = chartData.setColor.map((item, i) => {
-      item.start = '#7B73FE';
-      item.end = '#55ABF6';
-      if (i == index) {
-        item.start = '#FF731D';
-        item.end = '#FEA449';
-      }
-      return item;
-    });
-    columnChart.updateData({
-      series: [{
-        data: chartData.seriesData,
-        setColor: color,
-        isGradation: true,
-      }],
-    });
-  },
+  // touchHandler: function (e) {
+  //   if (this.data.customerarea.length == 0) {
+  //       return;
+  //   }
+  //   var index = columnChart.getCurrentDataIndex(e);
+  //   let color = chartData.setColor.map((item, i) => {
+  //     item.start = '#7B73FE';
+  //     item.end = '#55ABF6';
+  //     if (i == index) {
+  //       item.start = '#FF731D';
+  //       item.end = '#FEA449';
+  //     }
+  //     return item;
+  //   });
+  //   columnChart.updateData({
+  //     series: [{
+  //       data: chartData.seriesData,
+  //       setColor: color,
+  //       isGradation: true,
+  //     }],
+  //   });
+  // },
   // 获取时间-询盘
   getTimeEnquiry(e) {
     // var animation = wx.createAnimation({

@@ -17,7 +17,7 @@ Page({
     list: [],
 
     // 搜索
-    searchUrl: '',
+    searchUrl: '/pages/searchWord/searchWord?signs=1&categoryId=',
     searchLabel: '产品关键词',
 
     // 商品切换
@@ -33,7 +33,8 @@ Page({
     // 获取产品关键词
     this.data.params.categoryId = options.categoryId || '';
     this.setData({
-      searchLabel: options.categoryName || '产品关键词'
+      searchLabel: options.categoryName || '产品关键词',
+      searchUrl: this.data.searchUrl + this.data.params.categoryId
     })
 
     this.getList();
@@ -48,81 +49,6 @@ Page({
 
   // 获取数据
   getList() {
-    // let data = {
-    //   "msg": "获取数据成功",
-    //   "data": {
-    //     "trade": [
-    //       {
-    //         "name": "0~8元",
-    //         "value": 16.75
-    //       },
-    //       {
-    //         "name": "8~97元",
-    //         "value": 10.15
-    //       },
-    //       {
-    //         "name": "97~1,028元",
-    //         "value": 64.97
-    //       },
-    //       {
-    //         "name": "1,028~1,506元",
-    //         "value": 3.55
-    //       },
-    //       {
-    //         "name": "1,506~4,739元",
-    //         "value": 4.06
-    //       },
-    //       {
-    //         "name": ">=4,739元",
-    //         "value": 0.51
-    //       }
-    //     ],
-    //     "browser": [
-    //       {
-    //         "name": "0~8元",
-    //         "value": 21.8
-    //       },
-    //       {
-    //         "name": "8~97元",
-    //         "value": 7.72
-    //       },
-    //       {
-    //         "name": "97~1,028元",
-    //         "value": 46.92
-    //       },
-    //       {
-    //         "name": "1,028~1,506元",
-    //         "value": 4.42
-    //       },
-    //       {
-    //         "name": "1,506~4,739元",
-    //         "value": 11.43
-    //       },
-    //       {
-    //         "name": ">=4,739元",
-    //         "value": 7.71
-    //       }
-    //     ],
-    //     "maxBrowses": "97~1,028元",
-    //     "empty": false,
-    //     "maxTrades": "97~1,028元"
-    //   },
-    //   "status": 200
-    // };
-    // data = data.data;
-    // let type = this.data.params.categoryType;
-    // if (data[type] && data[type].length > 0) {
-    //   this.data.list.push(...data[type]);
-    //   this.setData({
-    //     list: this.data.list
-    //   });
-
-    //   this.getEcharts(this.data.list);
-
-    //   return;
-    // }
-
-    // return;
     // wx.showLoading({ title: '加载中...' });
     app.get('/alizs/price/analyse', this.data.params).then((res) => {
       console.log(res);
@@ -154,9 +80,8 @@ Page({
       let data = res.data;
       let type = this.data.params.categoryType;
       if (data[type] && data[type].length > 0) {
-        this.data.list.push(...data[type]);
         this.setData({
-          list: this.data.list
+          list: data[type]
         });
         // 图表
         this.getEcharts(this.data.list);
@@ -180,7 +105,6 @@ Page({
     console.log(e);
     let index = e.detail.acIndex;
     this.data.params.categoryType = this.data.categoryType[index];
-    this.data.list = [];
     this.getList();
   },
 
@@ -197,7 +121,7 @@ Page({
         }
       }
     });
-    
+
     var windowWidth = 320;
     try {
       var res = wx.getSystemInfoSync();
