@@ -133,7 +133,7 @@ Page({
                     wx.stopPullDownRefresh();
                     return;
                 }
-                if (res.status != 200) {
+                if (res.status != 200 || res.data == null) {
                     wx.stopPullDownRefresh();
                     return;
                 }

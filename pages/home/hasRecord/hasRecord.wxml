@@ -17,11 +17,12 @@
         </view>
     </navigator>
 </view>
+<component-no-data text="无标王记录" wx:if="{{list.length == 0}}"></component-no-data>
 <view class='list'>
     <block wx:for="{{list}}" wx:key="{{id}}">
         <view class='item'>
-            <view class='title'>
-                <view class='txt'>{{item.keyword}}（{{item.typeName}}）</view>
+            <view wx:if="{{item.isobtain == 2}}" class='title jpz'>
+                <view class='txt txt-more'>{{item.keyword}}（{{item.typeName}}）</view>
                 <view class='result'>
                     <view class='pic'>
                         <image mode='aspectFit' src='{{CDN}}icon-time.png'></image>
@@ -29,11 +30,30 @@
                     <view>竞拍中</view>
                 </view>
             </view>
+            <view wx:elif="{{item.isobtain == 0}}"  class='title'>
+                <view class='txt txt-more'>{{item.keyword}}（{{item.typeName}}）</view>
+                <view class='result'>
+                    <view class='pic'>
+                        <image mode='aspectFit' src='{{CDN}}icon-bkx.png'></image>
+                    </view>
+                    <view>未抢到</view>
+                </view>
+            </view>
+            <view wx:elif="{{item.isobtain == 1}}" class='title yqd'>
+                <view class='txt txt-more'>{{item.keyword}}（{{item.typeName}}）</view>
+                <view class='result'>
+                    <view class='pic'>
+                        <image mode='aspectFit' src='{{CDN}}icon-kx.png'></image>
+                    </view>
+                    <view>已抢到</view>
+                </view>
+            </view>
             <view class='info'>
                 <view class='row'>
                     <text>标王公司：</text>
                     <text class='name'>{{item.customName}}</text>
-                    <image></image>
+                     <image wx:if="{{item.isobtain == 1}}" class='pic-flag' mode='aspectFit' src="{{CDN}}icon-flag.png"></image> 
+                     
                 </view>
                 <view class='row'>
                     <text>最终价格：</text>
