@@ -55,7 +55,7 @@
         </view>
         <view class="right">
           <text class="t1">{{item.num}}人</text>
-          <text class="t2">￥{{item.sumGmvAmount}}</text>
+          <text class="t2">￥{{item.sumGmvAmountFormat}}</text>
         </view>
       </view>
     </view>
