@@ -46,6 +46,14 @@
     padding: 0 28rpx;
 }
 
+.item .jpz{
+    background-image: linear-gradient(-225deg, #7B73FE 0%, #55ABF6 100%);
+}
+
+.item .yqd{
+    background-image: linear-gradient(-228deg, #FF731D 0%, #FEA449 100%);
+}
+
 .item .txt {
     flex: 1;
 }
@@ -84,4 +92,9 @@
 
 .info .row .red {
     color: #f44;
+}
+.pic-flag{
+    margin-left: 12rpx;
+    width: 24rpx;
+    height: 24rpx;
 }

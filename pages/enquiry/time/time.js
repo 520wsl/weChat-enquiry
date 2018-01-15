@@ -31,7 +31,7 @@ Page({
     if (options.pageName === "hasRecord"){
         this.setData({
             defaultTime: {
-                start: '',
+                start: app.time.formatTime('2018-01-01'),
                 end: ''
             },
             fields:'month'
