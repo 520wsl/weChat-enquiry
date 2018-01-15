@@ -37,9 +37,9 @@ Page({
     this.data.params.categoryName = options.categoryName || '';
     this.data.isIndex = options.isIndex || 0;
 
-    if(this.data.isIndex == 1){
+    // if(this.data.isIndex == 1){
       this.getWords()
-    }
+    // }
   },
 
   // 获取热词
