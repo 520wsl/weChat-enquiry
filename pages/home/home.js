@@ -122,6 +122,7 @@ Page({
             }
             formatData.forEach(item => {
                 item.sumGmvAmount = item.sumGmvAmount.toFixed(2);
+                item.sumGmvAmountFormat = item.sumGmvAmount.replace(/\d{1,3}(?=(\d{3})+\.)/g, '$&,');  
             });
             this.setData({
                 customerarea: formatData,
@@ -174,6 +175,7 @@ Page({
             for (let i in formatData) {
                 if (formatData[i]) {
                     formatData[i] = formatData[i].toFixed(2);
+                    formatData[i] = formatData[i].replace(/\d{1,3}(?=(\d{3})+\.)/g, '$&,');  
                 }
             }
             this.setData({
@@ -221,7 +223,7 @@ Page({
             series: [{
                 data: chartData.seriesData,
                 format: function (val) {
-                    return val;
+                  return val.replace(/\d{1,3}(?=(\d{3})+\.)/g, '$&,');  
                 },
                 setColor: chartData.setColor,
                 isGradation: true,
