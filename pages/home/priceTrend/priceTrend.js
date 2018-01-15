@@ -32,11 +32,11 @@ Page({
   onLoad: function (options) {
     // 获取产品关键词
     this.data.params.categoryId = options.categoryId || '';
-    let classify = options.classify || '';
-    let categoryName = options.categoryName || '产品关键词';
+    this.data.params.classify = options.classify || '';
+    this.data.params.categoryName = options.categoryName || '产品关键词';
     this.setData({
-      searchLabel: categoryName,
-      searchUrl: this.data.searchUrl + this.data.params.categoryId + '&categoryName=' + categoryName + '&classify=' + classify
+      searchLabel: this.data.params.categoryName,
+      searchUrl: this.data.searchUrl + this.data.params.categoryId + '&categoryName=' + this.data.params.categoryName + '&classify=' + this.data.params.classify
     })
 
     this.getList();
@@ -46,7 +46,10 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-
+    return {
+      title: '四喜E伙伴',
+      path: '/pages/home/priceTrend/priceTrend?categoryId=' + this.data.params.categoryId + '&categoryName=' + this.data.params.categoryName + '&classify=' + this.data.params.classify
+    }
   },
 
   // 获取数据

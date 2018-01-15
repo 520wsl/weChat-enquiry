@@ -105,7 +105,10 @@ Page({
      * 用户点击右上角分享
      */
     onShareAppMessage: function () {
-
+      return {
+        title: '四喜E伙伴',
+        path: '/pages/home/hasRecord/hasRecord'
+      }
     },
     getList: function (addType) {
         let params = { ...this.data.params }
