@@ -32,9 +32,11 @@ Page({
   onLoad: function (options) {
     // 获取产品关键词
     this.data.params.categoryId = options.categoryId || '';
+    let classify = options.classify || '';
+    let categoryName = options.categoryName || '产品关键词';
     this.setData({
-      searchLabel: options.categoryName || '产品关键词',
-      searchUrl: this.data.searchUrl + this.data.params.categoryId
+      searchLabel: categoryName,
+      searchUrl: this.data.searchUrl + this.data.params.categoryId + '&categoryName=' + categoryName + '&classify=' + classify
     })
 
     this.getList();

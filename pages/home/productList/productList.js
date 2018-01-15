@@ -45,9 +45,11 @@ Page({
   onLoad: function (options) {
     // 获取产品关键词
     this.data.params.cat = options.classify || '';
+    let categoryName = options.categoryName || '产品关键词';
+    let categoryId = options.categoryId || '';
     this.setData({
-      searchLabel: options.categoryName || '产品关键词',
-      searchUrl: this.data.searchUrl + (options.categoryId || '')
+      searchLabel: categoryName,
+      searchUrl: this.data.searchUrl + categoryId + '&categoryName=' + categoryName + '&classify=' + this.data.params.cat
     })
 
     wx.showLoading({ title: '加载中...' });

@@ -20,7 +20,10 @@ Page({
     signs: 0,// 0 产品，1 价格
 
     // 搜索
-    searchName: ''
+    searchName: '',
+
+    // 是否首页进入
+    isIndex: 0,// 0 否，1 是
   },
 
   /**
@@ -30,8 +33,13 @@ Page({
     // 不同页面入口进来，需要一个标识
     this.data.signs = options.signs || 0;
     this.data.params.categoryId = options.categoryId || '';
+    this.data.params.classify = options.classify || '';
+    this.data.params.categoryName = options.categoryName || '';
+    this.data.isIndex = options.isIndex || 0;
 
-    this.getWords()
+    if(this.data.isIndex == 1){
+      this.getWords()
+    }
   },
 
   // 获取热词
@@ -129,7 +137,20 @@ Page({
 
   // 返回
   back() {
-    wx.navigateBack();
+    if (this.data.isIndex == 1){
+      wx.navigateBack();
+      return;
+    }
+    
+    if (this.data.signs == 1) {
+      wx.redirectTo({
+        url: '/pages/home/priceTrend/priceTrend?categoryId=' + this.data.params.categoryId + '&categoryName=' + this.data.params.categoryName + '&classify=' + this.data.params.classify
+      });
+      return;
+    }
+    wx.redirectTo({
+      url: '/pages/home/productList/productList?categoryId=' + this.data.params.categoryId + '&categoryName=' + this.data.params.categoryName + '&classify=' + this.data.params.classify
+    });
   },
 
   // 跳转页面
