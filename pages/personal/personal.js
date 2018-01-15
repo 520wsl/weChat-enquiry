@@ -43,10 +43,8 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    app.enquiryTime = null;
     this.getInfo();
-    // console.log('aaaaaaaaaaaaaaaaaaaaa=>')
-    // app.login();
-    // app.ifBindPhone();
   },
   onShareAppMessage: function () {
     return {
@@ -69,7 +67,6 @@ Page({
   },
   //获取页面数据
   getInfo: function () {
-    // console.log('res', app.globalData.customeInfo)
     if (app.globalData.customeInfo && app.globalData.customeInfo.companyName) {
       this.setData({
         info: app.globalData.customeInfo,

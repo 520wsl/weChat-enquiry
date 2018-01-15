@@ -7,6 +7,7 @@ Page({
    */
   data: {
     CDN: app.CDN,
+    fields:'day',
     time: {
       startTime: null,
       endTime: null,
@@ -26,6 +27,15 @@ Page({
       this.setData({
         time: app.enquiryTime
       });
+    }
+    if (options.pageName === "hasRecord"){
+        this.setData({
+            defaultTime: {
+                start: '',
+                end: ''
+            },
+            fields:'month'
+        })
     }
   },
 
