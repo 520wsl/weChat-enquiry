@@ -1,6 +1,6 @@
 <!--pages/home/hasRecord/hasRecord.wxml-->
 <view wx:if="{{isSelectTime}}" class='time'>
-    <navigator class='time' url="/pages/enquiry/time/time">
+    <navigator class='time' url="/pages/enquiry/time/time?pageName=hasRecord">
         <text class='txt'>{{params.startTime}}</text>
         <text>至</text>
         <text class='txt'>{{params.endTime}}</text>
@@ -10,7 +10,7 @@
     </navigator>
 </view>
 <view wx:else>
-    <navigator class='time' url="/pages/enquiry/time/time">
+    <navigator class='time' url="/pages/enquiry/time/time?pageName=hasRecord">
         <text> 时间选择</text>
         <view class='pic'>
             <image mode='aspectFit' src='{{CDN}}icon_right.png'></image>
