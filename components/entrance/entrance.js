@@ -82,7 +82,7 @@ Component({
       }
       // 搜索页
       wx.navigateTo({
-        url: '/pages/searchWord/searchWord?signs=' + e.currentTarget.dataset.signs
+        url: '/pages/searchWord/searchWord?signs=' + e.currentTarget.dataset.signs+'&isIndex=1'
       });
     }
   }
