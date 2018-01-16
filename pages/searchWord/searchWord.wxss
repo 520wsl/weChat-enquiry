@@ -44,7 +44,7 @@ page {
 }
 
 .placeholder {
-  ont-size: 28rpx;
+  font-size: 28rpx;
   color: #ccc;
 }
 
