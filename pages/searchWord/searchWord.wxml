@@ -4,7 +4,7 @@
   <view class="form">
     <view class="form-group">
       <icon type="search" size="15" color="#999" />
-      <input focus bindinput="searchHandle" placeholder-class="placeholder" class="form-control" value="{{searchName}}" placeholder="产品关键字" />
+      <input focus bindinput="searchHandle" class="form-control" value="{{searchName}}" placeholder="产品关键字" />
       <image wx:if="{{searchName != ''}}" bindtap="delSearch" class="del" src="{{CDN}}/icon_search_del.png"></image>
     </view>
     <a bindtap="back" class="cancle">取消</a>
