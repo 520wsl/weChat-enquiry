@@ -72,7 +72,7 @@ Page({
       let data = res.data;
       if (data && data.length > 0) {
         // 校验字符
-        data = this.checkString(data);
+        // data = this.checkString(data);
         this.data.list.push(...data);
         this.setData({
           list: this.data.list
