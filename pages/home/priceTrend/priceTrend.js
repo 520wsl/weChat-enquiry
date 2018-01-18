@@ -116,11 +116,17 @@ Page({
   // 图表
   getEcharts(series) {
     let colorType = ['#9f73fb', '#52c187', '#5d77e5', '#f27a52', '#f1b93e', '#be9f46'];
-    let newSeries = series.map((item, index) => {
+    let cache = [...series].filter((item, index) => {
+        item.number = index;
+        if (item.value != 0) {
+          return true;
+        }
+      });
+    let newSeries = cache.map((item, index) => {
       return {
         name: item.name,
         data: item.value,
-        color: colorType[index % 6],
+        color: colorType[item.number % 6],
         format: function (val) {
           return item.value + '%';
         }
