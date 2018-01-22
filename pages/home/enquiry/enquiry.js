@@ -9,7 +9,7 @@ Page({
     CDN: app.CDN,
     // banner
     imgUrls: [
-        app.CDN +'banner-2.png?id=1'
+        app.CDN +'banner-2.png?id=20180119'
     ],
     indicatorDots: false,
 
@@ -17,7 +17,7 @@ Page({
 
     params: {
       pageNum: 1,
-      pageSize: 10,
+      pageSize: 7,
       countType: '',//1:总价值；2:成交价值；3:跟单价值；4:流失价值
       timeType: '',//	1:7天；2:30天；3:180天；4:365天
     },

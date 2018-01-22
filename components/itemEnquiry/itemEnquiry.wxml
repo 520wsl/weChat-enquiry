@@ -1,23 +1,47 @@
 <!--components/itemEnquiry/itemEnquiry.wxml-->
 <navigator url="/pages/enquiry/info/info?id={{item.enquiryId}}">
     <view class='item hr'>
-        <view class='pic head-portrait'>
-            <image mode='aspectFit' src='{{CDN}}icon-touxiang.png'></image>
+        <view class='pic pro-pic'>
+            <image mode='aspectFit' src='{{CDN}}icon-pro.png'></image>
         </view>
         <view class='info'>
-            <view class='txt'>
-                <view class='name'>买家旺旺：</view>
-                <view class='second-title'>{{item.aliTM}}</view>
+            <view class='title'>
+                <text>{{item.productName}}</text>
             </view>
-            <view class='txt'>
-                <view class='name'>联系电话：</view>
-                <view class='second-title'>{{item.phone}}</view>
+            <view class='nav'>
+                <view class='map'>
+                    <view class='pic map-pic'>
+                        <image mode='aspectFit' src='{{CDN}}localize.png'></image>
+                    </view>
+                    <text>{{item.area}}</text>
+                </view>
+                <view wx:if="{{item.saleStatus == 1}}" class='nav-btn'>
+                    <view class='btn btn2'>
+                        <text>已成交</text>
+                    </view>
+                    <view class='pic arrow'>
+                        <image mode='aspectFit' src='{{CDN}}icon_right.png'></image>
+                    </view>
+                </view>
+                <view wx:elif="{{item.saleStatus == 2}}" class='nav-btn'>
+                    <view class='btn'>
+                        <text>跟进中</text>
+                    </view>
+                    <view class='pic arrow'>
+                        <image mode='aspectFit' src='{{CDN}}icon_right.png'></image>
+                    </view>
+                </view>
+                <view wx:elif="{{item.saleStatus == 3}}" class='nav-btn'>
+                    <view class='btn btn3'>
+                        <text>未成交</text>
+                    </view>
+                    <view class='pic arrow'>
+                        <image mode='aspectFit' src='{{CDN}}icon_right.png'></image>
+                    </view>
+                </view>
             </view>
-        </view>
-        <view class='time'>
-            <view class='second-title2'>{{item.gmtModified}}</view>
-            <view class='pic arrow'>
-                <image mode='aspectFit' src='{{CDN}}icon_right.png'></image>
+            <view class='mony'>
+                <text>￥{{item.amount}}</text>
             </view>
         </view>
     </view>
