@@ -25,7 +25,7 @@ var api = {
         var method = arguments[0];
         var url = arguments[1];
         var data = arguments[2];
-
+        let firstTime = new Date().getTime();
         return new Promise(function (resolve, reject) {
             wx.request({
                 url: apiName(url),
@@ -43,7 +43,7 @@ var api = {
                       reject(e.data);
                       return ;
                     }
-                    console.log('全局拦截：', url, e.data)
+                    console.log('全局拦截：', url, e.data, '耗时', new Date().getTime() - firstTime)
                     resolve(e.data);
                 },
                 fail: function (e) {

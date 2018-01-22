@@ -28,46 +28,77 @@
     padding: 30rpx;
     display: flex;
     justify-content: space-between;
+    align-items: center;
 }
 
-.head-portrait {
-    width: 120rpx;
-    height: 120rpx;
-    margin-right: 20rpx;
-}
-
-.info {
-    line-height: 60rpx;
-    font-size: 28rpx;
+.info{
     flex: 1;
-    overflow: hidden;
 }
-
-.info .txt {
-    height: 60rpx;
-    overflow: hidden;
-    color: #151515;
-    display: flex;
-}
-
-.info .txt .name {
-    width: 150rpx;
-}
-
-.info .txt .second-title {
-    flex: 1;
-    overflow: hidden;
-}
-
-.time {
+.title {
     font-size: 24rpx;
-    display: flex;
-    flex-direction: column;
+    color: #333;
+    max-height: 60rpx;
+    line-height: 30rpx;
+    overflow: hidden;
 }
 
+.nav {
+    display: flex;
+    justify-content: space-between;
+    height: 40rpx;
+    margin: 11rpx 0;
+}
+
+.map {
+    font-size: 24rpx;
+    line-height: 40rpx;
+    display: flex;
+    color: #999;
+    align-items: center;
+}
+
+.nav-btn {
+    font-size: 24rpx;
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 132rpx;
+}
+
+.nav-btn .btn {
+    background-color: #619afa;
+    width: 108rpx;
+    height: 40rpx;
+    text-align: center;
+    line-height: 40rpx;
+    border-radius: 30rpx;
+}
+
+.nav-btn .btn2 {
+    background-color: #33cc82;
+}
+
+.nav-btn .btn3 {
+    background-color: #f56364;
+}
+
+.map-pic {
+    width: 20rpx;
+    height: 40rpx;
+    margin-right: 15rpx;
+}
+.mony{
+    font-size: 32rpx;
+    color: #ff4444;
+}
 .arrow {
     width: 14rpx;
-    height: 80rpx;
-    align-items: right;
-    align-self: flex-end;
+    height: 40rpx;
+}
+
+.pro-pic {
+    width: 120rpx;
+    height: 120rpx;
+    margin-right: 30rpx;
 }

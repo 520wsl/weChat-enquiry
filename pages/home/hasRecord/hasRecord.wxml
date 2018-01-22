@@ -51,13 +51,14 @@
             <view class='info'>
                 <view class='row'>
                     <text>标王公司：</text>
-                    <text class='name'>{{item.customName}}</text>
+                    <text class='name'>{{item.dealcompany}}</text>
                      <image wx:if="{{item.isobtain == 1}}" class='pic-flag' mode='aspectFit' src="{{CDN}}icon-flag.png"></image> 
                      
                 </view>
                 <view class='row'>
                     <text>最终价格：</text>
-                    <text class='red'>{{item.finalprice}}元</text>
+                    <text class='red'>{{item.finalprice}}</text>
+                    <text wx:if="{{item.finalprice > 0}}"  class='red'>元</text>
                 </view>
                 <view class='row'>
                     <text>最高出价：</text>
