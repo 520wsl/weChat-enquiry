@@ -23,12 +23,6 @@
 .analysis-report .item{
   line-height: 71rpx;
 }
-/* .analysis-report .item{
-  width: 200rpx;
-  height: 71rpx;
-  line-height: 71rpx;
-  text-align: center;
-} */
 .analysis-report .active{
   font-size: 13px;
   color: #FC7C1F;

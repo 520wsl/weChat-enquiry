@@ -6,6 +6,8 @@
     <view class="line"></view>
   </navigator>
   <picker bindchange="bindPickerChange" range="{{list}}" range-key="reportName">
-    <image class="img" src="{{CDN}}icon_date.png" />
+      <view class="pic">
+            <image class="img" mode="aspectFit" src="{{CDN}}icon_date.png" />
+      </view>
   </picker>
 </view>
