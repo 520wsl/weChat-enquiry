@@ -52,9 +52,13 @@ Page({
       searchUrl: this.data.searchUrl + this.data.params.categoryId + '&categoryName=' + this.data.params.categoryName + '&classify=' + this.data.params.cat
     })
 
-    wx.showLoading({ title: '加载中...' });
+    if (wx.showLoading) {
+      wx.showLoading({ title: '加载中...' });
+    }
     this.getList(() => {
-      wx.hideLoading();
+      if (wx.hideLoading) {
+        wx.hideLoading();
+      }
     });
   },
 
@@ -150,7 +154,11 @@ Page({
       }
       this.reset();
     }).catch((res) => {
-      wx.hideLoading();
+      if (wx.hideLoading) {
+        if (wx.hideLoading) {
+          wx.hideLoading();
+        }
+      }
       if (typeof cb == 'function') {
         cb();
       }
@@ -169,9 +177,13 @@ Page({
     console.log(e);
     let index = e.detail.acIndex;
     this.data.params.period = this.data.periodType[index];
-    wx.showLoading({ title: '加载中...' });
+    if (wx.showLoading) {
+      wx.showLoading({ title: '加载中...' });
+    }
     this.getList(() => {
-      wx.hideLoading();
+      if (wx.hideLoading) {
+        wx.hideLoading();
+      }
     });
   },
 
@@ -180,9 +192,13 @@ Page({
     console.log(e);
     let index = e.detail.acIndex;
     this.data.params.rankType = this.data.rankType[index];
-    wx.showLoading({ title: '加载中...' });
+    if (wx.showLoading) {
+      wx.showLoading({ title: '加载中...' });
+    }
     this.getList(() => {
-      wx.hideLoading();
+      if (wx.hideLoading) {
+        wx.hideLoading();
+      }
     });
   },
 

@@ -111,9 +111,9 @@ Page({
       }
     },
     getList: function (addType) {
-        wx.showLoading({
-            title: '加载中',
-        })
+        if(wx.showLoading){
+            wx.showLoading({title: '加载中...'});
+          }
         let params = { ...this.data.params }
         app
             .get('/topbidder/list', params)
@@ -134,12 +134,16 @@ Page({
                         }
                     })
                     wx.stopPullDownRefresh();
-                    wx.hideLoading();
+                    if(wx.hideLoading){
+                        wx.hideLoading();
+                    }
                     return;
                 }
                 if (res.status != 200 || res.data == null) {
                     wx.stopPullDownRefresh();
-                    wx.hideLoading();
+                    if(wx.hideLoading){
+                        wx.hideLoading();
+                    }
                     return;
                 }
                 let listData = this.data.list;
@@ -163,7 +167,9 @@ Page({
                     count: res.data.count
                 })
                 wx.stopPullDownRefresh();
-                wx.hideLoading();
+                if(wx.hideLoading){
+                    wx.hideLoading();
+                }
             })
 
 

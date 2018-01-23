@@ -43,12 +43,12 @@ Page({
         })
         return;
       }
-        if (res.status === 200) {
-            app.globalData.companies = res.data
-            this.setData({
-                lists: app.globalData.companies
-            })
-        }
+      if (res.status === 200) {
+        app.globalData.companies = res.data
+        this.setData({
+          lists: app.globalData.companies
+        })
+      }
     })
   },
   // 选择公司
@@ -59,12 +59,16 @@ Page({
       content: '是否切换公司?',
       success: function (res) {
         if (res.confirm) {
-          wx.showLoading({title: '加载中...'});
-        //   setTimeout(() => {
-            app.setcompany(event.currentTarget.dataset.aliaccountid, () => {
+          if (wx.showLoading) {
+            wx.showLoading({ title: '加载中...' });
+          }
+          //   setTimeout(() => {
+          app.setcompany(event.currentTarget.dataset.aliaccountid, () => {
+            if (wx.hideLoading) {
               wx.hideLoading();
-            })
-        //   }, 2000);
+            }
+          })
+          //   }, 2000);
         } else if (res.cancel) {
           // console.log('用户点击取消')
         }
