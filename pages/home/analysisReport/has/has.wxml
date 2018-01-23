@@ -1,2 +1,5 @@
 <!--pages/home/analysisReport/has/has.wxml-->
-<text>pages/home/analysisReport/has/has.wxml</text>
+<view>
+    <component-analysis-report active="1" bindselectReport="selectReport"></component-analysis-report>
+    <text>标王分析</text>
+  </view>

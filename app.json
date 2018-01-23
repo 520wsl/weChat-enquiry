@@ -12,6 +12,10 @@
     "pages/home/productList/productList",
     "pages/personal/bindPhone/bindPhone",
     "pages/home/lossAnalysis/lossAnalysis",
+    "pages/home/analysisReport/has/has",
+    "pages/home/analysisReport/index/index",
+    "pages/home/analysisReport/operating/operating",
+    "pages/home/analysisReport/data/data",
     "pages/personal/companyList/companyList"
   ],
   "window": {

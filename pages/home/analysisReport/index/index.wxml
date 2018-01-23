@@ -1,2 +1,6 @@
 <!--pages/home/analysisReport/index/index.wxml-->
-<text>pages/home/analysisReport/index/index.wxml</text>
+<view>
+    <component-analysis-report active="0" bindselectReport="selectReport"></component-analysis-report>
+    <text>询盘统计</text>
+  </view>
+
