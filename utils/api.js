@@ -17,7 +17,7 @@ var apiName = function (urlName = '') {
 var api = {
     cookie: '',
     setCookie: (respone) => {
-        if (respone.header['Set-Cookie']) {
+        if (respone.header && respone.header['Set-Cookie']) {
             api.cookie = respone.header['Set-Cookie'];
         }
     },
@@ -32,21 +32,23 @@ var api = {
                 method: method.toUpperCase(),
                 data: data,
                 dataType: "json",
-                header: { 
+                header: {
                     // 'content-type': 'application/x-www-form-urlencoded',
                     'Cookie': api.cookie || ''
                 },
                 success: function (e) {
                     api.setCookie(e);
-                    if(e.status == 500){
-                      utils.showModel('', '服务器错误')
-                      reject(e.data);
-                      return ;
+                    if (e.status == 500) {
+                        utils.showModel('', '服务器错误')
+                        reject(e.data);
+                        return;
                     }
                     console.log('全局拦截：', url, e.data, '耗时', new Date().getTime() - firstTime)
                     resolve(e.data);
                 },
                 fail: function (e) {
+                    console.log(e)
+                    utils.showModel('', '服务器错误：' + e.errMsg)
                     reject(e.data);
                 }
             })
