@@ -111,9 +111,6 @@ Page({
       }
     },
     getList: function (addType) {
-        if (wx.showLoading && addType !== 'isPush'){
-            wx.showLoading({title: '加载中...'});
-          }
         let params = { ...this.data.params }
         app
             .get('/topbidder/list', params)
@@ -167,9 +164,6 @@ Page({
                     count: res.data.count
                 })
                 wx.stopPullDownRefresh();
-                if (wx.hideLoading && addType !== 'isPush'){
-                    wx.hideLoading();
-                }
             })
 
 
