@@ -136,7 +136,9 @@ Page({
   },
   // 体验版切换
   toggleHandle(secret) {
-    wx.showLoading({ title: '加载中...' });
+    if(wx.showLoading){
+      wx.showLoading({title: '加载中...'});
+    }
     this.setData({
       isTiYan: true
     });
@@ -146,7 +148,9 @@ Page({
         secret: secret
       })
       .then(res => {
-        wx.hideLoading();
+        if(wx.hideLoading){
+          wx.hideLoading();
+      }
         if (res.status !== 200) {
           app.utils.showModel('体验版登录', res.msg)
           return;

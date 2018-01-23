@@ -21,7 +21,10 @@ var auth={
   // 1.1、 小程序登录 获取code
   login: function (cb) {
       this.reset();
-      wx.showLoading({title: '加载中...'});
+      if(wx.showLoading){
+        wx.showLoading({title: '加载中...'});
+      }
+     
     // console.log('1.1、 小程序登录 获取code')
     wx.login({
       success: res => {
@@ -37,7 +40,9 @@ var auth={
         this.authorize(res.code)
       },
       complete: res => {
+        if(wx.hideLoading){
           wx.hideLoading();
+      }
       }
     });
   },
