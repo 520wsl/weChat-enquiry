@@ -20,7 +20,7 @@ Page({
         params: {
             endTime: '',
             pageNum: 1,
-            pageSize: 10,
+            pageSize: 5,
             startTime: ''
         },
 
@@ -111,6 +111,9 @@ Page({
       }
     },
     getList: function (addType) {
+        wx.showLoading({
+            title: '加载中',
+        })
         let params = { ...this.data.params }
         app
             .get('/topbidder/list', params)
@@ -131,10 +134,12 @@ Page({
                         }
                     })
                     wx.stopPullDownRefresh();
+                    wx.hideLoading();
                     return;
                 }
                 if (res.status != 200 || res.data == null) {
                     wx.stopPullDownRefresh();
+                    wx.hideLoading();
                     return;
                 }
                 let listData = this.data.list;
@@ -146,21 +151,19 @@ Page({
                 } else {
                     listData = res.data.list;
                 }
-
-                console.log(addType)
-                console.log(listData)
                 listData.map((e) => {
                     e.typeName = this.getArrTitle(this.data.S.typeList, e.type);
-                    e.finalprice = e.finalprice || 0;
-                    e.money = e.money || 0;
-                    e.startprice = e.startprice || 0;
-                    e.flow = e.flow || 0;
+                    // e.finalprice = e.finalprice || 0;
+                    // e.money = e.money || 0;
+                    // e.startprice = e.startprice || 0;
+                    // e.flow = e.flow || 0;
                 });
                 this.setData({
                     list: listData,
                     count: res.data.count
                 })
                 wx.stopPullDownRefresh();
+                wx.hideLoading();
             })
 
 

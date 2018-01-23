@@ -32,7 +32,7 @@ Page({
         this.setData({
             defaultTime: {
                 start: app.time.formatTime('2018-01-01'),
-                end: ''
+                end: app.time.formatSubtractTime(0)
             },
             fields:'month'
         })

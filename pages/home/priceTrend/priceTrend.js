@@ -54,10 +54,10 @@ Page({
 
   // 获取数据
   getList() {
-    // wx.showLoading({ title: '加载中...' });
+    wx.showLoading({ title: '加载中...' });
     app.get('/alizs/price/analyse', this.data.params).then((res) => {
       console.log(res);
-      // wx.hideLoading();
+      
 
       // 未登录、超时
       if (res.status == 401) {
@@ -75,10 +75,12 @@ Page({
             }
           }
         })
+        wx.hideLoading();
         return;
       }
       if (res.status != 200) {
         this.reset();
+        wx.hideLoading();
         return;
       }
 
@@ -90,11 +92,13 @@ Page({
         });
         // 图表
         this.getEcharts(this.data.list);
+        wx.hideLoading();
         return;
       }
       this.reset();
+      wx.hideLoading();
     }).catch((res) => {
-      // wx.hideLoading();
+      wx.hideLoading();
     });
   },
 
