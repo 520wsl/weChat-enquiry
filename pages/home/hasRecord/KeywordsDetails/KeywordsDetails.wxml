@@ -1,0 +1,34 @@
+
+<view class="content" >
+    <view class="kingDetails">
+        <text class="kingtxt">关键词 ： 拍拍贷</text>
+        <view>
+            <view class="table">
+                <view class="tr bg-w">
+                    <view class="th">竞拍状态</view>
+                    <view class="th ">已中标</view>
+                </view> 
+                <block wx:for="{{listData}}" wx:key="{{code}}">
+                    <view class="tr bg-g" wx:if="{{index % 2 == 0}}">      
+                        <view class="td">{{screening[item.type]}}</view>
+                        <view class="td">{{status[item.text]}}</view>
+                    </view>    
+                    <view class="tr" wx:else>
+                        <view class="td">{{screening[item.type]}}</view>
+                        <view class="td">{{status[item.text]}}</view>
+                    </view>
+                </block>
+                </view>
+        </view>
+    </view>
+    <view class="wrap">
+        <view class="circle-box">
+          <canvas class="circle" style="z-index: -99; width:200px; height:200px;" canvas-id="canvasCircle">
+          </canvas>
+          <canvas class="circle" style="width:200px; height:200px;" canvas-id="canvasArcCir">
+          </canvas>
+        </view>
+      </view>
+      
+</view>
+
