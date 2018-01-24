@@ -1,5 +1,6 @@
 .wrap {
   /* width: 100%; */
+  margin-top: 71rpx;
   height: 100%;
   position: relative;
   font-size: 28rpx;
@@ -22,21 +23,11 @@
   letter-spacing: 0;
   text-align: center;
 }
-/* .contents{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-} */
 .circle {
   width: 380rpx;
-  /* height: 380rpx; */
   position: relative;
   margin: auto;
   top: 70rpx;
-  /* left: 0; */
-
-  /* margin: 0 auto; */
-  /* text-align: center; */
 }
 .more {
   width: 380rpx;
@@ -60,24 +51,24 @@
 .circleone text {
   font-size: 96rpx;
 }
-.bottom{
-    justify-content: center;
-    align-items: flex-end;
+.bottom {
+  justify-content: center;
+  align-items: flex-end;
 }
-.bottom .ONE{
-    width:60rpx;
-    height: 8rpx;
-    background: #ffffff;
-    margin: 5rpx;
-    border-radius: 2rpx;
+.bottom .ONE {
+  width: 60rpx;
+  height: 8rpx;
+  background: #ffffff;
+  margin: 5rpx;
+  border-radius: 2rpx;
 }
-.bottom .TWO{
-    width:60rpx;
-    height: 8rpx;
-    background: #ffffff;
-    margin: 5rpx;
-    opacity: 0.3;
-    border-radius: 2rpx;
+.bottom .TWO {
+  width: 60rpx;
+  height: 8rpx;
+  background: #ffffff;
+  margin: 5rpx;
+  opacity: 0.3;
+  border-radius: 2rpx;
 }
 .deal,
 .loss {
@@ -97,22 +88,23 @@
   border-radius: 6rpx;
   text-align: center;
 }
-.block .name{
-    flex:1;
+.block .name {
+  flex: 1;
 }
-.block .prc{
-    flex:1.5;
-    font-size: 32rpx;
-
-    color: #F957A0;
+.block .prc {
+  flex: 1.5;
+  font-size: 32rpx;
+  color: #f957a0;
 }
-.block .num{
-    flex:1;
-    color: #999999;
+.block .num {
+  flex: 1;
+  color: #999999;
 }
-.block .pic{
-    width:50rpx;
-    height:50rpx;
-    margin-right:20rpx;
+.block .pic {
+  width: 50rpx;
+  height: 50rpx;
+  margin-right: 20rpx;
 }
-
+.block .red {
+  color: #f957a0;
+}
