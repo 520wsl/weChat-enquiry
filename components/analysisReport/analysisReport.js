@@ -18,6 +18,10 @@ Component({
   data: {
     CDN: app.CDN,
     reportId: 1,
+    params:{
+      reportName: '2018年1月',
+      reportId: 111
+    },
     data: [
       {
         label: '询盘统计',
@@ -35,7 +39,7 @@ Component({
     list: [
       {
         reportName: '2018年1月',
-        reportId: 111
+        reportId: 12
       },
       {
         reportName: '2017年度',
@@ -43,7 +47,7 @@ Component({
       },
       {
         reportName: '2017年第四季度',
-        reportId: 333
+        reportId: 12
       },
       {
         reportName: '2017年12月',
@@ -54,7 +58,7 @@ Component({
 
   ready() {
     // this.getList();
-    // this.triggerEvent('getTime', { time: this.data.data[0] });
+    this.triggerEvent('selectReport', {params:this.data.list[0]});
   },
 
   /**
@@ -71,9 +75,9 @@ Component({
     //选择报告列表id
     bindPickerChange(e) {
       this.setData({
-        reportId: this.data.list[e.detail.value].reportId
+        params: this.data.list[e.detail.value]
       });
-      this.triggerEvent('selectReport', {reportId:this.data.reportId});
+      this.triggerEvent('selectReport', {params:this.data.params});
     },
     //获取分析报告列表
     getList() {
