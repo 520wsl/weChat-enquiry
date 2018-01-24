@@ -1,5 +1,5 @@
 {
-    "navigationBarTitleText": "关键词详情",
+    "navigationBarTitleText": "标王详情",
     "enablePullDownRefresh": true,
     "onReachBottomDistance": 10,
     "usingComponents": {
