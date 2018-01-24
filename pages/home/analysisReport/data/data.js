@@ -7,7 +7,10 @@ Page({
   data: {
   
   },
-
+//选择传入reportId
+selectReport(e) {
+  console.log(e.detail.reportId);
+},
   /**
    * 生命周期函数--监听页面加载
    */

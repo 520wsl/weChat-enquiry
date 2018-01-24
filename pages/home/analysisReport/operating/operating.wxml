@@ -1,2 +1,5 @@
-<!--pages/home/analysisReport/operating/operating.wxml-->
-<text>pages/home/analysisReport/operating/operating.wxml</text>
+<!--pages/home/analysisReport/operating/operating.wxml 运营建议-->
+<view>
+  <component-analysis-report active="2" bindselectReport="selectReport"></component-analysis-report>
+  <text>运营建议</text>
+</view>
