@@ -7,10 +7,14 @@ Page({
   data: {
   
   },
-//选择传入reportId
-selectReport(e) {
-  console.log(e.detail.reportId);
-},
+  //选择传入信息
+  selectReport(e) {
+    console.log(e.detail.params);
+    let tittle=String(e.detail.params.reportName);
+    wx.setNavigationBarTitle({
+      title: tittle
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
