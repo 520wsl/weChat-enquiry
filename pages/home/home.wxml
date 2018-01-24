@@ -12,21 +12,36 @@
   <!-- 询盘统计 -->
   <view class="enquiry">
     <view class="header">
-      <text class="text">询盘统计分析</text>
+      <text class="text">询盘统计分析</text><component-date-control bindgetTime="getTimeEnquiry" />
     </view>
     <!-- 日期选择控件 -->
-    <component-date-control bindgetTime="getTimeEnquiry" />
     <view class="section" wx:if="{{enquire.totalValue || enquire.tranValue || enquire.enquireValue || enquire.lossValue}}">
-      <view class="bg-setion bg-shadow"></view>
-      <view class="real-setion bg-shadow">
-        <navigator wx:for="{{enquire}}" wx:key="{{index}}" wx:if="{{item}}" url="/pages/home/enquiry/enquiry?countType={{enquiryType[index]}}&timeType={{enquireTime.type}}&label={{enquireTime.label+enquireName[index]}}" class="navigator" hover-class="">
-          <image src="{{images[index]}}" class='icon' />
+      <view class="section-title">
+        <view class="section-item">
+          <view class="value1">{{enquire.tranProportion}}
+            <!-- <text>%</text> -->
+          </view>
+          <view class="txt">实际成交占比</view>
+        </view>
+        <view class="section-item">
+          <view class="value2">{{enquire.effCount}}
+            <text>次</text>
+          </view>
+          <view class="txt">有效询盘次数</view>
+        </view>
+      </view>
+      <!-- 重构 -->
+      <view class="real-setion">
+        <navigator wx:for="{{newEnquire}}" wx:key="{{index}}" url="/pages/home/enquiry/enquiry?countType={{enquiryType[item.t1]}}&timeType={{enquireTime.type}}&label={{enquireTime.label+enquireName[item.t1]}}" class="navigator">
+          <image src="{{images[item.t1]}}" class='icon' />
           <view class="left">
-            <!-- <text class='t1'>{{enquireTime.label}}询盘</text> -->
-            <text class='t2'>询盘{{enquireName[index]}}</text>
+            <text class='t2'>{{enquireName[item.t1]}}</text>
+          </view>
+          <view class="left spel">
+            <text class="red">￥{{enquire[item.t1]}}</text>
           </view>
           <view class="right">
-            <text>￥{{item}}</text>
+            <text>{{enquire[item.t2] || 0}} 笔</text>
             <image src="{{CDN}}icon_right.png" class="img" />
           </view>
         </navigator>
@@ -37,26 +52,37 @@
   <!-- 客户地区 -->
   <view class="custom-area">
     <view class="header">
-      <text class="text">客户地区分布统计</text>
+      <text class="text">客户地区分布统计</text><component-date-control bindgetTime="getTimeErea" />
     </view>
     <!-- 日期选择控件 -->
-    <component-date-control bindgetTime="getTimeErea" />
     <!-- 图表 -->
     <view hidden="{{!isShowChart}}" class="canvas">
       <!-- bindtouchstart="touchHandler" -->
       <canvas canvas-id="columnCanvas" class="canvas"></canvas>
     </view>
+    <view class="list-title">
+      <view class="list-subtitle">省份</view>
+      <view class="list-subtitle">成交金额</view>
+      <view class="list-subtitle">成交占比</view>
+    </view>
     <view class="list">
       <view class="list-item" wx:for="{{customerarea}}" wx:key="{{index}}">
-        <image src="{{CDN}}localize.png" class="icon" />
+        <image wx:if="{{index < 3}}" src="{{CDN}}/icon_gold_{{index}}.png" class="icon" />
+        <text wx:else class="icon">{{index+1}}</text>
         <view class="left">
           <text>{{item.provinceName}}</text>
-          <text class="v">成交金额</text>
         </view>
-        <view class="right">
-          <text class="t1">{{item.num}}人</text>
-          <text class="t2">￥{{item.sumGmvAmountFormat}}</text>
+        <view class="left">
+          <text class='red'>￥{{item.sumGmvAmountFormat}}</text>
         </view>
+        <!-- <view class="right">
+          <view class="progress-bar"><view class="overlay">40%{{item.areaTran}}</view></view>
+          <image src="{{CDN}}icon_right.png" class="img" />
+        </view>  -->
+        <view hidden="{{drawing}}" class="right">
+           <canvas class="ring" canvas-id="ring_{{index}}"></canvas> 
+          <image src="{{CDN}}icon_right.png" class="img" />
+        </view> 
       </view>
     </view>
   </view>
