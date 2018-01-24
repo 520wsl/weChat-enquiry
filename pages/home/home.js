@@ -29,6 +29,24 @@ Page({
         indicatorDots: false,      //是否显示面板指示点
 
         // 询盘
+        newEnquire: [
+          {
+            t1: 'totalValue',
+            t2: 'allCount'
+          },
+          {
+            t1: 'tranValue',
+            t2: 'gmvCount'
+          },
+          {
+            t1: 'enquireValue',
+            t2: 'followCount'
+          },
+          {
+            t1: 'lossValue',
+            t2: 'lossCount'
+          },
+        ],
         enquire: null,
         images: {
             totalValue: app.CDN + 'enquiry_1.png',
@@ -38,8 +56,8 @@ Page({
         },
         enquireName: {
             totalValue: '总金额',
-            tranValue: '成交金额',
             enquireValue: '跟单金额',
+            tranValue: '成交金额',
             lossValue: '流失金额',
         },
         enquiryType: {
@@ -59,6 +77,8 @@ Page({
         customerareaTime: {},
         // 公司
         company: '',
+        // 圆环
+        drawing: true,
     },
 
     /**
@@ -92,6 +112,21 @@ Page({
             title: '四喜E伙伴',
             path: '/pages/home/home'
         }
+    },
+    onPageScroll(o){
+      let height = 568;
+      try {
+        var res = wx.getSystemInfoSync();
+        height = res.windowHeight;
+      } catch (e) {
+        console.log(e);
+      }
+      if (o.scrollTop > height && this.data.drawing){
+        this.data.drawing = false;
+        this.setData({
+          drawing: false
+        })
+      }
     },
 
     // 客户地区
@@ -129,6 +164,7 @@ Page({
                 // isShowChart: true
             });
             this.getEcharts();
+            this.getRing(formatData);
         }).catch(res => {
             this.setData({
                 customerarea: [],
@@ -173,7 +209,7 @@ Page({
 
             let formatData = res.data;
             for (let i in formatData) {
-                if (formatData[i]) {
+              if (formatData[i] && (i == 'enquireValue' || i == 'lossValue' || i == 'lossValue' || i == 'tranValue')){
                     formatData[i] = formatData[i].toFixed(2);
                     formatData[i] = formatData[i].replace(/\d{1,3}(?=(\d{3})+\.)/g, '$&,');  
                 }
@@ -195,13 +231,7 @@ Page({
         if (this.data.customerarea.length == 0) {
             return;
         }
-        var windowWidth = 320;
-        try {
-            var res = wx.getSystemInfoSync();
-            windowWidth = res.windowWidth;
-        } catch (e) {
-            console.error('getSystemInfoSync failed!');
-        }
+        let windowWidth = this.getWindowWidth();
         let categories = this.data.customerarea.map(item => {
             return item.provinceName;
         });
@@ -250,6 +280,55 @@ Page({
         this.setData({
             isShowChart: true
         });
+    },
+    getRing(array){
+      let count = 10;
+      let windowWidth = this.getWindowWidth();
+      setTimeout(() => {
+        array.forEach((item, index) => {
+          // let cache = item.areaTran.slice(0, item.areaTran.length);
+          count += 10;
+          this.drawRing(index, count, windowWidth);
+        });
+      }, 500)
+    },
+    drawRing(index, process = 30, windowWidth, width = 46.8, r = width / 2 - 3){
+      var context = wx.createCanvasContext('ring_'+index);
+      width = width * windowWidth / 375;
+      var height = width;
+      
+      this.drawCricle(context, process, width, height, r);
+      context.draw();
+    },
+    drawCricle(ctx, percent, width, height, r) {
+      // 画外圆  
+      ctx.beginPath();
+      ctx.arc(width / 2, height / 2, r, 0, Math.PI * 2);
+      ctx.closePath();
+      ctx.setFillStyle('#D8D8D8');
+      ctx.fill();
+      // 进度环  
+      ctx.beginPath();
+      ctx.moveTo(width / 2, height / 2);
+      ctx.arc(width / 2, height / 2, r, Math.PI * 1.5, Math.PI * (1.5 + 2 * percent / 100));
+      ctx.closePath();
+      ctx.setFillStyle('#55ABF6');
+      ctx.fill();
+
+      // 内圆
+      ctx.beginPath();
+      ctx.arc(width / 2, height / 2, r - 3, 0, Math.PI * 2);
+      ctx.closePath();
+      ctx.setFillStyle('white');
+      ctx.fill();
+
+      // 填充文字  
+      ctx.setFontSize(12);
+      ctx.setFillStyle("#6495F9");
+      ctx.setTextAlign("center");
+      ctx.setTextBaseline('middle');
+      ctx.moveTo(width / 2, height / 2);
+      ctx.fillText(percent + '%', width / 2, height / 2);
     },
     touchHandler: function (e) {
         if (this.data.customerarea.length == 0) {
@@ -304,5 +383,15 @@ Page({
 
         this.data.customerareaTime = e.detail.time;
         this.getCustomArea(e.detail.time);
+    },
+    getWindowWidth(){
+      var windowWidth = 320;
+      try {
+        var res = wx.getSystemInfoSync();
+        windowWidth = res.windowWidth;
+      } catch (e) {
+        console.error('getSystemInfoSync failed!');
+      }
+      return windowWidth;
     }
 })
