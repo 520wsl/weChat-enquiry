@@ -9,6 +9,11 @@ Component({
     active: {
       type: Number,
       value: 0
+    },
+    // 类型
+    type: {
+      type: String,
+      value: 'action',
     }
   },
 
@@ -16,7 +21,7 @@ Component({
    * 组件的初始数据
    */
   data: {
-// 数据
+    // 数据
     data: [
       {
         label: '近一周',
@@ -45,7 +50,7 @@ Component({
     ],
   },
 
-  ready(){
+  ready() {
     // this.triggerEvent('getTime', { time: this.data.data[0] });
   },
 
@@ -55,6 +60,20 @@ Component({
   methods: {
     clickHandle(e) {
       let index = e.currentTarget.dataset.index;
+      this.common(index);
+    },
+    open() {
+      wx.showActionSheet({
+        itemList: ['近一周', '近一月', '近半年', '近一年'],
+        success: (res) => {
+          this.common(res.tapIndex);
+        },
+        fail: (res) => {
+          console.log(res.errMsg)
+        }
+      });
+    },
+    common(index) {
       this.setData({
         active: index
       });

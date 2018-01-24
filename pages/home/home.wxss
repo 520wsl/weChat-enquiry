@@ -27,14 +27,16 @@
 }
 
 /* 询盘 */
-.enquiry{
+
+.enquiry {
   background: #fff;
-  padding-bottom: 36rpx;
+  padding-bottom: 40rpx;
   margin-bottom: 20rpx;
 }
+
 .enquiry .section {
   margin: 0 30rpx;
-  /* margin-bottom: 26rpx; */
+  margin-top: 25rpx; 
   position: relative;
 }
 
@@ -44,15 +46,15 @@
   clear: both;
 }
 
-.enquiry .bg-setion {
+/* .enquiry .bg-setion {
   opacity: 0.74;
   width: 666rpx;
   height: 578rpx;
   margin: auto;
   margin-top: 14rpx;
-}
+} */
 
-.enquiry .real-setion {
+/* .enquiry .real-setion {
   height: 578rpx;
   width: 100%;
   position: absolute;
@@ -60,18 +62,51 @@
   left: 0;
   padding: 16.6rpx 50rpx;
   box-sizing: border-box;
+} */
+
+.section-title {
+  display: flex;
+  margin-bottom: 26rpx;
+}
+
+.section-item {
+  flex: 1;
+  text-align: center;
+}
+
+.section-item .value1 {
+  font-size: 48rpx;
+  color: #f44;
+}
+
+.section-item .value2 {
+  font-size: 48rpx;
+  color: #4e5d77;
+}
+
+.section-item .value1 text, .section-item .value2 text {
+  font-size: 24rpx;
+}
+
+.section-item .txt {
+  font-size: 24rpx;
+  color: #666;
 }
 
 .enquiry .real-setion .navigator {
-  border-bottom: 1rpx solid #e0e0e0;
+  border: 1rpx solid #e0e0e0;
   display: flex;
   height: 133rpx;
   /* line-height: 133rpx; */
   align-items: center;
+  padding: 0 54rpx;
+  box-shadow: 0 4rpx 8rpx 0 rgba(168, 168, 169, 0.31);
+  border-radius: 6rpx;
+  margin-bottom: 20rpx;
 }
 
 .enquiry .real-setion .navigator:last-child {
-  border: none;
+  margin-bottom: 0;
 }
 
 .enquiry .real-setion .icon {
@@ -80,12 +115,21 @@
   margin-right: 22rpx;
 }
 
-.real-setion .left, .real-setion .right {
-  flex: 1;
+.real-setion .left {
+  flex: 2;
+}
+
+.real-setion .left.spel {
+  flex: 3;
+}
+
+.real-setion .right {
+  flex: 2;
 }
 
 .real-setion .left {
   font-size: 28rpx;
+  text-align: left;
 }
 
 .real-setion .left .t1, .real-setion .left .t2 {
@@ -100,10 +144,15 @@
   color: #151515;
 }
 
-.real-setion .right {
-  text-align: right;
+.real-setion .left .red {
   font-size: 32rpx;
   color: #f44;
+}
+
+.real-setion .right {
+  text-align: right;
+  font-size: 28rpx;
+  color: #999;
   /* padding-right: 32rpx; *//* background: url('../../images/home/right@2x.png') no-repeat center right; *//* background-size: 14rpx 28rpx; */
 }
 
@@ -114,12 +163,26 @@
 .real-setion .right .img {
   width: 14rpx;
   height: 28rpx;
+  margin-bottom: -3rpx;
 }
 
 /* 客户地区 */
 
 .custom-area {
   background: #fff;
+}
+
+.custom-area .list-title {
+  display: flex;
+}
+
+.custom-area .list-subtitle {
+  flex: 1;
+  text-align: center;
+  font-size: 26rpx;
+  color: #666;
+  padding: 23rpx 0 20rpx;
+  border-bottom: 1rpx solid #e0e0e0;
 }
 
 .custom-area .list {
@@ -136,7 +199,12 @@
 .custom-area .list .left {
   flex: 1;
   font-size: 28rpx;
-  color: #434343;
+  color: #2f3245;
+}
+
+.custom-area .list .left .red {
+  font-size: 36rpx;
+  color: #f44;
 }
 
 .custom-area .list .left text {
@@ -149,13 +217,61 @@
 }
 
 .custom-area .list .icon {
-  width: 40rpx;
-  height: 40rpx;
+  width: 36rpx;
+  height: 46rpx;
+  line-height: 46rpx;
+  font-size: 28rpx;
+  color: #333;
+  text-align: center;
   margin-right: 16rpx;
 }
 
 .custom-area .list .right {
   flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.custom-area .list .right .img {
+  width: 14rpx;
+  height: 28rpx;
+  margin-bottom: -3rpx;
+}
+
+.progress-bar {
+  border-radius: 50%;
+  width: 93.6rpx;
+  height: 93.6rpx;
+  background: #d8d8d8;
+  position: relative;
+  margin-right: 23.2rpx;
+  font-size: 24rpx;
+  color: #6495f9;
+  background-image: linear-gradient(90deg, transparent 60%, #d8d8d8 60%),
+                      linear-gradient(90deg, #7b73fe 0%, #55abf6 0%);
+  /* background-image: linear-gradient(0deg, #7b73fe 0%, #55abf6 100%);  */
+}
+
+.progress-bar .overlay {
+  border-radius: 50%;
+  width: 80rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  text-align: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  background: #fff;
+}
+
+.custom-area .ring{
+  width: 93.6rpx;
+  height: 93.6rpx;
+  margin-right: 23.2rpx;
 }
 
 .custom-area .list .t1, .custom-area .list .t2 {
@@ -188,11 +304,11 @@ canvas {
 
 /* common */
 
-.bg-shadow {
+/* .bg-shadow {
   background: #fff;
   box-shadow: 0 4rpx 14rpx 0 rgba(84, 81, 183, 0.17);
   border-radius: 40rpx;
-}
+} */
 
 .header {
   width: 100%;
@@ -201,6 +317,7 @@ canvas {
   padding: 0 30rpx;
   background: #fff;
   box-sizing: border-box;
+  position:relative;
 }
 
 .header .text {
@@ -218,7 +335,13 @@ canvas {
   left: 0;
   bottom: 0;
   margin: auto;
-  width: 8rpx;
-  height: 28rpx;
-  background: #fea449;
+  width: 6rpx;
+  height: 24rpx;
+  background: #444;
+}
+
+component-date-control {
+  position: absolute;
+  top: 0;
+  right: 30rpx;
 }
