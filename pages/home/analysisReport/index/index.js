@@ -5,19 +5,19 @@ var ctx = wx.createCanvasContext('canvasArcCir');
 Page({
   data: {
     params: {
-      allAmount: 1,
-      allAmountCount: 1,
-      effective: 1,
-      effectivePercent: 10,
-      enquiryCount: 1,
-      followAmount: 1,
-      followAmountCount: 1,
-      garbage: 1,
-      gmvAmount: 1,
-      gmvAmountCount: 1,
-      gmvPercent: 22,
-      lossAmount: 1,
-      lossAmountCount: 1
+      allAmount: '',
+      allAmountCount: '',
+      effective: '',
+      effectivePercent: '',
+      enquiryCount: '',
+      followAmount: '',
+      followAmountCount: '',
+      garbage: '',
+      gmvAmount: '',
+      gmvAmountCount: '',
+      gmvPercent: '',
+      lossAmount: '',
+      lossAmountCount: ''
     },
     images: {
       totalValue: app.CDN + 'enquiry_1.png',
@@ -25,8 +25,8 @@ Page({
       enquireValue: app.CDN + 'enquiry_3.png',
       lossValue: app.CDN + 'enquiry_4.png',
       allCount: app.CDN + 'enquiry_count.png',
-      gmvCount: app.CDN + 'enquiry_success.png',
-      lossCount: app.CDN + 'enquiry_loss .png'
+      gmvCount: app.CDN + 'enquiry_success(1).png',
+      lossCount: app.CDN + 'enquiry_loss.png'
     },
     enquireName: {
       totalValue: '总金额',
@@ -34,33 +34,27 @@ Page({
       tranValue: '成交金额',
       lossValue: '流失金额',
       allCount: '询盘总次数',
-      lossCount: '垃圾询盘',
-      gmvCount: '有效询盘'
-    },
-    enquiryType: {
-      totalValue: 1,
-      tranValue: 2,
-      enquireValue: 3,
-      lossValue: 4
+      gmvCount: '有效询盘',
+      lossCount: '垃圾询盘'
+      
     },
     enquireuse: {
       totalValue: '询盘总次数',
       enquireValue: '垃圾询盘',
       tranValue: '有效询盘'
     },
-    reportId: 111,
+    reportId: 1,
     reportName: '2018年1月',
     current: 0,
     // 自定义canvas缩放比例
     width: 190,
     height: 190,
     r: 100,
-    r1: 70,
-    r2: 82
+    r1: 80,
+    r2: 92
   },
   //选择传入reportId
   selectReport(e) {
-    console.log(e);
     this.setData({
       reportId: e.detail.params.reportId,
       reportName: e.detail.params.reportName
@@ -68,14 +62,18 @@ Page({
     wx.setNavigationBarTitle({
       title: e.detail.params.reportName + '询盘分析报告'
     });
+    this.getList();
     console.log(e.detail.params.reportId, e.detail.params.reportName);
   },
   //获取分析报告列表
   getList() {
     app
-      .get('/report/detail')
+      .get('/report/detail',{reportId:this.data.reportId})
       .then(e => {
-        console.log(e.data);
+        this.setData({
+          params: e.data,
+        });
+        console.log(typeof(this.data.params))
       })
       .catch(res => {
         console.log(res);
@@ -105,7 +103,7 @@ Page({
       endAngle = 0;
     var animation_interval = 10,
       n = 60;
-    let a = this.data.params.gmvPercent / 100;
+    let a = 0;
     if (this.data.current == 0) {
       a = this.data.params.gmvPercent / 100;
     } else {
@@ -162,10 +160,11 @@ Page({
           width: 190 / 414 * widths,
           height: 190 / 414 * heights,
           r: 100 / 414 * widths,
-          r1: 70 / 414 * widths,
-          r2: 82 / 414 * widths
+          r1: 80 / 414 * widths,
+          r2: 92 / 414 * widths
         });
       }
     });
+    
   }
 });
