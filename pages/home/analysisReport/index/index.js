@@ -25,7 +25,7 @@ Page({
       enquireValue: app.CDN + 'enquiry_3.png',
       lossValue: app.CDN + 'enquiry_4.png',
       allCount: app.CDN + 'enquiry_count.png',
-      gmvCount: app.CDN + 'enquiry_success(1).png',
+      gmvCount: app.CDN + 'enquiry_success.png',
       lossCount: app.CDN + 'enquiry_loss.png'
     },
     enquireName: {
@@ -67,15 +67,18 @@ Page({
   },
   //获取分析报告列表
   getList() {
+    wx.showLoading({ title: '加载中...' });
     app
       .get('/report/detail',{reportId:this.data.reportId})
       .then(e => {
+        wx.hideLoading();
         this.setData({
           params: e.data,
         });
         console.log(typeof(this.data.params))
       })
       .catch(res => {
+        wx.hideLoading();
         console.log(res);
       });
   },

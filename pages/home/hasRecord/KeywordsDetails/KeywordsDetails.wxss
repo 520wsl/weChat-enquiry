@@ -13,7 +13,13 @@
 .block {
   display: flex;
   flex-direction: row;
-  height: 200rpx;
+  height: 160rpx;
+  margin:0 30rpx 30rpx;
+}
+.blockS {
+  display: flex;
+  flex-direction: row;
+  height: 220rpx;
   margin:0 30rpx 30rpx;
 }
 .left {
@@ -24,7 +30,7 @@
   text-align: right;
 }
 .right {
-  height: 150rpx;
+  /* height: 150rpx; */
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -49,12 +55,12 @@
 }
 .top {
   flex: 1;
-  line-height: 80rpx;
+  line-height: 60rpx;
 }
 .bottom {
   flex: 1;
   max-width: 500rpx;
-  line-height: 80rpx;
+  line-height: 60rpx;
 }
 .img{
   width: 36rpx;
