@@ -36,7 +36,6 @@ Page({
       allCount: '询盘总次数',
       gmvCount: '有效询盘',
       lossCount: '垃圾询盘'
-      
     },
     enquireuse: {
       totalValue: '询盘总次数',
@@ -67,18 +66,24 @@ Page({
   },
   //获取分析报告列表
   getList() {
-    wx.showLoading({ title: '加载中...' });
+    if (wx.showLoading) {
+      wx.showLoading({ title: '加载中...' });
+    }
     app
-      .get('/report/detail',{reportId:this.data.reportId})
+      .get('/report/detail', { reportId: this.data.reportId })
       .then(e => {
-        wx.hideLoading();
+        if (wx.hideLoading) {
+          wx.hideLoading();
+        }
         this.setData({
-          params: e.data,
+          params: e.data
         });
-        console.log(typeof(this.data.params))
+        console.log(typeof this.data.params);
       })
       .catch(res => {
-        wx.hideLoading();
+        if (wx.hideLoading) {
+          wx.hideLoading();
+        }
         console.log(res);
       });
   },
@@ -168,6 +173,5 @@ Page({
         });
       }
     });
-    
   }
 });
