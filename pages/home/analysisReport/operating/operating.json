@@ -3,6 +3,6 @@
   "usingComponents": {
     "component-analysis-report": "/components/analysisReport/analysisReport"
 },
-"enablePullDownRefresh": true,
+"enablePullDownRefresh": false,
 "onReachBottomDistance": 10
 }

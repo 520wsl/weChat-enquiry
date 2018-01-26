@@ -6,13 +6,13 @@ Page({
      */
     data: {
         titles: ['询盘地区', '询盘总数', '总金额', '询盘占比'],
-        tabList:[
+        tabList: [
             {
-                allAmount:'1000',
-                enquiryCount:'4165',
-                gmvAmount:'500',
-                gmvPercent:'65',
-                province:'浙江'
+                allAmount: '1000',
+                enquiryCount: '4165',
+                gmvAmount: '500',
+                gmvPercent: '65',
+                province: '浙江'
             },
             {
                 allAmount: '1000',
@@ -44,9 +44,13 @@ Page({
             }
         ]
     },
-    //选择传入reportId
+    //选择传入信息
     selectReport(e) {
-        console.log(e.detail.reportId);
+        console.log(e.detail.params);
+        let tittle = String(e.detail.params.reportName);
+        wx.setNavigationBarTitle({
+            title: tittle
+        })
     },
     /**
      * 生命周期函数--监听页面加载
@@ -122,7 +126,7 @@ Page({
     onShareAppMessage: function () {
 
     },
-    getEcharts(){
-        
+    getEcharts() {
+
     }
 })

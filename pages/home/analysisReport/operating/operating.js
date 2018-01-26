@@ -6,16 +6,27 @@ Page({
      */
   data: {
     CDN: app.CDN,
-    lossData: [],
-    params: {
-      time: 1,
-      pageNum: 1,
-      pageSize: 10
-    }
+    operatingData: {},
+    reportId: null,
+    reportName:null
   },
-  //选择传入reportId
+  //选择传入信息
   selectReport(e) {
-    console.log(e.detail.reportId);
+    console.log(e.detail.params);
+    this.setData({
+      reportName: e.detail.params.reportName,
+      reportId:e.detail.params.reportId
+    });
+    let tittle=String(e.detail.params.reportName);
+    wx.setNavigationBarTitle({
+      title: tittle
+    })
+  },
+  add: function(e) {
+    extraLine.push('other line')
+    this.setData({
+      text: initData + '\n' + extraLine.join('\n')
+    })
   },
   /**
    * 生命周期函数--监听页面加载
