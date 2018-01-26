@@ -13,7 +13,7 @@ Page({
     params: {
       keyword: '气缸密封圈',
       pageNum: '1',
-      pageSize: '',
+      pageSize: '10',
       time: '2018-01',
       count: ''
     },
@@ -27,8 +27,8 @@ Page({
           wx.hideLoading();
         }
         for (var i in e.data.data.list) {
-          e.data.data.list[i].year = app.time.formatTime('2017-01', 'YYYY年');
-          e.data.data.list[i].month = app.time.formatTime('2017-01', 'MM月');
+          e.data.data.list[i].year = app.time.formatTime(e.data.data.list[i].addtime, 'YYYY年');
+          e.data.data.list[i].month = app.time.formatTime(e.data.data.list[i].addtime, 'MM月');
         }
         if (this.data.isPush) {
           console.log(this.data.list.concat(e.data.data.list));
@@ -69,7 +69,7 @@ Page({
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function() {
+  ixin: function() {
     console.log('onReachBottomonReachBottomonReachBottom');
     if (this.data.list.length < this.data.params.count) {
       this.data.params.pageNum++;

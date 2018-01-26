@@ -25,14 +25,14 @@
             </view>
         </view> -->
 
-        <view class="more circles bottom" wx:if="{{current==0}}">
+        <!-- <view class="more circles bottom" wx:if="{{current==0}}">
             <view class="ONE"></view>
             <view class="TWO"></view>
         </view>
         <view class="more circles bottom" wx:if="{{current==1}}">
             <view class="TWO"></view>
             <view class="ONE"></view>
-        </view>
+        </view> -->
     </view>
     <swiper class="circle-box" bindchange="currentChange">
         <block>
