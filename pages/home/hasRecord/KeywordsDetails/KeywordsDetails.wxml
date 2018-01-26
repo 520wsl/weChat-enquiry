@@ -1,21 +1,21 @@
 <view class="kingwords">
     <component-no-data text="暂无数据" wx:if="{{list.length == 0}}"></component-no-data>
     <view wx:else>
-        <text class="kingtxt">标王 ： 拍拍贷</text>
-        <view class="block" wx:for="{{list}}" wx:key="index" >
+        <text class="kingtxt">标王 ：{{params.keyword}}</text>
+        <view  wx:for="{{list}}" wx:key="index" class="{{item.isobtain!=1 ? 'block':'blockS'}}">
             <view class="left">
-                <view class="topl">2017年</view>
-                <view class="bottoml">5月</view>
+                <view class="topl">{{item.year}}</view>
+                <view class="bottoml">{{item.month}}</view>
             </view>
             <view class="right">
-                <view class="bottom red pic" wx:if="{{item.isobtain!=1}}">
+                <view class="bottom red pic" wx:if="{{item.isobtain==1}}">
                     <image mode='aspectFit' src="{{CDN}}keywords_red.png" class="img"></image> 中标
                 </view>
                 <view class="top">
                     中标金额（元）：
                     <text class="red">{{item.finalprice}}</text>
                 </view>
-                <view class="bottom txt-more" wx:if="{{item.isobtain==1}}">
+                <view class="bottom txt-more" >
                     中　标　公　司：
                     <text class="black ">{{item.dealcompany}}</text>
                 </view>
