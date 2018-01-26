@@ -1,1 +1,40 @@
 /* pages/home/analysisReport/data/data.wxss */
+
+.enquiry {
+    background-color: #fff;
+     padding: 40rpx 30rpx;
+     overflow: hidden;
+}
+
+.enquiry-tab {
+    font-size: 24rpx;
+    border-left: 1px solid #e0e0e0;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.enquiry-tab .row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid #e0e0e0;
+}
+
+.enquiry-tab .col {
+    text-align: center;
+    border-right: 1px solid #e0e0e0;
+    height: 60rpx;
+    line-height: 60rpx;
+    color: #333;
+}
+
+.enquiry-tab .txt-width {
+    width: 202rpx;
+    overflow: hidden;
+}
+
+.enquiry-tab .flex1 {
+    flex: 1;
+}
+.enquiry-tab .title{
+    background-color: #F3F7F8;
+}
