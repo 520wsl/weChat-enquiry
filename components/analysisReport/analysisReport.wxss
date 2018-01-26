@@ -1,8 +1,8 @@
 /* components/analysisReport/analysisReport.wxss */
 .top{
-  position:fixed;
+  /* position:fixed;
   z-index:9999;
-  top:0rpx;
+  top:0rpx; */
   width: 100%;  
 }
 .analysis-report{
