@@ -1,63 +1,65 @@
 <!--pages/home/winKing/winKing.wxml-->
+
+<view class="header">
+  <text class="text">标王详情</text>
 <view class="king-time" wx:if="{{nowMonth==12}}">
-  <view class="left">时间筛选</view>
+  <view class="left">{{time}}</view>
   <view class="right pic">
     <image mode="aspectFit" src="{{CDN}}icon_date.png" />
   </view>
 </view>
 <view class="king-time" wx:else>
-  <view class="left">时间筛选</view>
+    <view class="left">{{time}}</view>
   <picker fields="{{fields}}" mode="date" value="{{time}}" start="{{defaultTime.start}}" end="{{defaultTime.end}}" bindchange="timeChange">
     <view class="right pic">
       <image mode="aspectFit" src="{{CDN}}icon_date.png" />
     </view>
   </picker>
 </view>
-<view class="header">
-  <text class="text">关键词详情</text>
+
 </view>
-<component-no-data text="标王记录暂时为空" wx:if="{{winKing.length == 0}}"></component-no-data>
+<component-no-data text="您还未开启标王之旅哦！" wx:if="{{winKing.length == 0}}"></component-no-data>
 <view wx:else>
-<view class="king-detail" wx:for="{{winKing}}" wx:key="{{index}}">
-  <view class="detail-head">
-    <view class="head-left">
-      <view class="img pic">
-        <image mode="aspectFit" src="{{CDN}}keywords.png" />
+  <view class="king-detail" wx:for="{{winKing}}" wx:key="{{index}}">
+    <view class="detail-head">
+      <view class="head-left">
+        <view class="img pic">
+          <image mode="aspectFit" src="{{CDN}}keywords.png" />
+        </view>
+        <text class="key-words">{{item.keyword}}</text>
       </view>
-      <text class="key-words">{{item.keyword}}</text>
-    </view>
-    <view class="head-right">
-      <text>{{isobtain[item.isobtain]}}</text>
-    </view>
-  </view>
-  <view class="detail-content">
-    <view class="top">
-      <view class="content-left">
-        <text>中标金额（元）：</text>
-      </view>
-      <view class="content-right-money">
-        <text>{{item.finalprice}}</text>
+      <view class="head-right">
+        <text>{{isobtain[item.isobtain]}}</text>
       </view>
     </view>
-    <view class="top top-company">
-      <view class="content-left">
-        <text>中标公司：</text>
+    <view class="detail-content">
+      <view class="top">
+        <view class="content-left">
+          <text>中标金额（元）：</text>
+        </view>
+        <view class="content-right-money">
+          <text>{{item.finalprice}}</text>
+        </view>
       </view>
-      <view class="content-right-company">
-        <text>{{item.dealcompany}}
+      <view class="top top-company">
+        <view class="content-left">
+          <text>中标公司：</text>
+        </view>
+        <view class="content-right-company">
+          <text>{{item.dealcompany}}
+          </text>
+        </view>
+      </view>
+    </view>
+    <navigator url="/pages/home/winKing/KeywordsDetails/KeywordsDetails?time={{time}}&keyword={{item.keyword}}">
+      <view class="detail-link">
+        <text>标王往期详情
         </text>
+        <view class="img pic">
+          <image mode="aspectFit" src="{{CDN}}icon_right.png" />
+        </view>
       </view>
-    </view>
+    </navigator>
   </view>
-  <navigator url="/pages/home/winKing/KeywordsDetails/KeywordsDetails" data-time="{{time}}" data-keyword="{{item.keyword}}">
-  <view class="detail-link"  bindtap="showdetail">
-    <text>标王往期详情
-    </text>
-    <view class="img pic">
-      <image mode="aspectFit" src="{{CDN}}icon_right.png" />
-    </view>
-  </view></navigator>
 </view>
-
-
-</view>
+<view style="height: 30rpx;"></view>

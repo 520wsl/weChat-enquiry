@@ -31,6 +31,7 @@ Page({
   getSuggest() {
     app.get('/report/advise',{reportId:this.data.reportId}).then((e)=>{
       if(e.status==200){
+        e.data.friendsBusiness=e.data.friendsBusiness.replace(/,/g,"\n");
         this.setData({
        operatingData:e.data
       })

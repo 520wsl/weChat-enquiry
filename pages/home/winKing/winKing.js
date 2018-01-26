@@ -8,7 +8,7 @@ Page({
     CDN: app.CDN,
     fields: 'month',
     nowMonth:app.time.formatSubtractTime(1, 'month', new Date(), 'MM'),
-    time: app.time.formatSubtractTime(1, 'month', new Date(), 'YYYY-MM'),
+    time: app.time.formatTime(new Date(), 'YYYY-MM'),
     defaultTime: {
       start: app.time.formatTime(new Date(), 'YYYY'), 
       end: app.time.formatSubtractTime(1, 'month', new Date(), 'YYYY-MM'),
@@ -17,16 +17,12 @@ Page({
     winKing:[]
   },
   getlistwinKing(){
-    let tittle=String(this.data.time)+'标王记录';
-    wx.setNavigationBarTitle({
-      title: tittle
-    })
     app
     .get('/topbidder/list',{time:this.data.time})
     .then(e => {
       if(e.status==200){
         this.setData({
-          winKing: e.data
+          winKing: e.data.list
         });
       }else{
         console.log(e.msg);
@@ -35,10 +31,6 @@ Page({
     .catch(res => {
       console.log(res);
     });
-  },
-  showdetail(e){
-    
-console.log(e);
   },
   /**
    * 生命周期函数--监听页面加载
