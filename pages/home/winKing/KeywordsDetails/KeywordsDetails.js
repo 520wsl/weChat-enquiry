@@ -69,7 +69,7 @@ Page({
   /**
    * 页面上拉触底事件的处理函数
    */
-  ixin: function() {
+  onReachBottom: function() {
     console.log('onReachBottomonReachBottomonReachBottom');
     if (this.data.list.length < this.data.params.count) {
       this.data.params.pageNum++;
