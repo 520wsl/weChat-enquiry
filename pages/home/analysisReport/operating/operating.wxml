@@ -19,7 +19,7 @@
       <text class="txt">流失主要产品</text>
     </view>
     <view class="content">
-        <text> ppR/pvc管</text>
+        <text>{{operatingData.lossProducts}}</text>
     </view>
   </view>
   <view class="header">
@@ -30,7 +30,7 @@
       <text class="txt">友商名称</text>
     </view>
     <view class="content">
-        <text>浙江亚黄管业有限公司\n浙江亚黄管业有限公司</text>
+        <text>{{operatingData.friendsBusiness}}</text>
     </view>
   </view>
   <view class="header">
@@ -41,7 +41,7 @@
       <text class="txt">买家反馈</text>
     </view>
     <view class="content">
-        <text>价格偏高，缺少价格竞争优势</text>
+        <text>{{operatingData.buyerFeedback}}</text>
     </view>
   </view>
   <view class="header">
@@ -52,7 +52,7 @@
       <text class="txt">建议</text>
     </view>
     <view class="content">
-        <text>浙江亚黄管业有限公司浙江亚黄管业有限公司浙江亚黄管业有限公司浙江亚黄管业有限公司浙江亚黄管业有限公司浙江亚黄管业浙江亚黄管业有限公司浙江亚黄管业有限公司浙江亚黄管业有限公司浙江亚黄管业有限公司浙江亚黄管业有限公司浙江亚黄管业浙江亚黄管业有限公司浙江亚黄管业有限公司浙江亚黄管业有限公司浙江亚黄管业有限公司浙江亚黄管业有限公司浙江亚黄管业浙江亚黄管业有限公司浙江亚黄管业有限公司浙江亚黄管业有限公司浙江亚黄管业有限公司浙江亚黄管业有限公司浙江亚黄管业浙江亚黄管业有限公司浙江亚黄管业有限公司浙江亚黄管业有限公司浙江亚黄管业有限公司浙江亚黄管业有限公司浙江亚黄管业浙江亚黄管业有限公司浙江亚黄管业有限公司浙江亚黄管业有限公司浙江亚黄管业有限公司浙江亚黄管业有限公司浙江亚黄管业浙江亚黄管业有限公司浙江亚黄管业有限公司浙江亚黄管业有限公司浙江亚黄管业有限公司浙江亚黄管业有限公司浙江亚黄管业浙江亚黄管业有限公司浙江亚黄管业有限公司浙江亚黄管业有限公司浙江亚黄管业有限公司浙江亚黄管业有限公司浙江亚黄管业浙江亚黄管业有限公司浙江亚黄管业有限公司浙江亚黄管业有限公司浙江亚黄管业有限公司浙江亚黄管业有限公司浙江亚黄管业浙江亚黄管业有限公司浙江亚黄管业有限公司浙江亚黄管业有限公司浙江亚黄管业有限公司浙江亚黄管业有限公司浙江亚黄管业浙江亚黄管业有限公司浙江亚黄管业有限公司浙江亚黄管业有限公司浙江亚黄管业有限公司浙江亚黄管业有限公司浙江亚黄管业有限公司</text>
-    </view>
+        <text>{{operatingData.advice}}</text>
+         </view>
   </view>
 </view>

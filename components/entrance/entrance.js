@@ -33,7 +33,7 @@ Component({
       },
       {
         label: '标王记录',
-        navUrl: '/pages/home/hasRecord/hasRecord',
+        navUrl: '/pages/home/winKing/winKing',
         imgUrl: app.CDN + '/icon_index_bw.png',
         type: 'jl',
       },
