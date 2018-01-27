@@ -13,7 +13,9 @@ const config = {
   utils,
   CDN: configA.service.imgUrl,
   ...auth,
-  ...api
+  ...api,
+  imgSizePro: configA.service.imgSizePro,
+  imgSizeEnq: configA.service.imgSizeEnq
 }
 // for (var name in api) {
 //   config[name] = api[name]

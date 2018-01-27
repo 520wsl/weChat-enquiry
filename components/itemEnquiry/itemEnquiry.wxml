@@ -2,11 +2,12 @@
 <navigator url="/pages/enquiry/info/info?id={{item.enquiryId}}">
     <view class='item hr'>
         <view class='pic pro-pic'>
-            <image mode='aspectFit' src='{{CDN}}icon-pro.png'></image>
+            <image mode='aspectFit' src='https://cbu01.alicdn.com/img/ibank/2017/368/788/4548887863_950480141.128x128.jpg'></image>
         </view>
         <view class='info'>
             <view class='title'>
                 <text>{{item.productName}}</text>
+                <text class="title-time">{{item.createTime}}</text>
             </view>
             <view class='nav'>
                 <view class='map'>
@@ -25,15 +26,15 @@
                 </view>
                 <view wx:elif="{{item.saleStatus == 2}}" class='nav-btn'>
                     <view class='btn'>
-                        <text>跟进中</text>
+                        <text>跟单中</text>
                     </view>
                     <view class='pic arrow'>
                         <image mode='aspectFit' src='{{CDN}}icon_right.png'></image>
                     </view>
                 </view>
-                <view wx:elif="{{item.saleStatus == 3}}" class='nav-btn'>
+                <view wx:elif="{{item.saleStatus == 3 || item.saleStatus == 4}}" class='nav-btn'>
                     <view class='btn btn3'>
-                        <text>未成交</text>
+                        <text>已流失</text>
                     </view>
                     <view class='pic arrow'>
                         <image mode='aspectFit' src='{{CDN}}icon_right.png'></image>

@@ -14,22 +14,16 @@ Component({
   data: {
     entrance: [
       {
-        label: '询盘管理',
+        label: '询盘数据',
         navUrl: '/pages/enquiry/enquiry',
-        imgUrl: app.CDN + '/icon_index_xp.png',
+        imgUrl: app.CDN + 'icon_index_xp.png',
         type: 'xp',
       },
       {
-        label: '流失分析',
-        navUrl: '/pages/home/lossAnalysis/lossAnalysis',
-        imgUrl: app.CDN + '/icon_index_ls.png',
+        label: '询盘分析',
+        navUrl: '/pages/home/analysisReport/data/data',
+        imgUrl: app.CDN + 'icon_index_ls.png',
         type: 'ls',
-      },
-      {
-        label: '分析报告',
-        navUrl: '/pages/home/analysisReport/index/index',
-        imgUrl: app.CDN + '/icon_index_fx.png',
-        type: 'fx',
       },
       {
         label: '标王记录',
@@ -38,16 +32,22 @@ Component({
         type: 'jl',
       },
       {
+        label: '分析报告',
+        navUrl: '/pages/home/analysisReport/index/index',
+        imgUrl: app.CDN + 'icon_index_fx.png',
+        type: 'fx',
+      },
+      {
         label: '价格分布',
         navUrl: '/pages/home/priceTrend/priceTrend',
-        imgUrl: app.CDN + '/icon_index_jg.png',
+        imgUrl: app.CDN + 'icon_index_jg.png',
         type: 'fb',
         signs: 1
       },
       {
         label: '产品排行',
         navUrl: '/pages/home/productList/productList',
-        imgUrl: app.CDN + '/icon_index_cp.png',
+        imgUrl: app.CDN + 'icon_index_cp.png',
         type: 'ph',
         signs: 0,
       },
