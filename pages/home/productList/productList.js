@@ -144,6 +144,7 @@ Page({
       if (data && data.length > 0) {
         // 图片+头
         data.forEach((item, index) => {
+          item.imgUrl = item.imgUrl.replace(/.summ./i, '.' + app.imgSizePro + '.');
           item.imgUrl = 'http:' + item.imgUrl;
         })
 

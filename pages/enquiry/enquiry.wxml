@@ -1,54 +1,18 @@
 <!--pages/enquiry/enquiry.wxml-->
 <view class="enquiry">
-  <view class="buy-type">
-    <component-date-control active="{{active}}" bindgetTime="getTime" />
-    <navigator class="link-time" url='/pages/enquiry/time/time'>
-      <text class="time" wx:if="{{enquiryTime}}">{{enquiryTime.startTime}} 至 {{enquiryTime.endTime}}</text>
-      <image class="img" src="{{CDN}}icon_date.png" />
-    </navigator>
+  <view class="time-range">
+    <picker mode="date" value="{{timeSearch.startTime}}" class="{{timeSearch.startTime ? 'ac' : ''}} start-time" start="{{defaultTime.start}}" end="{{defaultTime.end}}" bindchange="startTimeChange">
+      <view class="weui-input">{{timeSearch.startTime ? timeSearch.startTime : '开始日期'}}</view>
+    </picker>
+    <text class="txt">至</text>
+    <picker mode="date" value="{{timeSearch.endTime}}" class="{{timeSearch.endTime ? 'ac' : ''}} end-time" start="{{defaultTime.start}}" end="{{defaultTime.end}}" bindchange="endTimeChange">
+      <view class="weui-input">{{timeSearch.endTime ? timeSearch.endTime : '结束日期'}}</view>
+    </picker>
   </view>
 
-  <view class="trading">
-    <view class="header">
-      <view class="text">
-        <view class="img">
-          <image src="{{CDN}}icon_trading.png" />
-        </view>
-        <view class="t1">40.98%</view>
-        <view class="t2">成交占比</view>
-      </view>
-    </view>
-    <view class="section">
-      <view class="module">
-        <view class="text">
-          <view class="t1">总金额</view>
-          <view class="t2">￥2323.00</view>
-          <view class="t3">197笔</view>
-        </view>
-      </view>
-      <view class="module">
-        <view class="text">
-          <view class="t1">总金额</view>
-          <view class="t2">￥2323.00</view>
-          <view class="t3">197笔</view>
-        </view>
-      </view>
-      <view class="module">
-        <view class="text">
-          <view class="t1">总金额</view>
-          <view class="t2">￥2323.00</view>
-          <view class="t3">197笔</view>
-        </view>
-      </view>
-      <view class="module">
-        <view class="text">
-          <view class="t1">总金额</view>
-          <view class="t2">￥2323.00</view>
-          <view class="t3">197笔</view>
-        </view>
-      </view>
-    </view>
-  </view>
+  <component-trading data="{{areaData}}"></component-trading>
+
+  <component-screening bindgetScreening="getScreening"></component-screening>
 
   <view class='list'>
     <itemEnquiry wx:for="{{list}}" wx:key="{{index}}" item="{{item}}"></itemEnquiry>

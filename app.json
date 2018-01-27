@@ -1,5 +1,5 @@
 {
-  "pages": [ 
+  "pages": [
     "pages/personal/personal",
     "pages/home/home",
     "pages/enquiry/enquiry",
@@ -16,7 +16,8 @@
     "pages/home/analysisReport/index/index",
     "pages/home/analysisReport/operating/operating",
     "pages/home/analysisReport/data/data",
-    "pages/personal/companyList/companyList"
+    "pages/personal/companyList/companyList",
+    "pages/home/areaEnquiry/areaEnquiry"
   ],
   "window": {
     "backgroundColor": "#f2f2f2",

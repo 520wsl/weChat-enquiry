@@ -2,8 +2,8 @@
 
 .enquiry {
     background-color: #fff;
-     padding: 40rpx 30rpx;
-     overflow: hidden;
+    padding: 40rpx 30rpx;
+    overflow: hidden;
 }
 
 .enquiry-tab {
@@ -35,6 +35,63 @@
 .enquiry-tab .flex1 {
     flex: 1;
 }
-.enquiry-tab .title{
-    background-color: #F3F7F8;
+
+.enquiry-tab .title {
+    background-color: #f3f7f8;
+}
+
+.canvas {
+    padding: 30rpx;
+}
+
+.canvas .canvas-title {
+    text-align: center;
+    background: #fff;
+    height: 40rpx;
+    line-height: 40rpx;
+    font-size: 32rpx;
+    padding-top: 46rpx;
+}
+
+.nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 24rpx;
+    color: #333;
+    border-bottom: 1px solid #e0e0e0;
+    border-top: 1px solid #e0e0e0;
+}
+
+.nav .flex1 {
+    flex: 1;
+}
+
+.nav .time {
+    width: 40rpx;
+    height: 40rpx;
+    margin: 0 30rpx;
+}
+
+.nav .col {
+    height: 70rpx;
+    display: flex;
+}
+
+.bor-right {
+    border-right: 1px solid #e0e0e0;
+    height: 30rpx;
+    line-height: 30rpx;
+    text-align: center;
+    align-self: center;
+    flex: 1;
+}
+
+.nav .active {
+    color: #fc7c1f;
+    border-bottom: 2px solid #fc7c1f;
+}
+
+.nav .active .bor-right {
+    font-size: 26rpx;
 }
