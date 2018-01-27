@@ -1,12 +1,12 @@
 .wrap {
   /* width: 100%; */
-  margin-top: 71rpx;
+  /* margin-top: 71rpx; */
   height: 100%;
   position: relative;
   font-size: 28rpx;
 }
 .circle-box {
-  height: 530rpx;
+  height: 500rpx;
   text-align: center;
   color: #fff;
   border-color: #55abf6;
@@ -27,7 +27,7 @@
   width: 380rpx;
   position: relative;
   margin: auto;
-  top: 70rpx;
+  top: 30rpx;
 }
 .more {
   width: 380rpx;
@@ -78,10 +78,10 @@
 .deal,
 .loss {
   height: auto;
-  margin: -60rpx 24rpx 30rpx;
+  margin: -90rpx 24rpx 30rpx;
 }
 .block {
-  height: 152rpx;
+  height: 142rpx;
   /* box-shadow: 3px 3px 3px #eeeeee; */
   background: #ffffff;
   margin-bottom: 12rpx;
