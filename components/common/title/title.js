@@ -1,17 +1,12 @@
-// components/noData/noData.js
-const app = getApp();
+// components/common/title/title.js
 Component({
   /**
    * 组件的属性列表
    */
   properties: {
-    text: {
+    name: {
       type: String,
-      value: '抱歉!没有找到符合条件的记录'
-    },
-    type: {
-      type: String,
-      value: 'img'
+      value: ''
     }
   },
 
@@ -19,7 +14,7 @@ Component({
    * 组件的初始数据
    */
   data: {
-    CDN: app.CDN
+
   },
 
   /**
