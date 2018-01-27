@@ -5,7 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-  
+    has:[]
   },
   //选择传入信息
   selectReport(e) {

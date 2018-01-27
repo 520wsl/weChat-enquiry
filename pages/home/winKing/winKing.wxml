@@ -3,7 +3,7 @@
 <view class="header">
   <text class="text">标王详情</text>
   <view class="king-time" wx:if="{{nowMonth==12}}">
-    <view class="left">{{time}}</view>
+    <view class="left"></view>
     <view class="right pic">
       <image mode="aspectFit" src="{{CDN}}icon_date.png" />
     </view>
