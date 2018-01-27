@@ -1,6 +1,6 @@
 <component-analysis-report active="0" bindselectReport="selectReport"></component-analysis-report>
 <component-no-data text="暂无数据" wx:if="{{!params.allAmount}}"></component-no-data>
-<view class="wrap" wx:else>
+<view class="wrap" hidden="{{!params.allAmount}}">
     
     <!-- <view class="top" style="z-index:1;">{{reportName}}询盘统计报告</view> -->
     <view class="circle">

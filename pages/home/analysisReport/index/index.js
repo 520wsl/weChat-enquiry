@@ -62,7 +62,8 @@ Page({
       title: e.detail.params.reportName + '询盘分析报告'
     });
     this.getList();
-    console.log(e.detail.params.reportId, e.detail.params.reportName);
+    
+    // console.log(e.detail.params.reportId, e.detail.params.reportName);
   },
   //获取分析报告列表
   getList() {
@@ -78,7 +79,7 @@ Page({
         this.setData({
           params: e.data
         });
-        console.log(typeof this.data.params);
+        this.drawCircle();
       })
       .catch(res => {
         if (wx.hideLoading) {
@@ -89,7 +90,25 @@ Page({
   },
   drawCircle: function() {
     let that = this;
-    console.log(that.data);
+    //进度条
+    var cxt_arc = wx.createCanvasContext('canvasCircle');
+    cxt_arc.setLineWidth(6);
+    cxt_arc.setStrokeStyle('#81C6F6');
+    cxt_arc.setLineCap('round');
+    cxt_arc.beginPath();
+    cxt_arc.arc(that.data.r, that.data.r, that.data.r1, 0, 2 * Math.PI, false);
+    cxt_arc.stroke();
+    cxt_arc.draw();
+    // 外线
+    var cxt_arcs = wx.createCanvasContext('canvasCircles');
+    cxt_arcs.setLineWidth(0.3);
+    cxt_arcs.setStrokeStyle('rgba(255, 255, 255, 0.2)');
+    cxt_arcs.setLineCap('round');
+    cxt_arcs.beginPath();
+    cxt_arcs.arc(that.data.r, that.data.r, that.data.r2, 0, 2 * Math.PI, false);
+    cxt_arcs.stroke();
+    cxt_arcs.draw();
+    // 百分比
     clearInterval(varName);
     function drawArc(s, e) {
       ctx.setFillStyle('white');
@@ -105,7 +124,7 @@ Page({
       ctx.arc(x, y, radius, s, e, false);
       ctx.stroke();
       ctx.draw();
-    }
+    };
     var step = 1,
       startAngle = 1.5 * Math.PI,
       endAngle = 0;
@@ -113,7 +132,10 @@ Page({
       n = 60;
     let a = 0;
     if (this.data.current == 0) {
+      console.log(this.data.params)
+      console.log(this.data.params.gmvPercent)
       a = this.data.params.gmvPercent / 100;
+      // a = 0.02 / 100;
     } else {
       a = this.data.params.effectivePercent / 100;
     }
@@ -136,26 +158,8 @@ Page({
   },
 
   onReady: function() {
-    //进度条
-    var cxt_arc = wx.createCanvasContext('canvasCircle');
-    cxt_arc.setLineWidth(6);
-    cxt_arc.setStrokeStyle('#81C6F6');
-    cxt_arc.setLineCap('round');
-    cxt_arc.beginPath();
-    cxt_arc.arc(this.data.r, this.data.r, this.data.r1, 0, 2 * Math.PI, false);
-    cxt_arc.stroke();
-    cxt_arc.draw();
-    // 外线
-    var cxt_arcs = wx.createCanvasContext('canvasCircles');
-    cxt_arcs.setLineWidth(0.3);
-    cxt_arcs.setStrokeStyle('rgba(255, 255, 255, 0.2)');
-    cxt_arcs.setLineCap('round');
-    cxt_arcs.beginPath();
-    cxt_arcs.arc(this.data.r, this.data.r, this.data.r2, 0, 2 * Math.PI, false);
-    cxt_arcs.stroke();
-    cxt_arcs.draw();
-    // 百分比
-    this.drawCircle();
+    
+    // this.drawCircle();
   },
   onLoad: function(options) {
     let that = this;
