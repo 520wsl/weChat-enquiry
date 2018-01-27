@@ -18,13 +18,13 @@ Component({
   data: {
     CDN: app.CDN,
     reportId: 1,
-    params:{
+    params: {
       reportName: '2018年1月',
-      reportId: 111
+      reportId: 74
     },
     data: [
       {
-        label: '询盘统计',
+        label: '基础数据',
         url: '/pages/home/analysisReport/index/index'
       },
       {
@@ -39,26 +39,25 @@ Component({
     list: [
       {
         reportName: '2018年1月',
-        reportId: 12
+        reportId: 74
       },
       {
         reportName: '2017年度',
-        reportId: 222
+        reportId: 74
       },
       {
         reportName: '2017年第四季度',
-        reportId: 12
+        reportId: 74
       },
       {
         reportName: '2017年12月',
-        reportId: 444
+        reportId: 74
       }
     ]
   },
 
   ready() {
     this.getList();
-    this.triggerEvent('selectReport', {params:this.data.list[0]});
   },
 
   /**
@@ -77,18 +76,35 @@ Component({
       this.setData({
         params: this.data.list[e.detail.value]
       });
-      this.triggerEvent('selectReport', {params:this.data.params});
+      this.triggerEvent('selectReport', { params: this.data.params });
     },
     //获取分析报告列表
     getList() {
       app
-        .get('/report/pastreport')
+        .get('/report/list')
         .then(e => {
-          if(e.status==200){
+          if (e.status == 200) {
             this.setData({
-              list:e.data
-            })
+              list: e.data
+            });
+            this.triggerEvent('selectReport', { params: this.data.list[0] });
           }
+          if (e.status == 401) {
+            wx.showModal({
+                title: '提示',
+                content: '登录超时或未登录，请重新登录',
+                success: res => {
+                    if (res.confirm) {
+                        app.reset();
+                        wx.switchTab({
+                            url: '/pages/personal/personal'
+                        })
+                    } else if (res.cancel) {
+                    }
+                }
+            })
+            return;
+        }
           console.log(e.list);
         })
         .catch(res => {
