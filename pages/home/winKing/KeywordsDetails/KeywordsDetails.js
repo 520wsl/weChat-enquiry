@@ -27,9 +27,10 @@ Page({
           wx.hideLoading();
         }
         for (var i in e.data.data.list) {
-          e.data.data.list[i].year = app.time.formatTime('2017-01', 'YYYY年');
-          e.data.data.list[i].month = app.time.formatTime('2017-01', 'MM月');
+          e.data.data.list[i].year = app.time.formatTime(e.data.data.list[i].addtime, 'YYYY年');
+          e.data.data.list[i].month = app.time.formatTime(e.data.data.list[i].addtime, 'MM月');
         }
+        // e.data.data.list = app.time.formatTime('2017-01', 'YYYY年MM月');
         if (this.data.isPush) {
           console.log(this.data.list.concat(e.data.data.list));
           this.setData({

@@ -1,18 +1,18 @@
 /* pages/home/winKing/winKing.wxss */
 .king-time {
+line-height: 72rpx; 
   display: flex;
-  height: 72rpx;
-  padding: 0 30rpx;
-  justify-content: flex-end;
   align-items: center;
+  justify-content: flex-end;
 }
 .king-time .left{
   font-size: 24rpx;
-  margin-right: 30rpx;
+  margin-right: 14rpx;
 }
-.king-time .right{
+.king-time .right image{
   width: 40rpx;
   height: 40rpx;
+  float: right;  
 }
 /* 头部样式 */
 .header {
@@ -22,6 +22,10 @@
   padding: 0 30rpx;
   background: #fff;
   box-sizing: border-box;
+  border-top: 1rpx solid #ccc;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .header .text {
