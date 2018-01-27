@@ -37,8 +37,8 @@
           <view class="left">
             <text class='t2'>成交占比</text>
           </view>
-          <view class="left spel">
-            <text class="red">{{enquire.tranProportion || '0%'}}</text>
+          <view wx:if="{{enquire.tranProportion}}" class="left spel">
+            <text class="red">{{enquire.tranProportion}}</text>
           </view>
         </view>
         <view class="navigator">
@@ -75,7 +75,7 @@
       <view class="list-subtitle">询盘占比</view>
     </view>
     <view class="list">
-      <view class="list-item" wx:for="{{customerarea}}" wx:key="{{index}}" data-obj="{{item}}" data-index="{{index}}"  bindtap='jumpArea'>
+      <view class="list-item" wx:for="{{customerarea}}" wx:key="{{index}}" wx:if="{{item.tranProportion}}" data-obj="{{item}}" data-index="{{index}}"  bindtap='jumpArea'>
         <text class="icon">{{index+1}}</text>
         <view class="left">
           <text>{{item.provinceName}}</text>

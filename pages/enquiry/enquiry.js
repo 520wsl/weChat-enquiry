@@ -19,13 +19,15 @@ Page({
 
     count: 0,//默认 list总数
     isClear: false,
+    // 是否固定
+    isFixed: false,
 
     // 区域统计
     areaData: null,
     // 时间
     timeSearch: {
       startTime: app.time.formatSubtractTime(1, 'weeks'),
-      endTime: app.time.formatSubtractTime(0),
+      endTime: app.time.formatSubtractTime(1),
     }
   },
 
@@ -73,6 +75,31 @@ Page({
       this.data.params.pageNum++;
       this.data.isClear = true;
       this.getList();
+    }
+  },
+
+  // 页面滚动
+  onPageScroll(Object) {
+    let width = 375;
+    try {
+      let res = wx.getSystemInfoSync();
+      width = res.windowWidth;
+    } catch (e) {
+      console.error('getSystemInfoSync failed!');
+    }
+    let scrollTop = width * 167 / 375;
+    if (Object.scrollTop >= scrollTop) {
+      if (!this.data.isFixed) {
+        this.setData({
+          isFixed: true
+        });
+      }
+    } else {
+      if (this.data.isFixed) {
+        this.setData({
+          isFixed: false
+        });
+      }
     }
   },
 
@@ -225,7 +252,10 @@ Page({
     })
   },
 
-  toFixed(v){
+  toFixed(v) {
+    if (v == '' || v == null || v == undefined) {
+      return v;
+    }
     return v.toFixed(2);
   },
 

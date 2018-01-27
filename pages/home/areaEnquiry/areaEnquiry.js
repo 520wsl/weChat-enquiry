@@ -273,6 +273,9 @@ Page({
   },
 
   toFixed(v) {
+    if(v == '' || v == null || v == undefined){
+      return v;
+    }
     return v.toFixed(2);
   },
 })
