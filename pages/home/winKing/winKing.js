@@ -7,30 +7,51 @@ Page({
   data: {
     CDN: app.CDN,
     fields: 'month',
-    nowMonth:app.time.formatSubtractTime(1, 'month', new Date(), 'MM'),
+    nowMonth: app.time.formatSubtractTime(1, 'month', new Date(), 'MM'),
     time: app.time.formatTime(new Date(), 'YYYY-MM'),
     defaultTime: {
-      start: app.time.formatTime(new Date(), 'YYYY'), 
-      end: app.time.formatSubtractTime(1, 'month', new Date(), 'YYYY-MM'),
+      start: app.time.formatTime(new Date(), 'YYYY'),
+      end: app.time.formatSubtractTime(1, 'month', new Date(), 'YYYY-MM')
     },
-    isobtain:['未中标','已中标','竞拍中'],
-    winKing:[]
+    isobtain: ['未中标', '已中标', '竞拍中'],
+    winKing: []
   },
-  getlistwinKing(){
+  getlistwinKing() {
+    if (wx.showLoading) {
+      wx.showLoading({ title: '加载中...' });
+    }
     app
-    .get('/topbidder/list',{time:this.data.time})
-    .then(e => {
-      if(e.status==200){
-        this.setData({
-          winKing: e.data.list
-        });
-      }else{
-        console.log(e.msg);
-      }
-    })
-    .catch(res => {
-      console.log(res);
-    });
+      .get('/topbidder/list', { time: this.data.time })
+      .then(e => {
+        if (e.status == 200) {
+          if (wx.hideLoading) {
+            wx.hideLoading();
+          }
+          this.setData({
+            winKing: e.data.list
+          });
+        } else if (e.status == 401) {
+          wx.showModal({
+            title: '提示',
+            content: '登录超时或未登录，请重新登录',
+            success: res => {
+              if (res.confirm) {
+                app.reset();
+                wx.switchTab({
+                  url: '/pages/personal/personal'
+                });
+              } else if (res.cancel) {
+              }
+            }
+          });
+          return;
+        } else {
+          console.log(e.msg);
+        }
+      })
+      .catch(res => {
+        console.log(res);
+      });
   },
   /**
    * 生命周期函数--监听页面加载

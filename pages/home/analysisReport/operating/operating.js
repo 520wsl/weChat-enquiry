@@ -6,37 +6,43 @@ Page({
      */
   data: {
     CDN: app.CDN,
-    operatingData: { },
+    operatingData: {},
     reportId: null,
-    reportName:null
+    reportName: null
   },
   //选择传入信息
   selectReport(e) {
     this.setData({
       reportName: e.detail.params.reportName,
-      reportId:e.detail.params.reportId
+      reportId: e.detail.params.reportId
     });
-    let tittle=String(e.detail.params.reportName)+'询盘分析报告';
+    let tittle = String(e.detail.params.reportName) + '询盘分析报告';
     wx.setNavigationBarTitle({
       title: tittle
-    })
+    });
     this.getSuggest();
   },
   add: function(e) {
-    extraLine.push('other line')
+    extraLine.push('other line');
     this.setData({
       text: initData + '\n' + extraLine.join('\n')
-    })
+    });
   },
   getSuggest() {
-    app.get('/report/advise',{reportId:this.data.reportId}).then((e)=>{
-      if(e.status==200){
-        e.data.friendsBusiness=e.data.friendsBusiness.replace(/,/g,"\n");
+    if (wx.showLoading) {
+      wx.showLoading({ title: '加载中...' });
+    }
+    app.get('/report/advise', { reportId: this.data.reportId }).then(e => {
+      if (e.status == 200) {
+        if (wx.hideLoading) {
+          wx.hideLoading();
+        }
+        e.data.friendsBusiness = e.data.friendsBusiness.replace(/,/g, '\n');
         this.setData({
-       operatingData:e.data
-      })
+          operatingData: e.data
+        });
       }
-    })
+    });
   },
   /**
    * 生命周期函数--监听页面加载
