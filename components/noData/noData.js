@@ -8,6 +8,10 @@ Component({
     text: {
       type: String,
       value: '抱歉!没有找到符合条件的记录'
+    },
+    type: {
+      type: String,
+      value: 'img'
     }
   },
 

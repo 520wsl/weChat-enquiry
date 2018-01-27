@@ -20,3 +20,20 @@
   margin-top: 40rpx;
   display: block;
 }
+
+/* text */
+
+.no-data.no-data-text {
+  padding-top: 40rpx;
+  background: #f2f2f2;
+  margin-top: 0;
+  text-align: left;
+  padding-left: 30rpx;
+  font-size: 28rpx;
+  color: #999;
+}
+
+.no-data.no-data-text .txt {
+  margin: 0;
+  padding-bottom: 20rpx;
+}

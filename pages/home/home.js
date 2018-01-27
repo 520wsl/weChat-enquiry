@@ -4,7 +4,7 @@ import echarts from "../../utils/resources/wxcharts.js";
 var columnChart = null;
 var chartData = {
     setColor: [
-        { start: '#FF731D', end: '#FEA449' },
+        { start: '#7B73FE', end: '#55ABF6' },
         { start: '#7B73FE', end: '#55ABF6' },
         { start: '#7B73FE', end: '#55ABF6' },
         { start: '#7B73FE', end: '#55ABF6' },
@@ -156,8 +156,8 @@ Page({
                 return;
             }
             formatData.forEach(item => {
-                item.sumGmvAmount = item.sumGmvAmount.toFixed(2);
-                item.sumGmvAmountFormat = item.sumGmvAmount.replace(/\d{1,3}(?=(\d{3})+\.)/g, '$&,');  
+              item.sumAllAmount = item.sumAllAmount.toFixed(2);
+              item.sumGmvAmountFormat = item.sumAllAmount.replace(/\d{1,3}(?=(\d{3})+\.)/g, '$&,');  
             });
             this.setData({
                 customerarea: formatData,
@@ -236,7 +236,7 @@ Page({
             return item.provinceName;
         });
         chartData.seriesData = this.data.customerarea.map(item => {
-            return item.sumGmvAmount;
+          return item.sumAllAmount;
         });
         let subCategories = this.data.customerarea.map(item => {
             return item.num + '人';
@@ -282,13 +282,11 @@ Page({
         });
     },
     getRing(array){
-      let count = 10;
       let windowWidth = this.getWindowWidth();
       setTimeout(() => {
         array.forEach((item, index) => {
-          // let cache = item.areaTran.slice(0, item.areaTran.length);
-          count += 10;
-          this.drawRing(index, count, windowWidth);
+          let cache = item.tranProportion.slice(0, item.tranProportion.length -1);
+          this.drawRing(index, cache, windowWidth);
         });
       }, 500)
     },
@@ -393,5 +391,16 @@ Page({
         console.error('getSystemInfoSync failed!');
       }
       return windowWidth;
+    },
+    // 地区询盘
+    jumpArea(e){
+      let index = e.currentTarget.dataset.index;
+      let item = e.currentTarget.dataset.obj;
+      let timeType = this.data.customerareaTime.type || 1;
+      let timeName = this.data.customerareaTime.label || '一周';
+      let url = "/pages/home/areaEnquiry/areaEnquiry?provinceId=" + item.provinceId + "&provinceName=" + item.provinceName + "&ranking=" + (index + 1) + "&timeType=" + timeType + "&timeName=" + timeName;
+      wx.navigateTo({
+        url: url,
+      });
     }
 })
