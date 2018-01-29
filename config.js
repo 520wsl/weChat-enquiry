@@ -18,7 +18,7 @@ var config = {
         // 数据接口 api
         apiUrl: `${host}`,
         imgSizePro: '180x180',
-        imgSizeEnq: ''
+        imgSizeEnq: '160x160'
     }
 };
 

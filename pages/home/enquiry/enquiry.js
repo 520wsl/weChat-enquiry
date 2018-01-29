@@ -106,6 +106,10 @@ Page({
       let formatData = res.data.list;
       this.data.count = res.data.count;
       formatData.forEach(item => {
+        // 图片替换
+        if (item.productImage) {
+          item.productImage = item.productImage.replace(/\.[^.]+\.jpg$/i, '.' + app.imgSizeEnq + '.jpg');
+        }
         // 时间换算
         var time = item.createTime;
         var yestoday = app.time.isDayType(time, 1);
