@@ -77,8 +77,6 @@ Page({
         customerareaTime: {},
         // 公司
         company: '',
-        // 圆环
-        drawing: true,
     },
 
     /**
@@ -112,21 +110,6 @@ Page({
             title: '四喜E伙伴',
             path: '/pages/home/home'
         }
-    },
-    onPageScroll(o){
-      let height = 568;
-      try {
-        var res = wx.getSystemInfoSync();
-        height = res.windowHeight;
-      } catch (e) {
-        console.log(e);
-      }
-      if (o.scrollTop > height && this.data.drawing){
-        this.data.drawing = false;
-        this.setData({
-          drawing: false
-        })
-      }
     },
 
     // 客户地区

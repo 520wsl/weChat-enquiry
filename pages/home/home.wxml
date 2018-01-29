@@ -62,38 +62,33 @@
       <text class="text">客户地区分布统计</text>
       <component-date-control bindgetTime="getTimeErea" />
     </view>
-    <block wx:if="{{customerarea.length > 0}}">
-    <!-- 日期选择控件 -->
-    <!-- 图表 -->
-    <view hidden="{{!isShowChart}}" class="canvas container">
-      <!-- bindtouchstart="touchHandler" -->
-      <canvas canvas-id="columnCanvas" class="canvas"></canvas>
-    </view>
-    <view class="list-title">
-      <view class="list-subtitle">省份</view>
-      <view class="list-subtitle">总金额</view>
-      <view class="list-subtitle">询盘占比</view>
-    </view>
-    <view class="list">
-      <view class="list-item" wx:for="{{customerarea}}" wx:key="{{index}}" wx:if="{{item.tranProportion}}" data-obj="{{item}}" data-index="{{index}}"  bindtap='jumpArea'>
-        <text class="icon">{{index+1}}</text>
-        <view class="left">
-          <text>{{item.provinceName}}</text>
-        </view>
-        <view class="left">
-          <text class='red'>￥{{item.sumGmvAmountFormat}}</text>
-        </view>
-        <!-- <view class="right">
-          <view class="progress-bar"><view class="overlay">40%{{item.areaTran}}</view></view>
-          <image src="{{CDN}}icon_right.png" class="img" />
-        </view>  -->
-        <view hidden="{{drawing}}" class="right">
-          <canvas class="ring" canvas-id="ring_{{index}}"></canvas>
-          <image src="{{CDN}}icon_right.png" class="img" />
+    <view class="{{customerarea.length > 0 ? '' : 'hidden'}}">
+      <!-- 日期选择控件 -->
+      <!-- 图表 -->
+      <view hidden="{{!isShowChart}}" class="canvas container">
+        <canvas canvas-id="columnCanvas" class="canvas"></canvas>
+      </view>
+      <view class="list-title">
+        <view class="list-subtitle">省份</view>
+        <view class="list-subtitle">总金额</view>
+        <view class="list-subtitle">询盘占比</view>
+      </view>
+      <view class="list">
+        <view class="list-item {{customerarea[index].tranProportion ? '' : 'hidden'}}" wx:for="{{[1,2,3,4,5]}}" wx:key="{{index}}" data-obj="{{customerarea[index]}}" data-index="{{index}}" bindtap='jumpArea'>
+          <text class="icon">{{index+1}}</text>
+          <view class="left">
+            <text>{{customerarea[index].provinceName}}</text>
+          </view>
+          <view class="left">
+            <text class='red'>￥{{customerarea[index].sumGmvAmountFormat}}</text>
+          </view>
+          <view class="right">
+            <canvas class="ring" canvas-id="ring_{{index}}"></canvas>
+            <image src="{{CDN}}icon_right.png" class="img" />
+          </view>
         </view>
       </view>
     </view>
-    </block>
-    <component-no-data wx:else text="小喜正在统计中，暂无相关数据..." type="text"></component-no-data>
+    <component-no-data class="{{customerarea.length > 0 ? 'hidden' : ''}}" text="小喜正在统计中，暂无相关数据..." type="text"></component-no-data>
   </view>
 </view>
