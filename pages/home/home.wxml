@@ -73,7 +73,7 @@
         <view class="list-subtitle">总金额</view>
         <view class="list-subtitle">询盘占比</view>
       </view>
-      <view class="list" animation="{{animationErea}}">
+      <view class="list">
         <view class="list-item {{customerarea[index].tranProportion ? '' : 'hidden'}}" wx:for="{{[1,2,3,4,5]}}" wx:key="{{index}}" data-obj="{{customerarea[index]}}" data-index="{{index}}" bindtap='jumpArea'>
           <text class="icon">{{index+1}}</text>
           <view class="left">

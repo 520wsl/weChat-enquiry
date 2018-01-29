@@ -344,9 +344,9 @@ Page({
   },
   // 获取时间-地区
   getTimeErea(e) {
-    this.setData({
-      animationErea: this.animationErea()
-    })
+    // this.setData({
+    //   animationErea: this.animationErea()
+    // })
 
     this.data.customerareaTime = e.detail.time;
     this.getCustomArea(e.detail.time);
