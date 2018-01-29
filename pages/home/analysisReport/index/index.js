@@ -62,7 +62,7 @@ Page({
       title: e.detail.params.reportName + '询盘分析报告'
     });
     this.getList();
-    
+
     // console.log(e.detail.params.reportId, e.detail.params.reportName);
   },
   //获取分析报告列表
@@ -124,7 +124,7 @@ Page({
       ctx.arc(x, y, radius, s, e, false);
       ctx.stroke();
       ctx.draw();
-    };
+    }
     var step = 1,
       startAngle = 1.5 * Math.PI,
       endAngle = 0;
@@ -132,8 +132,8 @@ Page({
       n = 60;
     let a = 0;
     if (this.data.current == 0) {
-      console.log(this.data.params)
-      console.log(this.data.params.gmvPercent)
+      console.log(this.data.params);
+      console.log(this.data.params.gmvPercent);
       a = this.data.params.gmvPercent / 100;
       // a = 0.02 / 100;
     } else {
@@ -150,6 +150,7 @@ Page({
     };
     varName = setInterval(animation, animation_interval);
   },
+  // SWIPER
   currentChange: function(e) {
     this.setData({
       current: e.detail.current
@@ -158,7 +159,6 @@ Page({
   },
 
   onReady: function() {
-    
     // this.drawCircle();
   },
   onLoad: function(options) {
