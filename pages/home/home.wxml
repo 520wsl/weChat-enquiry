@@ -18,7 +18,7 @@
     <!-- 日期选择控件 -->
     <view class="section" wx:if="{{enquire.totalValue || enquire.tranValue || enquire.enquireValue || enquire.lossValue}}">
       <!-- 重构 -->
-      <view class="real-setion">
+      <view class="real-setion" animation="{{animationEnquiry}}">
         <navigator wx:for="{{newEnquire}}" wx:key="{{index}}" url="/pages/home/enquiry/enquiry?countType={{enquiryType[item.t1]}}&timeType={{enquireTime.type}}&label={{enquireTime.label+enquireName[item.t1]}}" class="navigator">
           <image src="{{images[item.t1]}}" class='icon' />
           <view class="left">
@@ -73,7 +73,7 @@
         <view class="list-subtitle">总金额</view>
         <view class="list-subtitle">询盘占比</view>
       </view>
-      <view class="list">
+      <view class="list" animation="{{animationErea}}">
         <view class="list-item {{customerarea[index].tranProportion ? '' : 'hidden'}}" wx:for="{{[1,2,3,4,5]}}" wx:key="{{index}}" data-obj="{{customerarea[index]}}" data-index="{{index}}" bindtap='jumpArea'>
           <text class="icon">{{index+1}}</text>
           <view class="left">
