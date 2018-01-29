@@ -1,12 +1,12 @@
 <!--pages/enquiry/enquiry.wxml-->
-<view class="enquiry">
+<view class="enquiry {{isFixed ? 'fixed' : ''}}">
   <view class="time-range">
     <picker mode="date" value="{{timeSearch.startTime}}" class="{{timeSearch.startTime ? 'ac' : ''}} start-time" start="{{defaultTime.start}}" end="{{defaultTime.end}}" bindchange="startTimeChange">
-      <view class="weui-input">{{timeSearch.startTime ? timeSearch.startTime : '开始日期'}}</view>
+      <view class="weui-input">{{timeSearch.startTime ? timeSearch.startTime : '开始日期'}}<view class="arrow-drop"></view></view>
     </picker>
     <text class="txt">至</text>
     <picker mode="date" value="{{timeSearch.endTime}}" class="{{timeSearch.endTime ? 'ac' : ''}} end-time" start="{{defaultTime.start}}" end="{{defaultTime.end}}" bindchange="endTimeChange">
-      <view class="weui-input">{{timeSearch.endTime ? timeSearch.endTime : '结束日期'}}</view>
+      <view class="weui-input">{{timeSearch.endTime ? timeSearch.endTime : '结束日期'}}<view class="arrow-drop"></view></view>
     </picker>
   </view>
 

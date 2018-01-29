@@ -32,11 +32,11 @@ Page({
         newEnquire: [
           {
             t1: 'totalValue',
-            t2: 'allCount'
+            t2: 'totalCount'
           },
           {
             t1: 'tranValue',
-            t2: 'gmvCount'
+            t2: 'tranCount'
           },
           {
             t1: 'enquireValue',
@@ -67,7 +67,7 @@ Page({
             lossValue: 4,
         },
         enquireTime: {
-            label: '近一周',
+            label: '一周',
             startTime: app.time.getTimeLimit(1, 'weeks'),
             endTime: app.time.getTimeLimit(-1),
             type: 1
@@ -209,7 +209,7 @@ Page({
 
             let formatData = res.data;
             for (let i in formatData) {
-              if (formatData[i] && (i == 'enquireValue' || i == 'lossValue' || i == 'lossValue' || i == 'tranValue')){
+              if (formatData[i] && (i == 'enquireValue' || i == 'lossValue' || i == 'totalValue' || i == 'tranValue')){
                     formatData[i] = formatData[i].toFixed(2);
                     formatData[i] = formatData[i].replace(/\d{1,3}(?=(\d{3})+\.)/g, '$&,');  
                 }
