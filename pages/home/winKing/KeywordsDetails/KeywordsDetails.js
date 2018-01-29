@@ -20,15 +20,21 @@ Page({
     list: []
   },
   getInfo() {
+    if (wx.showLoading) {
+      wx.showLoading({ title: '加载中...' });
+    }
     app
       .get('/topbidder/pastlist', this.data.params)
       .then(e => {
-        if (wx.hideLoading) {
-          wx.hideLoading();
-        }
         for (var i in e.data.data.list) {
-          e.data.data.list[i].year = app.time.formatTime(e.data.data.list[i].addtime, 'YYYY年');
-          e.data.data.list[i].month = app.time.formatTime(e.data.data.list[i].addtime, 'MM月');
+          e.data.data.list[i].year = app.time.formatTime(
+            e.data.data.list[i].addtime,
+            'YYYY年'
+          );
+          e.data.data.list[i].month = app.time.formatTime(
+            e.data.data.list[i].addtime,
+            'MM月'
+          );
         }
         if (this.data.isPush) {
           console.log(this.data.list.concat(e.data.data.list));
@@ -45,6 +51,9 @@ Page({
           });
         }
         console.log(this.data.list, 'getInfo');
+        if (wx.hideLoading) {
+          wx.hideLoading();
+        }
       })
       .catch(res => {
         if (wx.hideLoading) {
@@ -58,9 +67,7 @@ Page({
    */
   onPullDownRefresh: function() {
     this.data.params.pageNum = 1;
-    if (wx.showLoading) {
-      wx.showLoading({ title: '加载中...' });
-    }
+
     this.getInfo(() => {
       wx.stopPullDownRefresh();
     });
@@ -74,9 +81,7 @@ Page({
     if (this.data.list.length < this.data.params.count) {
       this.data.params.pageNum++;
       this.data.isPush = true;
-      if (wx.showLoading) {
-        wx.showLoading({ title: '加载中...' });
-      }
+
       this.getInfo();
     }
   },
@@ -86,9 +91,6 @@ Page({
     console.log('picker发送选择改变，携带值为', options);
     this.data.params.keyword = options.keyword;
     this.data.params.time = options.time;
-    if (wx.showLoading) {
-      wx.showLoading({ title: '加载中...' });
-    }
     this.getInfo();
   },
   onReady: function() {}
