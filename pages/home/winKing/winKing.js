@@ -20,7 +20,7 @@ Page({
       wx.showLoading({ title: '加载中...' });
     }
     app
-      .get('/topbidder/list', { time: '2018-01' })
+      .get('/topbidder/list', { time: this.data.time })
       .then(e => {
         if (e.status == 200) {
           if (wx.hideLoading) {

@@ -1,8 +1,10 @@
 {
-  "navigationBarTitleText":"询盘分析报告",
+  "navigationBarTitleText": "询盘分析报告",
   "usingComponents": {
-    "component-analysis-report": "/components/analysisReport/analysisReport"
-},
-"enablePullDownRefresh": true,
-"onReachBottomDistance": 10
+    "component-no-data": "/components/noData/noData",
+    "component-analysis-report": "/components/analysisReport/analysisReport",
+    "component-king-list": "/components/kingList/kingList"
+  },
+  "enablePullDownRefresh": true,
+  "onReachBottomDistance": 10
 }
