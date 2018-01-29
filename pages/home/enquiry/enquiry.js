@@ -9,7 +9,7 @@ Page({
     CDN: app.CDN,
     // banner
     imgUrls: [
-        app.CDN +'banner-2.png?id=20180119'
+        app.CDN +'banner-2.png?id=20180120'
     ],
     indicatorDots: false,
 
