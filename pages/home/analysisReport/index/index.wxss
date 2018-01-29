@@ -50,7 +50,7 @@
   font-size: 36rpx;
 }
 .circleone text {
-  font-size: 96rpx;
+  font-size: 80rpx;
 }
 .circletwo{
   opacity: 0.64;
