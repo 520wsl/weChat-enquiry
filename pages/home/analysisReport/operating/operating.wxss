@@ -57,6 +57,7 @@
   display: flex;
   align-items: center;
   color: #333333;
+  line-height:50rpx;  
 }
 .operating .header .head .pic image{
   width: 30rpx;

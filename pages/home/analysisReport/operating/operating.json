@@ -1,4 +1,5 @@
 {
+  "navigationBarTitleText": "2017年整年度询盘分析报告",
   "usingComponents": {
     "component-analysis-report": "/components/analysisReport/analysisReport"
 },
