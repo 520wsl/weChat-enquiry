@@ -1,5 +1,9 @@
 /* pages/home/home.wxss */
 
+.hidden {
+  display: none !important;
+}
+
 .home {
   /* max-width: 414px; *//* margin: auto; */
 }
@@ -21,10 +25,8 @@
   border-top: 1px solid;
   border-color: #e0e0e0;
   font-size: 32rpx;
-  color: #2F3245;
-  /* background: -webkit-linear-gradient(left, #55abf6, #7b73fe); */
-  /* -webkit-background-clip: text; */
-  /* -webkit-text-fill-color: transparent; */
+  color: #2f3245;
+  /* background: -webkit-linear-gradient(left, #55abf6, #7b73fe); *//* -webkit-background-clip: text; *//* -webkit-text-fill-color: transparent; */
 }
 
 /* 询盘 */
@@ -119,7 +121,7 @@
 
 .real-setion .left .red {
   font-size: 32rpx;
-  color: #CB2B2B;
+  color: #cb2b2b;
 }
 
 .real-setion .right {
