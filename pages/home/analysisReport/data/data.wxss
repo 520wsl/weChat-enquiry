@@ -87,7 +87,7 @@
     flex: 1;
 }
 
-.nav .active {
+.nav .active11,.nav .active22 {
     color: #fc7c1f;
     border-bottom: 2px solid #fc7c1f;
 }
