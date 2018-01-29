@@ -36,6 +36,7 @@
   display: flex;
   align-items: center;
   justify-content: flex-end;
+  padding: 20rpx 0;
 }
 
 .date-control-1 .text {
@@ -46,12 +47,18 @@
 
 .date-control-1 .time {
   font-size: 24rpx;
-  color: #6494F9;
-  width: 147rpx;
+  color: #fff;
+  width: 140rpx;
   height: 48rpx;
   line-height: 48rpx;
   text-align: center;
   border: 2rpx solid #e0e0e0;
-  border-radius: 6rpx;
-  background: #fff;
+  border-radius: 148rpx;
+  background: #6495F9;
+  letter-spacing: 10.8rpx;
+}
+
+.date-control-1 .time .img{
+  width: 16rpx;
+  height: 10rpx;
 }

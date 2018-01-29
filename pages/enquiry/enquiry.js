@@ -8,19 +8,27 @@ Page({
   data: {
     CDN: app.CDN,
     list: [],
-    enquiryTime: null,
-    active: 0,
 
     params: {
-      endTime: app.time.getTimeLimit(-1),
+      endTime: app.time.getTimeLimit(0),
       pageNum: 1,
-      pageSize: 7,
+      pageSize: 6,
       startTime: app.time.getTimeLimit(1, 'weeks'),
+      timeStatus: 1
     },
 
     count: 0,//默认 list总数
-
     isClear: false,
+    // 是否固定
+    isFixed: false,
+
+    // 区域统计
+    areaData: null,
+    // 时间
+    timeSearch: {
+      startTime: app.time.formatSubtractTime(1, 'weeks'),
+      endTime: app.time.formatSubtractTime(1),
+    }
   },
 
   /**
@@ -31,35 +39,10 @@ Page({
   },
   onShow: function () {
     // 初始化
-    // console.log('onShow');
-    // app.isBindPhoneOrBindCustome()
-    // 更新时间
-    if (app.enquiryTime) {
-      let time = app.enquiryTime;
-      this.data.params.startTime = app.time.formatInitTime(time.startTime, 'x');
-      this.data.params.endTime = app.time.endTime(time.endTime, 'x');
-      this.data.enquiryTime = time;
-      // this.data.params.pageNum = 1;
-      // 设置时间
-      this.setData({
-        active: -1,
-      });
-      // this.data.list = [];
-      // this.getList();
-      // return;
-    }else{
-      this.data.params.startTime = app.time.getTimeLimit(1, 'weeks');
-      this.data.params.endTime = app.time.getTimeLimit(-1);
-      this.data.enquiryTime = null;
-        this.setData({
-            active: 0
-        });
-    }
     this.data.params.pageNum = 1;
-    this.data.list = [];
-    this.getList();
+    this.init();
   },
-  onHide(){
+  onHide() {
     this.setData({
       list: []
     })
@@ -76,9 +59,10 @@ Page({
    */
   onPullDownRefresh: function () {
     this.data.params.pageNum = 1;
-    this.data.list = [];
-    this.getList(() => {
-      wx.stopPullDownRefresh();
+    this.getAreacount(() => {
+      this.getList(() => {
+        wx.stopPullDownRefresh();
+      });
     });
   },
 
@@ -94,36 +78,39 @@ Page({
     }
   },
 
-  // 选择时间
-  getTime(e) {
-    // var animation = wx.createAnimation({
-    //   duration: 100,
-    //   timingFunction: 'ease-in',
-    // })
-    // animation.opacity(0.3).step()
-    // animation.opacity(1).step()
-    // this.setData({
-    //   animationList: animation.export()
-    // })
-
-    let time = e.detail.time;
-    this.data.params.startTime = time.startTime;
-    this.data.params.endTime = time.endTime;
-    this.data.params.pageNum = 1;
-    // 重置时间
-    app.enquiryTime = null;
-    this.data.enquiryTime = null;
-    this.data.list = [];
-    this.getList();
+  // 页面滚动
+  onPageScroll(Object) {
+    let width = 375;
+    try {
+      let res = wx.getSystemInfoSync();
+      width = res.windowWidth;
+    } catch (e) {
+      console.error('getSystemInfoSync failed!');
+    }
+    let scrollTop = width * 167 / 375;
+    if (Object.scrollTop >= scrollTop) {
+      if (!this.data.isFixed) {
+        this.setData({
+          isFixed: true
+        });
+      }
+    } else {
+      if (this.data.isFixed) {
+        this.setData({
+          isFixed: false
+        });
+      }
+    }
   },
 
   // 获取列表
   getList(cb) {
     app.get('/enquiry/list', this.data.params).then(res => {
-        if (typeof cb == 'function') {
-            cb();
-        }
-      if(res.status == 401){
+      if (typeof cb == 'function') {
+        cb();
+      }
+      if (res.status == 401) {
+        this.resetList();
         wx.showModal({
           title: '提示',
           content: '登录超时或未登录，请重新登录',
@@ -140,41 +127,40 @@ Page({
         return;
       }
       if (res.status != 200) {
-        // app.utils.showModel('错误提示', res.msg);
+        this.resetList();
         // console.log(res);
         return;
       }
-      
+
       let formatData = res.data.list;
       this.data.count = res.data.count;
-      formatData.forEach(item => {
-        // 电话换算
-        // if(item.phone){
-        //   item.phone = item.phone.replace(/^(\d{3})\d{4}(\d+)$/, '$1****$2');
-        // }
-      // 时间换算
-        let time = item.gmtModified;
-        let yestoday = app.time.isDayType(time, 1);
-        var today = app.time.isDayType(time, 2);
-        if (yestoday) {
-          item.gmtModified = '昨天' + app.time.formatTime(time, ' HH:mm');
-          return;
+      if (formatData && formatData.length > 0){
+        formatData.forEach(item => {
+          // 时间换算
+          let time = item.createTime;
+          let yestoday = app.time.isDayType(time, 1);
+          var today = app.time.isDayType(time, 2);
+          if (yestoday) {
+            item.createTime = '昨天' + app.time.formatTime(time, ' HH:mm');
+            return;
+          }
+          if (today) {
+            item.createTime = '今天' + app.time.formatTime(time, ' HH:mm');
+            return;
+          }
+          item.createTime = app.time.formatTime(time, 'MM-DD HH:mm');
+        });
+        if (!this.data.isClear) {
+          this.data.list = [];
         }
-        if (today) {
-          item.gmtModified = '今天' + app.time.formatTime(time, ' HH:mm');
-          return;
-        }
-        item.gmtModified = app.time.formatTime(time, 'MM-DD HH:mm');
-      });
-      if(!this.data.isClear){
-        this.data.list = [];
+        this.data.isClear = false;
+        this.data.list.push(...formatData);
+        this.setData({
+          list: this.data.list,
+        });
+        return;
       }
-      this.data.isClear = false;
-      this.data.list.push(...formatData);
-      this.setData({
-        list: this.data.list,
-        enquiryTime: this.data.enquiryTime,
-      });
+      this.resetList();
     }).catch(res => {
       // console.log(res);
       if (typeof cb == 'function') {
@@ -182,4 +168,127 @@ Page({
       }
     });
   },
+
+  getScreening(e){
+    console.log(e.detail);
+    this.data.params.pageNum = 1;
+    let index = e.detail.acIndex;
+    let sort = e.detail.sort;
+    let cindex = e.detail.cindex;
+    delete this.data.params.timeStatus;
+    delete this.data.params.sumStatus;
+    delete this.data.params.status;
+    switch (index) {
+      case 0:
+        if (sort) {
+          this.data.params.timeStatus = 1;
+        } else {
+          this.data.params.timeStatus = 2;
+        }
+        break;
+      case 1:
+        if (sort) {
+          this.data.params.sumStatus = 1;
+        } else {
+          this.data.params.sumStatus = 2;
+        }
+        break;
+      case 2:
+        this.data.params.status = ++cindex;
+        break;
+    }
+
+    if (wx.showLoading) {
+      wx.showLoading({ title: '加载中...' });
+    }
+    this.getList(() => {
+      if (wx.hideLoading) {
+        wx.hideLoading();
+      }
+    });
+  },
+
+  // 区域统计
+  getAreacount(cb) {
+    app.get('/enquiry/analysecount', this.data.params).then((res) => {
+      console.log(res);
+      if (typeof cb == 'function') {
+        cb();
+      }
+
+      if (res.status != 200) {
+        this.reset();
+        return;
+      }
+
+      let data = res.data;
+      if (data) {
+        data.allAmount = this.toFixed(data.allAmount);
+        data.followAmount = this.toFixed(data.followAmount);
+        data.gmvAmount = this.toFixed(data.gmvAmount);
+        data.lossAmount = this.toFixed(data.lossAmount);
+        this.setData({
+          areaData: data
+        });
+        return;
+      }
+      this.reset();
+    }).catch((res) => {
+      if (typeof cb == 'function') {
+        cb();
+      }
+    });
+  },
+
+  reset(){
+    this.setData({
+      areaData: null
+    })
+  },
+
+  resetList(){
+    this.setData({
+      list: []
+    })
+  },
+
+  toFixed(v) {
+    if (v == '' || v == null || v == undefined) {
+      return v;
+    }
+    return v.toFixed(2);
+  },
+
+  // 开始时间
+  startTimeChange(e) {
+    this.setData({
+      'timeSearch.startTime': e.detail.value
+    })
+    
+    this.data.params.startTime = app.time.formatInitTime(e.detail.value, 'x');
+    this.init();
+  },
+
+  // 结束时间
+  endTimeChange(e) {
+    this.setData({
+      'timeSearch.endTime': e.detail.value
+    })
+
+    this.data.params.endTime = app.time.endTime(e.detail.value, 'x');
+    this.init();
+  },
+
+  // 初始化
+  init(){
+    if (wx.showLoading) {
+      wx.showLoading({ title: '加载中...' });
+    }
+    this.getAreacount(() => {
+      this.getList();
+      if (wx.hideLoading) {
+        wx.hideLoading();
+      }
+    });
+  }
 })

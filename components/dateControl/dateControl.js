@@ -21,28 +21,29 @@ Component({
    * 组件的初始数据
    */
   data: {
+    CDN: app.CDN,
     // 数据
     data: [
       {
-        label: '近一周',
+        label: '一周',
         startTime: app.time.getTimeLimit(1, 'weeks'),
         endTime: app.time.getTimeLimit(-1),
         type: 1
       },
       {
-        label: '近一月',
+        label: '一月',
         startTime: app.time.getTimeLimit(1, 'months'),
         endTime: app.time.getTimeLimit(-1),
         type: 2
       },
       {
-        label: '近半年',
+        label: '半年',
         startTime: app.time.getTimeLimit(6, 'months'),
         endTime: app.time.getTimeLimit(-1),
         type: 3
       },
       {
-        label: '近一年',
+        label: '一年',
         startTime: app.time.getTimeLimit(1, 'years'),
         endTime: app.time.getTimeLimit(-1),
         type: 4
@@ -64,7 +65,7 @@ Component({
     },
     open() {
       wx.showActionSheet({
-        itemList: ['近一周', '近一月', '近半年', '近一年'],
+        itemList: ['一周', '一月', '半年', '一年'],
         success: (res) => {
           this.common(res.tapIndex);
         },

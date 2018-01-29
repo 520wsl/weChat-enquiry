@@ -1,56 +1,117 @@
 // pages/home/analysisReport/data/data.js
+import echarts from "../../../../utils/resources/wxcharts.js";
+const app = getApp();
+let columnChart = null;
 Page({
 
     /**
      * 页面的初始数据
      */
     data: {
+        CDN: app.CDN,
         titles: ['询盘地区', '询盘总数', '总金额', '询盘占比'],
         tabList: [
             {
                 allAmount: '1000',
                 enquiryCount: '4165',
                 gmvAmount: '500',
-                gmvPercent: '65',
+                gmvPercent: 10,
                 province: '浙江'
             },
             {
                 allAmount: '1000',
                 enquiryCount: '4165',
                 gmvAmount: '500',
-                gmvPercent: '65',
+                gmvPercent: 20,
                 province: '杭州'
             },
             {
                 allAmount: '1000',
                 enquiryCount: '4165',
                 gmvAmount: '500',
-                gmvPercent: '65',
+                gmvPercent: 20,
                 province: '温州'
             },
             {
                 allAmount: '1000',
                 enquiryCount: '4165',
                 gmvAmount: '500',
-                gmvPercent: '65',
-                province: '义乌'
+                gmvPercent: 20,
+                province: '义乌义乌义乌义乌义乌义乌义乌义乌义乌义乌义乌义乌义乌'
             },
             {
                 allAmount: '1000',
                 enquiryCount: '4165',
                 gmvAmount: '500',
-                gmvPercent: '65',
-                province: '浙江'
+                gmvPercent: 30,
+                province: '浙江浙江浙江浙江'
+            },
+            {
+                allAmount: '1000',
+                enquiryCount: '4165',
+                gmvAmount: '500',
+                gmvPercent: 30,
+                province: '浙江浙江浙江浙江'
+            },
+            {
+                allAmount: '1000',
+                enquiryCount: '4165',
+                gmvAmount: '500',
+                gmvPercent: 30,
+                province: '浙江浙江浙江浙江'
+            },
+            {
+                allAmount: '1000',
+                enquiryCount: '4165',
+                gmvAmount: '500',
+                gmvPercent: 30,
+                province: '浙江浙江浙江浙江'
             }
-        ]
+        ],
+        params: {
+            orderType: 0,
+            reportId: 0
+        }
+    },
+    // 询盘报告分析-数据分析-区域分布与排行统计
+    getStatisticsArea() {
+        app
+            .get('/report/statistics/area', this.data.params)
+            .then(res => {
+                if (res.status == 401) {
+                    wx.showModal({
+                        title: '提示',
+                        content: '登录超时或未登录，请重新登录',
+                        success: res => {
+                            if (res.confirm) {
+                                app.reset();
+                                wx.switchTab({
+                                    url: '/pages/personal/personal'
+                                });
+                                return;
+                            }
+                            if (res.cancel) {
+                            }
+                        }
+                    });
+                    return;
+                }
+                if (res.status !== 200) {
+                    return;
+                }
+                console.log(res)
+            })
+            .catch(res => {
+                console.log(res)
+            })
     },
     //选择传入信息
     selectReport(e) {
-        console.log(e.detail.params);
-        let tittle = String(e.detail.params.reportName);
-        wx.setNavigationBarTitle({
-            title: tittle
-        })
+        // console.log(e.detail.params);
+        // let tittle = String(e.detail.params.reportName);
+        // wx.setNavigationBarTitle({
+        //     title: tittle
+        // })
     },
     /**
      * 生命周期函数--监听页面加载
@@ -63,33 +124,56 @@ Page({
      * 生命周期函数--监听页面初次渲染完成
      */
     onReady: function () {
-        // 使用 wx.createContext 获取绘图上下文 context
-        var context = wx.createCanvasContext('firstCanvas')
+        this.getEcharts(this.data.tabList);
+    },
 
-        context.setStrokeStyle("#00ff00")
-        context.setLineWidth(5)
-        context.rect(0, 0, 200, 200)
-        context.stroke()
-        context.setStrokeStyle("#ff0000")
-        context.setLineWidth(2)
-        context.moveTo(160, 100)
-        context.arc(100, 100, 60, 0, 2 * Math.PI, true)
-        context.moveTo(140, 100)
-        context.arc(100, 100, 40, 0, Math.PI, false)
-        context.moveTo(85, 80)
-        context.arc(80, 80, 5, 0, 2 * Math.PI, true)
-        context.moveTo(125, 80)
-        context.arc(120, 80, 5, 0, 2 * Math.PI, true)
-        context.stroke()
-        context.draw()
+    // 图表
+    getEcharts(series) {
+        let colorType = ['#00DACE', '#33CC82', '#FFC444', '#F88133', '#F56364'];
+        let cache = [...series].filter((item, index) => {
+            item.number = index;
+            if (item.value != 0) {
+                return true;
+            }
+        });
+        let newSeries = cache.map((item, index) => {
+            return {
+                name: item.province,
+                data: item.gmvPercent,
+                color: colorType[item.number % 10],
+                format: function (val) {
+                    return item.gmvPercent + '% ';
+                }
+            }
+        });
+        console.log(newSeries);
 
+        var windowWidth = 320;
+        try {
+            var res = wx.getSystemInfoSync();
+            windowWidth = res.windowWidth - 30;
+        } catch (e) {
+            console.error('getSystemInfoSync failed!');
+        }
+
+        columnChart = new echarts({
+            canvasId: 'firstCanvas',
+            type: 'ring',
+            animation: true,
+            legend: true,
+            series: newSeries,
+            width: windowWidth,
+            height: windowWidth * 340 / 375,
+            dataLabel: true,
+            disablePieStroke: false
+        });
     },
 
     /**
      * 生命周期函数--监听页面显示
      */
     onShow: function () {
-
+        this.getStatisticsArea();
     },
 
     /**
@@ -124,9 +208,6 @@ Page({
      * 用户点击右上角分享
      */
     onShareAppMessage: function () {
-
-    },
-    getEcharts() {
 
     }
 })

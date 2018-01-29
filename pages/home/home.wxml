@@ -12,24 +12,11 @@
   <!-- 询盘统计 -->
   <view class="enquiry">
     <view class="header">
-      <text class="text">询盘统计分析</text><component-date-control bindgetTime="getTimeEnquiry" />
+      <text class="text">询盘统计分析</text>
+      <component-date-control bindgetTime="getTimeEnquiry" />
     </view>
     <!-- 日期选择控件 -->
     <view class="section" wx:if="{{enquire.totalValue || enquire.tranValue || enquire.enquireValue || enquire.lossValue}}">
-      <view class="section-title">
-        <view class="section-item">
-          <view class="value1">{{enquire.tranProportion}}
-            <!-- <text>%</text> -->
-          </view>
-          <view class="txt">实际成交占比</view>
-        </view>
-        <view class="section-item">
-          <view class="value2">{{enquire.effCount}}
-            <text>次</text>
-          </view>
-          <view class="txt">有效询盘次数</view>
-        </view>
-      </view>
       <!-- 重构 -->
       <view class="real-setion">
         <navigator wx:for="{{newEnquire}}" wx:key="{{index}}" url="/pages/home/enquiry/enquiry?countType={{enquiryType[item.t1]}}&timeType={{enquireTime.type}}&label={{enquireTime.label+enquireName[item.t1]}}" class="navigator">
@@ -38,37 +25,58 @@
             <text class='t2'>{{enquireName[item.t1]}}</text>
           </view>
           <view class="left spel">
-            <text class="red">￥{{enquire[item.t1]}}</text>
+            <text class="red">￥{{enquire[item.t1] || 0}}</text>
           </view>
           <view class="right">
             <text>{{enquire[item.t2] || 0}} 笔</text>
             <image src="{{CDN}}icon_right.png" class="img" />
           </view>
         </navigator>
+        <view class="navigator">
+          <image src="{{CDN+'enquiry_5.png'}}" class='icon' />
+          <view class="left">
+            <text class='t2'>成交占比</text>
+          </view>
+          <view wx:if="{{enquire.tranProportion}}" class="left spel">
+            <text class="red">{{enquire.tranProportion}}</text>
+          </view>
+        </view>
+        <view class="navigator">
+          <image src="{{CDN+'enquiry_6.png'}}" class='icon' />
+          <view class="left">
+            <text class='t2'>有效询盘数</text>
+          </view>
+          <view class="left spel">
+            <text class="red">{{enquire.effCount || 0}}次</text>
+          </view>
+        </view>
       </view>
     </view>
+
+    <component-no-data wx:else text="小喜正在统计中，暂无相关数据..." type="text"></component-no-data>
   </view>
 
   <!-- 客户地区 -->
   <view class="custom-area">
     <view class="header">
-      <text class="text">客户地区分布统计</text><component-date-control bindgetTime="getTimeErea" />
+      <text class="text">客户地区分布统计</text>
+      <component-date-control bindgetTime="getTimeErea" />
     </view>
+    <block wx:if="{{customerarea.length > 0}}">
     <!-- 日期选择控件 -->
     <!-- 图表 -->
-    <view hidden="{{!isShowChart}}" class="canvas">
+    <view hidden="{{!isShowChart}}" class="canvas container">
       <!-- bindtouchstart="touchHandler" -->
       <canvas canvas-id="columnCanvas" class="canvas"></canvas>
     </view>
     <view class="list-title">
       <view class="list-subtitle">省份</view>
-      <view class="list-subtitle">成交金额</view>
-      <view class="list-subtitle">成交占比</view>
+      <view class="list-subtitle">总金额</view>
+      <view class="list-subtitle">询盘占比</view>
     </view>
     <view class="list">
-      <view class="list-item" wx:for="{{customerarea}}" wx:key="{{index}}">
-        <image wx:if="{{index < 3}}" src="{{CDN}}/icon_gold_{{index}}.png" class="icon" />
-        <text wx:else class="icon">{{index+1}}</text>
+      <view class="list-item" wx:for="{{customerarea}}" wx:key="{{index}}" wx:if="{{item.tranProportion}}" data-obj="{{item}}" data-index="{{index}}"  bindtap='jumpArea'>
+        <text class="icon">{{index+1}}</text>
         <view class="left">
           <text>{{item.provinceName}}</text>
         </view>
@@ -80,10 +88,12 @@
           <image src="{{CDN}}icon_right.png" class="img" />
         </view>  -->
         <view hidden="{{drawing}}" class="right">
-           <canvas class="ring" canvas-id="ring_{{index}}"></canvas> 
+          <canvas class="ring" canvas-id="ring_{{index}}"></canvas>
           <image src="{{CDN}}icon_right.png" class="img" />
-        </view> 
+        </view>
       </view>
     </view>
+    </block>
+    <component-no-data wx:else text="小喜正在统计中，暂无相关数据..." type="text"></component-no-data>
   </view>
 </view>

@@ -8,12 +8,11 @@ Page({
     CDN: app.CDN,
     fields: 'month',
     nowMonth: app.time.formatSubtractTime(1, 'month', new Date(), 'MM'),
-    time: app.time.formatTime(new Date(), 'YYYY-MM'),
+    time: app.time.formatSubtractTime(1, 'month', new Date(), 'YYYY-MM'),
     defaultTime: {
       start: app.time.formatTime(new Date(), 'YYYY'),
       end: app.time.formatSubtractTime(1, 'month', new Date(), 'YYYY-MM')
     },
-    isobtain: ['未中标', '已中标', '竞拍中'],
     winKing: []
   },
   getlistwinKing() {
@@ -28,7 +27,7 @@ Page({
             wx.hideLoading();
           }
           this.setData({
-            winKing: e.data.list
+            winKing: e.data
           });
         } else if (e.status == 401) {
           wx.showModal({
