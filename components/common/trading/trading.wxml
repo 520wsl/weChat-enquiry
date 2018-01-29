@@ -9,18 +9,18 @@
       </view>
     </view>
     <block wx:if="{{type == 'area'}}">
-    <view class="module">
-      <view class="text">
-        <view class="t1">区域排名</view>
-        <view class="t2">{{data.ranking}}</view>
+      <view class="module">
+        <view class="text">
+          <view class="t1">区域排名</view>
+          <view class="t2">{{data.ranking}}</view>
+        </view>
       </view>
-    </view>
-    <view class="module">
-      <view class="text">
-        <view class="t1">成交占比</view>
-        <view class="t2">{{data.tranProportion || '0%'}}</view>
+      <view class="module">
+        <view class="text">
+          <view class="t1">成交占比</view>
+          <view class="t2">{{data.tranProportion+'%' || '0%'}}</view>
+        </view>
       </view>
-    </view>
     </block>
   </view>
 </view>

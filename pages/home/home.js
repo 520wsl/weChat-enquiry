@@ -268,7 +268,7 @@ Page({
     let windowWidth = this.getWindowWidth();
     setTimeout(() => {
       array.forEach((item, index) => {
-        let cache = item.tranProportion.slice(0, item.tranProportion.length - 1);
+        let cache = item.tranProportion;
         this.drawRing(index, cache, windowWidth);
       });
     }, 500)
