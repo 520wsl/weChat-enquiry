@@ -90,12 +90,18 @@
     margin-right:15rpx;
 }
 
-.nav-btn .btn2 {
-    color: #33cc82;
-    border-color: #33cc82;
+.nav-btn .btn1 {
+  color: #33cc82;
+  border-color: #33cc82;
 }
 
-.nav-btn .btn3 {
+.nav-btn .btn2 {
+    /* color: #33cc82;
+    border-color: #33cc82; */
+}
+
+.nav-btn .btn3,
+.nav-btn .btn4 {
     color: #f56364;
     border-color: #f56364;
 }

@@ -16,6 +16,12 @@ Component({
    */
   data: {
     CDN: app.CDN,
+    saleStatusName: {
+      1: '已成交',
+      2: '跟单中',
+      3: '已流失',
+      4: '已流失'
+    },
   },
 
   /**
