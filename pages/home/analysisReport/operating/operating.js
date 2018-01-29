@@ -8,7 +8,7 @@ Page({
     CDN: app.CDN,
     operatingData: {},
     reportId: null,
-    reportName: null
+    reportName: '2017年整年度'
   },
   //选择传入信息
   selectReport(e) {
@@ -20,6 +20,9 @@ Page({
     wx.setNavigationBarTitle({
       title: tittle
     });
+    if (wx.showLoading) {
+      wx.showLoading({ title: '加载中...' });
+    }
     this.getSuggest();
   },
   add: function(e) {
@@ -29,9 +32,6 @@ Page({
     });
   },
   getSuggest() {
-    if (wx.showLoading) {
-      wx.showLoading({ title: '加载中...' });
-    }
     app.get('/report/advise', { reportId: this.data.reportId }).then(e => {
       if (e.status == 200) {
         if (wx.hideLoading) {
@@ -47,7 +47,11 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(options) {},
+  onLoad: function(options) {
+    wx.setNavigationBarTitle({
+      title: '2017年整年度询盘分析报告'
+    });
+  },
 
   /**
    * 生命周期函数--监听页面初次渲染完成

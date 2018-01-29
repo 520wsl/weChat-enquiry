@@ -15,35 +15,70 @@
     </view>
 </template>
 
-<template name="row">
+<template name="area">
     <view class='row'>
-        <view class='col txt-width txt-more'>{{province}}</view>
+        <view class='col txt-width txt-more'>{{name}}</view>
         <view class='col flex1'>{{enquiryCount}}</view>
-        <view class='col flex1'>{{allAmount}}</view>
-        <view class='col flex1'>{{gmvPercent}}%</view>
+        <view class='col flex1'>{{amount}}</view>
+        <view class='col flex1'>{{percent}}%</view>
+    </view>
+</template>
+
+<template name="product">
+    <view class='row'>
+        <view class='col txt-width txt-more'>{{name}}</view>
+        <view class='col flex1'>{{enquiryCount}}</view>
+        <view class='col flex1'>{{companyPrice}}</view>
+        <view class='col flex1'>{{tradePrice}}</view>
+    </view>
+</template>
+
+
+
+<template name="chart">
+    <view  hidden='{{tabList.length > 0 ? false : true}}'>
+        <view class='canvas'>
+            <view class='title canvas-title'>{{title}}</view>
+            <canvas style="width: 100%; height: 640rpx;background:#fff;" canvas-id="{{canvasId}}"></canvas>
+        </view>
+        <view class='enquiry'>
+            <view class='enquiry-tab'>
+                <template is="titles" data="{{titles}}" />
+                <template wx:for="{{tabList}}" wx:key="{{item}}" is="{{tabType}}" data="{{...item}}" />
+            </view>
+        </view>
     </view>
 </template>
 
 <view class='nav'>
-    <view class='flex1 col active'>
+    <view bindtap='setPageType' data-pageType="1" class='flex1 col active1{{pageType}}'>
         <view class='bor-right'>区域分析</view>
     </view>
-    <view class='flex1 col'>
+    <view bindtap='setPageType' data-pageType="2" class='flex1 col active2{{pageType}}'>
         <view class='bor-right'>高频产品分析</view>
     </view>
-    <view class='pic time'>
-        <image src='{{CDN}}/icon_date.png'></image>
-    </view>
-</view>
-<view>
-    <view class='canvas'>
-        <view class='title canvas-title'>按总金额统计</view>
-        <canvas style="width: 100%; height: 640rpx;background:#fff;" canvas-id="firstCanvas"></canvas>
-    </view>
-    <view class='enquiry'>
-        <view class='enquiry-tab'>
-            <template is="titles" data="{{titles}}" />
-            <template wx:for="{{tabList}}" wx:key="{{item}}" is="row" data="{{...item}}" />
+    <!-- <view class="section">
+        <view class="section__title">普通选择器</view>
+        <picker bindchange="bindPickerChange" value="{{index}}" range="{{times}}">
+            <view class="picker">
+                当前选择：{{times[index]}}
+            </view>
+        </picker>
+    </view> -->
+    <picker bindchange="bindPickerChange" value="{{index}}" range="{{times}}">
+        <view class='pic time'>
+            <image src='{{CDN}}/icon_date.png'></image>
         </view>
+    </picker>
+</view>
+
+<view>
+    <view hidden="{{pageType == 2}}">
+        <template is="chart" data="{{...area1}}" />
+        <template is="chart" data="{{...area2}}" />
+    </view>
+    <view hidden="{{pageType == 1}}">
+        <template is="chart" data="{{...product1}}" />
+        <template is="chart" data="{{...product2}}" />
     </view>
 </view>

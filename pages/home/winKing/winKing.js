@@ -59,10 +59,10 @@ Page({
     this.getlistwinKing();
   },
   timeChange(e) {
-    console.log(e);
     this.setData({
       time: e.detail.value
     });
+    this.getlistwinKing();
   },
 
   /**

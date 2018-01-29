@@ -9,7 +9,7 @@ Page({
   //选择传入信息
   selectReport(e) {
     console.log(e.detail.params);
-    let tittle = String(e.detail.params.reportName);
+    let tittle = String(e.detail.params.reportName)+'询盘分析报告';
     wx.setNavigationBarTitle({
       title: tittle
     });
@@ -17,7 +17,11 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(options) {},
+  onLoad: function(options) {
+    wx.setNavigationBarTitle({
+      title: '2017年整年度询盘分析报告'
+    });
+  },
 
   /**
    * 生命周期函数--监听页面初次渲染完成

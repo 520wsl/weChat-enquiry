@@ -9,74 +9,79 @@ Page({
      */
     data: {
         CDN: app.CDN,
-        titles: ['询盘地区', '询盘总数', '总金额', '询盘占比'],
-        tabList: [
-            {
-                allAmount: '1000',
-                enquiryCount: '4165',
-                gmvAmount: '500',
-                gmvPercent: 10,
-                province: '浙江'
-            },
-            {
-                allAmount: '1000',
-                enquiryCount: '4165',
-                gmvAmount: '500',
-                gmvPercent: 20,
-                province: '杭州'
-            },
-            {
-                allAmount: '1000',
-                enquiryCount: '4165',
-                gmvAmount: '500',
-                gmvPercent: 20,
-                province: '温州'
-            },
-            {
-                allAmount: '1000',
-                enquiryCount: '4165',
-                gmvAmount: '500',
-                gmvPercent: 20,
-                province: '义乌义乌义乌义乌义乌义乌义乌义乌义乌义乌义乌义乌义乌'
-            },
-            {
-                allAmount: '1000',
-                enquiryCount: '4165',
-                gmvAmount: '500',
-                gmvPercent: 30,
-                province: '浙江浙江浙江浙江'
-            },
-            {
-                allAmount: '1000',
-                enquiryCount: '4165',
-                gmvAmount: '500',
-                gmvPercent: 30,
-                province: '浙江浙江浙江浙江'
-            },
-            {
-                allAmount: '1000',
-                enquiryCount: '4165',
-                gmvAmount: '500',
-                gmvPercent: 30,
-                province: '浙江浙江浙江浙江'
-            },
-            {
-                allAmount: '1000',
-                enquiryCount: '4165',
-                gmvAmount: '500',
-                gmvPercent: 30,
-                province: '浙江浙江浙江浙江'
-            }
-        ],
-        params: {
-            orderType: 0,
-            reportId: 0
-        }
+        pageType: 1,
+        times: [],
+        timeArray: [],
+        area1: {
+            canvasId: 'area1',
+            tabType: 'area',
+            title: '按总金额统计',
+            titles: ['询盘地区', '询盘总数', '总金额', '询盘占比'],
+            tabList: [],
+        },
+        area2: {
+            canvasId: 'area2',
+            tabType: 'area',
+            title: '按成交金额统计',
+            titles: ['询盘地区', '有效询盘数量', '成交金额', '成交占比'],
+            tabList: [],
+        },
+        product1: {
+            canvasId: 'product1',
+            tabType: 'product',
+            title: '高频产品排行',
+            titles: ['产品名称', '询盘数量', '公司报价', '同行报价'],
+            tabList: [],
+        },
+        product2: {
+            canvasId: 'product2',
+            tabType: 'product',
+            title: '已成交高频产品排行',
+            titles: ['产品名称', '询盘数量', '公司报价', '同行报价'],
+            tabList: [],
+        },
+        colorType1: ['#00DACE', '#33CC82', '#FFC444', '#F88133', '#F56364'],
+        colorType2: ['#F56364', '#FFC444', '#F6825C', '#FFECA3', '#FF9938', '#C15266', '#FDDA9D', '#EFA08E', '#DC7A78', '#E8BE5B'],
+        reportId: 0,
     },
-    // 询盘报告分析-数据分析-区域分布与排行统计
-    getStatisticsArea() {
+    bindPickerChange: function (e) {
+        console.log('picker发送选择改变，携带值为', e.detail.value)
+        let reportId = this.data.timeArray[e.detail.value]['reportId'];
+        let reportName = this.data.timeArray[e.detail.value]['reportName'];
+        // let reportId = 0;
+        this.setTitle(reportName);
+        this.setData({
+            index: e.detail.value,
+            reportId
+        })
+        // 获取图标数据
+        this.getArea1();
+        this.getArea2();
+        this.product1();
+        this.product2();
+    },
+    setTitle(reportName) {
+        wx.setNavigationBarTitle({
+            title: reportName + '询盘分析'
+        })
+    },
+    // 设置选项卡值
+    setPageType(e) {
+        let pageType = e.currentTarget.dataset && e.currentTarget.dataset.pagetype || 0;
+        this.setData({
+            pageType: pageType
+        })
+    },
+    // 询盘报告分析-数据分析-区域分布与排行统计-按总金额统计
+    getArea1() {
+        if (wx.showLoading) {
+            wx.showLoading({ title: '加载中...' });
+        }
         app
-            .get('/report/statistics/area', this.data.params)
+            .get('/report/statistics/area', {
+                reportId: this.data.reportId,
+                orderType: 0
+            })
             .then(res => {
                 if (res.status == 401) {
                     wx.showModal({
@@ -90,19 +95,203 @@ Page({
                                 });
                                 return;
                             }
-                            if (res.cancel) {
-                            }
                         }
                     });
+                    if (wx.hideLoading) {
+                        wx.hideLoading();
+                    }
                     return;
                 }
                 if (res.status !== 200) {
+                    app.utils.showModel('获取分析数据', res.msg);
+                    if (wx.hideLoading) {
+                        wx.hideLoading();
+                    }
                     return;
                 }
-                console.log(res)
+                this.setData({
+                    'area1.tabList': res.data
+                })
+
+                if (wx.hideLoading) {
+                    wx.hideLoading();
+                }
+                this.getEcharts(res.data, 'area1', this.data.colorType1);
             })
             .catch(res => {
                 console.log(res)
+            })
+    },
+    // 询盘报告分析-数据分析-区域分布与排行统计-按成交金额统计
+    getArea2() {
+        if (wx.showLoading) {
+            wx.showLoading({ title: '加载中...' });
+        }
+        app
+            .get('/report/statistics/area', {
+                reportId: this.data.reportId,
+                orderType: 1
+            })
+            .then(res => {
+                if (res.status == 401) {
+                    wx.showModal({
+                        title: '提示',
+                        content: '登录超时或未登录，请重新登录',
+                        success: res => {
+                            if (res.confirm) {
+                                app.reset();
+                                wx.switchTab({
+                                    url: '/pages/personal/personal'
+                                });
+                                return;
+                            }
+                        }
+                    });
+                    if (wx.hideLoading) {
+                        wx.hideLoading();
+                    }
+                    return;
+                }
+                if (res.status !== 200) {
+                    app.utils.showModel('获取分析数据', res.msg);
+                    if (wx.hideLoading) {
+                        wx.hideLoading();
+                    }
+                    return;
+                }
+                this.setData({
+                    'area2.tabList': res.data
+                })
+
+                if (wx.hideLoading) {
+                    wx.hideLoading();
+                }
+                this.getEcharts(res.data, 'area2', this.data.colorType1);
+            })
+            .catch(res => {
+                console.log(res)
+            })
+    },
+    product1() {
+        if (wx.showLoading) {
+            wx.showLoading({ title: '加载中...' });
+        }
+        app
+            .get('/report/statistics/product', {
+                reportId: this.data.reportId,
+                orderType: 0
+            })
+            .then(res => {
+                if (res.status == 401) {
+                    wx.showModal({
+                        title: '提示',
+                        content: '登录超时或未登录，请重新登录',
+                        success: res => {
+                            if (res.confirm) {
+                                app.reset();
+                                wx.switchTab({
+                                    url: '/pages/personal/personal'
+                                });
+                                return;
+                            }
+                        }
+                    });
+                    if (wx.hideLoading) {
+                        wx.hideLoading();
+                    }
+                    return;
+                }
+                if (res.status !== 200) {
+                    app.utils.showModel('获取分析数据', res.msg);
+                    if (wx.hideLoading) {
+                        wx.hideLoading();
+                    }
+                    return;
+                }
+                this.setData({
+                    'product1.tabList': res.data
+                })
+
+                if (wx.hideLoading) {
+                    wx.hideLoading();
+                }
+                this.getEcharts(res.data, 'product1', this.data.colorType2);
+            })
+            .catch(res => {
+                console.log(res)
+            })
+    },
+    product2() {
+        if (wx.showLoading) {
+            wx.showLoading({ title: '加载中...' });
+        }
+        app
+            .get('/report/statistics/gmvproduct', {
+                reportId: this.data.reportId,
+                orderType: 1
+            })
+            .then(res => {
+                if (res.status == 401) {
+                    wx.showModal({
+                        title: '提示',
+                        content: '登录超时或未登录，请重新登录',
+                        success: res => {
+                            if (res.confirm) {
+                                app.reset();
+                                wx.switchTab({
+                                    url: '/pages/personal/personal'
+                                });
+                                return;
+                            }
+                        }
+                    });
+                    if (wx.hideLoading) {
+                        wx.hideLoading();
+                    }
+                    return;
+                }
+                if (res.status !== 200) {
+                    app.utils.showModel('获取分析数据', res.msg);
+                    if (wx.hideLoading) {
+                        wx.hideLoading();
+                    }
+                    return;
+                }
+                this.setData({
+                    'product2.tabList': res.data
+                })
+
+                if (wx.hideLoading) {
+                    wx.hideLoading();
+                }
+                this.getEcharts(res.data, 'product2', this.data.colorType2);
+            })
+            .catch(res => {
+                console.log(res)
+            })
+    },
+    // 获取选择时间
+    getTimes() {
+        app
+            .get('/report/pastreport')
+            .then(res => {
+                if (!res.data || res.data.length == 0) {
+                    console.log('获取选择时间数据' + res)
+                    return;
+                }
+                let times = [];
+                res.data.map(e => {
+                    times.push(e.reportName)
+                })
+                console.log('获取选择时间 ==> ', times, res.data)
+                this.setData({
+                    timeArray: res.data,
+                    times
+                })
+
+            })
+            .catch(res => {
+                console.log('获取选择时间数据错误', res)
             })
     },
     //选择传入信息
@@ -124,12 +313,14 @@ Page({
      * 生命周期函数--监听页面初次渲染完成
      */
     onReady: function () {
-        this.getEcharts(this.data.tabList);
     },
 
     // 图表
-    getEcharts(series) {
-        let colorType = ['#00DACE', '#33CC82', '#FFC444', '#F88133', '#F56364'];
+    getEcharts(series, canvasId, colorType) {
+        if (!series || series.length == 0) {
+            console.log('图标数据：' + series)
+            return;
+        }
         let cache = [...series].filter((item, index) => {
             item.number = index;
             if (item.value != 0) {
@@ -138,16 +329,15 @@ Page({
         });
         let newSeries = cache.map((item, index) => {
             return {
-                name: item.province,
-                data: item.gmvPercent,
+                name: item.name,
+                data: item.percent,
                 color: colorType[item.number % 10],
                 format: function (val) {
-                    return item.gmvPercent + '% ';
+                    return item.percent + '% ';
                 }
             }
         });
-        console.log(newSeries);
-
+        // console.log(newSeries);
         var windowWidth = 320;
         try {
             var res = wx.getSystemInfoSync();
@@ -157,7 +347,7 @@ Page({
         }
 
         columnChart = new echarts({
-            canvasId: 'firstCanvas',
+            canvasId: canvasId,
             type: 'ring',
             animation: true,
             legend: true,
@@ -173,7 +363,14 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow: function () {
-        this.getStatisticsArea();
+        console.log('初试onShow', app.globalData.customeInfo)
+        this.data.reportId = app.globalData.customeInfo && app.globalData.customeInfo.reportId || 0;
+        this.setTitle(app.globalData.customeInfo && app.globalData.customeInfo.reportName || '');
+        this.getTimes();
+        this.getArea1();
+        this.getArea2();
+        this.product1();
+        this.product2();
     },
 
     /**
