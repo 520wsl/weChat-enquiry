@@ -1,11 +1,5 @@
 <!--pages/home/analysisReport/data/data.wxml-->
 
-<template name="itemTxt">
-    <block wx:for="{{titles}}" wx:key="{{item}}">
-        <view class='col txt-width'>{{item}}</view>
-    </block>
-</template>
-
 <template name="titles">
     <view class='row title'>
         <view class='col txt-width'>{{titles[0]}}</view>
@@ -33,13 +27,16 @@
     </view>
 </template>
 
-
-
 <template name="chart">
-    <view  hidden='{{tabList.length > 0 ? false : true}}'>
+    <view hidden='{{tabList.length > 0 ? false : true}}'>
         <view class='canvas'>
             <view class='title canvas-title'>{{title}}</view>
             <canvas style="width: 100%; height: 640rpx;background:#fff;" canvas-id="{{canvasId}}"></canvas>
+        </view>
+        <view class='sjx'>
+            <view class='pic'>
+                <image src='{{CDN}}/icon-sjx.png'></image>
+            </view>
         </view>
         <view class='enquiry'>
             <view class='enquiry-tab'>
@@ -47,6 +44,13 @@
                 <template wx:for="{{tabList}}" wx:key="{{item}}" is="{{tabType}}" data="{{...item}}" />
             </view>
         </view>
+    </view>
+</template>
+
+<template name="noData">
+    <view class="no-data">
+        <image src="{{CDN}}record_no.png" class="img" />
+        <text class="txt">抱歉!没有找到符合条件的记录</text>
     </view>
 </template>
 
@@ -74,11 +78,17 @@
 
 <view>
     <view hidden="{{pageType == 2}}">
-        <template is="chart" data="{{...area1}}" />
-        <template is="chart" data="{{...area2}}" />
+        <view wx:if="{{area1.tabList.length > 0 && area2.tabList.length > 0}}">
+            <template is="chart" data="{{...area1,CDN}}" />
+            <template is="chart" data="{{...area2,CDN}}" />
+        </view>
+        <template wx:else is="noData" data="{{CDN}}" />
     </view>
     <view hidden="{{pageType == 1}}">
-        <template is="chart" data="{{...product1}}" />
-        <template is="chart" data="{{...product2}}" />
+        <view wx:if="{{product1.tabList.length > 0 && product1.tabList.length > 0}}">
+            <template is="chart" data="{{...product1,CDN}}" />
+            <template is="chart" data="{{...product2,CDN}}" />
+        </view>
+        <template wx:else is="noData" data="{{CDN}}" />
     </view>
 </view>
