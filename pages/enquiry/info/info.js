@@ -157,7 +157,7 @@ Page({
           item.gmtCreate = '今天' + app.time.formatTime(time, ' HH:mm');
           return;
         }
-        item.gmtCreate = app.time.formatTime(time, 'MM-DD HH:mm');
+        item.gmtCreate = app.time.formatTime(time, 'YYYY-MM-DD HH:mm');
       });
       this.data.list.push(...data.list);
       this.setData({
