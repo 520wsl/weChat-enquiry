@@ -115,7 +115,10 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-
+    return {
+      title: '四喜E伙伴',
+      path: '/pages/home/areaEnquiry/areaEnquiry?provinceId=' + this.data.params.provinceId + '&ranking=' + this.data.params.ranking + '&timeType=' + this.data.params.timeType + '&provinceName=' + this.data.params.provinceName + '&timeName=' + this.data.params.timeName
+    }
   },
 
   // 筛选

@@ -19,6 +19,7 @@
   font-size: 26rpx;
   color: #666;
   width: 172rpx;
+  height: 72rpx;
   border-left: 2rpx solid rgba(0, 0, 0, 0.1);
 }
 
