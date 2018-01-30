@@ -18,7 +18,7 @@
       <view class="module">
         <view class="text">
           <view class="t1">成交占比</view>
-          <view class="t2">{{data.tranProportion+'%' || '0%'}}</view>
+          <view class="t2">{{data.tranProportion ? data.tranProportion +'%' : '0%'}}</view>
         </view>
       </view>
     </block>
