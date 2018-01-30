@@ -113,14 +113,15 @@ Page({
                     }
                     return;
                 }
+                let data = this.filterZero(res.data)
                 this.setData({
-                    'area1.tabList': res.data
+                    'area1.tabList': data
                 })
 
                 if (wx.hideLoading) {
                     wx.hideLoading();
                 }
-                this.getEcharts(res.data, 'area1', this.data.colorType1);
+                this.getEcharts(data, 'area1', this.data.colorType1);
             })
             .catch(res => {
                 console.log(res)
@@ -163,14 +164,15 @@ Page({
                     }
                     return;
                 }
+                let data = this.filterZero(res.data)
                 this.setData({
-                    'area2.tabList': res.data
+                    'area2.tabList': data
                 })
 
                 if (wx.hideLoading) {
                     wx.hideLoading();
                 }
-                this.getEcharts(res.data, 'area2', this.data.colorType1);
+                this.getEcharts(data, 'area2', this.data.colorType1);
             })
             .catch(res => {
                 console.log(res)
@@ -212,14 +214,15 @@ Page({
                     }
                     return;
                 }
+                let data = this.filterZero(res.data)
                 this.setData({
-                    'product1.tabList': res.data
+                    'product1.tabList': data
                 })
 
                 if (wx.hideLoading) {
                     wx.hideLoading();
                 }
-                this.getEcharts(res.data, 'product1', this.data.colorType2);
+                this.getEcharts(data, 'product1', this.data.colorType2);
             })
             .catch(res => {
                 console.log(res)
@@ -261,18 +264,35 @@ Page({
                     }
                     return;
                 }
+                let data = this.filterZero(res.data)
                 this.setData({
-                    'product2.tabList': res.data
+                    'product2.tabList': data
                 })
 
                 if (wx.hideLoading) {
                     wx.hideLoading();
                 }
-                this.getEcharts(res.data, 'product2', this.data.colorType2);
+                this.getEcharts(data, 'product2', this.data.colorType2);
             })
             .catch(res => {
                 console.log(res)
             })
+    },
+    // 过滤零的数据
+    filterZero(data) {
+        console.log('过滤零的数据 filterZero', data)
+        let arr = [];
+        if (!data || data.length <= 0) {
+            console.log('过滤零的数据' + series)
+            return [];
+        }
+        data.map(e => {
+            if (e.percent > 0) {
+                arr.push(e);
+            }
+        })
+        console.log('过滤零的数据 ==> filterZero', arr)
+        return arr;
     },
     // 获取选择时间
     getTimes() {
