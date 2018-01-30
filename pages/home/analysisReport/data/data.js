@@ -71,6 +71,10 @@ Page({
         this.setData({
             pageType: pageType
         })
+        if (pageType == 2 && (this.data.product1.tabList.length <= 0 || this.data.product2.tabList.length <= 0)) {
+            this.product1();
+            this.product2();
+        }
     },
     // 询盘报告分析-数据分析-区域分布与排行统计-按总金额统计
     getArea1() {
@@ -294,14 +298,6 @@ Page({
                 console.log('获取选择时间数据错误', res)
             })
     },
-    //选择传入信息
-    selectReport(e) {
-        // console.log(e.detail.params);
-        // let tittle = String(e.detail.params.reportName);
-        // wx.setNavigationBarTitle({
-        //     title: tittle
-        // })
-    },
     /**
      * 生命周期函数--监听页面加载
      */
@@ -369,8 +365,8 @@ Page({
         this.getTimes();
         this.getArea1();
         this.getArea2();
-        this.product1();
-        this.product2();
+        // this.product1();
+        // this.product2();
     },
 
     /**

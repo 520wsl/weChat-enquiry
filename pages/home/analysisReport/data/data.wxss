@@ -95,3 +95,33 @@
 .nav .active .bor-right {
     font-size: 26rpx;
 }
+.sjx{
+    width: 48rpx;
+    height: 24rpx;
+    margin: auto;
+    overflow: hidden;
+}
+.sjx .pic{
+    width: 48rpx;
+    height: 24rpx;
+}
+/* 空数据 */
+
+.no-data {
+  text-align: center;
+  font-size: 28rpx;
+  color: #ccc;
+  margin-top: 212rpx;
+}
+
+.no-data .img {
+  display: block;
+  width: 190rpx;
+  height: 178rpx;
+  margin: auto;
+}
+
+.no-data .txt {
+  margin-top: 40rpx;
+  display: block;
+}
