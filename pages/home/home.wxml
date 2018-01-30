@@ -38,7 +38,7 @@
             <text class='t2'>成交占比</text>
           </view>
           <view wx:if="{{enquire.tranProportion}}" class="left spel">
-            <text class="red">{{enquire.tranProportion}}</text>
+            <text class="red">{{enquire.tranProportion}}%</text>
           </view>
         </view>
         <view class="navigator">
