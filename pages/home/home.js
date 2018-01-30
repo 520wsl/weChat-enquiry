@@ -335,12 +335,18 @@ Page({
   },
   // 获取时间-询盘
   getTimeEnquiry(e) {
-    this.setData({
-      animationEnquiry: this.animationEnquiry()
-    })
-
+    // this.setData({
+    //   animationEnquiry: this.animationEnquiry()
+    // })
+    if (wx.showLoading) {
+      wx.showLoading({ title: '加载中...' });
+    }
     this.data.enquireTime = e.detail.time;
-    this.getEnquire(e.detail.time);
+    this.getEnquire(e.detail.time, () => {
+      if (wx.hideLoading) {
+        wx.hideLoading();
+      }
+    });
   },
   // 获取时间-地区
   getTimeErea(e) {
