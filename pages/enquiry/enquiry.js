@@ -10,7 +10,7 @@ Page({
     list: [],
 
     params: {
-      endTime: app.time.getTimeLimit(1),
+      endTime: app.time.getTimeLimit(-1),
       pageNum: 1,
       pageSize: 6,
       startTime: app.time.getTimeLimit(1, 'weeks'),
