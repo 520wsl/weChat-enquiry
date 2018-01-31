@@ -17,7 +17,12 @@
     "pages/home/analysisReport/operating/operating",
     "pages/home/analysisReport/data/data",
     "pages/personal/companyList/companyList",
-    "pages/home/areaEnquiry/areaEnquiry"
+    "pages/home/areaEnquiry/areaEnquiry",
+    "pages/home/erp/orderInfo/orderInfo",
+    "pages/home/erp/logisticsInfo/logisticsInfo",
+    "pages/home/erp/goodsInfo/goodsInfo",
+    "pages/home/erp/myGoods/myGoods",
+    "pages/home/erp/myOrder/myOrder"
   ],
   "window": {
     "backgroundColor": "#f2f2f2",

@@ -10,7 +10,7 @@ Page({
     list: [],
 
     params: {
-      endTime: app.time.getTimeLimit(0),
+      endTime: app.time.getTimeLimit(-1),
       pageNum: 1,
       pageSize: 6,
       startTime: app.time.getTimeLimit(1, 'weeks'),
@@ -27,7 +27,7 @@ Page({
     // 时间
     timeSearch: {
       startTime: app.time.formatSubtractTime(1, 'weeks'),
-      endTime: app.time.formatSubtractTime(1),
+      endTime: app.time.formatSubtractTime(0),
     }
   },
 
@@ -198,7 +198,9 @@ Page({
         }
         break;
       case 2:
-        this.data.params.status = ++cindex;
+        if(cindex != 3){
+          this.data.params.status = ++cindex;
+        }
         break;
     }
 

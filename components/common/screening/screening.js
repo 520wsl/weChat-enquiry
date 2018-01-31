@@ -36,6 +36,7 @@ Component({
           '0': '已成交',
           '1': '跟单中',
           '2': '已流失',
+          '3': '不限'
         }
       },
     ],
@@ -59,7 +60,7 @@ Component({
   methods: {
     openAction(index) {
       wx.showActionSheet({
-        itemList: ['已成交', '跟单中', '已流失'],
+        itemList: ['已成交', '跟单中', '已流失', '不限'],
         success: (res) => {
           this.common(index, res.tapIndex);
         },

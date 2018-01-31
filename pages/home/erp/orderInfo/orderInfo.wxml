@@ -1,0 +1,17 @@
+<!--pages/home/erp/orderInfo/orderInfo.wxml-->
+<!-- 订单详情 -->
+<view class="orderInfo">
+  <!-- 订单状态 -->
+  <view class="state">
+    <view class="title">交易关闭</view>
+    <view class="txt"></view>
+  </view>
+  <!-- 个人信息 -->
+  <view class="person-mess">
+    <!-- 物流 -->
+    <view class="logistics">
+      <view class="icon"></view>
+    </view>
+    <!-- 地址 -->
+  </view>
+</view>

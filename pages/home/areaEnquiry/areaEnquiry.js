@@ -146,8 +146,9 @@ Page({
         }
         break;
       case 2:
-        console.log(cindex);
-        this.data.params.status = ++cindex;
+        if (cindex != 3) {
+          this.data.params.status = ++cindex;
+        }
         break;
     }
 
