@@ -198,7 +198,9 @@ Page({
         }
         break;
       case 2:
-        this.data.params.status = ++cindex;
+        if(cindex != 3){
+          this.data.params.status = ++cindex;
+        }
         break;
     }
 
