@@ -61,15 +61,7 @@
     <view bindtap='setPageType' data-pageType="2" class='flex1 col active2{{pageType}}'>
         <view class='bor-right'>高频产品分析</view>
     </view>
-    <!-- <view class="section">
-        <view class="section__title">普通选择器</view>
-        <picker bindchange="bindPickerChange" value="{{index}}" range="{{times}}">
-            <view class="picker">
-                当前选择：{{times[index]}}
-            </view>
-        </picker>
-    </view> -->
-    <picker bindchange="bindPickerChange" value="{{index}}" range="{{times}}">
+    <picker disabled="{{disabled}}" bindchange="bindPickerChange" value="{{index}}" range="{{times}}">
         <view class='pic time'>
             <image src='{{CDN}}/icon_date.png'></image>
         </view>

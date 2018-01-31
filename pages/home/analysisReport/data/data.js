@@ -12,6 +12,7 @@ Page({
         pageType: 1,
         times: [],
         timeArray: [],
+        disabled: true,
         area1: {
             canvasId: 'area1',
             tabType: 'area',
@@ -46,6 +47,10 @@ Page({
     },
     bindPickerChange: function (e) {
         console.log('picker发送选择改变，携带值为', e.detail.value)
+        if (this.data.timeArray.length <= 0) {
+            console.log('timeArray', this.data.timeArray)
+            return;
+        }
         let reportId = this.data.timeArray[e.detail.value]['reportId'];
         let reportName = this.data.timeArray[e.detail.value]['reportName'];
         // let reportId = 0;
@@ -74,6 +79,13 @@ Page({
         if (pageType == 2 && (this.data.product1.tabList.length <= 0 || this.data.product2.tabList.length <= 0)) {
             this.product1();
             this.product2();
+        }
+        if (pageType == 1 && (this.data.area1.tabList.length <= 0 || this.data.area1.tabList.length <= 0)) {
+            this.getArea1();
+            this.getArea2();
+        }
+        if (this.data.times.length <= 0) {
+            this.getTimes();
         }
     },
     // 询盘报告分析-数据分析-区域分布与排行统计-按总金额统计
@@ -283,7 +295,7 @@ Page({
         console.log('过滤零的数据 filterZero', data)
         let arr = [];
         if (!data || data.length <= 0) {
-            console.log('过滤零的数据' + series)
+            console.log('过滤零的数据' + data)
             return [];
         }
         data.map(e => {
@@ -310,7 +322,8 @@ Page({
                 console.log('获取选择时间 ==> ', times, res.data)
                 this.setData({
                     timeArray: res.data,
-                    times
+                    times,
+                    disabled: false
                 })
 
             })
