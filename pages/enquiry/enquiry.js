@@ -28,6 +28,10 @@ Page({
     timeSearch: {
       startTime: app.time.formatSubtractTime(1, 'weeks'),
       endTime: app.time.formatSubtractTime(0),
+    },
+    defaultTime: {
+      // start: app.time.formatSubtractTime(1, 'years'),
+      end: app.time.formatSubtractTime(0),
     }
   },
 
@@ -80,25 +84,37 @@ Page({
 
   // 页面滚动
   onPageScroll(Object) {
-    let width = 375;
+    let width = 375, height = 603, oHeight = 1488;
     try {
       let res = wx.getSystemInfoSync();
       width = res.windowWidth;
+      height = res.windowHeight;
     } catch (e) {
       console.error('getSystemInfoSync failed!');
     }
-    let scrollTop = width * 167 / 375;
-    if (Object.scrollTop >= scrollTop) {
-      if (!this.data.isFixed) {
-        this.setData({
-          isFixed: true
-        });
-      }
+    if (wx.createSelectorQuery) {
+      wx.createSelectorQuery().select('.enquiry').boundingClientRect((rect) => {
+        oHeight = rect.height;
+        rolling(this);
+      }).exec()
     } else {
-      if (this.data.isFixed) {
-        this.setData({
-          isFixed: false
-        });
+      rolling(this);
+    }
+
+    function rolling(that){
+      let scrollTop = width * 167 / 375;
+      if (Object.scrollTop >= scrollTop) {
+        if (!that.data.isFixed && ((oHeight - height) > scrollTop)) {
+          that.setData({
+            isFixed: true
+          });
+        }
+      } else {
+        if (that.data.isFixed) {
+          that.setData({
+            isFixed: false
+          });
+        }
       }
     }
   },
@@ -267,6 +283,18 @@ Page({
 
   // 开始时间
   startTimeChange(e) {
+    if (app.time.formatInitTime(e.detail.value, 'x') >= this.data.params.endTime) {
+      wx.showModal({
+        title: '提示',
+        content: '开始时间不可以大于结束时间！',
+        showCancel: false
+      })
+      this.setData({
+        'timeSearch.startTime': app.time.formatTime(Number(this.data.params.startTime), 'YYYY-MM-DD')
+      })
+      return;
+    }
+
     this.setData({
       'timeSearch.startTime': e.detail.value
     })
@@ -277,6 +305,18 @@ Page({
 
   // 结束时间
   endTimeChange(e) {
+    if (this.data.params.startTime >= app.time.endTime(e.detail.value, 'x')) {
+      wx.showModal({
+        title: '提示',
+        content: '开始时间不可以大于结束时间！',
+        showCancel: false
+      })
+      this.setData({
+        'timeSearch.endTime': app.time.formatSubtractTime(1, 'days', Number(this.data.params.endTime), 'YYYY-MM-DD')
+      })
+      return false;
+    }
+
     this.setData({
       'timeSearch.endTime': e.detail.value
     })
