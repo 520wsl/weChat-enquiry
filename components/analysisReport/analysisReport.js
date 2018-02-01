@@ -17,7 +17,7 @@ Component({
    */
   data: {
     CDN: app.CDN,
-    reportId: 1,
+    value: app.selectValueTime,
     params: {
       reportName: '2018年1月',
       reportId: 74
@@ -37,22 +37,22 @@ Component({
       }
     ],
     list: [
-      {
-        reportName: '2018年1月',
-        reportId: 74
-      },
-      {
-        reportName: '2017年度',
-        reportId: 74
-      },
-      {
-        reportName: '2017年第四季度',
-        reportId: 74
-      },
-      {
-        reportName: '2017年12月',
-        reportId: 74
-      }
+      // {
+      //   reportName: '2018年1月',
+      //   reportId: 74
+      // },
+      // {
+      //   reportName: '2017年度',
+      //   reportId: 74
+      // },
+      // {
+      //   reportName: '2017年第四季度',
+      //   reportId: 74
+      // },
+      // {
+      //   reportName: '2017年12月',
+      //   reportId: 74
+      // }
     ]
   },
 
@@ -68,15 +68,23 @@ Component({
     clickHandle(e) {
       let index = e.currentTarget.dataset.index;
       this.setData({
-        active: index
+        active: index,
+        value:app.selectValueTime
       });
+      if(this.data.list.length!=0){
+        this.triggerEvent('selectReport', { params: this.data.list[Number(app.selectValueTime)] });
+     }
     },
     //选择报告列表id
     bindPickerChange(e) {
-      this.setData({
+      if(this.data.list.length!=0){
+        this.setData({
+        value:e.detail.value,
         params: this.data.list[e.detail.value]
       });
+      app.selectValueTime=e.detail.value;
       this.triggerEvent('selectReport', { params: this.data.params });
+      }
     },
     //获取分析报告列表
     getList() {
@@ -87,7 +95,9 @@ Component({
             this.setData({
               list: e.data
             });
-            this.triggerEvent('selectReport', { params: this.data.list[0] });
+            if(e.data.length!=0){
+               this.triggerEvent('selectReport', { params: e.data.list[Number(app.selectValueTime)] });
+            }
           }
           if (e.status == 401) {
             wx.showModal({
