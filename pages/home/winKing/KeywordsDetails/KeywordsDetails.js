@@ -11,10 +11,10 @@ Page({
     isobtain: 1,
     isPush: false,
     params: {
-      keyword: '气缸密封圈',
+      keyword: '',
       pageNum: '1',
       pageSize: '10',
-      time: '2018-01',
+      time: '',
       count: ''
     },
     list: []
@@ -88,9 +88,11 @@ Page({
 
   onLoad: function(options) {
     // 页面初始化 options为页面跳转所带来的参数
-    console.log('picker发送选择改变，携带值为', options);
-    this.data.params.keyword = options.keyword;
-    this.data.params.time = options.time;
+    this.setData({
+      'params.keyword': options.keyword,
+      'params.time': options.time
+    });
+    console.log('picker发送选择改变，携带值为', options,this.data.params.keyword);
     this.getInfo();
   },
   onReady: function() {}
