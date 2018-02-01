@@ -14,6 +14,7 @@ const config = {
   CDN: configA.service.imgUrl,
   ...auth,
   ...api,
+  selectValueTime:'0',
   imgSizePro: configA.service.imgSizePro,
   imgSizeEnq: configA.service.imgSizeEnq
 }

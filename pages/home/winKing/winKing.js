@@ -10,7 +10,7 @@ Page({
     nowMonth: app.time.formatSubtractTime(1, 'month', new Date(), 'MM'),
     time: app.time.formatSubtractTime(1, 'month', new Date(), 'YYYY-MM'),
     defaultTime: {
-      start: app.time.formatTime(new Date(), 'YYYY'),
+      start: app.time.formatTime(new Date(), 'YYYY-01'),
       end: app.time.formatSubtractTime(1, 'month', new Date(), 'YYYY-MM')
     },
     winKing: []
