@@ -80,25 +80,37 @@ Page({
 
   // 页面滚动
   onPageScroll(Object) {
-    let width = 375;
+    let width = 375, height = 603, oHeight = 1488;
     try {
       let res = wx.getSystemInfoSync();
       width = res.windowWidth;
+      height = res.windowHeight;
     } catch (e) {
       console.error('getSystemInfoSync failed!');
     }
-    let scrollTop = width * 167 / 375;
-    if (Object.scrollTop >= scrollTop) {
-      if (!this.data.isFixed) {
-        this.setData({
-          isFixed: true
-        });
-      }
+    if (wx.createSelectorQuery) {
+      wx.createSelectorQuery().select('.enquiry').boundingClientRect((rect) => {
+        oHeight = rect.height;
+        rolling(this);
+      }).exec()
     } else {
-      if (this.data.isFixed) {
-        this.setData({
-          isFixed: false
-        });
+      rolling(this);
+    }
+
+    function rolling(that){
+      let scrollTop = width * 167 / 375;
+      if (Object.scrollTop >= scrollTop) {
+        if (!that.data.isFixed && ((oHeight - height) > scrollTop)) {
+          that.setData({
+            isFixed: true
+          });
+        }
+      } else {
+        if (that.data.isFixed) {
+          that.setData({
+            isFixed: false
+          });
+        }
       }
     }
   },
