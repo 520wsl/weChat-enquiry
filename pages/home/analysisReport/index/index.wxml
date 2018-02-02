@@ -44,7 +44,7 @@
     </swiper>
     <view class="mainS">
         <view class="deal" wx:if="{{current==0}}">
-            <view class="block">
+            <view class="block" wx:if="{{params.allAmount!=0}}">
                 <view class="pic">
                     <image src="{{images.totalValue}}" />
                 </view>
@@ -52,7 +52,7 @@
                 <view class="prc">￥{{params.allAmount}}</view>
                 <view class="num">{{params.allAmountCount}} 笔</view>
             </view>
-            <view class="block">
+            <view class="block" wx:if="{{params.gmvAmount!=0}}">
                 <view class="pic">
                     <image src="{{images.tranValue}}" />
                 </view>
@@ -60,7 +60,7 @@
                 <view class="prc">￥{{params.gmvAmount}}</view>
                 <view class="num">{{params.gmvAmountCount}} 笔</view>
             </view>
-            <view class="block">
+            <view class="block" wx:if="{{params.followAmount!=0}}">
                 <view class="pic">
                     <image src="{{images.enquireValue}}" />
                 </view>
@@ -68,7 +68,7 @@
                 <view class="prc">￥{{params.followAmount}}</view>
                 <view class="num">{{params.followAmountCount}} 笔</view>
             </view>
-            <view class="block">
+            <view class="block" wx:if="{{params.lossAmount!=0}}">
                 <view class="pic">
                     <image src="{{images.lossCount}}" />
                 </view>
@@ -76,7 +76,7 @@
                 <view class="prc"> ￥{{params.lossAmount}} </view>
                 <view class="num">{{params.lossAmountCount}} 笔</view>
             </view>
-            <view class="block">
+            <view class="block" wx:if="{{params.effective!=0}}">
                 <view class="pic">
                     <image src="{{images.gmvCount}}" />
                 </view>

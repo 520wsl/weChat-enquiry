@@ -1,13 +1,21 @@
 // pages/home/erp/logisticsInfo/logisticsInfo.js
+const app = getApp();
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    CDN: app.CDN,
+    show:0
   
   },
-
+  clickHandle(e){
+    console.log(e,this.data.show);
+    this.setData({
+      show:!this.data.show
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
