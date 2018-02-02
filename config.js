@@ -15,6 +15,8 @@ var config = {
     service: {
         host,
         imgUrl: 'http://1.img.dianjiangla.com/enquiryAssets/',
+        // 阿里图片地址配置
+        aliImgURL:'https://cbu01.alicdn.com/',
         // 数据接口 api
         apiUrl: `${host}`,
         imgSizePro: '180x180',

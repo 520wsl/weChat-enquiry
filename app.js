@@ -27,6 +27,7 @@ const config = {
     time,
     utils,
     CDN: configA.service.imgUrl,
+    ALI:configA.service.aliImgURL,
     ...auth,
     ...api,
     selectValueTime:'0',

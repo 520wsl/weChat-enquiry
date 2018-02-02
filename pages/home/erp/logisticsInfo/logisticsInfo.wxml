@@ -1,3 +1,108 @@
 <!--pages/home/erp/logisticsInfo/logisticsInfo.wxml-->
 <!-- 物流详情 -->
-<text>pages/home/erp/logisticsInfo/logisticsInfo.wxml</text>
+<view class="header">
+  订单：
+  <text class="text">119610016563061899 共包含1个运单</text>
+</view>
+
+
+<view class="lists">
+
+  <view class="list">
+    <view class="caption">
+      运单1
+    </view>
+    <view class="content">
+      <view class="express-info">
+
+        <view class="info-tittle">
+          发货方式：
+          <text class="text">物流公司</text>
+        </view>
+        <view class="info-tittle">
+          物流公司：
+          <text class="text">申通快递</text>
+        </view>
+        <view class="info-tittle">
+          运单号码：
+          <text class="text">403031654654654</text>
+        </view>
+        <view class="info-tittle">
+          发货时间：
+          <text class="text">2018-01-28 09：36：43</text>
+        </view>
+
+      </view>
+      <view class="commodity">
+        <block>
+          <view class="cell">
+            <view class="left">
+              <!-- <image mode="aspectFit" src="{{CDN}}lossPro.png" /> -->
+              <image mode="aspectFit" src="http://img.alicdn.com/imgextra/i1/1732515120/TB2DtxVX12CK1JjSZFIXXa3OpXa_!!1732515120.jpg_960x960Q50s50.jpg_.webp"
+              />
+            </view>
+            <view class="right">
+              <view class="head">ppr冷热水管厂家 ppr管材 排水管 自来水管 多种规格pp-r给水管
+              </view>
+              <view class="body" bindtap='clickHandle'>包含两台规则
+                <image mode="aspectFit" src="{{CDN}}icon_right.png" />
+              </view>
+              <view class="{{show == 0 ? 'hid' : ''}} footer">
+                <block>
+                  <view class="line">
+                    <view>B-IP-02
+                    </view>
+                    <view>¥1.40
+                    </view>
+                    <view>x100米
+                    </view>
+                  </view>
+                  <view class="line">
+                    <view>B-IP-02
+                    </view>
+                    <view>¥1.40
+                    </view>
+                    <view>x100米
+                    </view>
+                  </view>
+                </block>
+              </view>
+            </view>
+          </view>
+        </block>
+        <view class="show">
+          其他1个货品
+          <image mode="aspectFit" src="{{CDN}}icon_right.png" />
+        </view>
+      </view>
+      <view class="express-detail">
+        <text class="tittle">物流跟踪</text>
+        <block>
+          <view class="time">2018-01-30
+            <block>
+              <view class="time-point">
+                <image mode="aspectFit" src="{{CDN}}icon_rate_select.png" />
+                <text class="text">01:11:11 由【重庆航空部】发往【山东济南中转部】</text>
+              </view>
+            </block>
+          </view>
+        </block>
+        <block>
+            <view class="time">2018-01-30
+              <block>
+                <view class="time-point">
+                  <image mode="aspectFit" src="{{CDN}}icon_rate_unselect.png" />
+                  <text class="text title">01:11:11 由【重庆航空部】发往【山东济南中转部】</text>
+                </view>
+              </block>
+            </view>
+          </block>
+      </view>
+      <view class="captions">
+        <text class="text">以上信息由物流公司提供，如无信息或疑问,\n请咨询 申通快递（服务电话0571-82122222）</text>
+      </view>
+    </view>
+  </view>
+
+
+</view>
