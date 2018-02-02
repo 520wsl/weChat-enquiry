@@ -4,10 +4,10 @@
   <view class="banner">
     <component-roasting height="160rpx" indicatorDots="{{indicatorDots}}" imgUrls="{{imgUrls}}"></component-roasting>
   </view>
-  <view class="buy-type">
+  <!-- <view class="buy-type">
     <view class="left">买家信息</view>
     <view class="right">{{label}}</view>
-  </view>
+  </view> -->
   <view class='list'>
     <itemEnquiry wx:for="{{list}}" wx:key="{{index}}" item="{{item}}"></itemEnquiry>
   </view>

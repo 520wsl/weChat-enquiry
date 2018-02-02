@@ -15,7 +15,7 @@
                     中标金额（元）：
                     <text class="red">{{item.finalprice}}</text>
                 </view>
-                <view class="bottom txt-more" >
+                <view class="bottom" >
                     中　标　公　司：
                     <text class="black ">{{item.dealcompany}}</text>
                 </view>
