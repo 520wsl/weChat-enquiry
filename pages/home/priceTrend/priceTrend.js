@@ -166,6 +166,7 @@ Page({
       width: windowWidth,
       height: windowWidth * 270 / 375,
       dataLabel: true,
+      disablePieStroke: true
     });
   },
 })

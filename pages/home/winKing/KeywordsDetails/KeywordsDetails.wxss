@@ -19,7 +19,7 @@
 .blockS {
   display: flex;
   flex-direction: row;
-  height: 220rpx;
+  /* height: 220rpx; */
   margin:0 30rpx 30rpx;
 }
 .left {
