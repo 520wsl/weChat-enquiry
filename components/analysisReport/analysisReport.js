@@ -96,7 +96,7 @@ Component({
               list: e.data
             });
             if(e.data.length!=0){
-               this.triggerEvent('selectReport', { params: e.data.list[Number(app.selectValueTime)] });
+               this.triggerEvent('selectReport', { params: e.data[Number(app.selectValueTime)] });
             }
           }
           if (e.status == 401) {
