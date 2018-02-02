@@ -48,10 +48,18 @@
 .mess .text .text-p {
   color: #333;
   margin-bottom: 10rpx;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
 }
 
 .mess .text .text-company {
   color: #999;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
 }
 
 .mess .text .money {
