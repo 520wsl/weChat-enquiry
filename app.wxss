@@ -55,3 +55,10 @@ page{
 
 /* 单行显示省略号 */
 .txt-more{overflow: hidden;text-overflow:ellipsis;white-space:nowrap;}
+/* 多行显示省略号 */
+.txt-more-multiple{
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}
