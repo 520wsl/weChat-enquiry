@@ -83,7 +83,7 @@ Page({
   },
 
   // 页面滚动
-  onPageScroll(Object) {
+  onPageScroll(Obj) {
     let width = 375, height = 603, oHeight = 1488;
     try {
       let res = wx.getSystemInfoSync();
@@ -102,18 +102,21 @@ Page({
     }
 
     function rolling(that){
+      console.log('rolling')
       let scrollTop = width * 167 / 375;
-      if (Object.scrollTop >= scrollTop) {
+      if (Obj.scrollTop >= scrollTop) {
         if (!that.data.isFixed && ((oHeight - height) > scrollTop)) {
           that.setData({
             isFixed: true
           });
+          console.log('fixed true');
         }
       } else {
         if (that.data.isFixed) {
           that.setData({
             isFixed: false
           });
+          console.log('fixed false');
         }
       }
     }
