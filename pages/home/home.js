@@ -9,6 +9,8 @@ var chartData = {
     { start: '#7B73FE', end: '#55ABF6' },
     { start: '#7B73FE', end: '#55ABF6' },
     { start: '#7B73FE', end: '#55ABF6' },
+    { start: '#7B73FE', end: '#55ABF6' },
+    { start: '#7B73FE', end: '#55ABF6' },
   ]
 };
 
@@ -211,6 +213,7 @@ Page({
   },
   // 图表
   getEcharts() {
+    this.data.customerarea = this.data.customerarea.slice(0, 5);
     if (this.data.customerarea.length == 0) {
       return;
     }
