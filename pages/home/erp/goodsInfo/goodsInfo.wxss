@@ -125,7 +125,7 @@
 .attr .lists .name {
   line-height: 52rpx;
   flex-shrink: 0;
-  margin-right: 100rpx;
+  width: 211rpx;
 }
 .attr .lists .txt {
   line-height: 52rpx;

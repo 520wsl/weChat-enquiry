@@ -53,6 +53,9 @@
   display: flex;
   justify-content: flex-start;
 }
+.lists .commodity .hid {
+  display: none;
+}
 .lists .commodity .cell .left image {
   width: 124rpx;
   height: 122rpx;
@@ -83,8 +86,8 @@
 .lists .commodity .footer .line:last-child {
   border-bottom: 0rpx dashed #e0e0e0;
 }
-.lists .commodity .cell .body image {
-  transform: rotate(90deg);
+.body image {
+  transform: rotate(-90deg);
   transform-origin: center;
   width: 40rpx;
   height: 20rpx;
@@ -107,7 +110,7 @@
   height: 20rpx;
 }
 .rotate image{
-  transform: rotate(-90deg);
+  transform: rotate(90deg);
   transform-origin: center;
 }
 /* 物流信息详情 */
