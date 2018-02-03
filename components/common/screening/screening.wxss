@@ -53,7 +53,7 @@
 }
 
 .screening-nav .arrow::before {
-  top: 5rpx;
+  top: 2rpx;
   border-bottom-color: #999;
 }
 
@@ -62,7 +62,7 @@
 }
 
 .screening-nav .arrow::after {
-  bottom: 5rpx;
+  bottom: 2rpx;
   border-top-color: #999;
 }
 

@@ -30,7 +30,7 @@ Page({
       endTime: app.time.formatSubtractTime(0),
     },
     defaultTime: {
-      // start: app.time.formatSubtractTime(1, 'years'),
+      start: app.time.formatSubtractTime(10, 'years'),
       end: app.time.formatSubtractTime(0),
     }
   },
