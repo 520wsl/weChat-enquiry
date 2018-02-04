@@ -144,6 +144,7 @@
 }
 .lists .express-detail .time-point .text {
   margin-left: 22rpx;
+  margin-right: 30rpx;
 }
 /* 隐藏显示控制 */
 .lists .commodity .cell .right .hid {
