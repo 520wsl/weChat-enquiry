@@ -10,8 +10,7 @@ Page({
     show: 0,
     params: {
       amountOnSale: '1000',
-      color: '红色',
-      freightTemplate: '10',
+      freightTemplate: '1',
       images: [
         'img/ibank/2017/568/558/4255855865_1192362946.jpg',
         'img/ibank/2017/568/558/4255855865_1192362946.jpg',
@@ -22,26 +21,44 @@ Page({
       list: [
         {
           attributeName: '货号',
-          value: 'ppr'
+          attributeValue: 'ppr'
         },
         {
           attributeName: '材质',
-          value: '橡胶'
+          attributeValue: '橡胶'
         },
         {
           attributeName: '品牌',
-          value: 'ZUK'
+          attributeValue: 'ZUK'
         },
         {
           attributeName: '颜色',
-          value: '家装、工程迈捷国标管(白色）,亚皇绿色抗菌管,亚皇高端家装管'
+          attributeValue: '家装、工程迈捷国标管(白色）,亚皇绿色抗菌管,亚皇高端家装管'
+        }
+      ],
+      skuList: [
+        {
+          attributeName: '货号',
+          attributeValue: 'ppr'
+        },
+        {
+          attributeName: '材质',
+          attributeValue: '橡胶'
+        },
+        {
+          attributeName: '品牌',
+          attributeValue: 'ZUK'
+        },
+        {
+          attributeName: '颜色',
+          attributeValue: '家装、工程迈捷国标管(白色）,亚皇绿色抗菌管,亚皇高端家装管'
         }
       ],
       maxPrice: 145.84,
       minPrice: 45.23,
       minOrderQuantity: 100,
-      sendGoodsAddress: '河南',
-      sendGoodsCity: '郑州',
+      provinceName: '河南',
+      cityName: '郑州',
       skuInfos: '管；20*2.3冷水管；25*2.3冷水管；20*2.3',
       subject: 'ppr冷热水管厂家 ppr管材 排水管 自来水管 多种规格pp-r给水管',
       unit: '米'
@@ -54,7 +71,7 @@ Page({
   },
   productList(productId) {
     app
-      .get('/product/detail', { productId: productId })
+      .get('/product/detail', { productId: '536497772462' })
       .then(e => {
         console.log(e.data);
         if (e.status == 200) {
@@ -88,7 +105,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    this.productList(536498208299);
+    this.productList();
   },
 
   /**
