@@ -1,9 +1,77 @@
 <!--pages/home/erp/myGoods/myGoods.wxml-->
 <!-- 我的商品 -->
+<template name="noData">
+    <view class="no-data">
+        <image src="{{CDN}}/record_no.png" class="img" />
+        <text class="txt">抱歉!没有找到符合条件的记录</text>
+    </view>
+</template>
 
+<template name="item-pro">
+    <navigator url='/pages/home/erp/goodsInfo/goodsInfo?productId={{productId}}' class='item-pro hr'>
+        <view class='pic'>
+            <image mode='aspectFit' src="{{CDN}}/icon-pro.png"></image>
+        </view>
+        <view class='info'>
+            <view class='title txt-more-multiple'>{{productName}}</view>
+            <view class='mony'>
+                <text class='num' wx:if="{{minPrice > 0 }}">￥{{minPrice}} -</text>
+                <text class='num'>￥{{maxPrice}}</text>
+                <text class='txt'>/{{unit}}</text>
+            </view>
+        </view>
+    </navigator>
+</template>
 
+<template name="item-order-pro">
+    <view class='pro'>
+        <view class='pic'>
+            <image mode='aspectFit' src="{{CDN}}/icon-pro.png"></image>
+        </view>
+        <view class='info'>
+            <view class='pro-title'>
+                <view class='name txt-more-multiple'>ppr冷热水管厂家 ppr管材 排水管 自来水管 多种规格pp-r给水管ppr冷热水管厂家 ppr管材 排水管 自来水管 多种规格pp-r给水管ppr冷热水管厂家 ppr管材 排水管 自来水管 多种规格pp-r给水管ppr冷热水管厂家 ppr管材 排水管 自来水管 多种规格pp-r给水管ppr冷热水管厂家 ppr管材 排水管 自来水管 多种规格pp-r给水管ppr冷热水管厂家 ppr管材 排水管 自来水管 多种规格pp-r给水管ppr冷热水管厂家 ppr管材 排水管
+                    自来水管 多种规格pp-r给水管ppr冷热水管厂家 ppr管材 排水管 自来水管 多种规格pp-r给水管ppr冷热水管厂家 ppr管材 排水管 自来水管 多种规格pp-r给水管ppr冷热水管厂家 ppr管材 排水管 自来水管 多种规格pp-r给水管ppr冷热水管厂家 ppr管材 排水管 自来水管 多种规格pp-r给水管ppr冷热水管厂家 ppr管材 排水管 自来水管 多种规格pp-r给水管ppr冷热水管厂家 ppr管材 排水管 自来水管 多种规格pp-r给水管ppr冷热水管厂家
+                    ppr管材 排水管 自来水管 多种规格pp-r给水管ppr冷热水管厂家 ppr管材 排水管 自来水管 多种规格pp-r给水管ppr冷热水管厂家 ppr管材 排水管 自来水管 多种规格pp-r给水管ppr冷热水管厂家 ppr管材 排水管 自来水管 多种规格pp-r给水管ppr冷热水管厂家 ppr管材 排水管 自来水管 多种规格pp-r给水管ppr冷热水管厂家 ppr管材 排水管 自来水管 多种规格pp-r给水管ppr冷热水管厂家 ppr管材 排水管 自来水管
+                    多种规格pp-r给水管
+                </view>
+                <view class='spec txt-more-multiple'>国产料（迈捷）20*2.0 ppr冷热水管厂家 ppr管材 排水管 自来水管 多种规格pp-r给水管ppr冷热水管厂家 ppr管材 排水管 自来水管 多种规格pp-r给水管ppr冷热水管厂家 ppr管材 排水管 自来水管 多种规格pp-r给水管ppr冷热水管厂家 ppr管材 排水管 自来水管 多种规格pp-r给水管ppr冷热水管厂家 ppr管材 排水管 自来水管 多种规格pp-r给水管ppr冷热水管厂家 ppr管材 排水管 自来水管 多种规格pp-r给水管ppr冷热水管厂家
+                    ppr管材 排水管 自来水管 多种规格pp-r给水管ppr冷热水管厂家 ppr管材 排水管 自来水管 多种规格pp-r给水管ppr冷热水管厂家 ppr管材 排水管 自来水管 多种规格pp-r给水管ppr冷热水管厂家 ppr管材 排水管 自来水管 多种规格pp-r给水管ppr冷热水管厂家 ppr管材 排水管 自来水管 多种规格pp-r给水管ppr冷热水管厂家 ppr管材 排水管 自来水管 多种规格pp-r给水管ppr冷热水管厂家 ppr管材 排水管 自来水管
+                    多种规格pp-r给水管ppr冷热水管厂家 ppr管材 排水管 自来水管 多种规格pp-r给水管ppr冷热水管厂家 ppr管材 排水管 自来水管 多种规格pp-r给水管ppr冷热水管厂家 ppr管材 排水管 自来水管 多种规格pp-r给水管ppr冷热水管厂家 ppr管材 排水管 自来水管 多种规格pp-r给水管ppr冷热水管厂家 ppr管材 排水管 自来水管 多种规格pp-r给水管ppr冷热水管厂家 ppr管材 排水管 自来水管 多种规格pp-r给水管ppr冷热水管厂家
+                    ppr管材 排水管 自来水管 多种规格pp-r给水管</view>
+            </view>
+            <view class='price'>
+                <view class='new'>¥1.34</view>
+                <view class='old'>¥1.80</view>
+                <view class='num'>x400</view>
+            </view>
+        </view>
+    </view>
+</template>
 
+<template name="item-order">
+    <view class='item-order'>
+        <view class='title'>
+            <view class='custome txt-more'>ppr冷热水管厂家 ppr管材 排水管 自来水管 多种规格pp-r给水管ppr冷热水管厂家 ppr管材 排水管 自来水管 多种规格pp-r给水管ppr冷热水管厂家 ppr管材 排水管 自来水管 多种规格pp-r给水管ppr冷热水管厂家 ppr管材 排水管 自来水管 多种规格pp-r给水管ppr冷热水管厂家 ppr管材 排水管 自来水管 多种规格pp-r给水管ppr冷热水管厂家 ppr管材 排水管 自来水管 多种规格pp-r给水管ppr冷热水管厂家 ppr管材 排水管 自来水管
+                多种规格pp-r给水管ppr冷热水管厂家 ppr管材 排水管 自来水管 多种规格pp-r给水管ppr冷热水管厂家 ppr管材 排水管 自来水管 多种规格pp-r给水管ppr冷热水管厂家 ppr管材 排水管 自来水管 多种规格pp-r给水管ppr冷热水管厂家 ppr管材 排水管 自来水管 多种规格pp-r给水管ppr冷热水管厂家 ppr管材 排水管 自来水管 多种规格pp-r给水管ppr冷热水管厂家 ppr管材 排水管 自来水管 多种规格pp-r给水管ppr冷热水管厂家
+                ppr管材 排水管 自来水管 多种规格pp-r给水管ppr冷热水管厂家 ppr管材 排水管 自来水管 多种规格pp-r给水管ppr冷热水管厂家 ppr管材 排水管 自来水管 多种规格pp-r给水管ppr冷热水管厂家 ppr管材 排水管 自来水管 多种规格pp-r给水管ppr冷热水管厂家 ppr管材 排水管 自来水管 多种规格pp-r给水管ppr冷热水管厂家 ppr管材 排水管 自来水管 多种规格pp-r给水管ppr冷热水管厂家 ppr管材 排水管 自来水管 多种规格pp-r给水管</view>
+            <view class='type txt-more'>ppr冷热水管厂家 ppr管材 排水管 自来水管 多种规格pp-r给水管ppr冷热水管厂家 ppr管材 排水管 自来水管 多种规格pp-r给水管ppr冷热水管厂家 ppr管材 排水管 自来水管 多种规格pp-r给水管ppr冷热水管厂家 ppr管材 排水管 自来水管 多种规格pp-r给水管ppr冷热水管厂家 ppr管材 排水管 自来水管 多种规格pp-r给水管ppr冷热水管厂家 ppr管材 排水管 自来水管 多种规格pp-r给水管ppr冷热水管厂家 ppr管材 排水管 自来水管
+                多种规格pp-r给水管ppr冷热水管厂家 ppr管材 排水管 自来水管 多种规格pp-r给水管ppr冷热水管厂家 ppr管材 排水管 自来水管 多种规格pp-r给水管ppr冷热水管厂家 ppr管材 排水管 自来水管 多种规格pp-r给水管ppr冷热水管厂家 ppr管材 排水管 自来水管 多种规格pp-r给水管ppr冷热水管厂家 ppr管材 排水管 自来水管 多种规格pp-r给水管ppr冷热水管厂家 ppr管材 排水管 自来水管 多种规格pp-r给水管ppr冷热水管厂家
+                ppr管材 排水管 自来水管 多种规格pp-r给水管ppr冷热水管厂家 ppr管材 排水管 自来水管 多种规格pp-r给水管ppr冷热水管厂家 ppr管材 排水管 自来水管 多种规格pp-r给水管ppr冷热水管厂家 ppr管材 排水管 自来水管 多种规格pp-r给水管ppr冷热水管厂家 ppr管材 排水管 自来水管 多种规格pp-r给水管ppr冷热水管厂家 ppr管材 排水管 自来水管 多种规格pp-r给水管ppr冷热水管厂家 ppr管材 排水管 自来水管 多种规格pp-r给水管</view>
+        </view>
 
+        <template is="item-order-pro" data="{{CDN}}" />
+        <template is="item-order-pro" data="{{CDN}}" />
+        <template is="item-order-pro" data="{{CDN}}" />
+        <template is="item-order-pro" data="{{CDN}}" />
+
+        <view class='total'>
+            <text class='num'>1种货品</text>
+            <text class='freight'>总金额：(含运费470.00)</text>
+            <text class='mony'>￥536.00</text>
+        </view>
+    </view>
+</template>
 <view class='nav'>
     <view bindtap='setPageType' data-pageType="1" class='flex1 col active1{{pageType}}'>
         <view class='bor-right'>我的商品</view>
@@ -13,75 +81,18 @@
     </view>
 </view>
 
-<view class='item-pro hr'>
-    <view class='pic'>
-        <image mode='aspectFit' src="{{CDN}}/icon-pro.png"></image>
+<view>
+    <view hidden="{{pageType == 2}}">
+        <view wx:if="{{list.length > 0}}">
+            <template wx:for="{{list}}" wx:key="{{item.productId}}" is="item-pro" data="{{...item,CDN}}" />
+        </view>
+        <template wx:else is="noData" data="{{CDN}}" />
     </view>
-    <view class='info'>
-        <view class='title'>专业供应多种规格 迈捷国标ppr 25*20 异径直接 PPR管件直接</view>
-        <view class='mony'>
-            <text class='num'>￥3.50</text>
-            <text class='txt'>/个</text>
+    <view hidden="{{pageType == 1}}">
+        <view wx:if="{{list.length > 0}}">
+            <template is="item-order" data="{{CDN}}" />
+            <template is="item-order" data="{{CDN}}" />
         </view>
-    </view>
-</view>
-
-<view class='item-order'>
-    <view class='title'>
-        <view class='custome'>深圳惠而佳贸易有限公司</view>
-        <view class='type'>退款退货中(待发货)</view>
-    </view>
-    <view class='pro'>
-        <view class='pic'>
-            <image mode='aspectFit' src="{{CDN}}/icon-pro.png"></image>
-        </view>
-        <view class='info'>
-            <view class='pro-title'>
-                <view class='name'>ppr冷热水管厂家 ppr管材 排水管 自来水管 多种规格pp-r给水管</view>
-                <view class=''>国产料（迈捷）20*2.0 </view>
-            </view>
-            <view class='price'>
-                <view class='new'>¥1.34</view>
-                <view class='old'>¥1.80</view>
-                <view class='num'>x400</view>
-            </view>
-        </view>
-    </view>
-    <view class='pro'>
-        <view class='pic'>
-            <image mode='aspectFit' src="{{CDN}}/icon-pro.png"></image>
-        </view>
-        <view class='info'>
-            <view class='pro-title'>
-                <view class='name'>ppr冷热水管厂家 ppr管材 排水管 自来水管 多种规格pp-r给水管</view>
-                <view class=''>国产料（迈捷）20*2.0 </view>
-            </view>
-            <view class='price'>
-                <view class='new'>¥1.34</view>
-                <view class='old'>¥1.80</view>
-                <view class='num'>x400</view>
-            </view>
-        </view>
-    </view>
-    <view class='pro'>
-        <view class='pic'>
-            <image mode='aspectFit' src="{{CDN}}/icon-pro.png"></image>
-        </view>
-        <view class='info'>
-            <view class='pro-title'>
-                <view class='name'>ppr冷热水管厂家 ppr管材 排水管 自来水管 多种规格pp-r给水管</view>
-                <view class=''>国产料（迈捷）20*2.0 </view>
-            </view>
-            <view class='price'>
-                <view class='new'>¥1.34</view>
-                <view class='old'>¥1.80</view>
-                <view class='num'>x400</view>
-            </view>
-        </view>
-    </view>
-    <view class='total'>
-        <text class='num'>1种货品</text>
-        <text class='freight'>总金额：(含运费470.00)</text>
-        <text class='mony'>￥536.00</text>
+        <template wx:else is="noData" data="{{CDN}}" />
     </view>
 </view>

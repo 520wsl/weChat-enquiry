@@ -15,6 +15,11 @@ Page({
     },
     winKing: []
   },
+  setTitle(reportName) {
+      wx.setNavigationBarTitle({
+          title: reportName + '标王记录'
+      })
+  },
   getlistwinKing() {
     if (wx.showLoading) {
       wx.showLoading({ title: '加载中...' });
@@ -57,11 +62,13 @@ Page({
    */
   onLoad: function(options) {
     this.getlistwinKing();
+    this.setTitle(this.data.time)
   },
   timeChange(e) {
     this.setData({
       time: e.detail.value
     });
+    this.setTitle(e.detail.value)
     this.getlistwinKing();
   },
 

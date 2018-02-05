@@ -82,6 +82,7 @@
     background-color: #fff;
     width: 108rpx;
     height: 42rpx;
+    overflow: hidden;
     text-align: center;
     line-height: 42rpx;
     border-radius: 54rpx;
@@ -124,4 +125,11 @@
     width: 160rpx;
     height: 160rpx;
     margin-right: 30rpx;
+}
+
+.map-txt{
+    overflow: hidden;
+    line-height: 42rpx;
+    height: 42rpx;
+    flex: 1;
 }
