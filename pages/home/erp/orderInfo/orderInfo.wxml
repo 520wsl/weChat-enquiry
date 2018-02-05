@@ -9,7 +9,7 @@
   <!-- 个人信息 -->
   <view class="person-mess">
     <!-- 物流 -->
-    <navigator class="logistics" url="/pages/home/erp/logisticsInfo/logisticsInfo">
+    <navigator class="logistics" url="/pages/home/erp/logisticsInfo/logisticsInfo?orderId=119222944159925684">
       <view class="icon">
         <image class="img" src="{{CDN}}icon_logistics.png"></image>
       </view>
@@ -41,7 +41,7 @@
     <view class="title">polarsun</view>
     <view class="list">
       <block wx:for="{{info.productItems}}" wx:key="{{index}}">
-        <navigator class="item" url="/pages/home/erp/goodsInfo/goodsInfo">
+        <navigator class="item" url="/pages/home/erp/goodsInfo/goodsInfo?productId=536497772462">
           <view class="img">
             <image src="{{item.productImgUrl || CDN+'icon-pro.png'}}"></image>
           </view>

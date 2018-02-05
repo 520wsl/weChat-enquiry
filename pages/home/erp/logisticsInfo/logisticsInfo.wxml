@@ -8,9 +8,9 @@
 
 <view class="lists">
 
-  <view class="list" wx:for="{{params}}" wx:key="{{index}}">
+  <view class="list" wx:for="{{params}}" wx:for-index="showIndex" wx:key="{{index}}">
     <view class="caption">
-      运单{{index+1}}
+      运单{{showIndex+1}}
     </view>
     <view class="content">
       <view class="express-info">
@@ -35,7 +35,7 @@
       </view>
       <view class="commodity">
         <block wx:for="{{item.aliProductVos}}" wx:key="{{index}}">
-          <view class="cell {{ index< goodsList  ? '' : 'hid'}}">
+          <view class="cell {{ index< (goodsList[showIndex]||2)  ? '' : 'hid'}}">
             <view class="left">
               <image mode="aspectFit" wx:if="{{item.productImage}}" src="{{item.productImage}}" />
               <image mode="aspectFit" wx:else src="{{CDN}}icon-pro.png" />
@@ -62,7 +62,7 @@
             </view>
           </view>
         </block>
-        <view class="show" data-goodsList="{{index}}" bindtap='showALL' wx:if="{{goodsList!=999999}}">
+        <view class="show" data-goodsList="{{showIndex}}" bindtap='showALL' wx:if="{{goodsList[showIndex]!=999999}}">
           其他{{item.aliProductVos.length-2}}个货品
           <image mode="aspectFit" src="{{CDN}}icon_right.png" />
         </view>
