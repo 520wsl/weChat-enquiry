@@ -14,11 +14,13 @@
                     <view class='pic map-pic'>
                         <image mode='aspectFit' src='{{CDN}}localize.png'></image>
                     </view>
-                    <text class="map-area">{{item.area}}</text>
+                    <view class='map-txt'>
+                        <text class='txt-more'>{{item.area}}</text>
+                    </view>
                 </view>
                 <view class='nav-btn'>
                     <view class='btn btn{{item.saleStatus}}'>
-                      <text>{{saleStatusName[item.saleStatus]}}</text> 
+                        <text>{{saleStatusName[item.saleStatus]}}</text>
                     </view>
                     <view class='pic arrow'>
                         <image mode='aspectFit' src='{{CDN}}icon_right.png'></image>

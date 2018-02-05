@@ -26,7 +26,7 @@ Page({
     CDN: app.CDN,
     // banner
     imgUrls: [
-      app.CDN + 'banner-1.png?id=20180120'
+      app.CDN + 'banner-1.png?id=20180203'
     ],
     indicatorDots: false,      //是否显示面板指示点
 
