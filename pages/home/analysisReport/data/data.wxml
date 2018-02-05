@@ -2,7 +2,7 @@
 
 <template name="titles">
     <view class='row title'>
-        <view class='col txt-width'>{{titles[0]}}</view>
+        <view class='col flex1'>{{titles[0]}}</view>
         <view class='col flex1'>{{titles[1]}}</view>
         <view class='col flex1'>{{titles[2]}}</view>
         <view class='col flex1'>{{titles[3]}}</view>
@@ -11,7 +11,7 @@
 
 <template name="area">
     <view class='row'>
-        <view class='col txt-width txt-more'>{{name}}</view>
+        <view class='col flex1'>{{name}}</view>
         <view class='col flex1'>{{enquiryCount}}</view>
         <view class='col flex1'>{{amount}}</view>
         <view class='col flex1'>{{percent}}%</view>
@@ -20,7 +20,7 @@
 
 <template name="product">
     <view class='row'>
-        <view class='col txt-width txt-more'>{{name}}</view>
+        <view class='col flex1'>{{name}}</view>
         <view class='col flex1'>{{enquiryCount}}</view>
         <view class='col flex1'>{{companyPrice}}</view>
         <view class='col flex1'>{{tradePrice}}</view>
