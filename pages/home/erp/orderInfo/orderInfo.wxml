@@ -9,11 +9,7 @@
   <!-- 个人信息 -->
   <view class="person-mess">
     <!-- 物流 -->
-<<<<<<< HEAD
     <navigator wx:if="{{info.logisticsStepVo}}" class="logistics" url="/pages/home/erp/logisticsInfo/logisticsInfo?orderId={{params.orderId}}">
-=======
-    <navigator class="logistics" url="/pages/home/erp/logisticsInfo/logisticsInfo?orderId=119222944159925684">
->>>>>>> origin/master
       <view class="icon">
         <image class="img" src="{{CDN}}icon_logistics.png"></image>
       </view>
@@ -45,11 +41,7 @@
     <view class="title">{{info.buyerLoginId}}</view>
     <view class="list">
       <block wx:for="{{info.productItems}}" wx:key="{{index}}">
-<<<<<<< HEAD
         <navigator class="item" url="/pages/home/erp/goodsInfo/goodsInfo?productId={{item.productID}}">
-=======
-        <navigator class="item" url="/pages/home/erp/goodsInfo/goodsInfo?productId=536497772462">
->>>>>>> origin/master
           <view class="img">
             <image src="{{item.productImgUrl || CDN+'icon-pro.png'}}"></image>
           </view>
