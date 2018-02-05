@@ -48,7 +48,7 @@
           <view class="txt">
             <view class="txt-name">
               <view class="left">{{item.name}}</view>
-              <view class="right">￥{{item.price}}</view>
+              <view class="right">￥{{item.itemAmount}}</view>
             </view>
             <view class="txt-attr">
               <view class="left txt-more">{{item.skuInfos}}</view>
