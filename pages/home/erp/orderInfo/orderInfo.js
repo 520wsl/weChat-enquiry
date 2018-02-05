@@ -90,5 +90,17 @@ Page({
     this.setData({
       info: null
     })
+  },
+
+  goLogistics(){
+    wx.navigateTo({
+      url: "/pages/home/erp/logisticsInfo/logisticsInfo?orderId=" + this.data.params.orderId
+    });
+  },
+  goGoodsInfo(e){
+    let product = e.currentTarget.dataset.product;
+    wx.navigateTo({
+        url: "/pages/home/erp/goodsInfo/goodsInfo?productId=" + product
+    });
   }
 })

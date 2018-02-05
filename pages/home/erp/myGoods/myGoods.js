@@ -6,14 +6,18 @@ Page({
      * 页面的初始数据
      */
     data: {
+        ALI: app.ALI,
         CDN: app.CDN,
         pageType: 1,
         list: [],
         params: {
             pageNum: 1,
-            pageSize: 10,
+            page: 1,
+            pageSize: 8,
             count: 0
-        }
+        },
+        count: 0,
+        isClear: false,
     },
     // 设置选项卡值
     setPageType(e) {
@@ -21,15 +25,30 @@ Page({
         this.setData({
             pageType: pageType
         })
-    },
-    // 获取商品列表数据
-    getList() {
-        if (wx.showLoading) {
-            wx.showLoading({ title: '加载中...' });
+
+        let title = '';
+        
+        this.data.params.pageNum = 1;
+        this.data.params.page = 1;
+        if (pageType == 1) {
+            this.init(this.getList);
+            title = '我的商品';
+        } else if (pageType == 2) {
+            // 订单列表
+            this.init(this.getOrder);
+            title = '我的订单';
         }
+        wx.setNavigationBarTitle({
+            title: title
+        })
+    },
+    getOrder(cb) {
         app
-            .get('/product/list', this.data.params)
+            .get('/aliorder/list', this.data.params)
             .then(res => {
+                if (typeof cb == 'function') {
+                    cb();
+                }
                 if (res.status == 401) {
                     wx.showModal({
                         title: '提示',
@@ -44,35 +63,81 @@ Page({
                             }
                         }
                     });
-                    if (wx.hideLoading) {
-                        wx.hideLoading();
-                    }
                     return;
                 }
                 if (res.status !== 200) {
                     app.utils.showModel('获取商品列表数据', res.msg);
-                    if (wx.hideLoading) {
-                        wx.hideLoading();
-                    }
                     return;
                 }
-                this.setData({
-                    'list': res.data.productList
-                })
-
-                if (wx.hideLoading) {
-                    wx.hideLoading();
+                this.data.count = res.data.totalRecord;
+                if (!this.data.isClear) {
+                    this.data.list = [];
                 }
+                this.data.isClear = false;
+                this.data.list.push(...res.data.result);
+                this.setData({
+                    'list': this.data.list
+                })
             })
             .catch(res => {
                 console.log('获取商品列表数据', res)
+                if (typeof cb == 'function') {
+                    cb();
+                }
+            })
+    },
+    // 获取商品列表数据
+    getList(cb) {
+        app
+            .get('/product/list', this.data.params)
+            .then(res => {
+                if (typeof cb == 'function') {
+                    cb();
+                }
+                if (res.status == 401) {
+                    wx.showModal({
+                        title: '提示',
+                        content: '登录超时或未登录，请重新登录',
+                        success: res => {
+                            if (res.confirm) {
+                                app.reset();
+                                wx.switchTab({
+                                    url: '/pages/personal/personal'
+                                });
+                                return;
+                            }
+                        }
+                    });
+                    return;
+                }
+                if (res.status !== 200) {
+                    app.utils.showModel('获取商品列表数据', res.msg);
+                    return;
+                }
+                this.data.count = res.data.count;
+                if (!this.data.isClear) {
+                    this.data.list = [];
+                }
+                this.data.isClear = false;
+                this.data.list.push(...res.data.productList);
+                this.setData({
+                    'list': this.data.list
+                })
+            })
+            .catch(res => {
+                console.log('获取商品列表数据', res)
+                if (typeof cb == 'function') {
+                    cb();
+                }
             })
     },
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-
+        this.data.params.pageNum = 1;
+        this.data.params.page = 1;
+        this.init(this.getList);
     },
 
     /**
@@ -86,7 +151,7 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow: function () {
-        this.getList();
+        // this.getList();
     },
 
     /**
@@ -107,14 +172,36 @@ Page({
      * 页面相关事件处理函数--监听用户下拉动作
      */
     onPullDownRefresh: function () {
-
+        this.data.params.pageNum = 1;
+        this.data.params.page = 1;
+        let pageType = this.data.pageType;
+        if (pageType == 1) {
+            this.getList(() => {
+                wx.stopPullDownRefresh();
+            });
+        } else if (pageType == 2) {
+            this.getOrder(() => {
+                wx.stopPullDownRefresh
+            });
+        }
     },
 
     /**
      * 页面上拉触底事件的处理函数
      */
     onReachBottom: function () {
+        if (this.data.list.length < this.data.count) {
+            this.data.params.pageNum++;
+            this.data.params.page++;
+            this.data.isClear = true;
 
+            let pageType = this.data.pageType;
+            if (pageType == 1) {
+                this.getList();
+            } else if (pageType == 2) {
+                this.getOrder();
+            }
+        }
     },
 
     /**
@@ -122,5 +209,16 @@ Page({
      */
     onShareAppMessage: function () {
 
+    },
+
+    init(callback){
+        if (wx.showLoading) {
+            wx.showLoading({ title: '加载中...' });
+        }
+        callback(() => {
+            if (wx.hideLoading) {
+                wx.hideLoading();
+            }
+        });
     }
 })
