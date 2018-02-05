@@ -1,5 +1,5 @@
 /* components/itemEnquiry/itemEnquiry.wxss */
-
+.content{word-break:break-all;}
 /* 副标题 1 */
 
 .second-title {

@@ -45,6 +45,14 @@
     overflow: hidden;
     display: flex;
 }
+.title .name{
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  word-break:break-all;
+  width:330rpx;
+}
 .title-time{
   font-size: 22rpx;
   color: #666666;
@@ -110,6 +118,13 @@
     width: 20rpx;
     height: 40rpx;
     margin-right: 15rpx;
+}
+.map-area{
+  width:330rpx;
+  word-break: break-all;
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
 }
 .mony{
     font-size: 32rpx;

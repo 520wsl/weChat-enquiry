@@ -6,7 +6,7 @@
         </view>
         <view class='info'>
             <view class='title'>
-                <text>{{item.productName}}</text>
+                <text class="name">{{item.productName}}</text>
                 <text class="title-time">{{item.createTime}}</text>
             </view>
             <view class='nav'>
@@ -14,7 +14,7 @@
                     <view class='pic map-pic'>
                         <image mode='aspectFit' src='{{CDN}}localize.png'></image>
                     </view>
-                    <text>{{item.area}}</text>
+                    <text class="map-area">{{item.area}}</text>
                 </view>
                 <view class='nav-btn'>
                     <view class='btn btn{{item.saleStatus}}'>

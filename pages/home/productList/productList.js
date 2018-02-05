@@ -13,7 +13,8 @@ Page({
       num: 10,//	显示数量	number	10
       period: 'week',//	统计周期	string	近一周:week 近一月:month
       rankType: 'hot',//	排行类型	string	热门榜: hot 最新榜: latest 上升榜: rise
-      time: new Date().getTime()//	时间戳	number	1515205535851
+      time: new Date().getTime(),//	时间戳	number	1515205535851
+      pageNum: 1,
     },
 
     list: [],
@@ -37,6 +38,8 @@ Page({
 
     // 是否固定
     isFixed: false,
+    count: 0,
+    isClear: false,
   },
 
   /**
@@ -66,10 +69,23 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
+    this.data.params.pageNum = 1;
     this.getList(() => {
       // 关闭刷新
       wx.stopPullDownRefresh();
     });
+  },
+
+  /**
+   * 页面上拉触底事件的处理函数
+   */
+  onReachBottom: function () {
+    // console.log('触底')
+    if (this.data.list.length < this.data.count) {
+      this.data.params.pageNum++;
+      this.data.isClear = true;
+      this.getList();
+    }
   },
 
   // 页面滚动
@@ -152,7 +168,8 @@ Page({
         return;
       }
 
-      let data = res.data;
+      let data = res.data.list;
+      this.data.count = res.data.count;
       if (data && data.length > 0) {
         // 图片+头
         data.forEach((item, index) => {
@@ -160,8 +177,14 @@ Page({
           item.imgUrl = 'http:' + item.imgUrl;
         })
 
+        if (!this.data.isClear) {
+          this.data.list = [];
+        }
+        this.data.isClear = false;
+        this.data.list.push(...data);
+
         this.setData({
-          list: data
+          list: this.data.list
         });
         return;
       }
@@ -193,9 +216,14 @@ Page({
     if (wx.showLoading) {
       wx.showLoading({ title: '加载中...' });
     }
+    this.data.params.pageNum = 1;
     this.getList(() => {
       if (wx.hideLoading) {
         wx.hideLoading();
+        wx.pageScrollTo({
+          scrollTop: 0,
+          duration: 0
+        })
       }
     });
   },
@@ -208,9 +236,14 @@ Page({
     if (wx.showLoading) {
       wx.showLoading({ title: '加载中...' });
     }
+    this.data.params.pageNum = 1;
     this.getList(() => {
       if (wx.hideLoading) {
         wx.hideLoading();
+        wx.pageScrollTo({
+          scrollTop: 0,
+          duration: 0
+        })
       }
     });
   },

@@ -1432,7 +1432,7 @@ function drawYAxis(series, opts, config, context) {
     if (opts._scrollDistance_ < 0) {
         context.fillRect(0, 0, startX, endY + config.xAxisHeight + 5);
     }
-    context.fillRect(endX, 0, opts.width, endY + config.xAxisHeight + 5);
+    // context.fillRect(endX, 0, opts.width, endY + config.xAxisHeight + 5);
 
     var points = [];
     for (var i = 0; i <= config.yAxisSplit; i++) {
