@@ -398,8 +398,8 @@ Page({
         this.getTimes();
         this.getArea1();
         this.getArea2();
-        // this.product1();
-        // this.product2();
+        this.product1();
+        this.product2();
     },
 
     /**

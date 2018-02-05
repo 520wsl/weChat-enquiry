@@ -7,7 +7,13 @@ Page({
      */
     data: {
         CDN: app.CDN,
-        pageType: 1
+        pageType: 1,
+        list: [],
+        params: {
+            pageNum: 1,
+            pageSize: 10,
+            count: 0
+        }
     },
     // 设置选项卡值
     setPageType(e) {
@@ -15,17 +21,52 @@ Page({
         this.setData({
             pageType: pageType
         })
-        // if (pageType == 2 && (this.data.product1.tabList.length <= 0 || this.data.product2.tabList.length <= 0)) {
-        //     this.product1();
-        //     this.product2();
-        // }
-        // if (pageType == 1 && (this.data.area1.tabList.length <= 0 || this.data.area1.tabList.length <= 0)) {
-        //     this.getArea1();
-        //     this.getArea2();
-        // }
-        // if (this.data.times.length <= 0) {
-        //     this.getTimes();
-        // }
+    },
+    // 获取商品列表数据
+    getList() {
+        if (wx.showLoading) {
+            wx.showLoading({ title: '加载中...' });
+        }
+        app
+            .get('/product/list', this.data.params)
+            .then(res => {
+                if (res.status == 401) {
+                    wx.showModal({
+                        title: '提示',
+                        content: '登录超时或未登录，请重新登录',
+                        success: res => {
+                            if (res.confirm) {
+                                app.reset();
+                                wx.switchTab({
+                                    url: '/pages/personal/personal'
+                                });
+                                return;
+                            }
+                        }
+                    });
+                    if (wx.hideLoading) {
+                        wx.hideLoading();
+                    }
+                    return;
+                }
+                if (res.status !== 200) {
+                    app.utils.showModel('获取商品列表数据', res.msg);
+                    if (wx.hideLoading) {
+                        wx.hideLoading();
+                    }
+                    return;
+                }
+                this.setData({
+                    'list': res.data.productList
+                })
+
+                if (wx.hideLoading) {
+                    wx.hideLoading();
+                }
+            })
+            .catch(res => {
+                console.log('获取商品列表数据', res)
+            })
     },
     /**
      * 生命周期函数--监听页面加载
@@ -45,7 +86,7 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow: function () {
-
+        this.getList();
     },
 
     /**
