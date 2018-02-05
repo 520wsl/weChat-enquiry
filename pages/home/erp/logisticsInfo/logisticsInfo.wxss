@@ -63,6 +63,7 @@
 }
 .lists .commodity .cell .head {
   font-size: 28rpx;
+  margin-right: 30rpx;
   color: #333333;
 }
 .lists .commodity .cell .body {

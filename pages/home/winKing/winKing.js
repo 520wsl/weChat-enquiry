@@ -21,6 +21,9 @@ Page({
       })
   },
   getlistwinKing() {
+    wx.setNavigationBarTitle({
+      title: this.data.time+'标王记录'
+    });
     if (wx.showLoading) {
       wx.showLoading({ title: '加载中...' });
     }
