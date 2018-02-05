@@ -158,6 +158,8 @@
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
   overflow: hidden;
+  word-break:break-all;
+  width: 418rpx;
 }
 
 .goods-mess .item .txt .txt-name .right {

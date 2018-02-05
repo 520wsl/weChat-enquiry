@@ -40,49 +40,6 @@ Page({
 
   // 详情
   getInfo(cb) {
-    let data = {
-      allDeliveredTime: "2018-01-27 09:35:50",
-      createTime: "2018-01-27 09:35:50",
-      id: '111111111111111111',
-      payTime: '2018-01-27 09:35:50',
-      payWay: '',
-      payWayStr: '支付宝',
-      productItems: [
-        {
-          itemAmount: 1,
-          name: '产品名称产品名称产品名称产品名称产品名称产品名称产品名称名称产品名称 2行隐藏',
-          price: 1.40,
-          productImgUrl: '',
-          quantity: 5,
-          unit: '个',
-        },
-        {
-          itemAmount: 1,
-          name: '产品名称产品名称产品名称产品名称产品名称产品名称产品名称名称产品名称 2行隐藏',
-          price: 1.40,
-          productImgUrl: '',
-          quantity: 5,
-          unit: '个',
-        }
-      ],
-      qualityAssuranceType: '免费赊账',
-      receiverInfo: [
-        {
-          toArea: '',
-          toFullName: '',
-          toMobile: '',
-          toPhone: '',
-        }
-      ],
-      receivingTime: '2018-01-27 09:35:50',
-      status: '',
-      statusStr: '其他原因'
-    };
-    this.setData({
-      info: data
-    });
-    cb();
-    return;
     app.get('/aliorder/get', this.data.params).then((res) => {
       console.log(res);
       if (typeof cb == 'function') {

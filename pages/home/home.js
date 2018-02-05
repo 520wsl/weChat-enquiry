@@ -213,18 +213,28 @@ Page({
   },
   // 图表
   getEcharts() {
-    this.data.customerarea = this.data.customerarea.slice(0, 5);
-    if (this.data.customerarea.length == 0) {
+    let cacheData = [...this.data.customerarea];
+    if (cacheData.length == 0) {
       return;
     }
+    cacheData = cacheData.filter((res, index) => {
+      if(index < 5){
+        if (res.sumAllAmount > 0) {
+          return true;
+        }
+      }
+    });
     let windowWidth = this.getWindowWidth();
-    let categories = this.data.customerarea.map(item => {
+    let categories = cacheData.map(item => {
       return item.provinceName;
     });
-    chartData.seriesData = this.data.customerarea.map(item => {
+    chartData.seriesData = cacheData.map(item => {
       return item.sumAllAmount;
     });
-    let subCategories = this.data.customerarea.map(item => {
+    chartData.setColor = cacheData.map(item => {
+      return { start: '#7B73FE', end: '#55ABF6' };
+    });
+    let subCategories = cacheData.map(item => {
       return item.num + '人';
     });
 
@@ -234,8 +244,8 @@ Page({
       animation: true,
       legend: false,
       categories: categories,
-      subCategories: subCategories,
-      subCategoriesColor: 'rgba(0, 0, 0, .3)',
+      // subCategories: subCategories,
+      // subCategoriesColor: 'rgba(0, 0, 0, .3)',
       series: [{
         data: chartData.seriesData,
         format: function (val) {

@@ -71,10 +71,10 @@
 .enquiry .real-setion .navigator {
   border: 1rpx solid #e0e0e0;
   display: flex;
-  height: 133rpx;
+  /* height: 133rpx; */
   /* line-height: 133rpx; */
   align-items: center;
-  padding: 0 54rpx;
+  padding: 44rpx 54rpx;
   box-shadow: 0 4rpx 8rpx 0 rgba(168, 168, 169, 0.31);
   border-radius: 6rpx;
   margin-bottom: 20rpx;
@@ -122,6 +122,8 @@
 .real-setion .left .red {
   font-size: 32rpx;
   color: #cb2b2b;
+  width:200rpx;
+  word-break:break-all;
 }
 
 .real-setion .right {
@@ -133,6 +135,8 @@
 
 .real-setion .right text {
   padding-right: 18rpx;
+  width:90rpx;
+  word-break:break-all;
 }
 
 .real-setion .right .img {
@@ -188,6 +192,8 @@
 .custom-area .list .left .red {
   font-size: 32rpx;
   color: #cb2b2b;
+  width: 255rpx;
+  word-break:break-all;
 }
 
 .custom-area .list .left text {

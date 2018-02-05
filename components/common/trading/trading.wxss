@@ -86,6 +86,7 @@
 }
 
 .trading .section .module .text {
+  word-break:break-all;
 }
 
 .trading .section .module .text .t1 {
