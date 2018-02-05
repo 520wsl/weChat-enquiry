@@ -41,7 +41,7 @@
     <view class="title">{{info.buyerLoginId}}</view>
     <view class="list">
       <block wx:for="{{info.productItems}}" wx:key="{{index}}">
-        <navigator class="item" url="/pages/home/erp/goodsInfo/goodsInfo?productId={{536497772462}}">
+        <navigator class="item" url="/pages/home/erp/goodsInfo/goodsInfo?productId={{item.productID}}">
           <view class="img">
             <image src="{{item.productImgUrl || CDN+'icon-pro.png'}}"></image>
           </view>
@@ -54,7 +54,7 @@
               <view class="left txt-more">{{item.skuInfos}}</view>
               <view class="right">{{item.quantity+item.unit}}</view>
             </view>
-            <view class="btn">退款中</view>
+            <view wx:if="{{item.refundStatus}}" class="btn">退款中</view>
           </view>
         </navigator>
       </block>
