@@ -81,7 +81,7 @@
   margin: -90rpx 24rpx 30rpx;
 }
 .block {
-  height: 142rpx;
+  min-height: 142rpx;
   /* box-shadow: 3px 3px 3px #eeeeee; */
   background: #ffffff;
   margin-bottom: 12rpx;
@@ -99,6 +99,7 @@
 .block .prc {
   flex: 1.5;
   font-size: 32rpx;
+  word-break:break-all;
   color: #CB2B2B;
 }
 .block .num {
