@@ -58,11 +58,11 @@ Component({
    * 组件的方法列表
    */
   methods: {
-    openAction(index) {
+    openAction(index, type) {
       wx.showActionSheet({
         itemList: ['已成交', '跟单中', '已流失', '不限'],
         success: (res) => {
-          this.common(index, res.tapIndex);
+          this.common(index, res.tapIndex, type);
         },
         fail: (res) => {
           console.log(res.errMsg)
@@ -72,18 +72,25 @@ Component({
     clickHandle(e) {
       let index = e.currentTarget.dataset.index;
 
-      if(this.data.data[index].type == 3){
-        this.openAction(index);
+      if (this.data.data[index].type == 3) {
+        this.openAction(index, 3);
         return false;
       }
-      this.common(index);
+      this.common(index, this.data.cindex);
     },
-    common(index, cindex = -1) {
+    common(index, cindex = -1, type = -1) {
+      if (type == 3) {
+        this.setData({
+          cindex: cindex,
+        });
+
+        this.triggerEvent('getScreening', { acIndex: this.data.active, sort: this.data.toggle[this.data.active].isDB, cindex: cindex });
+        return;
+      }
+
       this.data.toggle.forEach((item, i) => {
         if (index == i) {
-          if(cindex == -1){
-            this.data.toggle[i].isDB = !this.data.toggle[i].isDB;
-          }
+          this.data.toggle[i].isDB = !this.data.toggle[i].isDB;
           return;
         }
         this.data.toggle[i].isDB = false;

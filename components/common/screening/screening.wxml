@@ -1,7 +1,7 @@
 <!--components/common/screening/screening.wxml-->
 <view class="screening">
   <view class="screening-header">
-    <view wx:for="{{data}}" wx:key="{{index}}" class="screening-nav {{index == active ? 'ac' : ''}}" data-index="{{index}}" bindtap="clickHandle">
+    <view wx:for="{{data}}" wx:key="{{index}}" class="screening-nav {{(index == active || (item.type == 3 && cindex != -1)) ? 'ac' : ''}}" data-index="{{index}}" bindtap="clickHandle">
       <block wx:if="{{item.type == 3}}">
         <view class="{{toggle[index].isDB ? 'asc name' : 'des name'}}">{{item.children[cindex]}}
           <text class="{{item.classname}}"></text>
