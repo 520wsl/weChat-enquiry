@@ -1,22 +1,14 @@
 <!--pages/enquiry/enquiry.wxml-->
 <view class="enquiry">
-  <!-- banner -->
-  <!-- <view class="banner">
-    <component-roasting height="160rpx" indicatorDots="{{indicatorDots}}" imgUrls="{{imgUrls}}"></component-roasting>
-  </view> -->
   <view class="header">
-      <text class="text">询盘统计分析</text>
-      <component-date-control bindgetTime="getTimeEnquiry" active="{{params.timeType-1}}"/>
-    </view>
-    <component-common-trading data="{{areaData}}" ></component-common-trading>
-  <!-- <view class="buy-type">
-    <view class="left">买家信息</view>
-    <view class="right">{{label}}</view>
-  </view> -->
+    <text class="text">询盘统计分析</text>
+    <component-date-control bindgetTime="getTimeEnquiry" active="{{params.timeType-1}}" />
+  </view>
+  <component-common-trading data="{{areaData}}" type="{{params.countType}}"></component-common-trading>
   <view class="header">
-      <text class="text">询盘记录</text>
-    </view>
-    <component-common-screening/>
+    <text class="text">询盘记录</text>
+  </view>
+  <component-common-screening/>
   <view class='list'>
     <itemEnquiry wx:for="{{list}}" wx:key="{{index}}" item="{{item}}"></itemEnquiry>
   </view>

@@ -1,4 +1,5 @@
 // components/common/trading/trading.js
+const app = getApp();
 Component({
   /**
    * 组件的属性列表
@@ -10,7 +11,7 @@ Component({
     },
     type: {
       type: String,
-      value: ''
+      value: '1'
     }
   },
 
@@ -18,6 +19,12 @@ Component({
    * 组件的初始数据
    */
   data: {
+    CDN: app.CDN,
+    images: {
+      'gmvAmount': app.CDN + 'icon_sure.png',
+      'followAmount': app.CDN + 'icon_flow.png',
+      'lossAmount': app.CDN + 'icon_loss.png',
+    },
     areaData: [
       {
         label: '总金额',
