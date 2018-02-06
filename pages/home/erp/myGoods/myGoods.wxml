@@ -10,7 +10,7 @@
 <template name="item-pro">
     <navigator url='/pages/home/erp/goodsInfo/goodsInfo?productId={{productId}}' class='item-pro hr'>
         <view class='pic'>
-            <image mode='aspectFit' src="{{CDN}}/icon-pro.png"></image>
+            <image mode='aspectFit' src="{{productImage ? ALI+productImage: CDN + 'icon-pro.png'}}"></image>
         </view>
         <view class='info'>
             <view class='title txt-more-multiple'>{{productName}}</view>
@@ -26,51 +26,37 @@
 <template name="item-order-pro">
     <view class='pro'>
         <view class='pic'>
-            <image mode='aspectFit' src="{{CDN}}/icon-pro.png"></image>
+            <image mode='aspectFit' src="{{productImgUrl || CDN + 'icon-pro.png'}}"></image>
         </view>
         <view class='info'>
             <view class='pro-title'>
-                <view class='name txt-more-multiple'>ppr冷热水管厂家 ppr管材 排水管 自来水管 多种规格pp-r给水管ppr冷热水管厂家 ppr管材 排水管 自来水管 多种规格pp-r给水管ppr冷热水管厂家 ppr管材 排水管 自来水管 多种规格pp-r给水管ppr冷热水管厂家 ppr管材 排水管 自来水管 多种规格pp-r给水管ppr冷热水管厂家 ppr管材 排水管 自来水管 多种规格pp-r给水管ppr冷热水管厂家 ppr管材 排水管 自来水管 多种规格pp-r给水管ppr冷热水管厂家 ppr管材 排水管
-                    自来水管 多种规格pp-r给水管ppr冷热水管厂家 ppr管材 排水管 自来水管 多种规格pp-r给水管ppr冷热水管厂家 ppr管材 排水管 自来水管 多种规格pp-r给水管ppr冷热水管厂家 ppr管材 排水管 自来水管 多种规格pp-r给水管ppr冷热水管厂家 ppr管材 排水管 自来水管 多种规格pp-r给水管ppr冷热水管厂家 ppr管材 排水管 自来水管 多种规格pp-r给水管ppr冷热水管厂家 ppr管材 排水管 自来水管 多种规格pp-r给水管ppr冷热水管厂家
-                    ppr管材 排水管 自来水管 多种规格pp-r给水管ppr冷热水管厂家 ppr管材 排水管 自来水管 多种规格pp-r给水管ppr冷热水管厂家 ppr管材 排水管 自来水管 多种规格pp-r给水管ppr冷热水管厂家 ppr管材 排水管 自来水管 多种规格pp-r给水管ppr冷热水管厂家 ppr管材 排水管 自来水管 多种规格pp-r给水管ppr冷热水管厂家 ppr管材 排水管 自来水管 多种规格pp-r给水管ppr冷热水管厂家 ppr管材 排水管 自来水管
-                    多种规格pp-r给水管
-                </view>
-                <view class='spec txt-more-multiple'>国产料（迈捷）20*2.0 ppr冷热水管厂家 ppr管材 排水管 自来水管 多种规格pp-r给水管ppr冷热水管厂家 ppr管材 排水管 自来水管 多种规格pp-r给水管ppr冷热水管厂家 ppr管材 排水管 自来水管 多种规格pp-r给水管ppr冷热水管厂家 ppr管材 排水管 自来水管 多种规格pp-r给水管ppr冷热水管厂家 ppr管材 排水管 自来水管 多种规格pp-r给水管ppr冷热水管厂家 ppr管材 排水管 自来水管 多种规格pp-r给水管ppr冷热水管厂家
-                    ppr管材 排水管 自来水管 多种规格pp-r给水管ppr冷热水管厂家 ppr管材 排水管 自来水管 多种规格pp-r给水管ppr冷热水管厂家 ppr管材 排水管 自来水管 多种规格pp-r给水管ppr冷热水管厂家 ppr管材 排水管 自来水管 多种规格pp-r给水管ppr冷热水管厂家 ppr管材 排水管 自来水管 多种规格pp-r给水管ppr冷热水管厂家 ppr管材 排水管 自来水管 多种规格pp-r给水管ppr冷热水管厂家 ppr管材 排水管 自来水管
-                    多种规格pp-r给水管ppr冷热水管厂家 ppr管材 排水管 自来水管 多种规格pp-r给水管ppr冷热水管厂家 ppr管材 排水管 自来水管 多种规格pp-r给水管ppr冷热水管厂家 ppr管材 排水管 自来水管 多种规格pp-r给水管ppr冷热水管厂家 ppr管材 排水管 自来水管 多种规格pp-r给水管ppr冷热水管厂家 ppr管材 排水管 自来水管 多种规格pp-r给水管ppr冷热水管厂家 ppr管材 排水管 自来水管 多种规格pp-r给水管ppr冷热水管厂家
-                    ppr管材 排水管 自来水管 多种规格pp-r给水管</view>
+                <view class='name txt-more-multiple'>{{name}}</view>
+                <view class='spec txt-more-multiple'>{{skuInfos}}</view>
             </view>
             <view class='price'>
-                <view class='new'>¥1.34</view>
-                <view class='old'>¥1.80</view>
-                <view class='num'>x400</view>
+                <view class='new'>¥{{price}}</view>
+                  <view class='old'></view>  
+                <view class='num'>{{quantity + unit}}</view>
             </view>
         </view>
     </view>
 </template>
 
 <template name="item-order">
-    <view class='item-order'>
+    <navigator class='item-order' url='/pages/home/erp/orderInfo/orderInfo?orderId={{id}}'>
         <view class='title'>
-            <view class='custome txt-more'>ppr冷热水管厂家 ppr管材 排水管 自来水管 多种规格pp-r给水管ppr冷热水管厂家 ppr管材 排水管 自来水管 多种规格pp-r给水管ppr冷热水管厂家 ppr管材 排水管 自来水管 多种规格pp-r给水管ppr冷热水管厂家 ppr管材 排水管 自来水管 多种规格pp-r给水管ppr冷热水管厂家 ppr管材 排水管 自来水管 多种规格pp-r给水管ppr冷热水管厂家 ppr管材 排水管 自来水管 多种规格pp-r给水管ppr冷热水管厂家 ppr管材 排水管 自来水管
-                多种规格pp-r给水管ppr冷热水管厂家 ppr管材 排水管 自来水管 多种规格pp-r给水管ppr冷热水管厂家 ppr管材 排水管 自来水管 多种规格pp-r给水管ppr冷热水管厂家 ppr管材 排水管 自来水管 多种规格pp-r给水管ppr冷热水管厂家 ppr管材 排水管 自来水管 多种规格pp-r给水管ppr冷热水管厂家 ppr管材 排水管 自来水管 多种规格pp-r给水管ppr冷热水管厂家 ppr管材 排水管 自来水管 多种规格pp-r给水管ppr冷热水管厂家
-                ppr管材 排水管 自来水管 多种规格pp-r给水管ppr冷热水管厂家 ppr管材 排水管 自来水管 多种规格pp-r给水管ppr冷热水管厂家 ppr管材 排水管 自来水管 多种规格pp-r给水管ppr冷热水管厂家 ppr管材 排水管 自来水管 多种规格pp-r给水管ppr冷热水管厂家 ppr管材 排水管 自来水管 多种规格pp-r给水管ppr冷热水管厂家 ppr管材 排水管 自来水管 多种规格pp-r给水管ppr冷热水管厂家 ppr管材 排水管 自来水管 多种规格pp-r给水管</view>
-            <view class='type txt-more'>ppr冷热水管厂家 ppr管材 排水管 自来水管 多种规格pp-r给水管ppr冷热水管厂家 ppr管材 排水管 自来水管 多种规格pp-r给水管ppr冷热水管厂家 ppr管材 排水管 自来水管 多种规格pp-r给水管ppr冷热水管厂家 ppr管材 排水管 自来水管 多种规格pp-r给水管ppr冷热水管厂家 ppr管材 排水管 自来水管 多种规格pp-r给水管ppr冷热水管厂家 ppr管材 排水管 自来水管 多种规格pp-r给水管ppr冷热水管厂家 ppr管材 排水管 自来水管
-                多种规格pp-r给水管ppr冷热水管厂家 ppr管材 排水管 自来水管 多种规格pp-r给水管ppr冷热水管厂家 ppr管材 排水管 自来水管 多种规格pp-r给水管ppr冷热水管厂家 ppr管材 排水管 自来水管 多种规格pp-r给水管ppr冷热水管厂家 ppr管材 排水管 自来水管 多种规格pp-r给水管ppr冷热水管厂家 ppr管材 排水管 自来水管 多种规格pp-r给水管ppr冷热水管厂家 ppr管材 排水管 自来水管 多种规格pp-r给水管ppr冷热水管厂家
-                ppr管材 排水管 自来水管 多种规格pp-r给水管ppr冷热水管厂家 ppr管材 排水管 自来水管 多种规格pp-r给水管ppr冷热水管厂家 ppr管材 排水管 自来水管 多种规格pp-r给水管ppr冷热水管厂家 ppr管材 排水管 自来水管 多种规格pp-r给水管ppr冷热水管厂家 ppr管材 排水管 自来水管 多种规格pp-r给水管ppr冷热水管厂家 ppr管材 排水管 自来水管 多种规格pp-r给水管ppr冷热水管厂家 ppr管材 排水管 自来水管 多种规格pp-r给水管</view>
+            <view class='custome txt-more'>{{buyerLoginId}}</view>
+            <view class='type txt-more'>{{statusStr}}</view>
         </view>
 
-        <template is="item-order-pro" data="{{CDN}}" />
-        <template is="item-order-pro" data="{{CDN}}" />
-        <template is="item-order-pro" data="{{CDN}}" />
-        <template is="item-order-pro" data="{{CDN}}" />
+        <template wx:for="{{productItems}}" wx:key="{{index}}" is="item-order-pro" data="{{...item, CDN, ALI}}" />
 
         <view class='total'>
-            <text class='num'>1种货品</text>
-            <text class='freight'>总金额：(含运费470.00)</text>
-            <text class='mony'>￥536.00</text>
+            <text class='num'>{{productItemsNum}}种货品</text>
+            <text class='freight'>总金额：(含运费{{totalAmount}})</text>
+            <text class='mony'>￥{{sumProductPayment}}</text>
         </view>
-    </view>
+    </navigator>
 </template>
 <view class='nav'>
     <view bindtap='setPageType' data-pageType="1" class='flex1 col active1{{pageType}}'>
@@ -84,15 +70,14 @@
 <view>
     <view hidden="{{pageType == 2}}">
         <view wx:if="{{list.length > 0}}">
-            <template wx:for="{{list}}" wx:key="{{item.productId}}" is="item-pro" data="{{...item,CDN}}" />
+            <template wx:for="{{list}}" wx:key="{{item.productId}}" is="item-pro" data="{{...item,CDN, ALI}}" />
         </view>
-        <template wx:else is="noData" data="{{CDN}}" />
+        <template wx:else is="noData" data="{{CDN, ALI}}" />
     </view>
     <view hidden="{{pageType == 1}}">
         <view wx:if="{{list.length > 0}}">
-            <template is="item-order" data="{{CDN}}" />
-            <template is="item-order" data="{{CDN}}" />
+            <template wx:for="{{list}}" wx:key="{{index}}" is="item-order" data="{{...item, CDN, ALI}}" />
         </view>
-        <template wx:else is="noData" data="{{CDN}}" />
+        <template wx:else is="noData" data="{{CDN, ALI}}" />
     </view>
 </view>

@@ -9,7 +9,7 @@
   <!-- 个人信息 -->
   <view class="person-mess">
     <!-- 物流 -->
-    <navigator wx:if="{{info.logisticsStepVo}}" class="logistics" url="/pages/home/erp/logisticsInfo/logisticsInfo?orderId={{params.orderId}}">
+    <view bindtap="goLogistics" wx:if="{{info.logisticsStepVo}}" class="logistics">
       <view class="icon">
         <image class="img" src="{{CDN}}icon_logistics.png"></image>
       </view>
@@ -20,7 +20,7 @@
       <view class="icon icon-arrow">
         <image class="img" src="{{CDN}}icon_right.png"></image>
       </view>
-    </navigator>
+    </view>
     <!-- 详情 -->
     <view class="details">
       <view class="icon">
@@ -41,7 +41,7 @@
     <view class="title">{{info.buyerLoginId}}</view>
     <view class="list">
       <block wx:for="{{info.productItems}}" wx:key="{{index}}">
-        <navigator class="item" url="/pages/home/erp/goodsInfo/goodsInfo?productId={{item.productID}}">
+        <view bindtap="goGoodsInfo" class="item" data-product="{{item.productID}}">
           <view class="img">
             <image src="{{item.productImgUrl || CDN+'icon-pro.png'}}"></image>
           </view>
@@ -56,7 +56,7 @@
             </view>
             <view wx:if="{{item.refundStatus}}" class="btn">退款中</view>
           </view>
-        </navigator>
+        </view>
       </block>
     </view>
   </view>
