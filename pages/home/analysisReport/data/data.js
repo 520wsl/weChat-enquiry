@@ -19,6 +19,7 @@ Page({
             title: '按总金额统计',
             titles: ['询盘地区', '询盘总数', '总金额', '询盘占比'],
             tabList: [],
+            colorType: ['#00DACE', '#33CC82', '#FFC444', '#F88133', '#F56364'],
         },
         area2: {
             canvasId: 'area2',
@@ -26,6 +27,7 @@ Page({
             title: '按成交金额统计',
             titles: ['询盘地区', '有效询盘数量', '成交金额', '成交占比'],
             tabList: [],
+            colorType: ['#00DACE', '#33CC82', '#FFC444', '#F88133', '#F56364'],
         },
         product1: {
             canvasId: 'product1',
@@ -33,6 +35,7 @@ Page({
             title: '高频产品排行',
             titles: ['产品名称', '询盘数量', '公司报价', '同行报价'],
             tabList: [],
+            colorType: ['#F56364', '#FFC444', '#F6825C', '#FFECA3', '#FF9938', '#C15266', '#FDDA9D', '#EFA08E', '#DC7A78', '#E8BE5B'],
         },
         product2: {
             canvasId: 'product2',
@@ -40,6 +43,7 @@ Page({
             title: '已成交高频产品排行',
             titles: ['产品名称', '询盘数量', '公司报价', '同行报价'],
             tabList: [],
+            colorType: ['#F56364', '#FFC444', '#F6825C', '#FFECA3', '#FF9938', '#C15266', '#FDDA9D', '#EFA08E', '#DC7A78', '#E8BE5B'],
         },
         colorType1: ['#00DACE', '#33CC82', '#FFC444', '#F88133', '#F56364'],
         colorType2: ['#F56364', '#FFC444', '#F6825C', '#FFECA3', '#FF9938', '#C15266', '#FDDA9D', '#EFA08E', '#DC7A78', '#E8BE5B'],
@@ -99,6 +103,7 @@ Page({
                 orderType: 0
             })
             .then(res => {
+                
                 if (res.status == 401) {
                     wx.showModal({
                         title: '提示',
@@ -129,7 +134,7 @@ Page({
                 this.setData({
                     'area1.tabList': data
                 })
-
+                console.log('111111111111',data);
                 if (wx.hideLoading) {
                     wx.hideLoading();
                 }
@@ -379,7 +384,7 @@ Page({
             canvasId: canvasId,
             type: 'ring',
             animation: true,
-            legend: true,
+            legend: false,
             series: newSeries,
             width: windowWidth,
             height: windowWidth * 340 / 375,

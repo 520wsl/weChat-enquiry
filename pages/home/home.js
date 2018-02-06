@@ -69,10 +69,10 @@ Page({
       lossValue: 4,
     },
     enquireTime: {
-      label: '一周',
-      startTime: app.time.getTimeLimit(1, 'weeks'),
+      label: '一月',
+      startTime: app.time.getTimeLimit(1, 'month'),
       endTime: app.time.getTimeLimit(-1),
-      type: 1
+      type: 2
     },
     // 客户地区
     customerarea: [],

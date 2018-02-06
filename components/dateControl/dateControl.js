@@ -8,7 +8,7 @@ Component({
     // 选择项
     active: {
       type: Number,
-      value: 0
+      value: 1
     },
     // 类型
     type: {
