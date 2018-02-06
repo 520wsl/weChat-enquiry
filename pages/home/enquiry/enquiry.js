@@ -35,7 +35,8 @@ Page({
     this.data.label = options.label;
     this.setData({
       label: this.data.label,
-      'params.timeType':options.timeType
+      'params.timeType':options.timeType,
+      'params.countType':options.countType
     });
     this.getList();
     this.countAnalysis();
@@ -190,5 +191,47 @@ countAnalysis(){
       return v;
     }
     return v.toFixed(2);
+  },
+
+  getScreening(e) {
+    console.log(e.detail);
+    this.data.params.pageNum = 1;
+    let index = e.detail.acIndex;
+    let sort = e.detail.sort;
+    let cindex = e.detail.cindex;
+    delete this.data.params.timeStatus;
+    delete this.data.params.sumStatus;
+    delete this.data.params.status;
+    switch (index) {
+      case 0:
+        if (sort) {
+          this.data.params.timeStatus = 1;
+        } else {
+          this.data.params.timeStatus = 2;
+        }
+        if (cindex != 3 && cindex != -1) {
+          this.data.params.status = ++cindex;
+        }
+        break;
+      case 1:
+        if (sort) {
+          this.data.params.sumStatus = 1;
+        } else {
+          this.data.params.sumStatus = 2;
+        }
+        if (cindex != 3 && cindex != -1) {
+          this.data.params.status = ++cindex;
+        }
+        break;
+    }
+
+    if (wx.showLoading) {
+      wx.showLoading({ title: '加载中...' });
+    }
+    this.getList(() => {
+      if (wx.hideLoading) {
+        wx.hideLoading();
+      }
+    });
   },
 })
