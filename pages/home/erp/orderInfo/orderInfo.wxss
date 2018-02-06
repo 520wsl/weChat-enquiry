@@ -1,5 +1,7 @@
 /* pages/home/erp/orderInfo/orderInfo.wxss */
-
+.order-info{
+  word-break: break-all;
+}
 /* common */
 
 .m-b-20 {

@@ -13,7 +13,7 @@ Page({
       endTime: app.time.getTimeLimit(-1),
       pageNum: 1,
       pageSize: 6,
-      startTime: app.time.getTimeLimit(1, 'weeks'),
+      startTime: app.time.getTimeLimit(1, 'months'),
       timeStatus: 1
     },
 
@@ -26,7 +26,7 @@ Page({
     areaData: null,
     // 时间
     timeSearch: {
-      startTime: app.time.formatSubtractTime(1, 'weeks'),
+      startTime: app.time.formatSubtractTime(1, 'months'),
       endTime: app.time.formatSubtractTime(0),
     },
     defaultTime: {
@@ -39,7 +39,7 @@ Page({
       startTime: null,
       endTime: null
     },
-    timeActive: 0,
+    timeActive: 1,
   },
 
   /**
