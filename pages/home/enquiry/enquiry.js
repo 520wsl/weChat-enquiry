@@ -14,12 +14,12 @@ Page({
     indicatorDots: false,
 
     list: [],
-
+    areaData:null,
     params: {
       pageNum: 1,
       pageSize: 7,
       countType: '',//1:总价值；2:成交价值；3:跟单价值；4:流失价值
-      timeType: '',//	1:7天；2:30天；3:180天；4:365天
+      timeType: 2,//	1:7天；2:30天；3:180天；4:365天
     },
     label: '',
     count: 0,//默认 list总数
@@ -29,14 +29,16 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    // console.log('onLoad');
+    console.log('onLoad',options);
     this.data.params.countType = options.countType;
     this.data.params.timeType = options.timeType;
     this.data.label = options.label;
-    this.getList();
     this.setData({
-      label: this.data.label
-    })
+      label: this.data.label,
+      'params.timeType':options.timeType
+    });
+    this.getList();
+    this.countAnalysis();
   },
 
   onReady() {
@@ -75,7 +77,55 @@ Page({
       this.getList();
     }
   },
-
+    // 获取时间-询盘
+    getTimeEnquiry(e) {
+      console.log('55555555555555555555',e);
+      this.setData({
+        type: e.detail.time.type
+      })
+      this.countAnalysis();
+    },
+// 获取统计分析
+countAnalysis(){
+  app
+  .get('/enquiry/statistics', { type: this.data.params.timeType })
+  .then(e => {
+    if (e.status == 200) {
+      let data = e.data;
+      if (data) {
+        data.allAmount = this.toFixed(data.totalCount);
+        data.followAmount = this.toFixed(data.enquireValue);
+        data.gmvAmount = this.toFixed(data.tranValue);
+        data.lossAmount = this.toFixed(data.lossValue);
+        data.allCount = data.totalValue;
+        data.gmvCount = data.tranCount;
+        this.setData({
+          areaData: data
+        });
+        return;
+      }
+    }
+      if (e.status == 401) {
+        wx.showModal({
+            title: '提示',
+            content: '登录超时或未登录，请重新登录',
+            success: res => {
+                if (res.confirm) {
+                    app.reset();
+                    wx.switchTab({
+                        url: '/pages/personal/personal'
+                    })
+                } else if (res.cancel) {
+                }
+            }
+        })
+        return;
+    }
+  })
+  .catch(res => {
+    console.log(res);
+  });
+},
   // 获取列表
   getList(cb) {
     app.get('/enquiry/statisticslist', this.data.params).then(res => {
@@ -134,5 +184,11 @@ Page({
         cb();
       }
     });
+  },
+  toFixed(v) {
+    if(v == '' || v == null || v == undefined){
+      return v;
+    }
+    return v.toFixed(2);
   },
 })
