@@ -96,11 +96,11 @@ countAnalysis(){
     if (e.status == 200) {
       let data = e.data;
       if (data) {
-        data.allAmount = this.toFixed(data.totalCount);
+        data.allAmount = this.toFixed(data.totalValue);
         data.followAmount = this.toFixed(data.enquireValue);
         data.gmvAmount = this.toFixed(data.tranValue);
         data.lossAmount = this.toFixed(data.lossValue);
-        data.allCount = data.totalValue;
+        data.allCount = data.totalCount;
         data.gmvCount = data.tranCount;
         this.setData({
           areaData: data
