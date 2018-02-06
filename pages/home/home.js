@@ -115,7 +115,7 @@ Page({
   },
 
   // 客户地区
-  getCustomArea({ type = 1 }) {
+  getCustomArea({ type = 2 }) {
     app.get('/enquiry/customerarea', {
       type: type,
     }).then(res => {
@@ -384,8 +384,8 @@ Page({
   jumpArea(e) {
     let index = e.currentTarget.dataset.index;
     let item = e.currentTarget.dataset.obj;
-    let timeType = this.data.customerareaTime.type || 1;
-    let timeName = this.data.customerareaTime.label || '一周';
+    let timeType = this.data.customerareaTime.type || 2;
+    let timeName = this.data.customerareaTime.label || '一月';
     let url = "/pages/home/areaEnquiry/areaEnquiry?provinceId=" + item.provinceId + "&provinceName=" + item.provinceName + "&ranking=" + (index + 1) + "&timeType=" + timeType + "&timeName=" + timeName;
     wx.navigateTo({
       url: url,

@@ -6,9 +6,9 @@
   </view>
   <component-common-trading data="{{areaData}}" type="{{params.countType}}"></component-common-trading>
   <view class="header">
-    <text class="text">询盘记录</text>
-  </view>
-  <component-common-screening/>
+      <text class="text">询盘记录</text>
+    </view>
+    <component-common-screening isDelte="{{params.countType == 1 ? false : true}}" bindgetScreening="getScreening"/>
   <view class='list'>
     <itemEnquiry wx:for="{{list}}" wx:key="{{index}}" item="{{item}}"></itemEnquiry>
   </view>

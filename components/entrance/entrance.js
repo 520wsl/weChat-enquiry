@@ -32,8 +32,8 @@ Component({
         type: 'jl',
       },
       {
-        label: '分析报告',
-        navUrl: '/pages/home/analysisReport/index/index',
+        label: 'ERP管理',
+        navUrl: '/pages/home/erp/myGoods/myGoods',
         imgUrl: app.CDN + 'icon_index_fx.png',
         type: 'fx',
       },
