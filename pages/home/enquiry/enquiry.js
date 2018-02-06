@@ -79,10 +79,12 @@ Page({
   },
     // 获取时间-询盘
     getTimeEnquiry(e) {
+      this.data.params.pageNum = 1;
       this.setData({
         'params.timeType': e.detail.time.type
       })
       this.countAnalysis();
+      this.getList();
     },
 // 获取统计分析
 countAnalysis(){
