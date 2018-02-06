@@ -29,7 +29,7 @@
   font-size: 28rpx;
   color: #999;
   text-align: center;
-  padding: 20rpx 30rpx 15rpx;
+  padding: 20rpx 0 15rpx;
   background: #fff;
   flex:1;
   align-items:center;
