@@ -149,6 +149,9 @@ Page({
         }else{
           this.data.params.timeStatus = 2;
         }
+        if (cindex != 3 && cindex != -1) {
+          this.data.params.status = ++cindex;
+        }
         break;
       case 1:
         if (sort) {
@@ -156,9 +159,7 @@ Page({
         } else {
           this.data.params.moneyStatus = 2;
         }
-        break;
-      case 2:
-        if (cindex != 3) {
+        if (cindex != 3 && cindex != -1) {
           this.data.params.status = ++cindex;
         }
         break;

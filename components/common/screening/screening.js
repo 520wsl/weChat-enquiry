@@ -9,6 +9,10 @@ Component({
       type: Number,
       value: 0
     },
+    isDelte: {
+      type: Boolean,
+      value: false
+    }
   },
 
   /**
@@ -52,6 +56,15 @@ Component({
         isDB: false,
       }
     ]
+  },
+
+  ready() {
+    if (this.data.isDelte) {
+      this.data.data.splice(2, 1);
+      this.setData({
+        data: this.data.data
+      })
+    }
   },
 
   /**
