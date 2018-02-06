@@ -90,7 +90,6 @@ countAnalysis(){
   .get('/enquiry/statistics', { type: this.data.params.timeType })
   .then(e => {
     if (e.status == 200) {
-      console.log(e.data);
       let data = e.data;
       if (data) {
         data.allAmount = this.toFixed(data.totalValue);
