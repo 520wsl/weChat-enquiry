@@ -62,7 +62,7 @@
             </view>
           </view>
         </block>
-        <view class="show" data-goodsList="{{showIndex}}" bindtap='showALL' wx:if="{{goodsList[showIndex]!=999999}}">
+        <view class="show" data-goodsList="{{showIndex}}" bindtap='showALL' wx:if="{{goodsList[showIndex]!=999999&&item.aliProductVos.length>2}}">
           其他{{item.aliProductVos.length-2}}个货品
           <image mode="aspectFit" src="{{CDN}}icon_right.png" />
         </view>

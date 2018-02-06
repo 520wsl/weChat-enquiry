@@ -55,7 +55,7 @@
         <text class="{{show == 0 ? 'txt-more' : ''}} txt">20*2.3冷121水管；25*2.3冷水管；25*2.8冷20*2.3冷水管；25*2.3冷水管；25*2.8冷20*2.3冷水管；25*2.3冷水管；25*2.8冷20*2.3冷水管；25*2.3冷水管；25*2.8冷20*2.3冷水管；25*2.3冷水管；25*2.8冷</text>
       </view> -->
     </view>
-    <view class="{{show == 1 ? 'rotate' : ''}} pic" bindtap='showNorm'>
+    <view class="{{show == 1 ? 'rotate' : ''}} pic" bindtap='showNorm' wx:if="{{params.skuList}}">
       <image mode="aspectFit" src="{{CDN}}icon_right.png" />
     </view>
   </view>
