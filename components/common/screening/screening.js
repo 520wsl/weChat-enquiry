@@ -58,15 +58,6 @@ Component({
     ]
   },
 
-  ready() {
-    if (this.data.isDelte) {
-      this.data.data.splice(2, 1);
-      this.setData({
-        data: this.data.data
-      })
-    }
-  },
-
   /**
    * 组件的方法列表
    */
