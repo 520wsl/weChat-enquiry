@@ -29,7 +29,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log('onLoad',options);
     this.data.params.countType = options.countType;
     this.data.params.timeType = options.timeType;
     this.data.label = options.label;
@@ -80,9 +79,8 @@ Page({
   },
     // 获取时间-询盘
     getTimeEnquiry(e) {
-      console.log('55555555555555555555',e);
       this.setData({
-        type: e.detail.time.type
+        'params.timeType': e.detail.time.type
       })
       this.countAnalysis();
     },

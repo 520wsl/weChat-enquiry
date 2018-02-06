@@ -46,11 +46,40 @@
 .trading .section {
   padding: 10rpx 30rpx;
   background: #f1f4fb;
-  box-shadow: inset 0 -4rpx 8rpx 0 rgba(226, 229, 236, 0.50);
+  box-shadow: inset 0 -4rpx 8rpx 0 rgba(226, 229, 236, 0.5);
   display: flex;
   flex-wrap: wrap;
 }
+.item {
+  width: 100%;
+  min-height: 133rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.img {
+  width: 56rpx;
+  height: 56rpx;
+}
+.item .text {
+  margin-left: 40rpx;
+  word-break: break-all;
+}
 
+.item .text .t1 {align-self: center;
+  font-size: 24rpx;
+  color: #333;
+}
+
+.item .text .t2 {align-self: center;
+  font-size: 28rpx;
+  color: #cb2b2b;
+}
+
+.item .text .t3 {align-self: center;
+  font-size: 24rpx;
+  color: #666;
+}
 .trading .section .module {
   width: 50%;
   border-right: 2rpx solid rgba(224, 224, 224, 0.26);
@@ -60,7 +89,7 @@
   justify-content: flex-start;
   padding-bottom: 17rpx;
   padding-left: 95rpx;
-  padding-top:13rpx;
+  padding-top: 13rpx;
 }
 
 .trading .section .module:nth-child(1) {
@@ -86,7 +115,7 @@
 }
 
 .trading .section .module .text {
-  word-break:break-all;
+  word-break: break-all;
 }
 
 .trading .section .module .text .t1 {
