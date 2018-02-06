@@ -32,7 +32,14 @@ Page({
     defaultTime: {
       start: app.time.formatSubtractTime(10, 'years'),
       end: app.time.formatSubtractTime(0),
-    }
+    },
+    addData: {
+      label: '不限',
+      type: -1,
+      startTime: null,
+      endTime: null
+    },
+    timeActive: 0,
   },
 
   /**
@@ -208,6 +215,9 @@ Page({
         } else {
           this.data.params.timeStatus = 2;
         }
+        if (cindex != 3 && cindex != -1) {
+          this.data.params.status = ++cindex;
+        }
         break;
       case 1:
         if (sort) {
@@ -215,9 +225,7 @@ Page({
         } else {
           this.data.params.sumStatus = 2;
         }
-        break;
-      case 2:
-        if(cindex != 3){
+        if (cindex != 3 && cindex != -1) {
           this.data.params.status = ++cindex;
         }
         break;
@@ -286,7 +294,8 @@ Page({
 
   // 开始时间
   startTimeChange(e) {
-    if (app.time.formatInitTime(e.detail.value, 'x') >= this.data.params.endTime) {
+    console.log(e);
+    if (this.data.params.endTime && app.time.formatInitTime(e.detail.value, 'x') >= this.data.params.endTime) {
       wx.showModal({
         title: '提示',
         content: '开始时间不可以大于结束时间！',
@@ -299,16 +308,18 @@ Page({
     }
 
     this.setData({
-      'timeSearch.startTime': e.detail.value
+      'timeSearch.startTime': e.detail.value,
+      timeActive: 4
     })
     
     this.data.params.startTime = app.time.formatInitTime(e.detail.value, 'x');
+    this.data.params.pageNum = 1;
     this.init();
   },
 
   // 结束时间
   endTimeChange(e) {
-    if (this.data.params.startTime >= app.time.endTime(e.detail.value, 'x')) {
+    if (this.data.params.startTime && this.data.params.startTime >= app.time.endTime(e.detail.value, 'x')) {
       wx.showModal({
         title: '提示',
         content: '开始时间不可以大于结束时间！',
@@ -321,10 +332,12 @@ Page({
     }
 
     this.setData({
-      'timeSearch.endTime': e.detail.value
+      'timeSearch.endTime': e.detail.value,
+      timeActive: 4
     })
 
     this.data.params.endTime = app.time.endTime(e.detail.value, 'x');
+    this.data.params.pageNum = 1;
     this.init();
   },
 
@@ -339,5 +352,26 @@ Page({
         wx.hideLoading();
       }
     });
+  },
+
+  // 时间选择
+  getTimeEnquiry(e){
+    console.log(e);
+    let time = e.detail.time;
+    if (time.type == -1){
+      this.setData({
+        'timeSearch.startTime': '',
+        'timeSearch.endTime': ''
+      })
+    }else{
+      this.setData({
+        'timeSearch.startTime': app.time.formatTime(Number(time.startTime), 'YYYY-MM-DD'),
+        'timeSearch.endTime': app.time.formatSubtractTime(1, 'days', Number(time.endTime), 'YYYY-MM-DD')
+      })
+    }
+    this.data.params.startTime = time.startTime;
+    this.data.params.endTime = time.endTime;
+    this.data.params.pageNum = 1;
+    this.init();
   }
 })

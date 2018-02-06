@@ -14,6 +14,10 @@ Component({
     type: {
       type: String,
       value: 'action',
+    },
+    add: {
+      type: Object,
+      value: null
     }
   },
 
@@ -53,6 +57,12 @@ Component({
 
   ready() {
     // this.triggerEvent('getTime', { time: this.data.data[0] });
+    if (this.data.add){
+      this.data.data.push(this.data.add);
+      this.setData({
+        data: this.data.data
+      })
+    }
   },
 
   /**
@@ -64,8 +74,11 @@ Component({
       this.common(index);
     },
     open() {
+      let itemList = this.data.data.map((res) => {
+        return res.label;
+      });
       wx.showActionSheet({
-        itemList: ['一周', '一月', '半年', '一年'],
+        itemList: itemList,
         success: (res) => {
           this.common(res.tapIndex);
         },
