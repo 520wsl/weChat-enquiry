@@ -4,7 +4,7 @@
   <!-- 订单状态 -->
   <view class="state">
     <view class="title">{{info.statusStr}}</view>
-    <view wx:if="{{info.closeReason}}" class="txt">备注原因：{{info.closeReason}}</view>
+    <!-- <view wx:if="{{info.closeReason}}" class="txt">备注原因：{{info.closeReason}}</view> -->
   </view>
   <!-- 个人信息 -->
   <view class="person-mess">
