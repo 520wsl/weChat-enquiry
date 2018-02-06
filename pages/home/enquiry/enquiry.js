@@ -23,6 +23,7 @@ Page({
     },
     label: '',
     count: 0,//默认 list总数
+    isClear: false,
   },
 
   /**
@@ -74,15 +75,18 @@ Page({
     // console.log('触底')
     if (this.data.list.length < this.data.count) {
       this.data.params.pageNum++;
+      this.data.isClear = true;
       this.getList();
     }
   },
     // 获取时间-询盘
     getTimeEnquiry(e) {
+      this.data.params.pageNum = 1;
       this.setData({
         'params.timeType': e.detail.time.type
       })
       this.countAnalysis();
+      this.getList();
     },
 // 获取统计分析
 countAnalysis(){
@@ -173,6 +177,10 @@ countAnalysis(){
         }
         item.createTime = app.time.formatTime(time, 'MM-DD HH:mm');
       });
+      if (!this.data.isClear) {
+        this.data.list = [];
+      }
+      this.data.isClear = false;
       this.data.list.push(...formatData);
       this.setData({
         list: this.data.list,
