@@ -50,6 +50,7 @@ Page({
                     cb();
                 }
                 if (res.status == 401) {
+                  this.reset();
                     wx.showModal({
                         title: '提示',
                         content: '登录超时或未登录，请重新登录',
@@ -66,6 +67,7 @@ Page({
                     return;
                 }
                 if (res.status !== 200) {
+                  this.reset();
                     app.utils.showModel('获取商品列表数据', res.msg);
                     return;
                 }
@@ -74,10 +76,14 @@ Page({
                     this.data.list = [];
                 }
                 this.data.isClear = false;
-                this.data.list.push(...res.data.result);
-                this.setData({
+                if(res.data.result && res.data.result.length > 0){
+                  this.data.list.push(...res.data.result);
+                  this.setData({
                     'list': this.data.list
-                })
+                  })
+                }else{
+                  this.reset();
+                }
             })
             .catch(res => {
                 console.log('获取商品列表数据', res)
@@ -95,6 +101,7 @@ Page({
                     cb();
                 }
                 if (res.status == 401) {
+                  this.reset();
                     wx.showModal({
                         title: '提示',
                         content: '登录超时或未登录，请重新登录',
@@ -111,6 +118,7 @@ Page({
                     return;
                 }
                 if (res.status !== 200) {
+                  this.reset();
                     app.utils.showModel('获取商品列表数据', res.msg);
                     return;
                 }
@@ -119,10 +127,14 @@ Page({
                     this.data.list = [];
                 }
                 this.data.isClear = false;
-                this.data.list.push(...res.data.productList);
-                this.setData({
+                if (res.data.productList && res.data.productList.length > 0) {
+                  this.data.list.push(...res.data.productList);
+                  this.setData({
                     'list': this.data.list
-                })
+                  })
+                } else {
+                  this.reset();
+                }
             })
             .catch(res => {
                 console.log('获取商品列表数据', res)
@@ -220,5 +232,11 @@ Page({
                 wx.hideLoading();
             }
         });
+    },
+
+    reset(){
+      this.setData({
+        'list': []
+      })
     }
 })
