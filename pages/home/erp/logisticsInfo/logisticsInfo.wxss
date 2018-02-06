@@ -140,6 +140,7 @@
 }
 .lists .express-detail .time {
   font-size: 20rpx;
+  margin-top:20rpx;  
   color: #666666;
 }
 .lists .express-detail .time-point {
