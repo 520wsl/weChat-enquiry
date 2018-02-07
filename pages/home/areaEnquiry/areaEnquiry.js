@@ -259,7 +259,13 @@ Page({
             item.createTime = '今天' + app.time.formatTime(time, ' HH:mm');
             return;
           }
-          item.createTime = app.time.formatTime(time, 'MM-DD HH:mm');
+          
+          let islastYear = app.time.islastYear(time);
+          if (islastYear) {
+            item.createTime = app.time.formatTime(time, 'YYYY-MM-DD HH:mm');
+          } else {
+            item.createTime = app.time.formatTime(time, 'MM-DD HH:mm');
+          }
         });
 
         if (!this.data.isClear) {

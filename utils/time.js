@@ -112,5 +112,16 @@ util.isDayType = function (time = new Date(), type = 1) {
   return false;
 }
 
+/**
+ * 获取今年之前的判断
+ * time 时间 : true 之前 false 不是之前
+ * 例如 time:new Date()
+ */
+util.islastYear = function (time = new Date()) {
+  let lastYear = util.formatSubtractTime(0, 'years', new Date(), 'YYYY');
+  let islastYear = moment(time).isBefore(lastYear, 'year');
+  return islastYear;
+}
+
 // export default util;
 module.exports = util

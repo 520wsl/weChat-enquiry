@@ -20,6 +20,7 @@ Page({
       pageSize: 7,
       countType: '',//1:总价值；2:成交价值；3:跟单价值；4:流失价值
       timeType: 2,//	1:7天；2:30天；3:180天；4:365天
+      timeStatus: 1,
     },
     label: '',
     count: 0,//默认 list总数
@@ -175,7 +176,13 @@ countAnalysis(){
           item.createTime = '今天' + app.time.formatTime(time, ' HH:mm');
           return;
         }
-        item.createTime = app.time.formatTime(time, 'MM-DD HH:mm');
+        
+        let islastYear = app.time.islastYear(time);
+        if (islastYear){
+          item.createTime = app.time.formatTime(time, 'YYYY-MM-DD HH:mm');
+        }else{
+          item.createTime = app.time.formatTime(time, 'MM-DD HH:mm');
+        }
       });
       if (!this.data.isClear) {
         this.data.list = [];
@@ -186,7 +193,7 @@ countAnalysis(){
         list: this.data.list,
       });
     }).catch(res => {
-      // console.log(res);
+      console.log(res);
       if (typeof cb == 'function') {
         cb();
       }
