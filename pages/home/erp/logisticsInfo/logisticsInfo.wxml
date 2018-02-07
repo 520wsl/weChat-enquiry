@@ -75,7 +75,7 @@
               <view class="time-point">
                 <image mode="aspectFit" src="{{CDN}}icon_rate_select.png" wx:if="{{index==0}}"/>
                 <image mode="aspectFit" src="{{CDN}}icon_rate_unselect.png" wx:else/>
-                <text class="text {{index==0 ? '':'title'}}">{{item.time}}{{item.remark}}</text>
+                <text class="text {{index==0 ? '':'title'}}">{{item.time}} {{item.remark}}</text>
               </view>
             </block>
           </view>
