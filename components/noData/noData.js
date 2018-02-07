@@ -12,6 +12,10 @@ Component({
     type: {
       type: String,
       value: 'img'
+    },
+    imgUrl: {
+      type: String,
+      value: ''
     }
   },
 

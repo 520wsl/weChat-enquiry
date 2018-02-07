@@ -29,6 +29,11 @@ page {
   display: flex;
   align-items: center;
   box-sizing: border-box;
+  padding-left: 55rpx;
+  background: #f7f7f7 url('http://1.img.dianjiangla.com/enquiryAssets/icon_search_word.png') no-repeat center left;
+  background-position: center left 20rpx;
+  background-repeat: no-repeat;
+  background-size: 30rpx 30rpx;
 }
 
 .form-group .del {
