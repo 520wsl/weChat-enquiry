@@ -2,7 +2,7 @@
 <!-- 物流详情 -->
 <view class="header">
   订单：
-  <text class="text">119610016563061899 共包含{{params.length}}个运单</text>
+  <text class="text">{{orderId}} 共包含{{params.length}}个运单</text>
 </view>
 
 
