@@ -1,5 +1,4 @@
 <!--pages/home/home.wxml-->
-<!-- <navigator url="/pages/home/erp/myGoods/myGoods">ceshi </navigator> -->
 <view class='home'>
   <view class="company">
     <view wx:if="{{company}}" class="title">{{company}}</view>

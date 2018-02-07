@@ -178,6 +178,20 @@
     color: #999;
 }
 
+
+.item-order .price .btn {
+    margin-top: 20rpx;
+    font-size: 24rpx;
+    color: #999;
+    border: 1px solid #E0E0E0;
+    text-align: center;
+    width: 70rpx;
+    height: 38rpx;
+    line-height: 38rpx;
+    font-size: 20rpx;
+    float: right;
+}
+
 .item-order .total {
     height: 60rpx;
     line-height: 40rpx;
