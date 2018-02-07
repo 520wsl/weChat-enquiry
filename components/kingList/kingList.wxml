@@ -1,7 +1,7 @@
 <!--components/kingList/kingList.wxml-->
 <view class="king-detail">
   <view class="detail-head">
-    <view class="head-left">
+    <view class="head-left txt-more">
       <view class="img pic">
         <image mode="aspectFit" src="{{CDN}}keywords.png" />
       </view>
