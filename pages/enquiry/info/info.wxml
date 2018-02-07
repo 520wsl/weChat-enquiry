@@ -1,7 +1,7 @@
 <view class='top'>
   <view class='headerLeft'>
     <view class='money'>{{saleStatusAmount[saleStatus]}}金额：
-      <text class='moneyA'>￥{{amount || 0}}</text>
+      <text class='moneyA'>￥{{amount}}</text>
     </view>
     <view class='status'>跟单状态：
       <text class='statusA'>{{saleStatusName[saleStatus]}}</text>
@@ -53,11 +53,11 @@
         </view>
         <view class='recordList'>
           <text class='statusL'>数　　量：</text>
-          <text class='statusR'>{{itemName.num || 0}}</text>
+          <text class='statusR'>{{itemName.num}}</text>
         </view>
         <view class='recordList'>
           <text class='statusL'>产品报价：</text>
-          <text class='statusR'>{{itemName.price || 0}}</text>
+          <text class='statusR'>{{itemName.price}}</text>
         </view>
         <view class='recordList'>
           <text class='statusL'>买家意向：</text>
@@ -67,7 +67,7 @@
       <view class='recordUl'>
         <view class='recordList'>
           <text class='statusL'>同行报价：</text>
-          <text class='statusR'>{{itemName.peerPrice || 0}}</text>
+          <text class='statusR'>{{itemName.peerPrice}}</text>
         </view>
         <view class='recordList'>
           <text class='statusL'>未成交原因：</text>
