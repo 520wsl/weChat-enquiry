@@ -152,6 +152,7 @@
   align-items: center;
 }
 .lists .express-detail .time-point .text {
+  flex: 1;
   margin-left: 22rpx;
   margin-right: 30rpx;
 }
