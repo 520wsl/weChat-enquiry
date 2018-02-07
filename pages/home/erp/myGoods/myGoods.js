@@ -23,6 +23,7 @@ Page({
     setPageType(e) {
         let pageType = e.currentTarget.dataset && e.currentTarget.dataset.pagetype || 0;
         this.setData({
+            list:[],
             pageType: pageType
         })
 
@@ -193,7 +194,7 @@ Page({
             });
         } else if (pageType == 2) {
             this.getOrder(() => {
-                wx.stopPullDownRefresh
+                wx.stopPullDownRefresh()
             });
         }
     },

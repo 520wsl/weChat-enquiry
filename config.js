@@ -6,8 +6,10 @@
 // var host = 'http://172.30.34.41:8082';
 // var host = 'http://172.30.34.3:8082';
 // var host = 'http://172.30.34.241:8082';
-var host = 'http://dev.xp.yumc.pw/api';
-// var host = 'https://e.cnsixi.com/api';
+// var host = 'http://172.30.34.86:8082';
+// var host = 'http://dev.xp.yumc.pw/api';//开发环境
+var host = 'http://test.xp.yumc.pw/api';//新增测试环境
+// var host = 'https://e.cnsixi.com/api';//线上环境
 
 var config = {
 

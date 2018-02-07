@@ -15,7 +15,7 @@
         <view class='info'>
             <view class='title txt-more-multiple'>{{productName}}</view>
             <view class='mony'>
-                <text class='num' wx:if="{{minPrice > 0 }}">￥{{minPrice}} -</text>
+                <text class='num' wx:if="{{minPrice > 0 }}">￥{{minPrice}} - </text>
                 <text class='num'>￥{{maxPrice}}</text>
                 <text class='txt'>/{{unit}}</text>
             </view>
@@ -32,11 +32,13 @@
             <view class='pro-title'>
                 <view class='name txt-more-multiple'>{{name}}</view>
                 <view class='spec txt-more-multiple'>{{skuInfos}}</view>
+                
             </view>
             <view class='price'>
                 <view class='new'>¥{{price}}</view>
                   <view class='old'></view>  
                 <view class='num'>{{quantity + unit}}</view>
+                <view class='btn' wx:if="{{refundStatusStr}}" >退款中</view>
             </view>
         </view>
     </view>
