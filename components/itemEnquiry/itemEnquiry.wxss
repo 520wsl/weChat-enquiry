@@ -51,7 +51,7 @@
   -webkit-line-clamp: 2;
   overflow: hidden;
   word-break:break-all;
-  width:330rpx;
+  width:300rpx;
 }
 .title-time{
   font-size: 22rpx;
