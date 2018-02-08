@@ -13,6 +13,7 @@ Page({
         times: [],
         timeArray: [],
         disabled: true,
+        msgStr:'数据加载中，请稍后。。。',
         area1: {
             canvasId: 'area1',
             tabType: 'area',
@@ -84,13 +85,18 @@ Page({
             this.product1();
             this.product2();
         }
-        if (pageType == 1 && (this.data.area1.tabList.length <= 0 || this.data.area1.tabList.length <= 0)) {
+        if (pageType == 1 && (this.data.area1.tabList.length <= 0 || this.data.area2.tabList.length <= 0)) {
             this.getArea1();
             this.getArea2();
         }
         if (this.data.times.length <= 0) {
             this.getTimes();
         }
+    },
+    setMsgStr(){
+        this.setData({
+            'msgStr':'抱歉!没有找到符合条件的记录'
+        })
     },
     // 询盘报告分析-数据分析-区域分布与排行统计-按总金额统计
     getArea1() {
@@ -134,14 +140,15 @@ Page({
                 this.setData({
                     'area1.tabList': data
                 })
-                console.log('111111111111',data);
                 if (wx.hideLoading) {
                     wx.hideLoading();
                 }
                 this.getEcharts(data, 'area1', this.data.colorType1);
+                this.setMsgStr();
             })
             .catch(res => {
                 console.log(res)
+                this.setMsgStr();
             })
     },
     // 询盘报告分析-数据分析-区域分布与排行统计-按成交金额统计
@@ -190,9 +197,11 @@ Page({
                     wx.hideLoading();
                 }
                 this.getEcharts(data, 'area2', this.data.colorType1);
+                this.setMsgStr();
             })
             .catch(res => {
                 console.log(res)
+                this.setMsgStr();
             })
     },
     product1() {
@@ -240,9 +249,11 @@ Page({
                     wx.hideLoading();
                 }
                 this.getEcharts(data, 'product1', this.data.colorType2);
+                this.setMsgStr();
             })
             .catch(res => {
                 console.log(res)
+                this.setMsgStr();
             })
     },
     product2() {
@@ -290,9 +301,11 @@ Page({
                     wx.hideLoading();
                 }
                 this.getEcharts(data, 'product2', this.data.colorType2);
+                this.setMsgStr();
             })
             .catch(res => {
                 console.log(res)
+                this.setMsgStr();
             })
     },
     // 过滤零的数据

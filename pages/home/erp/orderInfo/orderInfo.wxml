@@ -33,11 +33,11 @@
       </view>
     </view>
   </view>
-  <view class="border-img m-b-20">
+   <!-- <view class="border-img m-b-20">
     <image class="img" src="{{CDN}}bg_border_bottom.png"></image>
-  </view>
+  </view>  -->
   <!-- 商品信息 -->
-  <view class="goods-mess m-b-20">
+  <view class="goods-mess m-b-20" style='margin-top:20rpx;'>
     <view class="title">{{info.buyerLoginId || ''}}</view>
     <view class="list">
       <block wx:for="{{info.productItems}}" wx:key="{{index}}">

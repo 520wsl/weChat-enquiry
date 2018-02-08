@@ -9,6 +9,7 @@
     height: 80rpx;
     line-height: 80rpx;
     text-align: center;
+    overflow: hidden;
     font-weight: 900;
 }
 
@@ -72,7 +73,7 @@
 }
 .b-txt{
     display: flex;
-    align-items: center;
+    /* align-items: center; */
 }
 
 .bottom .txt {
