@@ -1,4 +1,7 @@
 /* pages/home/analysisReport/data/data.wxss */
+.hidden{
+    display: none;
+}
 view {
   word-break: break-all;
 }
