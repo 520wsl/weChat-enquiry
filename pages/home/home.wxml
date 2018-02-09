@@ -88,6 +88,11 @@
           </view>
         </view>
       </view>
+      <view class="bottom-line">
+        <view class="line"></view>
+        <view class="line-txt">我是有底线的</view>
+        <view class="line"></view>
+      </view>
     </view>
     <component-no-data class="{{customerarea.length > 0 ? 'hidden' : ''}}" text="小喜正在统计中，暂无相关数据..." type="text"></component-no-data>
   </view>
