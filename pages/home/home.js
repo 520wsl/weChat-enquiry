@@ -107,6 +107,23 @@ Page({
       });
     }
   },
+  onPullDownRefresh: function () {
+    this.getEnquire(this.data.enquireTime, () => {
+      this.getCustomArea(this.data.customerareaTime);
+      wx.stopPullDownRefresh();
+    });
+
+    if (app.globalData.customeInfo) {
+      this.setData({
+        company: app.globalData.customeInfo.companyName
+      });
+    } else {
+      this.setData({
+        company: ''
+      });
+    }
+  },
+
   onShareAppMessage: function () {
     return {
       title: '四喜E伙伴',

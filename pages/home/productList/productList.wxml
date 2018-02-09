@@ -14,6 +14,11 @@
   <view class="list">
     <component-item-product class="item" wx:for="{{list}}" wx:key="{{index}}" item="{{item}}" order="{{index}}"></component-item-product>
   </view>
+  <view wx:if="{{list.length > 0 && (list.length == count) && isshowFooter}}" class="bottom-line">
+    <view class="line"></view>
+    <view class="line-txt">我是有底线的</view>
+    <view class="line"></view>
+  </view>
   <!-- 没数据 -->
   <component-no-data text="当前无搜索结果" wx:if="{{list.length == 0}}"></component-no-data>
 </view>

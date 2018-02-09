@@ -76,12 +76,22 @@
     <view hidden="{{pageType == 2}}">
         <view wx:if="{{list.length > 0}}">
             <template wx:for="{{list}}" wx:key="{{item.productId}}" is="item-pro" data="{{...item,CDN, ALI}}" />
+            <view wx:if="{{(list.length == count) && isshowFooter}}" class="bottom-line">
+              <view class="line"></view>
+              <view class="line-txt">我是有底线的</view>
+              <view class="line"></view>
+            </view>
         </view>
         <template wx:else is="noData" data="{{CDN, ALI}}" />
     </view>
     <view hidden="{{pageType == 1}}">
         <view wx:if="{{list.length > 0}}">
             <template wx:for="{{list}}" wx:key="{{index}}" is="item-order" data="{{...item, CDN, ALI}}" />
+            <view wx:if="{{(list.length == count) && isshowFooter}}" class="bottom-line">
+              <view class="line"></view>
+              <view class="line-txt">我是有底线的</view>
+              <view class="line"></view>
+            </view>
         </view>
         <template wx:else is="noData" data="{{CDN, ALI}}" />
     </view>
