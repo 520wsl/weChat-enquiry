@@ -21,5 +21,10 @@
                 </view>
             </view>
         </view>
+        <view class="bottom-line" wx:if="{{list.length > 5}}">
+            <view class="line"></view>
+            <view class="line-txt">我是有底线的</view>
+            <view class="line"></view>
+          </view>
     </view>
 </view>
