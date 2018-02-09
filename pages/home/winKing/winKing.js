@@ -16,13 +16,13 @@ Page({
     winKing: []
   },
   setTitle(reportName) {
-      wx.setNavigationBarTitle({
-          title: reportName + '标王记录'
-      })
+    wx.setNavigationBarTitle({
+      title: reportName + '标王记录'
+    });
   },
   getlistwinKing() {
     wx.setNavigationBarTitle({
-      title: this.data.time+'标王记录'
+      title: this.data.time + '标王记录'
     });
     if (wx.showLoading) {
       wx.showLoading({ title: '加载中...' });
@@ -31,6 +31,7 @@ Page({
       .get('/topbidder/list', { time: this.data.time })
       .then(e => {
         if (e.status == 200) {
+          wx.stopPullDownRefresh();
           if (wx.hideLoading) {
             wx.hideLoading();
           }
@@ -65,13 +66,13 @@ Page({
    */
   onLoad: function(options) {
     this.getlistwinKing();
-    this.setTitle(this.data.time)
+    this.setTitle(this.data.time);
   },
   timeChange(e) {
     this.setData({
       time: e.detail.value
     });
-    this.setTitle(e.detail.value)
+    this.setTitle(e.detail.value);
     this.getlistwinKing();
   },
 
@@ -98,7 +99,9 @@ Page({
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function() {},
+  onPullDownRefresh: function() {
+    this.getlistwinKing();
+  },
 
   /**
    * 页面上拉触底事件的处理函数

@@ -72,7 +72,8 @@
 }
 
 .item-pro .mony {
-    text-align: right;
+    margin-top: 24rpx;
+    text-align: left;
     font-size: 28rpx;
 }
 
@@ -82,6 +83,14 @@
 
 .item-pro .txt {
     color: #3f3f3f;
+}
+.icon-arrow{
+    margin-right: 10rpx;
+    margin-left:40rpx;    
+}
+.icon-arrow image{
+    width:15rpx;
+    height:30rpx;    
 }
 
 .item-order {
