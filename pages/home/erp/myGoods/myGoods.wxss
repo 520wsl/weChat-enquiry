@@ -61,6 +61,7 @@
 .item-pro .info {
     overflow: hidden;
     min-height: 110rpx;
+    flex: 1;
 }
 
 .item-pro .title {
@@ -234,4 +235,12 @@
 .no-data .txt {
     margin-top: 40rpx;
     display: block;
+}
+
+.icon_right{
+  width: 14rpx;
+  height: 28rpx;
+}
+.icon_right image{
+    width: 100%;
 }

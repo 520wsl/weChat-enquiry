@@ -5,7 +5,7 @@
   </view>
   <!-- banner -->
   <view class="banner">
-    <component-roasting indicatorDots="{{indicatorDots}}" imgUrls="{{imgUrls}}"></component-roasting>
+    <component-roasting height="160rpx" indicatorDots="{{indicatorDots}}" imgUrls="{{imgUrls}}"></component-roasting>
   </view>
   <!-- 入口 -->
   <component-entrance></component-entrance>
