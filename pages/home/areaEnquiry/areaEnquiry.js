@@ -33,6 +33,7 @@ Page({
     count: 0,
     // 是否固定
     isFixed: false,
+    isshowFooter: false
   },
 
   /**
@@ -82,8 +83,21 @@ Page({
     if (this.data.list.length < this.data.count) {
       this.data.params.pageNum++;
       this.data.isClear = true;
-      this.getEnquiry();
+      this.getEnquiry(() => {
+        setTimeout(() => {
+          this.setShowFooter();
+        }, 100);
+      });
     }
+
+    if (!this.data.isshowFooter) {
+      this.setShowFooter();
+    }
+  },
+  setShowFooter() {
+    this.setData({
+      isshowFooter: true
+    })
   },
 
   // 页面滚动
@@ -274,7 +288,9 @@ Page({
         this.data.isClear = false;
         this.data.list.push(...data.list);
         this.setData({
-          list: this.data.list
+          list: this.data.list,
+          isshowFooter: false,
+          count: this.data.count
         });
         return;
       }

@@ -18,6 +18,7 @@ Page({
         },
         count: 0,
         isClear: false,
+        isshowFooter: false
     },
     // 设置选项卡值
     setPageType(e) {
@@ -80,7 +81,9 @@ Page({
                 if(res.data.result && res.data.result.length > 0){
                   this.data.list.push(...res.data.result);
                   this.setData({
-                    'list': this.data.list
+                    'list': this.data.list,
+                    isshowFooter: false,
+                    count: this.data.count
                   })
                 }else{
                   this.reset();
@@ -131,7 +134,9 @@ Page({
                 if (res.data.productList && res.data.productList.length > 0) {
                   this.data.list.push(...res.data.productList);
                   this.setData({
-                    'list': this.data.list
+                    'list': this.data.list,
+                    isshowFooter: false,
+                    count: this.data.count
                   })
                 } else {
                   this.reset();
@@ -210,11 +215,28 @@ Page({
 
             let pageType = this.data.pageType;
             if (pageType == 1) {
-                this.getList();
+                this.getList(() => {
+                  setTimeout(() => {
+                    this.setShowFooter();
+                  }, 100);
+                });
             } else if (pageType == 2) {
-                this.getOrder();
+                this.getOrder(() => {
+                  setTimeout(() => {
+                    this.setShowFooter();
+                  }, 100);
+                });
             }
         }
+
+        if (!this.data.isshowFooter) {
+          this.setShowFooter();
+        }
+    },
+    setShowFooter() {
+      this.setData({
+        isshowFooter: true
+      })
     },
 
     /**

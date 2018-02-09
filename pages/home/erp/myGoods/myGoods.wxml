@@ -17,8 +17,11 @@
             <view class='mony'>
                 <text class='num' wx:if="{{minPrice > 0 }}">￥{{minPrice}} - </text>
                 <text class='num'>￥{{maxPrice}}</text>
-                <text class='txt'>/{{unit}}</text>
+                <text class='txt'> /{{unit}}</text>
             </view>
+        </view>
+        <view class="icon-arrow">
+            <image class="img" src="http://1.img.dianjiangla.com/enquiryAssets/icon_right.png"></image>
         </view>
     </navigator>
 </template>
@@ -32,13 +35,13 @@
             <view class='pro-title'>
                 <view class='name txt-more-multiple'>{{name}}</view>
                 <view class='spec txt-more-multiple'>{{skuInfos}}</view>
-                
+
             </view>
             <view class='price'>
                 <view class='new'>¥{{price}}</view>
-                  <view class='old'></view>  
+                <view class='old'></view>
                 <view class='num'>{{quantity + unit}}</view>
-                <view class='btn' wx:if="{{refundStatusStr}}" >退款中</view>
+                <view class='btn' wx:if="{{refundStatusStr}}">退款中</view>
             </view>
         </view>
     </view>
@@ -73,12 +76,22 @@
     <view hidden="{{pageType == 2}}">
         <view wx:if="{{list.length > 0}}">
             <template wx:for="{{list}}" wx:key="{{item.productId}}" is="item-pro" data="{{...item,CDN, ALI}}" />
+            <view wx:if="{{(list.length == count) && isshowFooter}}" class="bottom-line">
+              <view class="line"></view>
+              <view class="line-txt">我是有底线的</view>
+              <view class="line"></view>
+            </view>
         </view>
         <template wx:else is="noData" data="{{CDN, ALI}}" />
     </view>
     <view hidden="{{pageType == 1}}">
         <view wx:if="{{list.length > 0}}">
             <template wx:for="{{list}}" wx:key="{{index}}" is="item-order" data="{{...item, CDN, ALI}}" />
+            <view wx:if="{{(list.length == count) && isshowFooter}}" class="bottom-line">
+              <view class="line"></view>
+              <view class="line-txt">我是有底线的</view>
+              <view class="line"></view>
+            </view>
         </view>
         <template wx:else is="noData" data="{{CDN, ALI}}" />
     </view>

@@ -36,6 +36,7 @@ Page({
             'MM月'
           );
         }
+        wx.stopPullDownRefresh();
         if (this.data.isPush) {
           console.log(this.data.list.concat(e.data.data.list));
           this.setData({

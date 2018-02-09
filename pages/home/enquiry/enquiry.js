@@ -25,6 +25,7 @@ Page({
     label: '',
     count: 0,//默认 list总数
     isClear: false,
+    isshowFooter: false
   },
 
   /**
@@ -77,8 +78,20 @@ Page({
     if (this.data.list.length < this.data.count) {
       this.data.params.pageNum++;
       this.data.isClear = true;
-      this.getList();
+      this.getList(() => {
+        setTimeout(() => {
+          this.setShowFooter();
+        }, 100);
+      });
     }
+    if (!this.data.isshowFooter){
+      this.setShowFooter();
+    }
+  },
+  setShowFooter(){
+    this.setData({
+      isshowFooter: true
+    })
   },
     // 获取时间-询盘
     getTimeEnquiry(e) {
@@ -191,6 +204,8 @@ countAnalysis(){
       this.data.list.push(...formatData);
       this.setData({
         list: this.data.list,
+        isshowFooter: false,
+        count: this.data.count
       });
     }).catch(res => {
       console.log(res);
