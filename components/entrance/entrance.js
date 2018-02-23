@@ -77,6 +77,14 @@ Component({
         })
         return;
       }
+      if (e.currentTarget.dataset.type == 'fx') {
+        wx.showToast({
+          title: '敬请期待',
+          icon: 'loading',
+          duration: 2000
+        })
+        return;
+      }
       if (e.currentTarget.dataset.type == 'xp') {
         wx.switchTab({
           url: e.currentTarget.dataset.link

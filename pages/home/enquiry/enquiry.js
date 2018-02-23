@@ -7,14 +7,15 @@ Page({
    */
   data: {
     CDN: app.CDN,
+    msgStr: '数据加载中，请稍后。。。',
     // banner
     imgUrls: [
-        app.CDN +'banner-2.png?id=20180203'
+      app.CDN + 'banner-2.png?id=20180203'
     ],
     indicatorDots: false,
 
     list: [],
-    areaData:null,
+    areaData: null,
     params: {
       pageNum: 1,
       pageSize: 7,
@@ -37,8 +38,8 @@ Page({
     this.data.label = options.label;
     this.setData({
       label: this.data.label,
-      'params.timeType':options.timeType,
-      'params.countType':options.countType
+      'params.timeType': options.timeType,
+      'params.countType': options.countType
     });
     this.getList();
     this.countAnalysis();
@@ -84,65 +85,65 @@ Page({
         }, 100);
       });
     }
-    if (!this.data.isshowFooter){
+    if (!this.data.isshowFooter) {
       this.setShowFooter();
     }
   },
-  setShowFooter(){
+  setShowFooter() {
     this.setData({
       isshowFooter: true
     })
   },
-    // 获取时间-询盘
-    getTimeEnquiry(e) {
-      this.data.params.pageNum = 1;
-      this.setData({
-        'params.timeType': e.detail.time.type
-      })
-      this.countAnalysis();
-      this.getList();
-    },
-// 获取统计分析
-countAnalysis(){
-  app
-  .get('/enquiry/statistics', { type: this.data.params.timeType })
-  .then(e => {
-    if (e.status == 200) {
-      let data = e.data;
-      if (data) {
-        data.allAmount = this.toFixed(data.totalValue);
-        data.followAmount = this.toFixed(data.enquireValue);
-        data.gmvAmount = this.toFixed(data.tranValue);
-        data.lossAmount = this.toFixed(data.lossValue);
-        data.allCount = data.totalCount;
-        data.gmvCount = data.tranCount;
-        this.setData({
-          areaData: data
-        });
-        return;
-      }
-    }
-      if (e.status == 401) {
-        wx.showModal({
+  // 获取时间-询盘
+  getTimeEnquiry(e) {
+    this.data.params.pageNum = 1;
+    this.setData({
+      'params.timeType': e.detail.time.type
+    })
+    this.countAnalysis();
+    this.getList();
+  },
+  // 获取统计分析
+  countAnalysis() {
+    app
+      .get('/enquiry/statistics', { type: this.data.params.timeType })
+      .then(e => {
+        if (e.status == 200) {
+          let data = e.data;
+          if (data) {
+            data.allAmount = this.toFixed(data.totalValue);
+            data.followAmount = this.toFixed(data.enquireValue);
+            data.gmvAmount = this.toFixed(data.tranValue);
+            data.lossAmount = this.toFixed(data.lossValue);
+            data.allCount = data.totalCount;
+            data.gmvCount = data.tranCount;
+            this.setData({
+              areaData: data
+            });
+            return;
+          }
+        }
+        if (e.status == 401) {
+          wx.showModal({
             title: '提示',
             content: '登录超时或未登录，请重新登录',
             success: res => {
-                if (res.confirm) {
-                    app.reset();
-                    wx.switchTab({
-                        url: '/pages/personal/personal'
-                    })
-                } else if (res.cancel) {
-                }
+              if (res.confirm) {
+                app.reset();
+                wx.switchTab({
+                  url: '/pages/personal/personal'
+                })
+              } else if (res.cancel) {
+              }
             }
-        })
-        return;
-    }
-  })
-  .catch(res => {
-    console.log(res);
-  });
-},
+          })
+          return;
+        }
+      })
+      .catch(res => {
+        console.log(res);
+      });
+  },
   // 获取列表
   getList(cb) {
     app.get('/enquiry/statisticslist', this.data.params).then(res => {
@@ -189,11 +190,11 @@ countAnalysis(){
           item.createTime = '今天' + app.time.formatTime(time, ' HH:mm');
           return;
         }
-        
+
         let islastYear = app.time.islastYear(time);
-        if (islastYear){
+        if (islastYear) {
           item.createTime = app.time.formatTime(time, 'YYYY-MM-DD HH:mm');
-        }else{
+        } else {
           item.createTime = app.time.formatTime(time, 'MM-DD HH:mm');
         }
       });
@@ -205,7 +206,8 @@ countAnalysis(){
       this.setData({
         list: this.data.list,
         isshowFooter: false,
-        count: this.data.count
+        count: this.data.count,
+        msgStr: '抱歉!没有找到符合条件的记录'
       });
     }).catch(res => {
       console.log(res);
@@ -215,7 +217,7 @@ countAnalysis(){
     });
   },
   toFixed(v) {
-    if(v == '' || v == null || v == undefined){
+    if (v == '' || v == null || v == undefined) {
       return v;
     }
     return v.toFixed(2);
