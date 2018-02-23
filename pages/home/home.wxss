@@ -10,7 +10,7 @@
 
 .banner {
   width: 100%;
-  height: 240rpx;
+  height: 160rpx;
 }
 
 .company {
