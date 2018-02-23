@@ -7,6 +7,7 @@ Page({
    */
   data: {
     CDN: app.CDN,
+    msgStr: '数据加载中，请稍后。。。',
     params: {
       cat: '',//	关键词id	number	
       dim: 'trade',//	显示纬度	string	交易: trade （流量: flow目前不开放）
@@ -117,11 +118,11 @@ Page({
         oHeight = rect.height;
         rolling(this);
       }).exec()
-    }else{
+    } else {
       rolling(this);
     }
 
-    function rolling(that){
+    function rolling(that) {
       let scrollTop = width * 88 / 375;
       if (Object.scrollTop >= scrollTop) {
         if (!that.data.isFixed && ((oHeight - height) > scrollTop)) {
@@ -175,10 +176,16 @@ Page({
             }
           }
         })
+        this.setData({
+          msgStr: '当前无搜索结果'
+        })
         return;
       }
       if (res.status != 200) {
         this.reset();
+        this.setData({
+          msgStr: '当前无搜索结果'
+        })
         return;
       }
 
@@ -200,16 +207,18 @@ Page({
         this.setData({
           list: this.data.list,
           isshowFooter: false,
-          count: this.data.count
+          count: this.data.count,
+          msgStr: '当前无搜索结果'
         });
         return;
       }
       this.reset();
     }).catch((res) => {
+      this.setData({
+        msgStr: '当前无搜索结果'
+      })
       if (wx.hideLoading) {
-        if (wx.hideLoading) {
-          wx.hideLoading();
-        }
+        wx.hideLoading();
       }
       if (typeof cb == 'function') {
         cb();

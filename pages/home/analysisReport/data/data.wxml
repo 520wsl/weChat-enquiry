@@ -28,10 +28,12 @@
 </template>
 
 <template name="lable">
-    <view style="display:flex;background:#fff;font-size:24rpx;padding-bottom:30rpx;justify-content:center;flex-wrap:wrap;">
+    <view class='lab lable{{pageType}}'>
         <block wx:for='{{tabList}}' wx:key="index">
-            <view style="margin-right:10rpx;">
-                <view style="background-color:{{colorType[index]}};width:25rpx;height:25rpx;border-radius:50%;display:inline-block;"></view>{{item.name}}</view>
+            <view class='item-lable'>
+                <view class='item-lable-tu' style='background-color:{{colorType[index]}};'></view>
+                <view class='item-lable-txt'>{{item.name}}</view>
+            </view>
         </block>
     </view>
 </template>
@@ -41,7 +43,7 @@
         <view class='canvas'>
             <view class='title canvas-title'>{{title}}</view>
             <canvas style="width: 100%; min-height: 640rpx;background:#fff;" canvas-id="{{canvasId}}"></canvas>
-            <template is="lable" data="{{tabList,colorType}}" />
+            <template is="lable" data="{{tabList,colorType,pageType}}" />
         </view>
         <view class='sjx'>
             <view class='pic'>
@@ -81,8 +83,8 @@
 <view>
     <view hidden="{{pageType == 2}}">
         <view class="{{(area1.tabList.length > 0 || area2.tabList.length > 0) ? '' : 'hidden'}}">
-            <template is="chart" data="{{...area1,CDN}}" />
-            <template is="chart" data="{{...area2,CDN}}" />
+            <template is="chart" data="{{...area1,CDN,pageType}}" />
+            <template is="chart" data="{{...area2,CDN,pageType}}" />
         </view>
         <view class="{{(area1.tabList.length > 0 || area2.tabList.length > 0) ? 'hidden' : ''}}">
             <template is="noData" data="{{CDN, msgStr}}" />
@@ -90,8 +92,8 @@
     </view>
     <view hidden="{{pageType == 1}}">
         <view class="{{(product1.tabList.length > 0 || product2.tabList.length > 0) ? '' : 'hidden'}}">
-            <template is="chart" data="{{...product1,CDN}}" />
-            <template is="chart" data="{{...product2,CDN}}" />
+            <template is="chart" data="{{...product1,CDN,pageType}}" />
+            <template is="chart" data="{{...product2,CDN,pageType}}" />
         </view>
         <view class="{{(product1.tabList.length > 0 || product2.tabList.length > 0) ? 'hidden' : ''}}">
             <template is="noData" data="{{CDN, msgStr}}" />

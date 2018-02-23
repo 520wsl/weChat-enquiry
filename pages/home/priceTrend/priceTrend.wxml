@@ -20,5 +20,5 @@
     </view>
   </view>
   <!-- 没数据 -->
-  <component-no-data wx:if="{{list.length == 0}}" text="当前无搜索结果"></component-no-data>
+  <component-no-data wx:if="{{list.length == 0}}" text="{{msgStr}}"></component-no-data>
 </view>

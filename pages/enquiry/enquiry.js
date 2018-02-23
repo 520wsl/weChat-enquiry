@@ -8,7 +8,7 @@ Page({
   data: {
     CDN: app.CDN,
     list: [],
-
+    msgStr: '数据加载中，请稍后。。。',
     params: {
       endTime: app.time.getTimeLimit(-1),
       pageNum: 1,
@@ -52,6 +52,9 @@ Page({
   onShow: function () {
     // 初始化
     this.data.params.pageNum = 1;
+    this.setData({
+      msgStr: '数据加载中，请稍后。。。'
+    })
     this.init();
   },
   onHide() {
@@ -122,7 +125,7 @@ Page({
       rolling(this);
     }
 
-    function rolling(that){
+    function rolling(that) {
       console.log('rolling')
       let scrollTop = width * 167 / 375;
       if (Obj.scrollTop >= scrollTop) {
@@ -164,20 +167,26 @@ Page({
             }
           }
         })
+        this.setData({
+          msgStr: '抱歉!没有找到符合条件的记录'
+        })
         return;
       }
       if (res.status != 200) {
         this.resetList();
+        this.setData({
+          msgStr: '抱歉!没有找到符合条件的记录'
+        })
         // console.log(res);
         return;
       }
 
       let formatData = res.data.list;
       this.data.count = res.data.count;
-      if (formatData && formatData.length > 0){
+      if (formatData && formatData.length > 0) {
         formatData.forEach(item => {
           // 图片替换
-          if (item.productImage){
+          if (item.productImage) {
             item.productImage = item.productImage.replace(/\.[^.]+\.jpg$/i, '.' + app.imgSizeEnq + '.jpg');
           }
           // 时间换算
@@ -192,7 +201,7 @@ Page({
             item.createTime = '今天' + app.time.formatTime(time, ' HH:mm');
             return;
           }
-          
+
           let islastYear = app.time.islastYear(time);
           if (islastYear) {
             item.createTime = app.time.formatTime(time, 'YYYY-MM-DD HH:mm');
@@ -208,20 +217,24 @@ Page({
         this.setData({
           list: this.data.list,
           isshowFooter: false,
-          count: this.data.count
+          count: this.data.count,
+          msgStr: '抱歉!没有找到符合条件的记录'
         });
         return;
       }
       this.resetList();
     }).catch(res => {
       // console.log(res);
+      this.setData({
+        msgStr: '抱歉!没有找到符合条件的记录'
+      })
       if (typeof cb == 'function') {
         cb();
       }
     });
   },
 
-  getScreening(e){
+  getScreening(e) {
     console.log(e.detail);
     this.data.params.pageNum = 1;
     let index = e.detail.acIndex;
@@ -270,9 +283,11 @@ Page({
       if (typeof cb == 'function') {
         cb();
       }
-
       if (res.status != 200) {
         this.reset();
+        this.setData({
+          msgStr: '抱歉!没有找到符合条件的记录'
+        })
         return;
       }
 
@@ -283,25 +298,29 @@ Page({
         data.gmvAmount = this.toFixed(data.gmvAmount);
         data.lossAmount = this.toFixed(data.lossAmount);
         this.setData({
-          areaData: data
+          areaData: data,
+          msgStr: '抱歉!没有找到符合条件的记录'
         });
         return;
       }
       this.reset();
     }).catch((res) => {
+      this.setData({
+        msgStr: '抱歉!没有找到符合条件的记录'
+      })
       if (typeof cb == 'function') {
         cb();
       }
     });
   },
 
-  reset(){
+  reset() {
     this.setData({
       areaData: null
     })
   },
 
-  resetList(){
+  resetList() {
     this.setData({
       list: []
     })
@@ -333,7 +352,7 @@ Page({
       'timeSearch.startTime': e.detail.value,
       timeActive: 4
     })
-    
+
     this.data.params.startTime = app.time.formatInitTime(e.detail.value, 'x');
     this.data.params.pageNum = 1;
     this.init();
@@ -364,7 +383,7 @@ Page({
   },
 
   // 初始化
-  init(){
+  init() {
     if (wx.showLoading) {
       wx.showLoading({ title: '加载中...' });
     }
@@ -377,15 +396,15 @@ Page({
   },
 
   // 时间选择
-  getTimeEnquiry(e){
+  getTimeEnquiry(e) {
     console.log(e);
     let time = e.detail.time;
-    if (time.type == -1){
+    if (time.type == -1) {
       this.setData({
         'timeSearch.startTime': '',
         'timeSearch.endTime': ''
       })
-    }else{
+    } else {
       this.setData({
         'timeSearch.startTime': app.time.formatTime(Number(time.startTime), 'YYYY-MM-DD'),
         'timeSearch.endTime': app.time.formatSubtractTime(1, 'days', Number(time.endTime), 'YYYY-MM-DD')

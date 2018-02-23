@@ -9,6 +9,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    msgStr: '数据加载中，请稍后。。。',
     params: {
       categoryId: '',// 关键词 3~9005
       categoryType: 'browser'
@@ -54,12 +55,12 @@ Page({
 
   // 获取数据
   getList() {
-    if(wx.showLoading){
-      wx.showLoading({title: '加载中...'});
+    if (wx.showLoading) {
+      wx.showLoading({ title: '加载中...' });
     }
     app.get('/alizs/price/analyse', this.data.params).then((res) => {
       console.log(res);
-      
+
 
       // 未登录、超时
       if (res.status == 401) {
@@ -73,20 +74,26 @@ Page({
               wx.switchTab({
                 url: '/pages/personal/personal'
               })
+              this.setData({
+                msgStr: '当前无搜索结果'
+              })
             } else if (res.cancel) {
             }
           }
         })
-        if(wx.hideLoading){
+        if (wx.hideLoading) {
           wx.hideLoading();
-      }
+        }
         return;
       }
       if (res.status != 200) {
         this.reset();
-        if(wx.hideLoading){
+        this.setData({
+          msgStr: '当前无搜索结果'
+        })
+        if (wx.hideLoading) {
           wx.hideLoading();
-      }
+        }
         return;
       }
 
@@ -94,23 +101,27 @@ Page({
       let type = this.data.params.categoryType;
       if (data[type] && data[type].length > 0) {
         this.setData({
-          list: data[type]
+          list: data[type],
+          msgStr: '当前无搜索结果'
         });
         // 图表
         this.getEcharts(this.data.list);
-        if(wx.hideLoading){
+        if (wx.hideLoading) {
           wx.hideLoading();
-      }
+        }
         return;
       }
       this.reset();
-      if(wx.hideLoading){
+      if (wx.hideLoading) {
         wx.hideLoading();
-    }
+      }
     }).catch((res) => {
-      if(wx.hideLoading){
+      this.setData({
+        msgStr: '当前无搜索结果'
+      })
+      if (wx.hideLoading) {
         wx.hideLoading();
-    }
+      }
     });
   },
 
@@ -133,11 +144,11 @@ Page({
   getEcharts(series) {
     let colorType = ['#9f73fb', '#52c187', '#5d77e5', '#f27a52', '#f1b93e', '#be9f46'];
     let cache = [...series].filter((item, index) => {
-        item.number = index;
-        if (item.value != 0) {
-          return true;
-        }
-      });
+      item.number = index;
+      if (item.value != 0) {
+        return true;
+      }
+    });
     let newSeries = cache.map((item, index) => {
       return {
         name: item.name,
