@@ -16,7 +16,7 @@
 <view class="header">
   <text class="text">关键词详情</text>
 </view>
-<view class="king-detail" wx:for="{{winKing}}">
+<view class="king-detail" wx:for="{{winKing}}" wx:key="{{index}}">
   <view class="detail-head">
     <view class="head-left">
       <view class="img pic">
