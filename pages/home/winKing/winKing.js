@@ -17,6 +17,10 @@ Page({
     winKing:[]
   },
   getlistwinKing(){
+    let tittle=String(this.data.time)+'标王记录';
+    wx.setNavigationBarTitle({
+      title: tittle
+    })
     app
     .get('/topbidder/list',{time:this.data.time})
     .then(e => {
