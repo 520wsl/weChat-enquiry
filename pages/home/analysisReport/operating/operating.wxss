@@ -1,7 +1,7 @@
 /* pages/home/analysisReport/operating/operating.wxss */
 .operating {
   background: #ffffff;
-  min-height: 1070rpx;
+  min-height: 970rpx;
   width: 690rpx;
   margin: 0 auto;
   margin-top: 89rpx;

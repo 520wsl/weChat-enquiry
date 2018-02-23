@@ -6,26 +6,35 @@ Page({
      */
   data: {
     CDN: app.CDN,
-    operatingData: {},
+    operatingData: { },
     reportId: null,
     reportName:null
   },
   //选择传入信息
   selectReport(e) {
-    console.log(e.detail.params);
     this.setData({
       reportName: e.detail.params.reportName,
       reportId:e.detail.params.reportId
     });
-    let tittle=String(e.detail.params.reportName);
+    let tittle=String(e.detail.params.reportName)+'询盘分析报告';
     wx.setNavigationBarTitle({
       title: tittle
     })
+    this.getSuggest();
   },
   add: function(e) {
     extraLine.push('other line')
     this.setData({
       text: initData + '\n' + extraLine.join('\n')
+    })
+  },
+  getSuggest() {
+    app.get('/report/advise',{reportId:this.data.reportId}).then((e)=>{
+      if(e.status==200){
+        this.setData({
+       operatingData:e.data
+      })
+      }
     })
   },
   /**

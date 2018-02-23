@@ -1,6 +1,6 @@
 {
+  "navigationBarTitleText":"",
   "usingComponents": {
-    "component-analysis-report": "/components/analysisReport/analysisReport"
 },
 "enablePullDownRefresh": false,
 "onReachBottomDistance": 10

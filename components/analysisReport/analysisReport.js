@@ -57,7 +57,7 @@ Component({
   },
 
   ready() {
-    // this.getList();
+    this.getList();
     this.triggerEvent('selectReport', {params:this.data.list[0]});
   },
 
@@ -84,6 +84,11 @@ Component({
       app
         .get('/report/pastreport')
         .then(e => {
+          if(e.status==200){
+            this.setData({
+              list:e.data
+            })
+          }
           console.log(e.list);
         })
         .catch(res => {
