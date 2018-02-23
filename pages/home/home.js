@@ -158,8 +158,12 @@ Page({
         return;
       }
       formatData.forEach(item => {
+        if(item.sumAllAmount<10000){
         item.sumAllAmount = item.sumAllAmount.toFixed(2);
         item.sumGmvAmountFormat = item.sumAllAmount.replace(/\d{1,3}(?=(\d{3})+\.)/g, '$&,');
+      }else{
+        item.sumGmvAmountFormat = app.time.NumberUpperFormat(item.sumAllAmount);
+      }
       });
       this.setData({
         customerarea: formatData,
@@ -212,8 +216,12 @@ Page({
       let formatData = res.data;
       for (let i in formatData) {
         if (formatData[i] && (i == 'enquireValue' || i == 'lossValue' || i == 'totalValue' || i == 'tranValue')) {
+          if(formatData[i]<10000){
           formatData[i] = formatData[i].toFixed(2);
           formatData[i] = formatData[i].replace(/\d{1,3}(?=(\d{3})+\.)/g, '$&,');
+          }else{
+            formatData[i] = app.time.NumberUpperFormat(formatData[i]);
+          }
         }
       }
       this.setData({
@@ -266,7 +274,7 @@ Page({
       series: [{
         data: chartData.seriesData,
         format: function (val) {
-          return val.replace(/\d{1,3}(?=(\d{3})+\.)/g, '$&,');
+            return String(val).replace(/\d{1,3}(?=(\d{3})+\.)/g, '$&,');
         },
         setColor: chartData.setColor,
         isGradation: true,

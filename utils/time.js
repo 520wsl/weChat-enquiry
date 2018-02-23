@@ -46,7 +46,46 @@ util.formatTime = function (time = new Date(), norms = 'YYYY-MM-DD') {
 util.formatAddTime = function (time = new Date(), norms = 'YYYY-MM-DD', addNum = 1, addNorms = 'days') {
     return (time && moment(time).add(addNum, addNorms).format(norms)) || '';
 };
-
+/**
+     * 为数字加上单位：万或亿
+     *
+     * 例如：
+     *      1000.01 => 1000.01
+     *      10000 => 1万
+     *      99000 => 9.9万
+     *      566000 => 56.6万
+     *      5660000 => 566万
+     *      44440000 => 4444万
+     *      11111000 => 1111.1万
+     *
+     * @param {number} input 输入数字.
+     */
+util.NumberUpperFormat = function (input) {
+    const units = [
+        {num: 4, unit: '万'},
+        {num: 6, unit: '百万'},
+        {num: 7, unit: '千万'},
+        {num: 8, unit: '亿'}
+      ];
+      // 精确到整数，直接用js自带方法input.toFixed(0)也可以
+      const num = String(input.toFixed(0));
+      // 保证前面至少留两位
+      const len = num.length - 1;
+      let isFind = false;
+      for (let i = 0, length = units.length; i < length; i++) {
+          let item = units[i];
+          if (len >= item.num && len < units[i + 1].num) {
+              isFind = true;
+          } else if (i === (length - 2)) {
+              isFind = true;
+              item = units[++i];
+          }
+          if (isFind) {
+              // 确认区间后，返回前几位加上单位
+              return `${num.slice(0, num.length - item.num)}.${num.slice(num.length - item.num, num.length - item.num+2)}${item.unit}`;
+          }
+      }
+};
 /**
  * @Title: 3、时间 减法 并 格式化时间
  * @Author: Mad Dragon 【 395548460@qq.com 】
