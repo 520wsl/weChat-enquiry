@@ -32,7 +32,7 @@ Component({
         type: 'jl',
       },
       {
-        label: 'ERP管理',
+        label: '进销存管理',
         navUrl: '/pages/home/erp/myGoods/myGoods',
         imgUrl: app.CDN + 'icon_index_fx.png',
         type: 'fx',
@@ -74,6 +74,14 @@ Component({
             } else if (res.cancel) {
             }
           }
+        })
+        return;
+      }
+      if (e.currentTarget.dataset.type == 'fx') {
+        wx.showToast({
+          title: '敬请期待',
+          icon: 'loading',
+          duration: 2000
         })
         return;
       }

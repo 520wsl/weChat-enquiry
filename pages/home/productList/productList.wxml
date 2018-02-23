@@ -20,7 +20,7 @@
     <view class="line"></view>
   </view>
   <!-- 没数据 -->
-  <component-no-data text="当前无搜索结果" wx:if="{{list.length == 0}}"></component-no-data>
+  <component-no-data text="{{msgStr}}" wx:if="{{list.length == 0}}"></component-no-data>
 </view>
 <!-- 弹窗 -->
 <view class="modal" wx:if="{{modal}}">
