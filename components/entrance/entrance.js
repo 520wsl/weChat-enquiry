@@ -32,7 +32,7 @@ Component({
         type: 'jl',
       },
       {
-        label: 'ERP管理',
+        label: '进销存管理',
         navUrl: '/pages/home/erp/myGoods/myGoods',
         imgUrl: app.CDN + 'icon_index_fx.png',
         type: 'fx',
