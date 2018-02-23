@@ -6,7 +6,7 @@
   font-size: 28rpx;
 }
 .circle-box {
-  height: 594rpx;
+  height: 530rpx;
   text-align: center;
   color: #fff;
   border-color: #55abf6;
@@ -39,6 +39,7 @@
   width: 380rpx;
   height: 380rpx;
   color: #ffffff;
+  
   font-size: 24rpx;
   display: flex;
   justify-content: center;
@@ -51,7 +52,11 @@
 .circleone text {
   font-size: 96rpx;
 }
+.circletwo{
+  opacity: 0.64;
+}
 .bottom {
+  height:430rpx;
   justify-content: center;
   align-items: flex-end;
 }
@@ -94,7 +99,7 @@
 .block .prc {
   flex: 1.5;
   font-size: 32rpx;
-  color: #f957a0;
+  color: #CB2B2B;
 }
 .block .num {
   flex: 1;
@@ -106,5 +111,5 @@
   margin-right: 20rpx;
 }
 .block .red {
-  color: #f957a0;
+  color: #CB2B2B;
 }

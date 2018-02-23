@@ -170,7 +170,7 @@ var auth={
   bindCustome: function () {
     // console.log('6.2、判断有几家客户', this.globalData.companies)
     let companies = this.globalData.companies;
-    let companyName = this.globalData.customeInfo.companyName;
+    let companyName = this.globalData.customeInfo && this.globalData.customeInfo.companyName;
     let num = companies.length;
     if (companyName) {
       return;

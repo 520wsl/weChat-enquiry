@@ -1,5 +1,46 @@
 <!--pages/home/analysisReport/data/data.wxml-->
+
+<template name="itemTxt">
+    <block wx:for="{{titles}}" wx:key="{{item}}">
+        <view class='col txt-width'>{{item}}</view>
+    </block>
+</template>
+
+<template name="titles">
+    <view class='row title'>
+        <view class='col txt-width'>{{titles[0]}}</view>
+        <view class='col flex1'>{{titles[1]}}</view>
+        <view class='col flex1'>{{titles[2]}}</view>
+        <view class='col flex1'>{{titles[3]}}</view>
+    </view>
+</template>
+
+<template name="row">
+    <view class='row'>
+        <view class='col txt-width'>{{province}}</view>
+        <view class='col flex1'>{{enquiryCount}}</view>
+        <view class='col flex1'>{{allAmount}}</view>
+        <view class='col flex1'>{{gmvPercent}}%</view>
+    </view>
+</template>
+
+
 <view>
-    <component-analysis-report active="2" bindselectReport="getAcItem"></component-analysis-report>
-    <text>数据分析</text>
-  </view>
+    <view>
+        <view>按金额统计</view>
+        <view>
+            <view>
+            <canvas style="width: 300rpx; height: 200rpx;" canvas-id="firstCanvas"></canvas>
+            </view>
+            <view>
+            
+            </view>
+        </view>
+    </view>
+    <view class='enquiry'>
+        <view class='enquiry-tab'>
+            <template is="titles" data="{{titles}}" />
+            <template wx:for="{{tabList}}" wx:key="{{item}}" is="row" data="{{...item}}" />
+        </view>
+    </view>
+</view>
