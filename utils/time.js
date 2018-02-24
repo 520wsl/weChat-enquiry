@@ -26,8 +26,8 @@ let util = {};
  *
  * @Description:
  */
-util.formatTime = function (time = new Date(), norms = 'YYYY-MM-DD') {
-    return (time && moment(time).format(norms)) || '';
+util.formatTime = function(time = new Date(), norms = 'YYYY-MM-DD') {
+  return (time && moment(time).format(norms)) || '';
 };
 
 /**
@@ -43,11 +43,22 @@ util.formatTime = function (time = new Date(), norms = 'YYYY-MM-DD') {
  *
  * @Description:
  */
-util.formatAddTime = function (time = new Date(), norms = 'YYYY-MM-DD', addNum = 1, addNorms = 'days') {
-    return (time && moment(time).add(addNum, addNorms).format(norms)) || '';
+util.formatAddTime = function(
+  time = new Date(),
+  norms = 'YYYY-MM-DD',
+  addNum = 1,
+  addNorms = 'days'
+) {
+  return (
+    (time &&
+      moment(time)
+        .add(addNum, addNorms)
+        .format(norms)) ||
+    ''
+  );
 };
 /**
-     * 为数字加上单位：万或亿
+     * 为数字加上单位：万
      *
      * 例如：
      *      1000.01 => 1000.01
@@ -60,31 +71,36 @@ util.formatAddTime = function (time = new Date(), norms = 'YYYY-MM-DD', addNum =
      *
      * @param {number} input 输入数字.
      */
-util.NumberUpperFormat = function (input) {
-    const units = [
-        {num: 4, unit: '万'},
-        {num: 6, unit: '百万'},
-        {num: 7, unit: '千万'},
-        {num: 8, unit: '亿'}
-      ];
-      // 精确到整数，直接用js自带方法input.toFixed(0)也可以
-      const num = String(input.toFixed(0));
-      // 保证前面至少留两位
-      const len = num.length - 1;
-      let isFind = false;
-      for (let i = 0, length = units.length; i < length; i++) {
-          let item = units[i];
-          if (len >= item.num && len < units[i + 1].num) {
-              isFind = true;
-          } else if (i === (length - 2)) {
-              isFind = true;
-              item = units[++i];
-          }
-          if (isFind) {
-              // 确认区间后，返回前几位加上单位
-              return `${num.slice(0, num.length - item.num)}.${num.slice(num.length - item.num, num.length - item.num+2)}${item.unit}`;
-          }
-      }
+util.NumberUpperFormat = function(input) {
+  // const units = [
+  //     {num: 4, unit: '万'},
+  //     {num: 6, unit: '百万'},
+  //     {num: 7, unit: '千万'},
+  //     {num: 8, unit: '亿'}
+  //   ];
+  // 精确到整数，直接用js自带方法input.toFixed(0)也可以
+  if (input > 999) {
+    const num = input / 10000;
+    return `${num.toFixed(2)}万`;
+  }
+  //   const num = String(input.toFixed(0));
+  //   return `${num.slice(0, num.length - 4)}.${num.slice( num.length - 4,num.length - 2)}万`;
+  // 保证前面至少留两位
+  //   const len = num.length - 1;
+  //   let isFind = false;
+  //   for (let i = 0, length = units.length; i < length; i++) {
+  //       let item = units[i];
+  //       if (len >= item.num && len < units[i + 1].num) {
+  //           isFind = true;
+  //       } else if (i === (length - 2)) {
+  //           isFind = true;
+  //           item = units[++i];
+  //       }
+  //       if (isFind) {
+  //           // 确认区间后，返回前几位加上单位
+  //           return `${num.slice(0, num.length - item.num)}.${num.slice(num.length - item.num, num.length - item.num+2)}${item.unit}`;
+  //       }
+  //   }
 };
 /**
  * @Title: 3、时间 减法 并 格式化时间
@@ -99,8 +115,19 @@ util.NumberUpperFormat = function (input) {
  *
  * @Description:
  */
-util.formatSubtractTime = function (addNum = 1, addNorms = 'days', time = new Date(), norms = 'YYYY-MM-DD') {
-    return (time && moment(time).subtract(addNum, addNorms).format(norms)) || '';
+util.formatSubtractTime = function(
+  addNum = 1,
+  addNorms = 'days',
+  time = new Date(),
+  norms = 'YYYY-MM-DD'
+) {
+  return (
+    (time &&
+      moment(time)
+        .subtract(addNum, addNorms)
+        .format(norms)) ||
+    ''
+  );
 };
 
 /**
@@ -115,16 +142,31 @@ util.formatSubtractTime = function (addNum = 1, addNorms = 'days', time = new Da
  *
  * @Description:
  */
-util.formatInitTime = function (time = new Date(), norms = 'YYYY-MM-DD') {
-    return (time && moment(time).format(norms)) || '';
+util.formatInitTime = function(time = new Date(), norms = 'YYYY-MM-DD') {
+  return (time && moment(time).format(norms)) || '';
 };
 
-util.startTime = function (time = new Date(), norms = 'YYYY-MM-DD') {
-    return (util.formatInitTime(time) && moment(util.formatInitTime(time)).format(norms)) || '';
+util.startTime = function(time = new Date(), norms = 'YYYY-MM-DD') {
+  return (
+    (util.formatInitTime(time) &&
+      moment(util.formatInitTime(time)).format(norms)) ||
+    ''
+  );
 };
 
-util.endTime = function (time = new Date(), norms = 'YYYY-MM-DD', addNum = 1, addNorms = 'days') {
-    return (util.formatInitTime(time) && moment(util.formatInitTime(time)).add(addNum, addNorms).format(norms)) || '';
+util.endTime = function(
+  time = new Date(),
+  norms = 'YYYY-MM-DD',
+  addNum = 1,
+  addNorms = 'days'
+) {
+  return (
+    (util.formatInitTime(time) &&
+      moment(util.formatInitTime(time))
+        .add(addNum, addNorms)
+        .format(norms)) ||
+    ''
+  );
 };
 
 /**
@@ -132,35 +174,48 @@ util.endTime = function (time = new Date(), norms = 'YYYY-MM-DD', addNum = 1, ad
  * n 时间段 p 时间类型 norms 时间格式
  * 例如 n:1 p:weeks norms:YYYY-MM-DD HH:mm:ss
  */
-util.getTimeLimit = function (n = 0, p = 'days', norms = 'YYYY-MM-DD HH:mm:ss'){
-  return util.startTime(moment().subtract(n, p).format(norms), 'x');
-}
+util.getTimeLimit = function(n = 0, p = 'days', norms = 'YYYY-MM-DD HH:mm:ss') {
+  return util.startTime(
+    moment()
+      .subtract(n, p)
+      .format(norms),
+    'x'
+  );
+};
 
 /**
  * 获取昨天、今天判断
  * time 时间 type 时间类型 1 昨天 2 今天
  * 例如 time:new Date() type:1
  */
-util.isDayType = function (time = new Date(), type = 1) {
-  if(type == 1){
-    return moment(time).isBetween(util.formatSubtractTime(2), util.formatSubtractTime(0), 'day');
+util.isDayType = function(time = new Date(), type = 1) {
+  if (type == 1) {
+    return moment(time).isBetween(
+      util.formatSubtractTime(2),
+      util.formatSubtractTime(0),
+      'day'
+    );
   }
-  if(type == 2){
-    return moment(time).isBetween(util.formatSubtractTime(1), util.formatSubtractTime(-1), 'day');
+  if (type == 2) {
+    return moment(time).isBetween(
+      util.formatSubtractTime(1),
+      util.formatSubtractTime(-1),
+      'day'
+    );
   }
   return false;
-}
+};
 
 /**
  * 获取今年之前的判断
  * time 时间 : true 之前 false 不是之前
  * 例如 time:new Date()
  */
-util.islastYear = function (time = new Date()) {
+util.islastYear = function(time = new Date()) {
   let lastYear = util.formatSubtractTime(0, 'years', new Date(), 'YYYY');
   let islastYear = moment(time).isBefore(lastYear, 'year');
   return islastYear;
-}
+};
 
 // export default util;
-module.exports = util
+module.exports = util;
