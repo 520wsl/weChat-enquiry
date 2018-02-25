@@ -78,11 +78,19 @@ Component({
         return;
       }
       if (e.currentTarget.dataset.type == 'fx') {
-        wx.showToast({
-          title: '敬请期待',
-          icon: 'loading',
-          duration: 2000
-        })
+        app.get('/check/aliauthorize').then(res => {
+          if(res.data){
+            wx.navigateTo({
+              url: e.currentTarget.dataset.link
+            });
+          }else{
+            wx.showToast({
+              title: '敬请期待',
+              icon: 'loading',
+              duration: 2000
+            })
+          }
+        });
         return;
       }
       if (e.currentTarget.dataset.type == 'xp') {
