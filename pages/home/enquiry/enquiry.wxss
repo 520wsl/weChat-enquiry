@@ -1,4 +1,15 @@
 /* pages/enquiry/enquiry.wxss */
+/* 顶部固定 */
+ .fixed component-common-screening {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  z-index: 999;
+}
+.fixed .list{
+  margin-top: 70rpx;
+} 
 
 .banner {
   width: 100%;

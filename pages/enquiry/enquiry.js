@@ -20,7 +20,7 @@ Page({
     count: 0,//默认 list总数
     isClear: false,
     // 是否固定
-    isFixed: false,
+    isFixed: 0,
     isshowFooter: false,
 
     // 区域统计
@@ -127,18 +127,18 @@ Page({
 
     function rolling(that) {
       console.log('rolling')
-      let scrollTop = width * 167 / 375;
+      let scrollTop = width * 175 / 375;
       if (Obj.scrollTop >= scrollTop) {
         if (!that.data.isFixed && ((oHeight - height) > scrollTop)) {
           that.setData({
-            isFixed: true
+            isFixed: 1
           });
           console.log('fixed true');
         }
       } else {
         if (that.data.isFixed) {
           that.setData({
-            isFixed: false
+            isFixed: 0
           });
           console.log('fixed false');
         }

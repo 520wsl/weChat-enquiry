@@ -120,7 +120,7 @@ Page({
     }
 
     function rolling(that){
-      let scrollTop = width * 255 / 375;
+      let scrollTop = width * 250 / 375;
       if (Object.scrollTop >= scrollTop) {
         if (!that.data.isFixed && ((oHeight - height) > scrollTop)) {
           that.setData({

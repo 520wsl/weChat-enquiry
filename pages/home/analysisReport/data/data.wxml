@@ -53,7 +53,7 @@
         <view class='enquiry'>
             <view class='enquiry-tab'>
                 <template is="titles" data="{{titles}}" />
-                <template wx:for="{{tabList}}" wx:key="{{item}}" is="{{tabType}}" data="{{...item}}" />
+                <template wx:for="{{tabList}}" wx:if="{{item.productId != 0}}" wx:key="{{item}}" is="{{tabType}}" data="{{...item}}" />
             </view>
         </view>
     </view>
