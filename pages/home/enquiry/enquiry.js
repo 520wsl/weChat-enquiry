@@ -26,6 +26,8 @@ Page({
     label: '',
     count: 0,//默认 list总数
     isClear: false,
+    // 是否固定
+    isFixed: false,
     isshowFooter: false
   },
 
@@ -94,6 +96,44 @@ Page({
       isshowFooter: true
     })
   },
+
+  // 页面滚动
+  onPageScroll(Object) {
+    let width = 375, height = 603, oHeight = 1488;
+    try {
+      let res = wx.getSystemInfoSync();
+      width = res.windowWidth;
+      height = res.windowHeight;
+    } catch (e) {
+      console.error('getSystemInfoSync failed!');
+    }
+    if (wx.createSelectorQuery) {
+      wx.createSelectorQuery().select('.enquiry').boundingClientRect((rect) => {
+        oHeight = rect.height;
+        rolling(this);
+      }).exec()
+    } else {
+      rolling(this);
+    }
+
+    function rolling(that) {
+      let scrollTop = width * 217 / 375;
+      if (Object.scrollTop >= scrollTop) {
+        if (!that.data.isFixed && ((oHeight - height) > scrollTop)) {
+          that.setData({
+            isFixed: true
+          });
+        }
+      } else {
+        if (that.data.isFixed) {
+          that.setData({
+            isFixed: false
+          });
+        }
+      }
+    }
+  },
+
   // 获取时间-询盘
   getTimeEnquiry(e) {
     this.data.params.pageNum = 1;

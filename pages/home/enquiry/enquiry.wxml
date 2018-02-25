@@ -1,5 +1,5 @@
 <!--pages/enquiry/enquiry.wxml-->
-<view class="enquiry">
+<view class="enquiry {{isFixed ? 'fixed' : ''}}">
   <view class="header">
     <text class="text">询盘统计分析</text>
     <component-date-control bindgetTime="getTimeEnquiry" active="{{params.timeType-1}}" />

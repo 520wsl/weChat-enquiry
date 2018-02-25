@@ -47,14 +47,14 @@
 
 .date-control-1 .time {
   font-size: 24rpx;
-  color: #fff;
+  color: #6495ff;
   width: 140rpx;
   height: 48rpx;
   line-height: 48rpx;
   text-align: center;
-  border: 2rpx solid #e0e0e0;
+  border: 2rpx solid #ecf2fd;
   border-radius: 148rpx;
-  background: #6495F9;
+  background: #ecf2fd;
   letter-spacing: 10.8rpx;
 }
 
