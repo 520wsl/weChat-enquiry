@@ -56,11 +56,15 @@ Page({
       msgStr: '数据加载中，请稍后。。。'
     })
     this.init();
+    wx.pageScrollTo({
+      scrollTop: 0,
+      duration: 0
+    })
   },
   onHide() {
-    this.setData({
-      list: []
-    })
+    // this.setData({
+    //   list: []
+    // })
   },
   onShareAppMessage: function () {
     return {
