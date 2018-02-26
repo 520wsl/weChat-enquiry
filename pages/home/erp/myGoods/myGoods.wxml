@@ -13,7 +13,7 @@
             <image mode='aspectFit' src="{{productImage ? ALI+productImage: CDN + 'icon-pro.png'}}"></image>
         </view>
         <view class='info'>
-            <view class='title txt-more-multiple'>{{productName}}</view>
+            <view class='title txt-more-multiple'>{{productName || ''}}</view>
             <view class='mony'>
                 <text class='num' wx:if="{{minPrice > 0 }}">￥{{minPrice}} - </text>
                 <text class='num'>￥{{maxPrice}}</text>
@@ -33,8 +33,8 @@
         </view>
         <view class='info'>
             <view class='pro-title'>
-                <view class='name txt-more-multiple'>{{name}}</view>
-                <view class='spec txt-more-multiple'>{{skuInfos}}</view>
+                <view class='name txt-more-multiple'>{{name || ''}}</view>
+                <view class='spec txt-more-multiple'>{{skuInfos || ''}}</view>
 
             </view>
             <view class='price'>
@@ -50,8 +50,8 @@
 <template name="item-order">
     <navigator class='item-order' url='/pages/home/erp/orderInfo/orderInfo?orderId={{id}}'>
         <view class='title'>
-            <view class='custome txt-more'>{{buyerLoginId}}</view>
-            <view class='type txt-more'>{{statusStr}}</view>
+            <view class='custome txt-more'>{{buyerLoginId || ''}}</view>
+            <view class='type txt-more'>{{statusStr || ''}}</view>
         </view>
 
         <template wx:for="{{productItems}}" wx:key="{{index}}" is="item-order-pro" data="{{...item, CDN, ALI}}" />
