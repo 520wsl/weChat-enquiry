@@ -18,7 +18,7 @@
   </view>
 
 </view>
-<component-no-data text="您还未开启标王之旅哦！" wx:if="{{winKing.length == 0}}"></component-no-data>
+<component-no-data text="您还未开启标王之旅哦！" wx:if="{{winKing.length == 0 || winKing == null}}"></component-no-data>
 <view wx:else>
   <view wx:for="{{winKing}}" wx:key="{{index}}">
     <component-king-list keyword="{{item.keyword}}" isobtain="{{item.isobtain}}" finalprice="{{item.finalprice}}" dealcompany="{{item.dealcompany}}"
