@@ -69,6 +69,7 @@
 }
 .norm .sub .txt {
   color: #151515;
+  word-break:break-all;
 }
 .norm .sub .pic image {
   transform: rotate(90deg);
@@ -129,6 +130,7 @@
 }
 .attr .lists .txt {
   line-height: 52rpx;
+  word-break:break-all;  
 }
 /* <!-- 买家服务 --> */
 .server {
