@@ -345,7 +345,9 @@ Page({
     ctx.setFontSize(12);
     ctx.setFillStyle("#6495F9");
     ctx.setTextAlign("center");
-    ctx.setTextBaseline('middle');
+    if (ctx.setTextBaseline){
+      ctx.setTextBaseline('middle');
+    }
     ctx.moveTo(width / 2, height / 2);
     ctx.fillText(percent + '%', width / 2, height / 2);
   },
