@@ -205,7 +205,7 @@ Page({
       let data = res.data;
       if (data) {
         for (let i in data) {
-          if(i!='ranking'&&i!="tranProportion"){
+          if(i!='ranking'&&i!="tranProportion"&&i!='allCount'&&i!="followCount"&&i!="gmvCount"&&i!="lossCount"){
            data[i] = app.time.NumberUpperFormat(data[i]);
           }
         }
