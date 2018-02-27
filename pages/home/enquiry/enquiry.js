@@ -152,7 +152,9 @@ Page({
           let data = e.data;
           if (data) {
             for (let i in data) {
+              if(i!='effCount'&&i!="followCount"&&i!="lossCount"&&i!="totalCount"&&i!="tranCount"){
               data[i] = app.time.NumberUpperFormat(data[i]);
+              }
             }
             data.allAmount =data.totalValue;
             data.followAmount = data.enquireValue;

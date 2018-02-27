@@ -298,7 +298,9 @@ Page({
       let data = res.data;
       if (data) {
         for (let i in data) {
-          data[i] = app.time.NumberUpperFormat(data[i]);
+          if(i!='allCount'&&i!="allCount"&&i!='followCount'&&i!="gmvCount"&&i!="lossCount"&&i!="ranking"){
+            data[i] = app.time.NumberUpperFormat(data[i]);
+           }
         }
         this.setData({
           areaData: data,
