@@ -297,10 +297,9 @@ Page({
 
       let data = res.data;
       if (data) {
-        data.allAmount = this.toFixed(data.allAmount);
-        data.followAmount = this.toFixed(data.followAmount);
-        data.gmvAmount = this.toFixed(data.gmvAmount);
-        data.lossAmount = this.toFixed(data.lossAmount);
+        for (let i in data) {
+          data[i] = app.time.NumberUpperFormat(data[i]);
+        }
         this.setData({
           areaData: data,
           msgStr: '抱歉!没有找到符合条件的记录'
@@ -330,12 +329,6 @@ Page({
     })
   },
 
-  toFixed(v) {
-    if (v == '' || v == null || v == undefined) {
-      return v;
-    }
-    return v.toFixed(2);
-  },
 
   // 开始时间
   startTimeChange(e) {

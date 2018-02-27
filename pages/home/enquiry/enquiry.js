@@ -151,10 +151,13 @@ Page({
         if (e.status == 200) {
           let data = e.data;
           if (data) {
-            data.allAmount = this.toFixed(data.totalValue);
-            data.followAmount = this.toFixed(data.enquireValue);
-            data.gmvAmount = this.toFixed(data.tranValue);
-            data.lossAmount = this.toFixed(data.lossValue);
+            for (let i in data) {
+              data[i] = app.time.NumberUpperFormat(data[i]);
+            }
+            data.allAmount =data.totalValue;
+            data.followAmount = data.enquireValue;
+            data.gmvAmount = data.tranValue;
+            data.lossAmount = data.lossValue;
             data.allCount = data.totalCount;
             data.gmvCount = data.tranCount;
             this.setData({
@@ -255,12 +258,6 @@ Page({
         cb();
       }
     });
-  },
-  toFixed(v) {
-    if (v == '' || v == null || v == undefined) {
-      return v;
-    }
-    return v.toFixed(2);
   },
 
   getScreening(e) {

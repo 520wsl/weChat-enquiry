@@ -79,9 +79,15 @@ util.NumberUpperFormat = function(input) {
   //     {num: 8, unit: '亿'}
   //   ];
   // 精确到整数，直接用js自带方法input.toFixed(0)也可以
-  if (input > 999) {
+  if (input >= 10000) {
     const num = input / 10000;
     return `${num.toFixed(2)}万`;
+  }else{
+    let v= input;
+    if (v == '' || v == null || v == undefined) {
+      return v;
+    }
+    return v.toFixed(2);
   }
   //   const num = String(input.toFixed(0));
   //   return `${num.slice(0, num.length - 4)}.${num.slice( num.length - 4,num.length - 2)}万`;
