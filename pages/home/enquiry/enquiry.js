@@ -68,6 +68,7 @@ Page({
   onPullDownRefresh: function () {
     this.data.params.pageNum = 1;
     this.data.list = [];
+    this.countAnalysis();
     this.getList(() => {
       wx.stopPullDownRefresh();
     });
