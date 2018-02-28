@@ -245,10 +245,12 @@ Page({
     this.getList(() => {
       if (wx.hideLoading) {
         wx.hideLoading();
-        wx.pageScrollTo({
-          scrollTop: 0,
-          duration: 0
-        })
+        if(wx.pageScrollTo){
+          wx.pageScrollTo({
+            scrollTop: 0,
+            duration: 0
+          })
+        }
       }
     });
   },
@@ -265,10 +267,12 @@ Page({
     this.getList(() => {
       if (wx.hideLoading) {
         wx.hideLoading();
-        wx.pageScrollTo({
-          scrollTop: 0,
-          duration: 0
-        })
+        if(wx.pageScrollTo){
+          wx.pageScrollTo({
+            scrollTop: 0,
+            duration: 0
+          })
+        }
       }
     });
   },
