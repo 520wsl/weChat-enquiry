@@ -43,7 +43,7 @@ var api = {
                         reject(e.data);
                         return;
                     }
-                    console.log('全局拦截：', url, e.data, '耗时', new Date().getTime() - firstTime)
+                    console.log('全局拦截：', method, url, data, e.data, '耗时', new Date().getTime() - firstTime)
                     resolve(e.data);
                 },
                 fail: function (e) {
