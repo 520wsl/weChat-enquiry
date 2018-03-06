@@ -76,7 +76,12 @@ Page({
     },
     // 客户地区
     customerarea: [],
-    customerareaTime: {},
+    customerareaTime: {
+      label: '一月',
+      startTime: app.time.getTimeLimit(1, 'month'),
+      endTime: app.time.getTimeLimit(-1),
+      type: 2
+    },
     // 公司
     company: '',
   },
@@ -132,9 +137,11 @@ Page({
   },
 
   // 客户地区
-  getCustomArea({ type = 2 }) {
+  getCustomArea({ type = 2, startTime, endTime }) {
     app.get('/enquiry/customerarea', {
-      type: type,
+      // type: type,
+      startTime,
+      endTime
     }).then(res => {
       if (res.status == 401) {
         this.setData({
@@ -180,9 +187,11 @@ Page({
     });
   },
   // 询盘统计
-  getEnquire({ type = 1 }, cb) {
+  getEnquire({ type = 1, startTime, endTime }, cb) {
     app.get('/enquiry/statistics', {
-      type: type,
+      // type: type,
+      startTime,
+      endTime
     }).then(res => {
       if (typeof cb == 'function') {
         cb();
@@ -413,7 +422,9 @@ Page({
     let item = e.currentTarget.dataset.obj;
     let timeType = this.data.customerareaTime.type || 2;
     let timeName = this.data.customerareaTime.label || '一月';
-    let url = "/pages/home/areaEnquiry/areaEnquiry?provinceId=" + item.provinceId + "&provinceName=" + item.provinceName + "&ranking=" + (index + 1) + "&timeType=" + timeType + "&timeName=" + timeName;
+    let startTime = this.data.customerareaTime.startTime;
+    let endTime = this.data.customerareaTime.endTime;
+    let url = "/pages/home/areaEnquiry/areaEnquiry?provinceId=" + item.provinceId + "&provinceName=" + item.provinceName + "&ranking=" + (index + 1) + "&timeType=" + timeType + "&timeName=" + timeName + '&startTime=' + startTime + '&endTime=' + endTime;
     wx.navigateTo({
       url: url,
     });

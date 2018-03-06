@@ -15,7 +15,7 @@
         <view class='info'>
             <view class='title txt-more-multiple'>{{productName || ''}}</view>
             <view class='mony'>
-                <text class='num' wx:if="{{minPrice > 0 }}">￥{{minPrice}} - </text>
+                <text class='num' wx:if="{{minPrice > 0 }}">￥{{minPrice}}-</text>
                 <text class='num'>￥{{maxPrice}}</text>
                 <text class='txt'> /{{unit}}</text>
             </view>
@@ -50,7 +50,7 @@
 <template name="item-order">
     <navigator class='item-order' url='/pages/home/erp/orderInfo/orderInfo?orderId={{id}}'>
         <view class='title'>
-            <view class='custome txt-more'>{{buyerLoginId || ''}}</view>
+            <view class='custome txt-more'><image src="{{CDN}}icon/icon_customer.png" class="img" />{{buyerLoginId || ''}}</view>
             <view class='type txt-more'>{{statusStr || ''}}</view>
         </view>
 
@@ -58,17 +58,17 @@
 
         <view class='total'>
             <text class='num'>{{productItemsNum}}种货品</text>
-            <text class='freight'>总金额：(含运费{{totalAmount}})</text>
-            <text class='mony'>￥{{sumProductPayment}}</text>
+            <text class='freight'>总金额：(含运费{{shippingFee}})</text>
+            <text class='mony'>￥{{totalAmountInt}}<text wx:if="{{totalAmountDecimal}}" class="decimal">.{{totalAmountDecimal}}</text></text>
         </view>
     </navigator>
 </template>
 <view class='nav'>
     <view bindtap='setPageType' data-pageType="1" class='flex1 col active1{{pageType}}'>
-        <view class='bor-right'>我的商品</view>
+        <view class='bor-right'><image src="{{pageType == 1 ? CDN+'icon/icon_goods_ac.png' : CDN+'icon/icon_goods.png'}}" class="img" />我的商品</view>
     </view>
     <view bindtap='setPageType' data-pageType="2" class='flex1 col active2{{pageType}}'>
-        <view class='bor-right'>我的订单</view>
+        <view class='bor-right'><image src="{{pageType == 1 ? CDN+'icon/icon_order.png' : CDN+'icon/icon_order_ac.png'}}" class="img" />我的订单</view>
     </view>
 </view>
 

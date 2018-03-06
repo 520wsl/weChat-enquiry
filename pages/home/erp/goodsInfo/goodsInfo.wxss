@@ -22,6 +22,9 @@
 .goods .content .money {
   font-size: 48rpx;
 }
+.goods .content .money .double{
+  font-size: 24rpx;
+}
 .goods .content .text {
   margin-left: 16rpx;
   color: #666666;
@@ -44,9 +47,15 @@
   font-size: 14px;
   color: #333333;
 }
+.tittle .img{
+  width: 32rpx;
+  height: 32rpx;
+  margin-right: 20rpx;
+  margin-bottom: -4rpx;
+}
 /* 商品规格 */
 .norm {
-  margin-top: 20rpx;
+  margin-top: 10rpx;
   min-height: 254rpx;
   background: #ffffff;
   padding-left: 30rpx;
@@ -110,7 +119,7 @@
 .attr {
   font-size: 28rpx;
   color: #666666;
-  margin-top: 20rpx;
+  margin-top: 10rpx;
   min-height: 462rpx;
   background: #ffffff;
   padding-left: 30rpx;
@@ -118,6 +127,7 @@
 .attr .lists {
   margin-top: 30rpx;
   margin-right: 34rpx;
+  padding-bottom: 30rpx;
 }
 .attr .lists .list {
   display: flex;
@@ -134,7 +144,7 @@
 }
 /* <!-- 买家服务 --> */
 .server {
-  margin-top: 20rpx;
+  margin-top: 10rpx;
   min-height: 176rpx;
   margin-bottom: 20rpx;
   background: #ffffff;

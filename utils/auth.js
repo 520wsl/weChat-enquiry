@@ -183,7 +183,8 @@ var auth={
       return;
     }
     if (num >= 1) {
-      this.setcompany(companies[0]['aliAccountId'])
+      // this.setcompany(companies[0]['aliAccountId'])
+      this.setcompany()
     //   wx.switchTab({
     //     url: '/pages/home/home'
     //   })

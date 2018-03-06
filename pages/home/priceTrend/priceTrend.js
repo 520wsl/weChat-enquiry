@@ -142,7 +142,7 @@ Page({
 
   // 图表
   getEcharts(series) {
-    let colorType = ['#9f73fb', '#52c187', '#5d77e5', '#f27a52', '#f1b93e', '#be9f46'];
+    let colorType = ['#FFC444', '#00DACE', '#33CC82', '#658DF3', '#DEA0BA', '#FF6C46'];
     let cache = [...series].filter((item, index) => {
       item.number = index;
       if (item.value != 0) {
@@ -170,7 +170,7 @@ Page({
 
     columnChart = new echarts({
       canvasId: 'columnCanvas',
-      type: 'pie',
+      type: 'ring',
       animation: true,
       legend: false,
       series: newSeries,

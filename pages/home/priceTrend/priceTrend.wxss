@@ -3,7 +3,7 @@
 /* 时间切换 */
 
 .switching {
-  padding-top: 17rpx;
+  /* padding-top: 17rpx; */
   background: #fff;
 }
 
@@ -85,49 +85,49 @@ canvas {
 /* 自定义六中颜色 */
 
 .list .item:nth-child(6n+1) .label::before {
-  background: #9f73fb;
+  background: #FFC444;
 }
 
 .list .item:nth-child(6n+2) .label::before {
-  background: #52c187;
+  background: #00DACE;
 }
 
 .list .item:nth-child(6n+3) .label::before {
-  background: #5d77e5;
+  background: #33CC82;
 }
 
 .list .item:nth-child(6n+4) .label::before {
-  background: #f27a52;
+  background: #658DF3;
 }
 
 .list .item:nth-child(6n+5) .label::before {
-  background: #f1b93e;
+  background: #DEA0BA;
 }
 
 .list .item:nth-child(6n) .label::before {
-  background: #be9f46;
+  background: #FF6C46;
 }
 
 .list .item:nth-child(6n+1) .value {
-  color: #9f73fb;
+  color: #FFC444;
 }
 
 .list .item:nth-child(6n+2) .value {
-  color: #52c187;
+  color: #00DACE;
 }
 
 .list .item:nth-child(6n+3) .value {
-  color: #5d77e5;
+  color: #33CC82;
 }
 
 .list .item:nth-child(6n+4) .value {
-  color: #f27a52;
+  color: #658DF3;
 }
 
 .list .item:nth-child(6n+5) .value {
-  color: #f1b93e;
+  color: #DEA0BA;
 }
 
 .list .item:nth-child(6n) .value {
-  color: #be9f46;
+  color: #FF6C46;
 }

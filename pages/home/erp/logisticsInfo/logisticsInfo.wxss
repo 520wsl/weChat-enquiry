@@ -45,17 +45,20 @@
 }
 /* 商品列表 */
 .lists .commodity {
-  min-height: 161rpx;
+  /* min-height: 161rpx; */
   border-bottom: 1rpx solid #e0e0e0;
+  padding-right: 30rpx;
 }
 .lists .commodity .cell {
   border-bottom: 1rpx dashed #e0e0e0;
   display: flex;
   justify-content: flex-start;
   align-items:center; 
+  padding: 14rpx 0 16rpx;
 }
 .cell .left{
-  margin-top: 15rpx;
+  border: 2rpx solid #E0E0E0;
+  margin-right: 24rpx;
 }
 .lists .commodity .cell:last-child{
   border-bottom: 0rpx solid #e0e0e0;
@@ -64,9 +67,10 @@
   display: none;
 }
 .lists .commodity .cell .left image {
-  width: 124rpx;
-  height: 122rpx;
-  margin-right: 18rpx;
+  width: 82rpx;
+  height: 82rpx;
+  padding: 10rpx;
+  display:block;
 }
 .lists .commodity .cell .head {
   font-size: 28rpx;
@@ -105,8 +109,8 @@
   font-size: 22rpx;
   color: #333333;
   height: 60rpx;
-  border: 1px solid #e0e0e0;
-  margin: 30rpx 30rpx 23rpx 0;
+  border: 1px dashed #e0e0e0;
+  margin: 0 0 34rpx 0;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -125,7 +129,7 @@
 .captions {
   font-size: 20rpx;
   color: #999999;
-  padding-bottom: 30rpx;
+  padding-bottom: 44rpx;
 }
 .lists .express-detail {
   margin-bottom: 30rpx;

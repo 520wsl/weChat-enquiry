@@ -280,6 +280,21 @@ Page({
         wx.hideLoading();
       }
     });
+
+    let width = 375;
+    try {
+      let res = wx.getSystemInfoSync();
+      width = res.windowWidth;
+    } catch (e) {
+      console.error('getSystemInfoSync failed!');
+    }
+    let height = width * 175 / 375;
+    if (this.data.isFixed && wx.pageScrollTo){
+      wx.pageScrollTo({
+        scrollTop: height + 5,
+        duration: 0
+      })
+    }
   },
 
   // 区域统计

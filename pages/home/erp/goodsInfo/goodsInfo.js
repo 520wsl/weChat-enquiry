@@ -27,6 +27,8 @@ Page({
           if (wx.hideLoading) {
             wx.hideLoading();
           }
+          e.data.maxformatData = this.formatData(e.data.maxPrice);
+          e.data.minformatData = this.formatData(e.data.minPrice);
           this.setData({
             params: e.data
           });
@@ -95,5 +97,17 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function() {}
+  onShareAppMessage: function() {},
+  formatData(v){
+    if(v){
+      v = v.toFixed(2);
+      let cache = v.split('.');
+      let vInt = cache[0];
+      let vDouble = cache[1];
+      return {
+        vInt, vDouble
+      }
+    }
+    return v;
+  }
 });

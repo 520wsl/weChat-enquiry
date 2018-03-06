@@ -22,6 +22,8 @@ Page({
       countType: '',//1:总价值；2:成交价值；3:跟单价值；4:流失价值
       timeType: 2,//	1:7天；2:30天；3:180天；4:365天
       timeStatus: 1,
+      startTime: null,
+      endTime: null
     },
     label: '',
     count: 0,//默认 list总数
@@ -37,6 +39,8 @@ Page({
   onLoad: function (options) {
     this.data.params.countType = options.countType;
     this.data.params.timeType = options.timeType;
+    this.data.params.startTime = options.startTime;
+    this.data.params.endTime = options.endTime;
     this.data.label = options.label;
     this.setData({
       label: this.data.label,
@@ -55,10 +59,12 @@ Page({
   onShareAppMessage: function () {
     let countType = this.data.params.countType;
     let timeType = this.data.params.timeType;
+    let startTime = this.data.params.startTime;
+    let endTime = this.data.params.endTime;
     let label = this.data.label;
     return {
       title: '四喜E伙伴',
-      path: '/pages/home/enquiry/enquiry?countType=' + countType + '&timeType=' + timeType + '&label=' + label
+      path: '/pages/home/enquiry/enquiry?countType=' + countType + '&timeType=' + timeType + '&label=' + label + '&startTime=' + startTime + '&endTime=' + endTime
     }
   },
 
@@ -138,6 +144,8 @@ Page({
   // 获取时间-询盘
   getTimeEnquiry(e) {
     this.data.params.pageNum = 1;
+    this.data.params.startTime = e.detail.time.startTime;
+    this.data.params.endTime = e.detail.time.endTime;
     this.setData({
       'params.timeType': e.detail.time.type
     })
@@ -147,7 +155,11 @@ Page({
   // 获取统计分析
   countAnalysis() {
     app
-      .get('/enquiry/statistics', { type: this.data.params.timeType })
+      .get('/enquiry/statistics', { 
+        // type: this.data.params.timeType
+        startTime: this.data.params.startTime,
+        endTime: this.data.params.endTime
+      })
       .then(e => {
         if (e.status == 200) {
           let data = e.data;
@@ -303,5 +315,20 @@ Page({
         wx.hideLoading();
       }
     });
+
+    let width = 375;
+    try {
+      let res = wx.getSystemInfoSync();
+      width = res.windowWidth;
+    } catch (e) {
+      console.error('getSystemInfoSync failed!');
+    }
+    let height = width * 217 / 375;
+    if (this.data.isFixed && wx.pageScrollTo) {
+      wx.pageScrollTo({
+        scrollTop: height + 5,
+        duration: 0
+      })
+    }
   },
 })

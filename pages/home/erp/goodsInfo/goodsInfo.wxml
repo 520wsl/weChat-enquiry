@@ -16,9 +16,9 @@
     <view class="content">
       <block wx:if="{{params.minPrice}}">
         ￥
-        <text class="money">{{params.minPrice}}</text>
+        <text class="money">{{params.minformatData.vInt}}<text class="double">.{{params.minformatData.vDouble}}</text></text>
         -</block>￥
-      <text class="money">{{params.maxPrice}}</text>
+      <text class="money">{{params.maxformatData.vInt}}<text class="double">.{{params.maxformatData.vDouble}}</text></text>
       <text class="text">≥{{params.minOrderQuantity}} {{params.unit}}起批</text>
     </view>
     <view class="footer">
@@ -38,6 +38,7 @@
 <!-- 商品规格 -->
 <view class="norm">
   <view class="tittle">
+    <image class="img" src="{{CDN}}icon/icon_pro_standard.png" />
     <text class="txt">产品规格</text>
   </view>
   <view class="sub">
@@ -73,6 +74,7 @@
 <!-- 产品属性 -->
 <view class="attr">
   <view class="tittle">
+    <image class="img" src="{{CDN}}icon/icon_pro_attr.png" />
     <text class="txt">产品属性</text>
   </view>
   <view class="lists">
@@ -87,6 +89,7 @@
 <!-- 买家服务 -->
 <view class="server">
   <view class="tittle">
+    <image class="img" src="{{CDN}}icon/icon_buyer_server.png" />
     <text class="txt">买家服务</text>
   </view>
   <view class="buyers">
