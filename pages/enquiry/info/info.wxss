@@ -85,9 +85,6 @@
   background-origin: content-box;
 }
 
-.content {
-}
-
 .mains {
   font-size: 26rpx;
   height: auto;
@@ -229,6 +226,6 @@
     height: 48rpx;
 }
 
-.txt-phone{
-    color: #6495F9;
+.updated{
+    color: #598AED;
 }

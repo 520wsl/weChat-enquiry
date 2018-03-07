@@ -70,7 +70,7 @@ Page({
     acIndex: 0,
     toggle: [],
   },
-  
+
   /**
    * 生命周期函数--监听页面加载
    */
@@ -101,19 +101,19 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-    if(this.data.list.length < this.data.params.count){
+    if (this.data.list.length < this.data.params.count) {
       this.data.params.pageNum++;
       this.getInfo();
     }
   },
   // 调启微信电话接口
   callPhone: function (res) {
-      if (!res.currentTarget.dataset.phone || res.currentTarget.dataset.phone.length <= 0 || res.currentTarget.dataset.phone == '无') {
-          return
-      }
-      wx.makePhoneCall({
-          phoneNumber: res.currentTarget.dataset.phone
-      })
+    if (!res.currentTarget.dataset.phone || res.currentTarget.dataset.phone.length <= 0 || res.currentTarget.dataset.phone == '无') {
+      return
+    }
+    wx.makePhoneCall({
+      phoneNumber: res.currentTarget.dataset.phone
+    })
   },
 
   // 获取详情
@@ -159,6 +159,52 @@ Page({
         }
         item.gmtCreate = app.time.formatTime(time, 'YYYY-MM-DD HH:mm');
       });
+
+      let listLength = data.list.length;
+
+      for (let i = 0; i < listLength; i++) {
+        let add = i + 1;
+        if (add < listLength) {
+          let obj = deepDiffMapper.map(data.list[i], data.list[add]);
+          data.list[i]['buyerIntentionType'] = isUpdated(obj['buyerIntention']['type']);
+          data.list[i]['buyerTypeType'] = isUpdated(obj['buyerType']['type']);
+          data.list[i]['cityIdType'] = isUpdated(obj['cityId']['type']);
+          data.list[i]['cityNameType'] = isUpdated(obj['cityName']['type']);
+          data.list[i]['gmtCreateType'] = isUpdated(obj['gmtCreate']['type']);
+          data.list[i]['isWechatType'] = isUpdated(obj['isWechat']['type']);
+          data.list[i]['noDealReasonType'] = isUpdated(obj['noDealReason']['type']);
+          data.list[i]['numType'] = isUpdated(obj['num']['type']);
+          data.list[i]['peerBuyType'] = isUpdated(obj['peerBuy']['type']);
+          data.list[i]['peerNameType'] = isUpdated(obj['peerName']['type']);
+          data.list[i]['peerPriceType'] = isUpdated(obj['peerPrice']['type']);
+          data.list[i]['phoneType'] = isUpdated(obj['phone']['type']);
+          data.list[i]['positionType'] = isUpdated(obj['position']['type']);
+          data.list[i]['priceType'] = isUpdated(obj['price']['type']);
+          data.list[i]['productNameType'] = isUpdated(obj['productName']['type']);
+          data.list[i]['remarkType'] = isUpdated(obj['remark']['type']);
+          data.list[i]['typeType'] = isUpdated(obj['type']['type']);
+
+        } else {
+          data.list[i]['buyerIntentionType'] = false;
+          data.list[i]['buyerTypeType'] = false;
+          data.list[i]['cityIdType'] = false;
+          data.list[i]['cityNameType'] = false;
+          data.list[i]['gmtCreateType'] = false;
+          data.list[i]['isWechatType'] = false;
+          data.list[i]['noDealReasonType'] = false;
+          data.list[i]['numType'] = false;
+          data.list[i]['peerBuyType'] = false;
+          data.list[i]['peerNameType'] = false;
+          data.list[i]['peerPriceType'] = false;
+          data.list[i]['phoneType'] = false;
+          data.list[i]['positionType'] = false;
+          data.list[i]['priceType'] = false;
+          data.list[i]['productNameType'] = false;
+          data.list[i]['remarkType'] = false;
+          data.list[i]['typeType'] = false;
+        }
+
+      }
       this.data.list.push(...data.list);
       this.setData({
         amount: data.amount,
@@ -188,10 +234,10 @@ Page({
   },
 
   // 选中操作
-  extendHandle(e){
-    
+  extendHandle(e) {
+
     let index = e.currentTarget.dataset.index;
-    
+
     this.data.toggle.forEach((item, i) => {
       if (index == i) {
         this.data.toggle[i].isDB = !this.data.toggle[i].isDB;
@@ -205,3 +251,85 @@ Page({
     });
   }
 })
+
+
+var deepDiffMapper = function () {
+  return {
+    VALUE_CREATED: 'created',
+    VALUE_UPDATED: 'updated',
+    VALUE_DELETED: 'deleted',
+    VALUE_UNCHANGED: 'unchanged',
+    map: function (obj1, obj2) {
+      if (this.isFunction(obj1) || this.isFunction(obj2)) {
+        throw 'Invalid argument. Function given, object expected.';
+      }
+      if (this.isValue(obj1) || this.isValue(obj2)) {
+        return {
+          type: this.compareValues(obj1, obj2),
+          data: (obj1 === undefined) ? obj2 : obj1
+        };
+      }
+
+      var diff = {};
+      for (var key in obj1) {
+        if (this.isFunction(obj1[key])) {
+          continue;
+        }
+
+        var value2 = undefined;
+        if ('undefined' != typeof (obj2[key])) {
+          value2 = obj2[key];
+        }
+
+        diff[key] = this.map(obj1[key], value2);
+      }
+      for (var key in obj2) {
+        if (this.isFunction(obj2[key]) || ('undefined' != typeof (diff[key]))) {
+          continue;
+        }
+
+        diff[key] = this.map(undefined, obj2[key]);
+      }
+
+      return diff;
+
+    },
+    compareValues: function (value1, value2) {
+      if (value1 === value2) {
+        return this.VALUE_UNCHANGED;
+      }
+      if (this.isDate(value1) && this.isDate(value2) && value1.getTime() === value2.getTime()) {
+        return this.VALUE_UNCHANGED;
+      }
+      if ('undefined' == typeof (value1)) {
+        return this.VALUE_CREATED;
+      }
+      if ('undefined' == typeof (value2)) {
+        return this.VALUE_DELETED;
+      }
+
+      return this.VALUE_UPDATED;
+    },
+    isFunction: function (obj) {
+      return {}.toString.apply(obj) === '[object Function]';
+    },
+    isArray: function (obj) {
+      return {}.toString.apply(obj) === '[object Array]';
+    },
+    isDate: function (obj) {
+      return {}.toString.apply(obj) === '[object Date]';
+    },
+    isObject: function (obj) {
+      return {}.toString.apply(obj) === '[object Object]';
+    },
+    isValue: function (obj) {
+      return !this.isObject(obj) && !this.isArray(obj);
+    }
+  }
+}();
+var isUpdated = function (type) {
+  if (type == 'updated' || type == 'deleted'|| type == 'created'){
+    return 'updated'
+  }
+  return 'unchanged';
+}
