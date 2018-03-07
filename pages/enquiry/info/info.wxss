@@ -85,9 +85,6 @@
   background-origin: content-box;
 }
 
-.content {
-}
-
 .mains {
   font-size: 26rpx;
   height: auto;
