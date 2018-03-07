@@ -185,23 +185,23 @@ Page({
           data.list[i]['typeType'] = isUpdated(obj['type']['type']);
 
         } else {
-          data.list[i]['buyerIntentionType'] = false;
-          data.list[i]['buyerTypeType'] = false;
-          data.list[i]['cityIdType'] = false;
-          data.list[i]['cityNameType'] = false;
-          data.list[i]['gmtCreateType'] = false;
-          data.list[i]['isWechatType'] = false;
-          data.list[i]['noDealReasonType'] = false;
-          data.list[i]['numType'] = false;
-          data.list[i]['peerBuyType'] = false;
-          data.list[i]['peerNameType'] = false;
-          data.list[i]['peerPriceType'] = false;
-          data.list[i]['phoneType'] = false;
-          data.list[i]['positionType'] = false;
-          data.list[i]['priceType'] = false;
-          data.list[i]['productNameType'] = false;
-          data.list[i]['remarkType'] = false;
-          data.list[i]['typeType'] = false;
+          data.list[i]['buyerIntentionType'] = 'unchanged';
+          data.list[i]['buyerTypeType'] = 'unchanged';
+          data.list[i]['cityIdType'] = 'unchanged';
+          data.list[i]['cityNameType'] = 'unchanged';
+          data.list[i]['gmtCreateType'] = 'unchanged';
+          data.list[i]['isWechatType'] = 'unchanged';
+          data.list[i]['noDealReasonType'] = 'unchanged';
+          data.list[i]['numType'] = 'unchanged';
+          data.list[i]['peerBuyType'] = 'unchanged';
+          data.list[i]['peerNameType'] = 'unchanged';
+          data.list[i]['peerPriceType'] = 'unchanged';
+          data.list[i]['phoneType'] = 'unchanged';
+          data.list[i]['positionType'] = 'unchanged';
+          data.list[i]['priceType'] = 'unchanged';
+          data.list[i]['productNameType'] = 'unchanged';
+          data.list[i]['remarkType'] = 'unchanged';
+          data.list[i]['typeType'] = 'unchanged';
         }
 
       }
