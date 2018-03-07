@@ -4,7 +4,7 @@
   <component-searching url="{{searchUrl}}" label="{{searchLabel}}"></component-searching>
   <!-- 时间切换 -->
   <view class='switching'>
-    <component-switching labels="{{labels}}" acIndex="{{acIndex}}" bindgetAcItem="getAcItem"></component-switching>
+    <component-switching species="nav" labels="{{labels}}" acIndex="{{acIndex}}" bindgetAcItem="getAcItem"></component-switching>
   </view>
   <view hidden="{{list.length == 0}}">
     <!-- 图表 -->

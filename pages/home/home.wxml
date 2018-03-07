@@ -19,7 +19,7 @@
     <view class="section" wx:if="{{enquire.totalValue || enquire.tranValue || enquire.enquireValue || enquire.lossValue}}">
       <!-- 重构 -->
       <view class="real-setion">
-        <navigator wx:for="{{newEnquire}}" wx:key="{{index}}" wx:if="{{enquire[item.t1]}}" url="/pages/home/enquiry/enquiry?countType={{enquiryType[item.t1]}}&timeType={{enquireTime.type}}&label={{enquireTime.label+enquireName[item.t1]}}" class="navigator">
+        <navigator wx:for="{{newEnquire}}" wx:key="{{index}}" wx:if="{{enquire[item.t1]}}" url="/pages/home/enquiry/enquiry?countType={{enquiryType[item.t1]}}&timeType={{enquireTime.type}}&label={{enquireTime.label+enquireName[item.t1]}}&startTime={{enquireTime.startTime}}&endTime={{enquireTime.endTime}}" class="navigator">
           <image src="{{images[item.t1]}}" class='icon' />
           <view class="left">
             <text class='t2'>{{enquireName[item.t1]}}</text>

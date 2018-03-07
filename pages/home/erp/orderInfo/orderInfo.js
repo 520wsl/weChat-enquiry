@@ -71,6 +71,15 @@ Page({
 
       let data = res.data;
       if (data) {
+        data.shippingFee = this.toFixed(data.shippingFee);
+        data.sumProductPayment = this.toFixed(data.sumProductPayment);
+        data.totalAmount = this.toFixed(data.totalAmount);
+        let nCache = data.totalAmount.split('.');
+        data.totalAmountDecimal = nCache[1];
+        data.totalAmountInt = nCache[0];
+        data.productItems.forEach((item) => {
+          item.price = this.toFixed(item.price);
+        });
         this.setData({
           info: data
         });
@@ -102,5 +111,11 @@ Page({
     wx.navigateTo({
         url: "/pages/home/erp/goodsInfo/goodsInfo?productId=" + product
     });
+  },
+  toFixed(v){
+    if(v == '' || v == null || v == undefined){
+      return v;
+    }
+    return v.toFixed(2);
   }
 })

@@ -79,6 +79,16 @@ Page({
                 }
                 this.data.isClear = false;
                 if(res.data.result && res.data.result.length > 0){
+                  res.data.result.forEach((item) => {
+                    item.shippingFee = this.toFixed(item.shippingFee);
+                    item.totalAmount = this.toFixed(item.totalAmount);
+                    let nCache = item.totalAmount.split('.');
+                    item.totalAmountDecimal = nCache[1];
+                    item.totalAmountInt = nCache[0];
+                    item.productItems.forEach((child) => {
+                      child.price = this.toFixed(child.price);
+                    })
+                  })
                   this.data.list.push(...res.data.result);
                   this.setData({
                     'list': this.data.list,
@@ -132,6 +142,10 @@ Page({
                 }
                 this.data.isClear = false;
                 if (res.data.productList && res.data.productList.length > 0) {
+                  res.data.productList.forEach((item) => {
+                    item.maxPrice = this.toFixed(item.maxPrice);
+                    item.minPrice = this.toFixed(item.minPrice);
+                  })
                   this.data.list.push(...res.data.productList);
                   this.setData({
                     'list': this.data.list,
@@ -261,5 +275,11 @@ Page({
       this.setData({
         'list': []
       })
+    },
+    toFixed(v) {
+      if (v == '' || v == null || v == undefined) {
+        return v;
+      }
+      return v.toFixed(2);
     }
 })

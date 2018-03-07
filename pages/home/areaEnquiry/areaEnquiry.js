@@ -11,13 +11,15 @@ Page({
     params: {
       provinceId: '',
       ranking: '',
-      timeType: 1,
+      // timeType: 1,
       pageNum: 1,
       pageSize: 8,
 
       timeStatus: 1,
       // moneyStatus: 0,
       // status: 0,
+      startTime: null,
+      endTime: null
     },
 
     // 区域统计
@@ -42,7 +44,9 @@ Page({
   onLoad: function (options) {
     this.data.params.provinceId = options.provinceId;
     this.data.params.ranking = options.ranking;
-    this.data.params.timeType = options.timeType;
+    // this.data.params.timeType = options.timeType;
+    this.data.params.startTime = options.startTime;
+    this.data.params.endTime = options.endTime;
 
     this.data.provinceName = options.provinceName;
     this.data.timeName = options.timeName;
@@ -141,9 +145,11 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
+    let startTime = this.data.params.startTime;
+    let endTime = this.data.params.endTime;
     return {
       title: '四喜E伙伴',
-      path: '/pages/home/areaEnquiry/areaEnquiry?provinceId=' + this.data.params.provinceId + '&ranking=' + this.data.params.ranking + '&timeType=' + this.data.params.timeType + '&provinceName=' + this.data.params.provinceName + '&timeName=' + this.data.params.timeName
+      path: '/pages/home/areaEnquiry/areaEnquiry?provinceId=' + this.data.params.provinceId + '&ranking=' + this.data.params.ranking + '&timeType=' + this.data.params.timeType + '&provinceName=' + this.data.params.provinceName + '&timeName=' + this.data.params.timeName + '&startTime=' + startTime + '&endTime=' + endTime
     }
   },
 
@@ -187,6 +193,21 @@ Page({
         wx.hideLoading();
       }
     });
+
+    let width = 375;
+    try {
+      let res = wx.getSystemInfoSync();
+      width = res.windowWidth;
+    } catch (e) {
+      console.error('getSystemInfoSync failed!');
+    }
+    let height = width * 250 / 375;
+    if (this.data.isFixed && wx.pageScrollTo) {
+      wx.pageScrollTo({
+        scrollTop: height + 5,
+        duration: 0
+      })
+    }
   },
 
   // 区域统计

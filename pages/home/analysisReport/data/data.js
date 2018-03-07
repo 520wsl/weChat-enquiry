@@ -402,7 +402,7 @@ Page({
             width: windowWidth,
             height: windowWidth * 340 / 375,
             dataLabel: true,
-            disablePieStroke: false
+            disablePieStroke: true
         });
     },
 
