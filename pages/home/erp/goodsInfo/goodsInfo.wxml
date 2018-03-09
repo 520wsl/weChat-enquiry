@@ -36,7 +36,7 @@
   </view>
 </block>
 <!-- 商品规格 -->
-<view class="norm">
+<view class="norm"   wx:if="{{params.skuList}}">
   <view class="tittle">
     <image class="img" src="{{CDN}}icon/icon_pro_standard.png" />
     <text class="txt">产品规格</text>
@@ -56,7 +56,7 @@
         <text class="{{show == 0 ? 'txt-more' : ''}} txt">20*2.3冷121水管；25*2.3冷水管；25*2.8冷20*2.3冷水管；25*2.3冷水管；25*2.8冷20*2.3冷水管；25*2.3冷水管；25*2.8冷20*2.3冷水管；25*2.3冷水管；25*2.8冷20*2.3冷水管；25*2.3冷水管；25*2.8冷</text>
       </view> -->
     </view>
-    <view class="{{show == 1 ? 'rotate' : ''}} pic" bindtap='showNorm' wx:if="{{params.skuList}}">
+    <view class="{{show == 1 ? 'rotate' : ''}} pic" bindtap='showNorm' wx:if="{{params.skuList[0].attributeValue.length>18||params.skuList[1].attributeValue.length>18}}">
       <image mode="aspectFit" src="{{CDN}}icon_right.png" />
     </view>
   </view>
@@ -72,7 +72,7 @@
   </view>
 </view> -->
 <!-- 产品属性 -->
-<view class="attr">
+<view class="attr" wx:if="{{params.list}}">
   <view class="tittle">
     <image class="img" src="{{CDN}}icon/icon_pro_attr.png" />
     <text class="txt">产品属性</text>
