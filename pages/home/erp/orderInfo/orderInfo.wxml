@@ -11,7 +11,7 @@
     <!-- 物流 -->
     <view bindtap="goLogistics" wx:if="{{info.logisticsStepVo}}" class="logistics">
       <view class="icon">
-        <image class="img" src="{{CDN}}icon_logistics.png"></image>
+        <image class="img" src="{{CDN}}icon/icon_logistics.png"></image>
       </view>
       <view class="txt">
         <view>{{info.logisticsStepVo.remark || ''}}</view>
