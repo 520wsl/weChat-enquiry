@@ -26,6 +26,7 @@
   border-color: #e0e0e0;
   font-size: 32rpx;
   color: #2f3245;
+  overflow: hidden;
   /* background: -webkit-linear-gradient(left, #55abf6, #7b73fe); *//* -webkit-background-clip: text; *//* -webkit-text-fill-color: transparent; */
 }
 

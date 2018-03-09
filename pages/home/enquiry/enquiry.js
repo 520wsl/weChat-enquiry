@@ -10,7 +10,7 @@ Page({
     msgStr: '数据加载中，请稍后。。。',
     // banner
     imgUrls: [
-      app.CDN + 'banner-2.png?id=20180203'
+      app.CDN + 'banner-4.png?id=20180203'
     ],
     indicatorDots: false,
 
