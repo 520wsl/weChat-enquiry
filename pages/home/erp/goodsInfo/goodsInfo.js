@@ -7,7 +7,7 @@ Page({
   data: {
     CDN: app.CDN,
     ALI: app.ALI,
-    show: 0,
+    show: false,
     productId:'',
     params: {}
   },
