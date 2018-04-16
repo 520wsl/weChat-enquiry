@@ -4,6 +4,7 @@
     "pages/home/erp/myGoods/myGoods",
     "pages/home/home",
     "pages/enquiry/enquiry",
+    "pages/enquiry/enquiryData",
     "pages/enquiry/info/info",
     "pages/enquiry/time/time",
     "pages/searchWord/searchWord",

@@ -15,41 +15,59 @@ Component({
     entrance: [
       {
         label: '询盘数据',
-        navUrl: '/pages/enquiry/enquiry',
+        navUrl: '/pages/enquiry/enquiryData',
         imgUrl: app.CDN + 'icon_index_xp.png',
         type: 'xp',
       },
+      // {
+      //   label: '询盘分析',
+      //   navUrl: '/pages/home/analysisReport/data/data',
+      //   imgUrl: app.CDN + 'icon_index_ls.png',
+      //   type: 'ls',
+      // },
       {
-        label: '询盘分析',
-        navUrl: '/pages/home/analysisReport/data/data',
-        imgUrl: app.CDN + 'icon_index_ls.png',
-        type: 'ls',
-      },
-      {
-        label: '标王记录',
-        navUrl: '/pages/home/winKing/winKing',
-        imgUrl: app.CDN + '/icon_index_bw.png',
-        type: 'jl',
-      },
-      {
-        label: '进销存管理',
+        label: '我的商品',
         navUrl: '/pages/home/erp/myGoods/myGoods',
-        imgUrl: app.CDN + 'icon_index_fx.png',
+        imgUrl: app.CDN + 'icon_index_sp.png',
         type: 'fx',
       },
       {
-        label: '价格分布',
-        navUrl: '/pages/home/priceTrend/priceTrend',
-        imgUrl: app.CDN + 'icon_index_jg.png',
-        type: 'fb',
-        signs: 1
+        label: '我的订单',
+        navUrl: '/pages/home/erp/myGoods/myGoods?pageType=2',
+        imgUrl: app.CDN + 'icon_index_dd.png',
+        type: 'fx',
       },
+      // {
+      //   label: '进销存管理',
+      //   navUrl: '/pages/home/erp/myGoods/myGoods',
+      //   imgUrl: app.CDN + 'icon_index_fx.png',
+      //   type: 'fx',
+      // },
       {
         label: '产品排行',
         navUrl: '/pages/home/productList/productList',
         imgUrl: app.CDN + 'icon_index_cp.png',
         type: 'ph',
         signs: 0,
+      },
+       {
+        label: '询盘分析',
+        navUrl: '/pages/home/analysisReport/data/data',
+        imgUrl: app.CDN + 'icon_index_ls.png',
+        type: 'ls',
+      },
+      // {
+      //   label: '价格分布',
+      //   navUrl: '/pages/home/priceTrend/priceTrend',
+      //   imgUrl: app.CDN + 'icon_index_jg.png',
+      //   type: 'fb',
+      //   signs: 1
+      // },
+      {
+        label: '标王记录',
+        navUrl: '/pages/home/winKing/winKing',
+        imgUrl: app.CDN + '/icon_index_bw.png',
+        type: 'jl',
       },
     ],
     categoryId: ''
@@ -102,7 +120,7 @@ Component({
         return;
       }
       if (e.currentTarget.dataset.type == 'xp') {
-        wx.switchTab({
+        wx.navigateTo({
           url: e.currentTarget.dataset.link
         });
         return;
