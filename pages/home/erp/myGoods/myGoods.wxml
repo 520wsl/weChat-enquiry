@@ -51,11 +51,11 @@
     <navigator class='item-order' url='/pages/home/erp/orderInfo/orderInfo?orderId={{id}}'>
         <view class='title'>
             <view class='custome txt-more'><image src="{{CDN}}icon/icon_customer.png" class="img" />{{buyerLoginId || ''}}</view>
-            <view class='type txt-more'>{{statusStr || ''}}</view>
+            <view class='type txt-more'>{{statusStr || ''}}<image src="{{CDN}}icon_right.png" class="img" /></view>
         </view>
 
         <template wx:for="{{productItems}}" wx:key="{{index}}" is="item-order-pro" data="{{...item, CDN, ALI}}" />
-
+        <view class='xia-time'>下单时间：{{createTime}}</view>
         <view class='total'>
             <text class='num'>{{productItemsNum}}种货品</text>
             <text class='freight'>总金额：(含运费{{shippingFee}})</text>
@@ -63,14 +63,14 @@
         </view>
     </navigator>
 </template>
-<view class='nav'>
+ <view class='nav'>
     <view bindtap='setPageType' data-pageType="1" class='flex1 col active1{{pageType}}'>
         <view class='bor-right'><image src="{{pageType == 1 ? CDN+'icon/icon_goods_ac.png' : CDN+'icon/icon_goods.png'}}" class="img" />我的商品</view>
     </view>
     <view bindtap='setPageType' data-pageType="2" class='flex1 col active2{{pageType}}'>
         <view class='bor-right'><image src="{{pageType == 1 ? CDN+'icon/icon_order.png' : CDN+'icon/icon_order_ac.png'}}" class="img" />我的订单</view>
     </view>
-</view>
+</view> 
 
 <view>
     <view hidden="{{pageType == 2}}">

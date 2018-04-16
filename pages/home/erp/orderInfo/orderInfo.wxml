@@ -28,7 +28,7 @@
       </view>
       <view class="txt">
         <view class="name">{{info.receiverInfo.toFullName || ''}}</view>
-        <view wx:if="{{info.receiverInfo.toPhone}}" class="phone">{{info.receiverInfo.toPhone}}</view>
+        <view wx:if="{{info.receiverInfo.toMobile}}" class="phone">{{info.receiverInfo.toMobile}}</view>
         <view class="address">{{info.receiverInfo.toArea || ''}}</view>
       </view>
     </view>
