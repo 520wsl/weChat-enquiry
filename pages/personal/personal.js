@@ -25,14 +25,26 @@ Page({
     // this.login();
 
     this.getServices();
+    // 新增入口
+    // scene = 'action=i&data=eyJvcGVuaWQiOiJvdWc4VzBhZDNEazNOTGIxLXBxMXlrbHdCdlNjIiwiYWxpQWNjb3VudElkIjoxMSwiaWQiOjIyfQ==';
+    console.log('接收参数：' + options.action, 'data: ' + options.data);
+    // 微信模板消息
+    if (options.action && options.action == 'i'){
+      let secret1 = options.data;
+      if (secret1 == '' || secret1 == null || secret1 == undefined) {
+        app.utils.showModel('微信消息登录', '登录失败，请联系管理处理！')
+        return;
+      }
+      let data = JSON.parse(app.Base64.decode(secret1));
+      // 走登录流程
+      this.autoLogin(data.aliAccountId, data.id);
+    }
+    // 太阳码
     if (typeof options.scene !== "string") {
       return;
     }
 
     let scene = decodeURIComponent(options.scene);
-    console.log('接收参数：' + options.scene, '转换后的参数：' + scene);
-    // 新增入口
-    // scene = 'action=i&data=eyJvcGVuaWQiOiJvdWc4VzBhZDNEazNOTGIxLXBxMXlrbHdCdlNjIiwiYWxpQWNjb3VudElkIjoxMSwiaWQiOjIyfQ==';
     let param = scene.split('&');
     let actions = param[0].split('=');
     let secrets = param[1].split('=');
@@ -47,16 +59,16 @@ Page({
         this.toggleHandle(secret);
         break;
       // wx消息
-      case 'i':
-        let secret1 = secrets[1];
-        if (!secret1) {
-          app.utils.showModel('微信消息登录', '登录失败，请联系管理处理！')
-          return;
-        }
-        let data = JSON.parse(app.Base64.decode(secrets[1]));
-        // 走登录流程
-        this.autoLogin(data.aliAccountId, data.id);
-        break;
+      // case 'i':
+      //   let secret1 = secrets[1];
+      //   if (!secret1) {
+      //     app.utils.showModel('微信消息登录', '登录失败，请联系管理处理！')
+      //     return;
+      //   }
+      //   let data = JSON.parse(app.Base64.decode(secrets[1]));
+      //   // 走登录流程
+      //   this.autoLogin(data.aliAccountId, data.id);
+      //   break;
     }
   },
   autoLogin(aliAccountId, id){
