@@ -111,6 +111,7 @@
   color: #999999;
   padding-left:30rpx;
   padding-bottom:6rpx;
+  background-color:#fafafa;
 }
 
 .item-pro .title {

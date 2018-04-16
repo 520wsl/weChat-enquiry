@@ -7,9 +7,15 @@
 .btn-back{
   width: 72rpx;
   height: 72rpx;
-  position: absolute;
+  position: fixed;
   top: 24rpx;
   left: 30rpx;
+}
+.btn-back .img{
+  width: 72rpx;
+  height: 72rpx;
+  margin: auto;
+  display: block;
 }
 .goods {
   min-height: 230rpx;
