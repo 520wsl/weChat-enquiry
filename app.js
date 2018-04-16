@@ -4,6 +4,7 @@ import time from '/utils/time';
 import utils from '/utils/utils';
 import auth from '/utils/auth';
 import configA from '/config';
+import { Base64 } from '/utils/resources/base64.min.js';
 const config = {
     onLaunch: function () {
         this.compatibleProcessing();
@@ -32,7 +33,8 @@ const config = {
     ...api,
     selectValueTime:'0',
     imgSizePro: configA.service.imgSizePro,
-    imgSizeEnq: configA.service.imgSizeEnq
+    imgSizeEnq: configA.service.imgSizeEnq,
+    Base64
 }
 // for (var name in api) {
 //   config[name] = api[name]

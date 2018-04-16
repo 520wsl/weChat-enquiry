@@ -88,6 +88,7 @@ Component({
       });
     },
     common(index) {
+      if (index === '' || index === null || index === undefined) return;
       this.setData({
         active: index
       });
