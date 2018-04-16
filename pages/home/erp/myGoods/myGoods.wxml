@@ -63,16 +63,16 @@
         </view>
     </navigator>
 </template>
- <view class='nav'>
+  <!-- <view class='nav'>
     <view bindtap='setPageType' data-pageType="1" class='flex1 col active1{{pageType}}'>
         <view class='bor-right'><image src="{{pageType == 1 ? CDN+'icon/icon_goods_ac.png' : CDN+'icon/icon_goods.png'}}" class="img" />我的商品</view>
     </view>
     <view bindtap='setPageType' data-pageType="2" class='flex1 col active2{{pageType}}'>
         <view class='bor-right'><image src="{{pageType == 1 ? CDN+'icon/icon_order.png' : CDN+'icon/icon_order_ac.png'}}" class="img" />我的订单</view>
     </view>
-</view> 
+</view>   -->
 
-<view>
+<view style='border-top:1px solid #e0e0e0;'>
     <view hidden="{{pageType == 2}}">
         <view wx:if="{{list.length > 0}}">
             <template wx:for="{{list}}" wx:key="{{item.productId}}" is="item-pro" data="{{...item,CDN, ALI}}" />

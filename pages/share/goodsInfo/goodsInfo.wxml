@@ -7,7 +7,7 @@
     </swiper-item>
   </block>
 </swiper>
-<view class="btn-back"><image src="{{CDN + 'icon_return.png'}}" class="slide-image" /></view>
+<view class="btn-back" bindtap='backIndex'><image src="{{CDN + 'icon_return.png'}}" class="img" /></view>
 <!-- 商品标题和价格 -->
 <block>
   <view class="goods">

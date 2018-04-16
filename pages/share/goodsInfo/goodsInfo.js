@@ -12,6 +12,11 @@ Page({
     params: {},
     aliAccountId: ''
   },
+  backIndex(){
+    wx.switchTab({
+      url: '/pages/home/home'
+    });
+  },
   showNorm() {
     this.setData({
       show: !this.data.show
