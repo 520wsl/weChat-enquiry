@@ -9,19 +9,20 @@ Page({
     ALI: app.ALI,
     show: false,
     productId:'',
-    params: {}
+    params: {},
+    aliAccountId: ''
   },
   showNorm() {
     this.setData({
       show: !this.data.show
     });
   },
-  productList(productId) {
+  productList() {
     if (wx.showLoading) {
       wx.showLoading({ title: '加载中...' });
     }
     app
-      .get('/product/detail', { productId: this.data.productId })
+      .get('/product/detail/share', { productId: this.data.productId, aliAccountId: this.data.aliAccountId })
       .then(e => {
         if (e.status == 200) {
           if (wx.hideLoading) {
@@ -58,6 +59,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+    this.data.aliAccountId = options.aliAccountId;
     this.setData({
       productId: options.productId,
     });
@@ -100,7 +102,7 @@ Page({
   onShareAppMessage: function() {
     return {
       title: '四喜E伙伴',
-      path: '/pages/share/goodsInfo/goodsInfo?productId=' + this.data.productId + '&aliAccountId=' + app.globalData.customeInfo.aliAccountId
+      path: '/pages/share/goodsInfo/goodsInfo?productId=' + this.data.productId + '&aliAccountId=' + this.data.aliAccountId
     }
   },
   formatData(v){

@@ -77,6 +77,14 @@ Component({
         })
         return;
       }
+      if (e.currentTarget.dataset.type == 'fb') {
+        wx.showToast({
+          title: '敬请期待',
+          icon: 'loading',
+          duration: 2000
+        })
+        return;
+      }
       if (e.currentTarget.dataset.type == 'fx') {
         app.get('/check/aliauthorize').then(res => {
           if(res.data){
