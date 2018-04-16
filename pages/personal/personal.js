@@ -30,7 +30,7 @@ Page({
     }
 
     let scene = decodeURIComponent(options.scene);
-    
+    console.log('接收参数：' + options.scene, '转换后的参数：' + scene);
     // 新增入口
     // scene = 'action=i&data=eyJvcGVuaWQiOiJvdWc4VzBhZDNEazNOTGIxLXBxMXlrbHdCdlNjIiwiYWxpQWNjb3VudElkIjoxMSwiaWQiOjIyfQ==';
     let param = scene.split('&');
