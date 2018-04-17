@@ -60,6 +60,14 @@ Page({
                     return;
                 }
                 data = JSON.parse(app.Base64.decode(data));
+                let customeInfo = app.globalData.customeInfo;
+                console.log('app全局信息打印', customeInfo);
+                if (customeInfo && customeInfo.aliAccountId === data.aliAccountId) {
+                  wx.navigateTo({
+                    url: '/pages/enquiry/info/info?id=' + id
+                  });
+                  return;
+                }
                 // 走登录流程
                 this.autoLogin(data.aliAccountId, data.id);
                 break;
