@@ -5,6 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    isshowbtn: false,
     CDN: app.CDN,
     ALI: app.ALI,
     show: false,
@@ -65,8 +66,14 @@ Page({
    */
   onLoad: function(options) {
     this.data.aliAccountId = options.aliAccountId;
+    let customeInfo = app.globalData.customeInfo;
+    let isshowbtn = false;
+    if (customeInfo && customeInfo.aliAccountId == options.aliAccountId) {
+      isshowbtn = true;
+    } console.log('isshowbtn', isshowbtn, app.globalData.customeInfo, options.aliAccountId)
     this.setData({
       productId: options.productId,
+      isshowbtn: isshowbtn
     });
     this.productList();
   },
