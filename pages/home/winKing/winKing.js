@@ -24,17 +24,11 @@ Page({
     wx.setNavigationBarTitle({
       title: this.data.time + '标王记录'
     });
-    if (wx.showLoading) {
-      wx.showLoading({ title: '加载中...' });
-    }
     app
       .get('/topbidder/list', { time: this.data.time })
       .then(e => {
         if (e.status == 200) {
           wx.stopPullDownRefresh();
-          if (wx.hideLoading) {
-            wx.hideLoading();
-          }
           this.setData({
             winKing: e.data
           });

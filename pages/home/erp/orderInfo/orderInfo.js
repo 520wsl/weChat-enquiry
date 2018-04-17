@@ -117,5 +117,14 @@ Page({
       return v;
     }
     return v.toFixed(2);
-  }
+  },
+  // 调启微信电话接口
+  callPhone: function (res) {
+    if (!res.currentTarget.dataset.phone || res.currentTarget.dataset.phone.length <= 0 || res.currentTarget.dataset.phone == '无') {
+      return
+    }
+    wx.makePhoneCall({
+      phoneNumber: res.currentTarget.dataset.phone
+    })
+  },
 })
