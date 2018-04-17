@@ -70,11 +70,11 @@
           <text class='statusR {{itemName.peerPriceType}}'>{{itemName.peerPrice}}</text>
         </view>
         <view class='recordList'>
-          <text class='statusL'>未成交原因：</text>
+          <text class='statusL' style="width:160rpx;">未成交原因：</text>
           <text class='statusR {{itemName.noDealReasonType}}'>{{itemName.noDealReason || ''}}</text>
         </view>
         <view class='recordList'>
-          <text class='statusL'>有无去同行购买：</text>
+          <text class='statusL' style="width:220rpx;">有无去同行购买：</text>
           <text class='statusR {{itemName.peerBuyType}}'>{{peerBuyName[itemName.peerBuy]}}</text>
         </view>
         <view class='recordList'>
