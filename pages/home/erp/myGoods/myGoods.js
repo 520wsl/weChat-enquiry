@@ -25,7 +25,6 @@ Page({
       list: [],
       pageType: pageType
     })
-
     let title = '';
 
     this.data.params.pageNum = 1;
@@ -175,7 +174,7 @@ Page({
     this.data.params.page = 1;
     this.data.pageType = options.pageType || 1
     this.setPageTypeAll(this.data.pageType);
-    this.init(this.getList);
+    // this.init(this.getList);
   },
 
   /**
