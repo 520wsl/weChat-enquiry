@@ -164,6 +164,20 @@ Page({
         });
         return;
       }
+      let isNullData = formatData.filter((item, index) => {
+        if (index < 5) {
+          if (item.sumAllAmount > 0) {
+            return true;
+          }
+        }
+      });
+      if (isNullData.length == 0) {
+        this.setData({
+          customerarea: [],
+          isShowChart: false
+        });
+        return;
+      }
       formatData.forEach(item => {
         if(item.sumAllAmount<10000){
         item.sumAllAmount = item.sumAllAmount.toFixed(2);
@@ -258,6 +272,7 @@ Page({
         }
       }
     });
+    if (cacheData.length == 0) {return;}
     let windowWidth = this.getWindowWidth();
     let categories = cacheData.map(item => {
       return item.provinceName;

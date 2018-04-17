@@ -3,6 +3,20 @@
   width: 100%;
   height: 748rpx;
 }
+/*返回  */
+.btn-back{
+  width: 72rpx;
+  height: 72rpx;
+  position: fixed;
+  top: 24rpx;
+  left: 30rpx;
+}
+.btn-back .img{
+  width: 72rpx;
+  height: 72rpx;
+  margin: auto;
+  display: block;
+}
 .goods {
   min-height: 230rpx;
   background: #ffffff;

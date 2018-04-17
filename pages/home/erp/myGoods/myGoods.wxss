@@ -105,6 +105,15 @@
     position: relative;
 }
 
+.xia-time {
+  font-size: 12px;
+  /* font-size: 10px; */
+  color: #999999;
+  padding-left:30rpx;
+  padding-bottom:6rpx;
+  background-color:#fafafa;
+}
+
 .item-pro .title {
     font-size: 28rpx;
     color: #333;
@@ -173,9 +182,16 @@
     color: #fc7c1f;
 }
 
+.item-order .title .type .img{
+  width: 14rpx;
+  height: 28rpx;
+  margin-bottom:-6rpx;
+  margin-left: 18rpx;
+}
+
 .item-order .pro {
     background-color: #fafafa;
-     margin-bottom: 6rpx; 
+     /* margin-bottom: 6rpx;  */
     display: flex;
     justify-content: space-between;
     align-items: center;
