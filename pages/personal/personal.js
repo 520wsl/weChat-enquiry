@@ -64,7 +64,7 @@ Page({
                 console.log('app全局信息打印', customeInfo);
                 if (customeInfo && customeInfo.aliAccountId === data.aliAccountId) {
                   wx.navigateTo({
-                    url: '/pages/enquiry/info/info?id=' + id
+                    url: '/pages/enquiry/info/info?id=' + data.id
                   });
                   return;
                 }
