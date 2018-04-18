@@ -162,11 +162,12 @@
   height: auto;
   padding: 0 30rpx;
   margin-bottom: 10rpx;
+  padding-bottom: 15rpx;
 }
 
 .recordList {
   display: flex;
-  padding: 26rpx 0;
+  padding: 10rpx 0;
   display: flex;
   justify-content: space-between;
 }
