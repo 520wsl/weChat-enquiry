@@ -23,7 +23,6 @@
     "pages/home/erp/orderInfo/orderInfo",
     "pages/home/erp/logisticsInfo/logisticsInfo",
     "pages/home/erp/goodsInfo/goodsInfo",
-    "pages/home/erp/myOrder/myOrder",
     "pages/share/goodsInfo/goodsInfo"
   ],
   "window": {

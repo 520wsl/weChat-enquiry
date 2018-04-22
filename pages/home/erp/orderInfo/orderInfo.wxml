@@ -31,7 +31,7 @@
         <view data-phone="{{info.receiverInfo.toMobile}}" bindtap='callPhone' class='dh'>
           <view wx:if="{{info.receiverInfo.toMobile}}" class="phone">{{info.receiverInfo.toMobile}}</view>
           <view class='pic pic-phone' wx:if="{{info.receiverInfo.toMobile > 0}}">
-            <image src="{{CDN}}call_phone.png" />
+            <image src="{{CDN}}/icon/icon_call_phone.png" />
           </view>
         </view>
         <view class="address">{{info.receiverInfo.toArea || ''}}</view>
