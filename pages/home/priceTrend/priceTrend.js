@@ -46,12 +46,12 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
-    return {
-      title: '四喜E伙伴',
-      path: '/pages/home/priceTrend/priceTrend?categoryId=' + this.data.params.categoryId + '&categoryName=' + this.data.params.categoryName + '&classify=' + this.data.params.classify
-    }
-  },
+  // onShareAppMessage: function () {
+  //   return {
+  //     title: '四喜E伙伴',
+  //     path: '/pages/home/priceTrend/priceTrend?categoryId=' + this.data.params.categoryId + '&categoryName=' + this.data.params.categoryName + '&classify=' + this.data.params.classify
+  //   }
+  // },
 
   // 获取数据
   getList() {

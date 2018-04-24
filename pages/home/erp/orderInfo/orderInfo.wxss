@@ -70,8 +70,8 @@
 }
 
 .details .txt .phone {
-  color: #FD7D20;
   font-size: 26rpx;
+  color: #FD7D20;
 }
 
 .details .txt .address {
@@ -292,6 +292,23 @@
 .dh {
   display: flex;
   align-items: center;
+  /* justify-content: space-between; */
+}
+.pic-phone{
+  width: 110rpx;
+  height: 32rpx;
+  /* border: 1px solid #FC8B1F; */
+  border-radius: 2px;
+  font-size:24rpx;
+  color:#FD7D20;
+  text-align: center;
+  margin-left: 23rpx;
+}
+
+/*虚拟商品  */
+.virtual{
+  font-size: 26rpx;
+  color: #F72F2F;
   justify-content:flex-start;
   margin: 4rpx 0;
 }

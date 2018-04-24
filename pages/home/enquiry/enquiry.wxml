@@ -10,7 +10,7 @@
     </view>
     <component-common-screening isDelte="{{params.countType == 1 ? false : true}}" bindgetScreening="getScreening"/>
   <view class='list'>
-    <itemEnquiry wx:for="{{list}}" wx:key="{{index}}" item="{{item}}"></itemEnquiry>
+    <itemEnquiry wx:for="{{list}}" wx:key="{{index}}" item="{{item}}" statusBtn="{{params.countType}}"></itemEnquiry>
   </view>
   <view wx:if="{{list.length > 0 && (list.length == count) && isshowFooter}}" class="bottom-line">
     <view class="line"></view>
