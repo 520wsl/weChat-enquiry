@@ -11,7 +11,7 @@
   align-items: center;
 }
 .img-box{
-  margin-top: 35rpx;
+  /* margin-top: 35rpx; */
   height: 175rpx;
   width: 175rpx;
   text-align: center;
@@ -124,8 +124,8 @@ button::after{
 
 /* 解绑按钮样式 */
 .untie {
-  width: 80rpx;
-  height: 28rpx;
+  width: 94rpx;
+  height: 30rpx;
   align-self: flex-end;
   margin-top:20rpx;
   margin-right:25rpx;
