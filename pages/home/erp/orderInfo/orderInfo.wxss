@@ -297,7 +297,7 @@
 .pic-phone{
   width: 110rpx;
   height: 32rpx;
-  border: 1px solid #FC8B1F;
+  /* border: 1px solid #FC8B1F; */
   border-radius: 2px;
   font-size:24rpx;
   color:#FD7D20;
@@ -309,4 +309,11 @@
 .virtual{
   font-size: 26rpx;
   color: #F72F2F;
+  justify-content:flex-start;
+  margin: 4rpx 0;
+}
+.pic-phone{
+    width: 112rpx;
+    height: 34rpx;
+    margin-left: 15rpx;
 }

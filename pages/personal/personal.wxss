@@ -121,3 +121,12 @@
 button::after{
   border: 0;
 }
+
+/* 解绑按钮样式 */
+.untie {
+  width: 80rpx;
+  height: 28rpx;
+  align-self: flex-end;
+  margin-top:20rpx;
+  margin-right:25rpx;
+}

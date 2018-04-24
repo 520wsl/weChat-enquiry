@@ -5,7 +5,7 @@ Page({
     verifyBindphone: function () {
         // console.log({ ...this.data.params })
         let params = { ...this.data.params };
-        if (!params.phone || !/^1[34578]\d{9}$/.test(params.phone)) {
+        if (!params.phone || !/^1[3456789]\d{9}$/.test(params.phone)) {
             app.utils.showModel('绑定手机号', '请填写正确的手机号')
             return;
         }

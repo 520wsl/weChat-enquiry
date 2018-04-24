@@ -1,7 +1,7 @@
 <!--pages/home/erp/goodsInfo/goodsInfo.wxml-->
 <!-- 商品详情图片 -->
 <swiper indicator-dots="true" autoplay="false" interval="5000" duration="500" style="height:748rpx;width:100%;">
-  <block wx:for="{{params.images}}">
+  <block wx:for="{{params.images}}" wx:key="{{index}}">
     <swiper-item>
       <image src="{{ALI}}{{item}}" class="slide-image" />
     </swiper-item>
@@ -45,7 +45,7 @@
   </view>
   <view class="sub">
     <view class="{{show ? '' : 'txt-more'}} detail">
-      <view  wx:for="{{params.skuList}}" class="{{index < 2||show ? '' : 'hid'}} line">
+      <view  wx:for="{{params.skuList}}" wx:key="{{index}}" class="{{index < 2||show ? '' : 'hid'}} line">
         <view class="name">
           {{item.attributeName}}：
         </view>
@@ -80,7 +80,7 @@
     <text class="txt">产品属性</text>
   </view>
   <view class="lists">
-    <view class="list" wx:for="{{params.list}}">
+    <view class="list" wx:for="{{params.list}}" wx:key="{{index}}">
       <view class="name">
         {{item.attributeName}}：
       </view>

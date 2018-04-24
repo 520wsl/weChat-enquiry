@@ -32,7 +32,8 @@
           <view wx:if="{{info.receiverInfo.toMobile}}" class="phone">{{info.receiverInfo.toMobile}}</view>
           <view class='pic pic-phone' wx:if="{{info.receiverInfo.toMobile > 0}}">
             <!-- <image src="{{CDN}}call_phone.png" /> -->
-            联系买家
+            <!-- 联系买家 -->
+            <image src="{{CDN}}/icon/icon_call_phone.png" />
           </view>
         </view>
         <block wx:if="info.receiverInfo.toArea || info.addressDetailVo.address">

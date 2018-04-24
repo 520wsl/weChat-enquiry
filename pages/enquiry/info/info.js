@@ -36,6 +36,8 @@ Page({
     },
     // 买家旺旺
     aliTM: '',
+    // 阿里订单id
+    aliOrderId: '',
     // 跟单记录
     list: [],
     // 买家类型
@@ -72,7 +74,7 @@ Page({
     // 是否授权
     isauth: false,
     // aliOrderId
-    aliOrderId: '',
+    // aliOrderId: '',
     // 阿里订单状态
     aliSaleStatus: '',
     // 自定义状态
@@ -172,7 +174,13 @@ Page({
       phoneNumber: res.currentTarget.dataset.phone
     })
   },
-
+  jumInfo: function () {
+    if (this.data.aliOrderId) {
+      wx.navigateTo({
+        url: '/pages/home/erp/orderInfo/orderInfo?orderId=' + this.data.aliOrderId
+      })
+    }
+  },
   // 获取详情
   getInfo(cb) {
     app.get('/enquiry/listinfo', this.data.params).then(res => {
@@ -279,11 +287,12 @@ Page({
       this.setData({
         statusBtn: this.data.statusBtn,
         aliSaleStatus: data.aliSaleStatus,
-        aliOrderId: data.aliOrderId,
+        // aliOrderId: data.aliOrderId,
         amount: data.amount,
         saleStatus: data.saleStatus,
         aliTM: data.aliTM,
         list: this.data.list,
+        aliOrderId: data.aliOrderId,
         'params.pageNum': this.data.params.pageNum,
         'params.count': data.count,
       });
@@ -401,7 +410,7 @@ var deepDiffMapper = function () {
   }
 }();
 var isUpdated = function (type) {
-  if (type == 'updated' || type == 'deleted'|| type == 'created'){
+  if (type == 'updated' || type == 'deleted' || type == 'created') {
     return 'updated'
   }
   return 'unchanged';

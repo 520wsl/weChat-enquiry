@@ -69,7 +69,7 @@ Page({
       lossValue: 4,
     },
     enquireTime: {
-      label: '一月',
+      label: '近一月',
       startTime: app.time.getTimeLimit(1, 'month'),
       endTime: app.time.getTimeLimit(-1),
       type: 2
@@ -77,7 +77,7 @@ Page({
     // 客户地区
     customerarea: [],
     customerareaTime: {
-      label: '一月',
+      label: '近一月',
       startTime: app.time.getTimeLimit(1, 'month'),
       endTime: app.time.getTimeLimit(-1),
       type: 2
@@ -436,7 +436,7 @@ Page({
     let index = e.currentTarget.dataset.index;
     let item = e.currentTarget.dataset.obj;
     let timeType = this.data.customerareaTime.type || 2;
-    let timeName = this.data.customerareaTime.label || '一月';
+    let timeName = this.data.customerareaTime.label || '近一月';
     let startTime = this.data.customerareaTime.startTime;
     let endTime = this.data.customerareaTime.endTime;
     let url = "/pages/home/areaEnquiry/areaEnquiry?provinceId=" + item.provinceId + "&provinceName=" + item.provinceName + "&ranking=" + (index + 1) + "&timeType=" + timeType + "&timeName=" + timeName + '&startTime=' + startTime + '&endTime=' + endTime;
