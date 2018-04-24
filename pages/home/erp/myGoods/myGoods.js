@@ -18,7 +18,45 @@ Page({
     },
     count: 0,
     isClear: false,
-    isshowFooter: false
+    isshowFooter: false,
+    types: [
+      {
+        key: 0,
+        name: '全部'
+      },
+      {
+        key: 1,
+        name: '待付款'
+      },
+      {
+        key: 2,
+        name: '待发货'
+      },
+      {
+        key: 3,
+        name: '待收货'
+      },
+      {
+        key: 4,
+        name: '退款退货'
+      },
+      {
+        key: 5,
+        name: '投诉中'
+      },
+      {
+        key: 6,
+        name: '待评价'
+      },
+      {
+        key: 7,
+        name: '交易成功'
+      },
+      {
+        key: 6,
+        name: '交易关闭'
+      },
+    ]
   },
   setPageTypeAll(pageType) {
     this.setData({

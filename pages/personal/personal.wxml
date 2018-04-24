@@ -1,9 +1,12 @@
 <!--pages/personal/personal.wxml-->
 <view class='container'>
   <view class='top'>
-    <view class='untie pic' bindtap='untie' wx:if="{{info.login}}">
-      <image src="{{CDN}}/icon/icon_call_phone.png" />
+    <view class='untie'>
+      <view class='untie pic' bindtap='untie' wx:if="{{info.login}}">
+        <image src="{{CDN}}/icon/icon_untie.png" />
+      </view>
     </view>
+
     <view bindtap='debug' class='img-box'>
       <view class='default_heads'>
         <image src='{{avatarUrl}}' class='img' />
