@@ -4,13 +4,21 @@
       <text class='moneyA'>￥{{amount}}</text>
     </view>
     <view class='status'>跟单状态：
-      <text class='statusA'>{{saleStatusName[saleStatus]}}</text>
+      <text wx:if="{{statusBtn && statusBtn != 1}}" class='statusA'>{{statusBtnName[statusBtn]}}</text>
+      <text wx:else class='statusA'>{{saleStatusName[saleStatus]}}</text>
+    </view>
+    <view wx:if="{{isauth}}" class='buyer'>线上订单状态：
+      <text class='buyerA'>{{aliSaleStatus || ''}}</text>
     </view>
     <view class='buyer'>买家旺旺：
       <text class='buyerA'>{{aliTM || ''}}</text>
     </view>
   </view>
-  <view class='{{saleStatusClass[saleStatus]}}'></view>
+  <!-- <view class='{{saleStatusClass[saleStatus]}}'></view> -->
+  <view wx:if="{{isauth}}" class="check-btn" bindtap='jumpPage'>
+    查看订单详情
+     <image class="img" src='{{CDN}}icon/icon_right_white.png'></image>   
+  </view>
 </view>
 
 <view class='content mains'>
@@ -41,9 +49,10 @@
           <text class='statusL'>买家地址：</text>
           <text class='statusR {{itemName.cityNameType}}'>{{itemName.cityName || ''}}</text>
         </view>
-        <view class='recordList'>
+        <view class='recordList' wx:if="{{itemName.wechat}}">
           <text class='statusL'>加 微 信：</text>
-          <text class='statusR {{itemName.isWechatType}}'>{{isWechatName[itemName.isWechat]}}</text>
+          <!-- <text class='statusR {{itemName.isWechatType}}'>{{isWechatName[itemName.isWechat]}}</text> -->
+          <text class='statusR {{itemName.wechatType}}'>{{itemName.wechat || ''}}</text>
         </view>
       </view>
       <view class='recordUl'>
@@ -52,8 +61,16 @@
           <text class='statusR {{itemName.productNameType}}'>{{itemName.productName || ''}}</text>
         </view>
         <view class='recordList'>
+          <text class='statusL'>单　　位：</text>
+          <text class='statusR {{itemName.unitType}}'>{{itemName.unit || ''}}</text>
+        </view>
+        <view class='recordList'>
           <text class='statusL'>数　　量：</text>
           <text class='statusR {{itemName.numType}}'>{{itemName.num}}</text>
+        </view>
+        <view class='recordList'>
+          <text class='statusL'>产品规格：</text>
+          <text class='statusR {{itemName.specificationType}}'>{{itemName.specification || ''}}</text>
         </view>
         <view class='recordList'>
           <text class='statusL'>产品报价：</text>
@@ -65,19 +82,19 @@
         </view>
       </view>
       <view class='recordUl'>
-        <view class='recordList'>
+        <view class='recordList' wx:if="{{saleStatus != 1}}">
           <text class='statusL'>同行报价：</text>
           <text class='statusR {{itemName.peerPriceType}}'>{{itemName.peerPrice}}</text>
         </view>
-        <view class='recordList'>
+        <view class='recordList' wx:if="{{saleStatus != 1}}">
           <text class='statusL' style="width:160rpx;">未成交原因：</text>
           <text class='statusR {{itemName.noDealReasonType}}'>{{itemName.noDealReason || ''}}</text>
         </view>
-        <view class='recordList'>
+        <view class='recordList' wx:if="{{saleStatus != 1}}">
           <text class='statusL' style="width:220rpx;">有无去同行购买：</text>
           <text class='statusR {{itemName.peerBuyType}}'>{{peerBuyName[itemName.peerBuy]}}</text>
         </view>
-        <view class='recordList'>
+        <view class='recordList' wx:if="{{saleStatus != 1}}">
           <text class='statusL'>同 行 名：</text>
           <text class='statusR {{itemName.peerNameType}}'>{{itemName.peerName || ''}}</text>
         </view>
@@ -91,5 +108,22 @@
   <view wx:if="{{list.length == 0}}" class="no-data">
     <image src="{{CDN}}record_no.png" class="img" />
     <text class="txt">抱歉!没有找到符合条件的记录</text>
+  </view>
+</view>
+<!-- 弹窗 -->
+<view class="modal" wx:if="{{modal}}">
+  <view class="modal-content">
+    <view class="modal-header">
+      <!-- <icon type='cancel' color='#fff' class='modal-icon' bindtap='setModal' /> -->
+    </view>
+    <view class="modal-body">
+      <view class="section">
+        <view class="text">您可以登录查看当前页数据，或登录体验版。</view>
+      </view>
+    </view>
+    <view class="modal-footer">
+      <view bindtap='login' class="default confirm">登录</view>
+      <view bindtap='tyLogin' class="confirm">体验版</view>
+    </view>
   </view>
 </view>

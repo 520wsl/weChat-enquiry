@@ -8,6 +8,10 @@ Component({
       item: {
           type: Object,
           value: ''
+      },
+      statusBtn: {
+        type: String,
+        value: ''
       }
   },
 
@@ -22,6 +26,11 @@ Component({
       3: '已流失',
       4: '已流失'
     },
+    statusBtnName: {
+      2: '已成交',
+      3: '跟单中',
+      4: '已流失'
+    }
   },
 
   /**

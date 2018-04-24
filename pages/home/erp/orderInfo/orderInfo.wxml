@@ -31,10 +31,17 @@
         <view data-phone="{{info.receiverInfo.toMobile}}" bindtap='callPhone' class='dh'>
           <view wx:if="{{info.receiverInfo.toMobile}}" class="phone">{{info.receiverInfo.toMobile}}</view>
           <view class='pic pic-phone' wx:if="{{info.receiverInfo.toMobile > 0}}">
-            <image src="{{CDN}}call_phone.png" />
+            <!-- <image src="{{CDN}}call_phone.png" /> -->
+            联系买家
           </view>
         </view>
-        <view class="address">{{info.receiverInfo.toArea || ''}}</view>
+        <block wx:if="info.receiverInfo.toArea || info.addressDetailVo.address">
+          <view class="address">{{info.receiverInfo.toArea || ''}}</view>
+          <view class="address">{{info.addressDetailVo.address || ''}}</view>
+        </block>
+        <block wx:else>
+          <view class='virtual'>虚拟商品</view>
+        </block>
       </view>
     </view>
   </view>

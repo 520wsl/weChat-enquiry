@@ -69,6 +69,21 @@ Page({
     // 默认项
     acIndex: 0,
     toggle: [],
+    // 是否授权
+    isauth: false,
+    // aliOrderId
+    aliOrderId: '',
+    // 阿里订单状态
+    aliSaleStatus: '',
+    // 自定义状态
+    statusBtn: '',
+    statusBtnName: {
+      2: '已成交',
+      3: '跟单中',
+      4: '已流失'
+    },
+    // 弹窗
+    modal: false,
   },
 
   /**
@@ -77,14 +92,56 @@ Page({
   onLoad: function (options) {
     // 请求接口
     this.data.params.enquiryId = options.id;
+    this.data.statusBtn = options.statusBtn;
+    // 分享入口
+    // if (options.share == '1') {
+    //   this.setModal();
+    //   return;
+    // }
     this.getInfo();
   },
-  onShareAppMessage: function () {
-    return {
-      title: '四喜E伙伴',
-      path: '/pages/enquiry/info/info?id=' + this.data.params.enquiryId
+  // 授权判断
+  auth(type){
+    // 没有线上订单
+    if (!type) {
+      this.setData({
+        isauth: type
+      });
     }
+    // 有线上订单且授权的
+    app.get('/check/aliauthorize').then(res => {
+      if (res.data) {
+        this.setData({
+          isauth: type
+        });
+      } else {
+      }
+    });
   },
+  // 页面跳转
+  jumpPage(){
+    wx.navigateTo({
+      url: '/pages/home/erp/orderInfo/orderInfo?orderId=' + this.data.aliOrderId
+    });
+  },
+  // 显隐弹窗
+  setModal() {
+    this.setData({
+      modal: !this.data.modal
+    })
+  },
+  // 登录
+  login() {
+    app.login();
+  },
+  // 体验版登录
+  tyLogin() {},
+  // onShareAppMessage: function () {
+  //   return {
+  //     title: '四喜E伙伴',
+  //     path: '/pages/enquiry/info/info?id=' + this.data.params.enquiryId + '&share=1'
+  //   }
+  // },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
@@ -183,7 +240,9 @@ Page({
           data.list[i]['productNameType'] = isUpdated(obj['productName']['type']);
           data.list[i]['remarkType'] = isUpdated(obj['remark']['type']);
           data.list[i]['typeType'] = isUpdated(obj['type']['type']);
-
+          data.list[i]['wechatType'] = isUpdated(obj['wechat']['type']);
+          data.list[i]['unitType'] = isUpdated(obj['unit']['type']);
+          data.list[i]['specificationType'] = isUpdated(obj['specification']['type']);
         } else {
           data.list[i]['buyerIntentionType'] = 'unchanged';
           data.list[i]['buyerTypeType'] = 'unchanged';
@@ -202,11 +261,25 @@ Page({
           data.list[i]['productNameType'] = 'unchanged';
           data.list[i]['remarkType'] = 'unchanged';
           data.list[i]['typeType'] = 'unchanged';
+          data.list[i]['wechatType'] = 'unchanged';
+          data.list[i]['unitType'] = 'unchanged';
+          data.list[i]['specificationType'] = 'unchanged';
         }
 
       }
       this.data.list.push(...data.list);
+      let aliOrderId = data.aliOrderId;
+      let isauth = false;
+      if (aliOrderId == '' || aliOrderId == null || aliOrderId == undefined) {
+        isauth = false;
+      } else {
+        isauth = true;
+      }
+      this.auth(isauth); 
       this.setData({
+        statusBtn: this.data.statusBtn,
+        aliSaleStatus: data.aliSaleStatus,
+        aliOrderId: data.aliOrderId,
         amount: data.amount,
         saleStatus: data.saleStatus,
         aliTM: data.aliTM,

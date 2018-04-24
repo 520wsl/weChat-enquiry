@@ -15,12 +15,12 @@ Page({
   onLoad: function () {
     this.getList()
   },
-  onShareAppMessage: function () {
-    return {
-      title: '四喜E伙伴',
-      path: '/pages/personal/companyList/companyList'
-    }
-  },
+  // onShareAppMessage: function () {
+  //   return {
+  //     title: '四喜E伙伴',
+  //     path: '/pages/personal/companyList/companyList'
+  //   }
+  // },
   getList: function () {
     // if (app.globalData.companies)
     //   this.setData({

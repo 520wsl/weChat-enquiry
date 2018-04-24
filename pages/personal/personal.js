@@ -165,12 +165,12 @@ Page({
         app.enquiryTime = null;
         this.getInfo();
     },
-    onShareAppMessage: function () {
-        return {
-            title: '四喜E伙伴',
-            path: '/pages/personal/personal'
-        }
-    },
+    // onShareAppMessage: function () {
+    //     return {
+    //         title: '四喜E伙伴',
+    //         path: '/pages/personal/personal'
+    //     }
+    // },
     getServices: function () {
         app
             .get('/common/services')

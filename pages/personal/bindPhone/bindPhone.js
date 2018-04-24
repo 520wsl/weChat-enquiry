@@ -205,10 +205,10 @@ Page({
     /**
      * 用户点击右上角分享
      */
-    onShareAppMessage: function () {
-        return {
-            title: '四喜E伙伴',
-            path: '/pages/personal/bindPhone/bindPhone'
-        }
-    },
+    // onShareAppMessage: function () {
+    //     return {
+    //         title: '四喜E伙伴',
+    //         path: '/pages/personal/bindPhone/bindPhone'
+    //     }
+    // },
 })

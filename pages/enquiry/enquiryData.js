@@ -68,12 +68,12 @@ Page({
     //   list: []
     // })
   },
-  onShareAppMessage: function () {
-    return {
-      title: '四喜E伙伴',
-      path: '/pages/enquiry/enquiry'
-    }
-  },
+  // onShareAppMessage: function () {
+  //   return {
+  //     title: '四喜E伙伴',
+  //     path: '/pages/enquiry/enquiry'
+  //   }
+  // },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作

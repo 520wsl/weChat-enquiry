@@ -1,5 +1,5 @@
 <!--components/itemEnquiry/itemEnquiry.wxml-->
-<navigator url="/pages/enquiry/info/info?id={{item.enquiryId}}">
+<navigator url="/pages/enquiry/info/info?id={{item.enquiryId}}&statusBtn={{statusBtn}}">
     <view class='item hr'>
         <view class='pic pro-pic'>
             <image mode='aspectFit' src='{{item.productImage || CDN+"icon-pro.png"}}'></image>
@@ -19,12 +19,22 @@
                     </view>
                 </view>
                 <view class='nav-btn'>
+                  <block wx:if="{{statusBtn && statusBtn != 1}}">
+                    <view class='btn btn-status{{statusBtn}}'>
+                        <text>{{statusBtnName[statusBtn]}}</text>
+                    </view>
+                    <view class='pic arrow'>
+                        <image mode='aspectFit' src='{{CDN}}icon_right.png'></image>
+                    </view>
+                  </block>
+                  <block wx:else>
                     <view class='btn btn{{item.saleStatus}}'>
                         <text>{{saleStatusName[item.saleStatus]}}</text>
                     </view>
                     <view class='pic arrow'>
                         <image mode='aspectFit' src='{{CDN}}icon_right.png'></image>
                     </view>
+                  </block>
                 </view>
             </view>
             <view class='mony'>
