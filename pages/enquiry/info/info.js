@@ -29,6 +29,11 @@ Page({
       2: '跟踪',
       3: '流失'
     },
+    statusBtnAmount: {
+      2: '成交',
+      3: '跟踪',
+      4: '流失'
+    },
     saleStatusClass: {
       1: 'headerRight1',
       2: 'headerRight2',
@@ -99,13 +104,13 @@ Page({
     this.data.statusBtn = options.statusBtn;
     if (options.statusBtn && options.statusBtn != 1) {
       switch (options.statusBtn) {
-        case 2:
+        case '2':
           this.data.type = 1;
           break;
-        case 3:
+        case '3':
           this.data.type = 2;
           break;
-        case 4:
+        case '4':
           this.data.type = 3;
           break;
       }
