@@ -165,14 +165,9 @@
 }
 
 .item-order .title .custome {
-<<<<<<< HEAD
     flex: 1;
     color: #3d4244;
     margin-top:-4rpx;
-=======
-  flex: 1;
-  color: #3d4244;
->>>>>>> origin/dev
 }
 
 .item-order .title .custome .img {
