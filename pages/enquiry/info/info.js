@@ -29,6 +29,11 @@ Page({
       2: '跟踪',
       3: '流失'
     },
+    statusBtnAmount: {
+      2: '成交',
+      3: '跟踪',
+      4: '流失'
+    },
     saleStatusClass: {
       1: 'headerRight1',
       2: 'headerRight2',
@@ -86,6 +91,8 @@ Page({
     },
     // 弹窗
     modal: false,
+    // 询盘状态(经处理)
+    type: ''
   },
 
   /**
@@ -95,6 +102,21 @@ Page({
     // 请求接口
     this.data.params.enquiryId = options.id;
     this.data.statusBtn = options.statusBtn;
+    if (options.statusBtn && options.statusBtn != 1) {
+      switch (options.statusBtn) {
+        case '2':
+          this.data.type = 1;
+          break;
+        case '3':
+          this.data.type = 2;
+          break;
+        case '4':
+          this.data.type = 3;
+          break;
+      }
+    } else {
+      this.data.type = options.type;
+    }
     // 分享入口
     // if (options.share == '1') {
     //   this.setModal();
@@ -183,7 +205,10 @@ Page({
   },
   // 获取详情
   getInfo(cb) {
-    app.get('/enquiry/listinfo', this.data.params).then(res => {
+    app.get('/enquiry/listinfo', {
+      ...this.data.params,
+      type: this.data.type
+    }).then(res => {
       if (typeof cb == 'function') {
         cb();
       }

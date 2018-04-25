@@ -1,8 +1,15 @@
 <view class='top'>
   <view class='headerLeft'>
-    <view class='money'>{{saleStatusAmount[saleStatus]}}金额：
-      <text class='moneyA'>￥{{amount}}</text>
-    </view>
+    <block wx:if="{{statusBtn && statusBtn != 1}}">
+      <view class='money'>{{statusBtnAmount[statusBtn]}}金额：
+        <text class='moneyA'>￥{{amount}}</text>
+      </view>
+    </block>
+    <block wx:else>
+      <view class='money'>{{saleStatusAmount[saleStatus]}}金额：
+        <text class='moneyA'>￥{{amount}}</text>
+      </view>
+    </block>
     <view class='status'>跟单状态：
       <text wx:if="{{statusBtn && statusBtn != 1}}" class='statusA'>{{statusBtnName[statusBtn]}}</text>
       <text wx:else class='statusA'>{{saleStatusName[saleStatus]}}</text>
@@ -52,7 +59,7 @@
           <text class='statusR {{itemName.cityNameType}}'>{{itemName.cityName || ''}}</text>
         </view>
         <view class='recordList' wx:if="{{itemName.wechat}}">
-          <text class='statusL'>加 微 信：</text>
+          <text class='statusL'>微　　信：</text>
           <!-- <text class='statusR {{itemName.isWechatType}}'>{{isWechatName[itemName.isWechat]}}</text> -->
           <text class='statusR {{itemName.wechatType}}'>{{itemName.wechat || ''}}</text>
         </view>
