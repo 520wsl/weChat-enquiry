@@ -335,7 +335,7 @@ Page({
             });
           }
           app
-            .get('/auth/experience')
+            .post('/auth/unbindwechat')
             .then(res => {
               if (wx.hideLoading) {
                 wx.hideLoading();

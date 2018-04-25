@@ -1,50 +1,50 @@
 <!--pages/home/erp/myGoods/myGoods.wxml-->
 <!-- 我的商品 -->
 <template name="noData">
-    <view class="no-data">
-        <image src="{{CDN}}/record_no.png" class="img" />
-        <text class="txt"></text>
-    </view>
+  <view class="no-data">
+    <image src="{{CDN}}/record_no.png" class="img" />
+    <text class="txt"></text>
+  </view>
 </template>
 
 <template name="item-pro">
-    <navigator url='/pages/home/erp/goodsInfo/goodsInfo?productId={{productId}}' class='item-pro hr'>
-        <view class='pic'>
-            <image mode='aspectFit' src="{{productImage ? ALI+productImage: CDN + 'icon-pro.png'}}"></image>
-        </view>
-        <view class='info'>
-            <view class='title txt-more-multiple'>{{productName || ''}}</view>
-            <view class='mony'>
-                <text class='num' wx:if="{{minPrice > 0 }}">￥{{minPrice}}-</text>
-                <text class='num'>￥{{maxPrice}}</text>
-                <text class='txt'> /{{unit}}</text>
-            </view>
-        </view>
-        <view class="icon-arrow">
-            <image class="img" src="http://1.img.dianjiangla.com/enquiryAssets/icon_right.png"></image>
-        </view>
-    </navigator>
+  <navigator url='/pages/home/erp/goodsInfo/goodsInfo?productId={{productId}}' class='item-pro hr'>
+    <view class='pic'>
+      <image mode='aspectFit' src="{{productImage ? ALI+productImage: CDN + 'icon-pro.png'}}"></image>
+    </view>
+    <view class='info'>
+      <view class='title txt-more-multiple'>{{productName || ''}}</view>
+      <view class='mony'>
+        <text class='num' wx:if="{{minPrice > 0 }}">￥{{minPrice}}-</text>
+        <text class='num'>￥{{maxPrice}}</text>
+        <text class='txt'> /{{unit}}</text>
+      </view>
+    </view>
+    <view class="icon-arrow">
+      <image class="img" src="http://1.img.dianjiangla.com/enquiryAssets/icon_right.png"></image>
+    </view>
+  </navigator>
 </template>
 
 <template name="item-order-pro">
-    <view class='pro'>
-        <view class='pic'>
-            <image mode='aspectFit' src="{{productImgUrl || CDN + 'icon-pro.png'}}"></image>
-        </view>
-        <view class='info'>
-            <view class='pro-title'>
-                <view class='name txt-more-multiple'>{{name || ''}}</view>
-                <view class='spec txt-more-multiple'>{{skuInfos || ''}}</view>
-
-            </view>
-            <view class='price'>
-                <view class='new'>¥{{price}}</view>
-                <view class='old'></view>
-                <view class='num'>{{quantity + unit}}</view>
-                <view class='btn' wx:if="{{refundStatusStr}}">退款中</view>
-            </view>
-        </view>
+  <view class='pro'>
+    <view class='pic'>
+      <image mode='aspectFit' src="{{productImgUrl || CDN + 'icon-pro.png'}}"></image>
     </view>
+    <view class='info'>
+      <view class='pro-title'>
+        <view class='name txt-more-multiple'>{{name || ''}}</view>
+        <view class='spec txt-more-multiple'>{{skuInfos || ''}}</view>
+
+      </view>
+      <view class='price'>
+        <view class='new'>¥{{price}}</view>
+        <view class='old'></view>
+        <view class='num'>{{quantity + unit}}</view>
+        <view class='btn' wx:if="{{refundStatusStr}}">退款中</view>
+      </view>
+    </view>
+  </view>
 </template>
 
 <template name="item-order">
@@ -62,7 +62,7 @@
         </view>
     </navigator>
 </template>
- <!-- <view class='nav'>
+<!-- <view class='nav'>
     <view bindtap='setPageType' data-pageType="1" class='flex1 col active1{{pageType}}'>
         <view class='bor-right'><image src="{{pageType == 1 ? CDN+'icon/icon_goods_ac.png' : CDN+'icon/icon_goods.png'}}" class="img" />我的商品</view>
     </view>
@@ -70,28 +70,75 @@
         <view class='bor-right'><image src="{{pageType == 1 ? CDN+'icon/icon_order.png' : CDN+'icon/icon_order_ac.png'}}" class="img" />我的订单</view>
     </view>
 </view>  -->
+<!-- <view class='nav_title' hidden="{{pageType == 2}}">
+  <view class='txt active'>销售中(12)</view>
+  <view class='hr'></view>
+  <view class='txt'>待上架</view>
+  <view class='hr'></view>
+  <view class='txt'>待审核</view>
+  <view class='hr'></view>
+  <view class='nav_btn'>
+    <view class='search pic'>
+      <image src="{{CDN}}icon/icon_search_pro.png" />
+    </view>
+  </view>
+</view>
 
+<view hidden="{{pageType == 1}}">
+  <view class='nav_order_type'>
+    <view class='order_type'>
+      <scroll-view scroll-x>
+        <view wx:for="{{types}}" wx:key="{{item.key}}" class='col' id="{{item.key}}">
+          <view class='txt'>
+            <view class='str active'>{{item.name}}</view>
+            <view class='hr'></view>
+          </view>
+        </view>
+      </scroll-view>
+    </view>
+    <view class='nav_btn'>
+      <view class='search pic'>
+        <image src="{{CDN}}icon/icon_dn.png" />
+      </view>
+    </view>
+  </view>
+
+  <view class='nav_order_type_open'>
+    <view class='order_title'>
+      <view class='txt active'>选中状态</view>
+      <view class='nav_btn'>
+        <view class='search pic'>
+          <image src="{{CDN}}icon/icon_up.png" />
+        </view>
+      </view>
+    </view>
+
+    <view class='types'>
+      <view wx:for="{{types}}" wx:key="{{item.key}}" class='col active' id="{{item.key}}">{{item.name}}</view>
+    </view>
+  </view>
+</view> -->
 <view style='border-top:1px solid #e0e0e0;'>
-    <view hidden="{{pageType == 2}}">
-        <view wx:if="{{list.length > 0}}">
-            <template wx:for="{{list}}" wx:key="{{item.productId}}" is="item-pro" data="{{...item,CDN, ALI}}" />
-            <view wx:if="{{(list.length == count) && isshowFooter}}" class="bottom-line">
-              <view class="line"></view>
-              <view class="line-txt">我是有底线的</view>
-              <view class="line"></view>
-            </view>
-        </view>
-        <template wx:else is="noData" data="{{CDN, ALI}}" />
+  <view hidden="{{pageType == 2}}">
+    <view wx:if="{{list.length > 0}}">
+      <template wx:for="{{list}}" wx:key="{{item.productId}}" is="item-pro" data="{{...item,CDN, ALI}}" />
+      <view wx:if="{{(list.length == count) && isshowFooter}}" class="bottom-line">
+        <view class="line"></view>
+        <view class="line-txt">我是有底线的</view>
+        <view class="line"></view>
+      </view>
     </view>
-    <view hidden="{{pageType == 1}}">
-        <view wx:if="{{list.length > 0}}">
-            <template wx:for="{{list}}" wx:key="{{index}}" is="item-order" data="{{...item, CDN, ALI}}" />
-            <view wx:if="{{(list.length == count) && isshowFooter}}" class="bottom-line">
-              <view class="line"></view>
-              <view class="line-txt">我是有底线的</view>
-              <view class="line"></view>
-            </view>
-        </view>
-        <template wx:else is="noData" data="{{CDN, ALI}}" />
+    <template wx:else is="noData" data="{{CDN, ALI}}" />
+  </view>
+  <view hidden="{{pageType == 1}}">
+    <view wx:if="{{list.length > 0}}">
+      <template wx:for="{{list}}" wx:key="{{index}}" is="item-order" data="{{...item, CDN, ALI}}" />
+      <view wx:if="{{(list.length == count) && isshowFooter}}" class="bottom-line">
+        <view class="line"></view>
+        <view class="line-txt">我是有底线的</view>
+        <view class="line"></view>
+      </view>
     </view>
+    <template wx:else is="noData" data="{{CDN, ALI}}" />
+  </view>
 </view>
