@@ -104,7 +104,7 @@
           </view> 
         </block>
         <block wx:if="{{statusBtn && statusBtn != 1}}">
-          <view class='recordList' wx:if="{{statusBtn != 1}}">
+          <view class='recordList' wx:if="{{statusBtn != 2}}">
             <text class='statusL' style="width:160rpx;">未成交原因：</text>
             <text class='statusR {{itemName.noDealReasonType}}'>{{itemName.noDealReason || ''}}</text>
           </view>
@@ -116,7 +116,7 @@
           </view>
         </block>
         <block wx:if="{{statusBtn && statusBtn != 1}}">
-          <view class='recordList' wx:if="{{statusBtn != 1}}">
+          <view class='recordList' wx:if="{{statusBtn != 2}}">
             <text class='statusL' style="width:220rpx;">有无去同行购买：</text>
             <text class='statusR {{itemName.peerBuyType}}'>{{peerBuyName[itemName.peerBuy]}}</text>
           </view>
@@ -128,7 +128,7 @@
           </view>
         </block>
         <block wx:if="{{statusBtn && statusBtn != 1}}">
-          <view class='recordList' wx:if="{{statusBtn != 1}}">
+          <view class='recordList' wx:if="{{statusBtn != 2}}">
             <text class='statusL'>同 行 名：</text>
             <text class='statusR {{itemName.peerNameType}}'>{{itemName.peerName || ''}}</text>
           </view>
