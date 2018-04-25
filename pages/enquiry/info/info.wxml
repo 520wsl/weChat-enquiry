@@ -52,7 +52,7 @@
           <text class='statusR {{itemName.cityNameType}}'>{{itemName.cityName || ''}}</text>
         </view>
         <view class='recordList' wx:if="{{itemName.wechat}}">
-          <text class='statusL'>加 微 信：</text>
+          <text class='statusL'>微　　信：</text>
           <!-- <text class='statusR {{itemName.isWechatType}}'>{{isWechatName[itemName.isWechat]}}</text> -->
           <text class='statusR {{itemName.wechatType}}'>{{itemName.wechat || ''}}</text>
         </view>

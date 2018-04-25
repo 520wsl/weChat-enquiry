@@ -53,9 +53,8 @@
             <view class='custome txt-more'><image src="{{CDN}}icon/icon_customer.png" class="img" />{{buyerLoginId || ''}}</view>
             <view class='type txt-more'>{{statusStr || ''}}<image src="{{CDN}}icon_right.png" class="img" /></view>
         </view>
-
+        <view class='xia-time'>下单时间：{{createTime}}</view> 
         <template wx:for="{{productItems}}" wx:key="{{index}}" is="item-order-pro" data="{{...item, CDN, ALI}}" />
-        <!-- <view class='xia-time'>下单时间：{{createTime}}</view> -->
         <view class='total'>
             <text class='num'>{{productItemsNum}}种货品</text>
             <text class='freight'>总金额：(含运费{{shippingFee}})</text>
