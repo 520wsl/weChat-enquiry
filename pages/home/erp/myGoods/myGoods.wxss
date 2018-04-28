@@ -338,6 +338,7 @@
   height: 70rpx;
   background-color: #f9fcfc;
   text-align: center;
+  border: 1px solid #e0e0e0;
 }
 
 .nav_title .txt {
@@ -376,6 +377,7 @@
   display: flex;
   justify-content: space-between;
   background-color: #f9fcfc;
+  border: 1px solid #e0e0e0;
 }
 
 .nav_order_type .order_type {
@@ -430,6 +432,7 @@
 
 .nav_order_type_open {
   background-color: #f9fcfc;
+  border: 1px solid #e0e0e0;
 }
 
 .nav_order_type_open .order_title {
@@ -469,10 +472,10 @@
 
 .types .col {
   text-align: center;
-  margin: 7rpx;
-  width: 128rpx;
-  height: 50rpx;
-  line-height: 50rpx;
+  margin: 7rpx 8rpx;
+  width:216rpx;
+  height: 48rpx;
+  line-height: 48rpx;
   border: 1px solid #e0e0e0;
   border-radius: 6rpx;
 }

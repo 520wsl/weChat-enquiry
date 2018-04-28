@@ -19,6 +19,7 @@ Page({
     count: 0,
     isClear: false,
     isshowFooter: false,
+    isOpen:false,
     types: [
       {
         key: 0,
@@ -35,18 +36,6 @@ Page({
       {
         key: 3,
         name: '待收货'
-      },
-      {
-        key: 4,
-        name: '退款退货'
-      },
-      {
-        key: 5,
-        name: '投诉中'
-      },
-      {
-        key: 6,
-        name: '待评价'
       },
       {
         key: 7,
@@ -83,6 +72,13 @@ Page({
   setPageType(e) {
     let pageType = e.currentTarget.dataset && e.currentTarget.dataset.pagetype || 0;
     this.setPageTypeAll(pageType)
+  },
+  // 设置订单选项卡是否打开扩展
+  setOpen(){
+    let isOpen = !this.data.isOpen;
+    this.setData({
+      isOpen: isOpen
+    });
   },
   getOrder(cb) {
     app
@@ -233,7 +229,7 @@ Page({
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-
+    this.setData({isOpen:false});
   },
 
   /**

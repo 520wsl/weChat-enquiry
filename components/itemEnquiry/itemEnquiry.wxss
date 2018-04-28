@@ -148,3 +148,7 @@
     height: 42rpx;
     flex: 1;
 }
+.orderline{
+  color: #FC7C1F;
+  font-size: 24rpx;
+}
