@@ -6,8 +6,12 @@
         </view>
         <view class='info'>
             <view class='title'>
-                <text class="name">{{item.productName}}</text>
-                <text class="title-time">{{item.createTime}}</text>
+                <view class="name">
+                <!-- 标记线下订单，排期  -->
+                <!-- <text class='orderline'>【线下订单】</text> -->
+                <text>{{item.productName}}</text>
+                </view>
+                <view class="title-time">{{item.createTime}}</view>
             </view>
             <view class='nav'>
                 <view class='map'>

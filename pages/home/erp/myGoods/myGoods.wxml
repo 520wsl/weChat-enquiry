@@ -48,43 +48,42 @@
 </template>
 
 <template name="item-order">
-    <navigator class='item-order' url='/pages/home/erp/orderInfo/orderInfo?orderId={{id}}'>
-        <view class='title'>
-            <view class='custome txt-more'><image src="{{CDN}}icon/icon_customer.png" class="img" />{{buyerLoginId || ''}}</view>
-            <view class='type txt-more'>{{statusStr || ''}}<image src="{{CDN}}icon_right.png" class="img" /></view>
-        </view>
-        <view class='xia-time'>下单时间：{{createTime}}</view> 
-        <template wx:for="{{productItems}}" wx:key="{{index}}" is="item-order-pro" data="{{...item, CDN, ALI}}" />
-        <view class='total'>
-            <text class='num'>{{productItemsNum}}种货品</text>
-            <text class='freight'>总金额：(含运费{{shippingFee}})</text>
-            <text class='mony'>￥{{totalAmountInt}}<text wx:if="{{totalAmountDecimal}}" class="decimal">.{{totalAmountDecimal}}</text></text>
-        </view>
-    </navigator>
+  <navigator class='item-order' url='/pages/home/erp/orderInfo/orderInfo?orderId={{id}}'>
+    <view class='title'>
+      <view class='custome txt-more'>
+        <image src="{{CDN}}icon/icon_customer.png" class="img" />{{buyerLoginId || ''}}</view>
+      <view class='type txt-more'>{{statusStr || ''}}
+        <image src="{{CDN}}icon_right.png" class="img" />
+      </view>
+    </view>
+    <view class='xia-time'>下单时间：{{createTime}}</view>
+    <template wx:for="{{productItems}}" wx:key="{{index}}" is="item-order-pro" data="{{...item, CDN, ALI}}" />
+    <view class='total'>
+      <text class='num'>{{productItemsNum}}种货品</text>
+      <text class='freight'>总金额：(含运费{{shippingFee}})</text>
+      <text class='mony'>￥{{totalAmountInt}}<text wx:if="{{totalAmountDecimal}}" class="decimal">.{{totalAmountDecimal}}         </text></text>
+    </view>
+  </navigator>
 </template>
-<!-- <view class='nav'>
-    <view bindtap='setPageType' data-pageType="1" class='flex1 col active1{{pageType}}'>
-        <view class='bor-right'><image src="{{pageType == 1 ? CDN+'icon/icon_goods_ac.png' : CDN+'icon/icon_goods.png'}}" class="img" />我的商品</view>
+
+<template name="order-nav-open">
+  <view class='nav_order_type_open'>
+    <view class='order_title'>
+      <view class='txt active'>选中状态</view>
+      <view bindtap='setOpen' class='nav_btn'>
+        <view class='search pic'>
+          <image src="{{CDN}}icon/icon_up.png" />
+        </view>
+      </view>
     </view>
-    <view bindtap='setPageType' data-pageType="2" class='flex1 col active2{{pageType}}'>
-        <view class='bor-right'><image src="{{pageType == 1 ? CDN+'icon/icon_order.png' : CDN+'icon/icon_order_ac.png'}}" class="img" />我的订单</view>
-    </view>
-</view>  -->
-<!-- <view class='nav_title' hidden="{{pageType == 2}}">
-  <view class='txt active'>销售中(12)</view>
-  <view class='hr'></view>
-  <view class='txt'>待上架</view>
-  <view class='hr'></view>
-  <view class='txt'>待审核</view>
-  <view class='hr'></view>
-  <view class='nav_btn'>
-    <view class='search pic'>
-      <image src="{{CDN}}icon/icon_search_pro.png" />
+
+    <view class='types'>
+      <view wx:for="{{types}}" wx:key="{{item.key}}" class='col active' id="{{item.key}}">{{item.name}}</view>
     </view>
   </view>
-</view>
+</template>
 
-<view hidden="{{pageType == 1}}">
+<template name="order-nav">
   <view class='nav_order_type'>
     <view class='order_type'>
       <scroll-view scroll-x>
@@ -96,28 +95,43 @@
         </view>
       </scroll-view>
     </view>
-    <view class='nav_btn'>
+    <view class='nav_btn' bindtap='setOpen'>
       <view class='search pic'>
         <image src="{{CDN}}icon/icon_dn.png" />
       </view>
     </view>
   </view>
+</template>
 
-  <view class='nav_order_type_open'>
-    <view class='order_title'>
-      <view class='txt active'>选中状态</view>
-      <view class='nav_btn'>
-        <view class='search pic'>
-          <image src="{{CDN}}icon/icon_up.png" />
-        </view>
+<template name="pro-nav">
+  <view class='nav_title'>
+    <view class='txt active' data-oType='1' bindtap='optProNav'>销售中(12)</view>
+    <view class='hr'></view>
+    <view class='txt' data-oType='1' bindtap='optProNav'>待上架</view>
+    <view class='hr'></view>
+    <view class='txt' data-oType='1' bindtap='optProNav'>待审核</view>
+    <view class='hr'></view>
+    <view class='nav_btn'>
+      <view class='search pic'>
+        <image src="{{CDN}}icon/icon_search_pro.png" />
       </view>
     </view>
-
-    <view class='types'>
-      <view wx:for="{{types}}" wx:key="{{item.key}}" class='col active' id="{{item.key}}">{{item.name}}</view>
-    </view>
   </view>
-</view> -->
+</template>
+<!-- <view class='nav'>
+    <view bindtap='setPageType' data-pageType="1" class='flex1 col active1{{pageType}}'>
+        <view class='bor-right'><image src="{{pageType == 1 ? CDN+'icon/icon_goods_ac.png' : CDN+'icon/icon_goods.png'}}" class="img" />我的商品</view>
+    </view>
+    <view bindtap='setPageType' data-pageType="2" class='flex1 col active2{{pageType}}'>
+        <view class='bor-right'><image src="{{pageType == 1 ? CDN+'icon/icon_order.png' : CDN+'icon/icon_order_ac.png'}}" class="img" />我的订单</view>
+    </view>
+</view>  -->
+
+<view style='position:fixed;top:0;width:100%;z-index:999;'>
+  <template is="{{pageType == 1?'pro-nav':(isOpen?'order-nav-open':'order-nav')}}" data="{{CDN,types}}"></template>
+</view>
+
+<view style='height:70rpx;width:100%;'></view>
 <view style='border-top:1px solid #e0e0e0;'>
   <view hidden="{{pageType == 2}}">
     <view wx:if="{{list.length > 0}}">
