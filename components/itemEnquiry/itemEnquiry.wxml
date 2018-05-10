@@ -8,7 +8,7 @@
             <view class='title'>
                 <view class="name">
                 <!-- 标记线下订单，排期  -->
-                <!-- <text class='orderline'>【线下订单】</text> -->
+                 <text class='orderline' wx:if="{{item.orderType == 2}}">【线下订单】</text> 
                 <text>{{item.productName}}</text>
                 </view>
                 <view class="title-time">{{item.createTime}}</view>

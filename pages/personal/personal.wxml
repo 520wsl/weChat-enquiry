@@ -2,7 +2,7 @@
 <view class='container'>
   <view class='top'>
     <view class='untie'>
-      <view class='untie pic' bindtap='untie' wx:if="{{info.login}}">
+      <view class='untie pic' bindtap='untie' wx:if="{{info.login && !isToggleHandle}}">
         <image src="{{CDN}}/icon/icon_untie.png" />
       </view>
     </view>
