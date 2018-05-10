@@ -7,6 +7,7 @@ Page({
    */
   data: {
     CDN: app.CDN,
+    orderType:0,
     params: {
       enquiryId: '',
       pageNum: 1,
@@ -125,7 +126,7 @@ Page({
     this.getInfo();
   },
   // 授权判断
-  auth(type){
+  auth(type) {
     // 没有线上订单
     if (!type) {
       this.setData({
@@ -143,7 +144,7 @@ Page({
     });
   },
   // 页面跳转
-  jumpPage(){
+  jumpPage() {
     wx.navigateTo({
       url: '/pages/home/erp/orderInfo/orderInfo?orderId=' + this.data.aliOrderId
     });
@@ -159,7 +160,7 @@ Page({
     app.login();
   },
   // 体验版登录
-  tyLogin() {},
+  tyLogin() { },
   // onShareAppMessage: function () {
   //   return {
   //     title: '四喜E伙伴',
@@ -308,7 +309,7 @@ Page({
       } else {
         isauth = true;
       }
-      this.auth(isauth); 
+      this.auth(isauth);
       this.setData({
         statusBtn: this.data.statusBtn,
         aliSaleStatus: data.aliSaleStatus,
@@ -320,6 +321,7 @@ Page({
         aliOrderId: data.aliOrderId,
         'params.pageNum': this.data.params.pageNum,
         'params.count': data.count,
+        orderType: data.orderType
       });
 
       this.data.list.forEach((item, index) => {

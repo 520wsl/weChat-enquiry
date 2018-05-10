@@ -23,7 +23,8 @@
     "pages/home/erp/orderInfo/orderInfo",
     "pages/home/erp/logisticsInfo/logisticsInfo",
     "pages/home/erp/goodsInfo/goodsInfo",
-    "pages/share/goodsInfo/goodsInfo"
+    "pages/share/goodsInfo/goodsInfo",
+    "pages/home/erp/myGoods/searchWord"
   ],
   "window": {
     "backgroundColor": "#f2f2f2",

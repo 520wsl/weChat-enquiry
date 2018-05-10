@@ -16,8 +16,8 @@
       <view class='title txt-more-multiple'>{{productName || ''}}</view>
       <view class='mony'>
         <text class='num' wx:if="{{minPrice > 0 }}">￥{{minPrice}}-</text>
-        <text class='num'>￥{{maxPrice}}</text>
-        <text class='txt'> /{{unit}}</text>
+        <text class='num' wx:if="{{maxPrice >= 0}}">￥{{maxPrice}}</text>
+        <text class='txt' wx:if="{{unit}}"> /{{unit}}</text>
       </view>
     </view>
     <view class="icon-arrow">
@@ -69,7 +69,7 @@
 <template name="order-nav-open">
   <view class='nav_order_type_open'>
     <view class='order_title'>
-      <view class='txt active'>选中状态</view>
+      <view class='txt active'>选择状态</view>
       <view bindtap='setOpen' class='nav_btn'>
         <view class='search pic'>
           <image src="{{CDN}}icon/icon_up.png" />
@@ -78,7 +78,7 @@
     </view>
 
     <view class='types'>
-      <view wx:for="{{types}}" wx:key="{{item.key}}" class='col active' id="{{item.key}}">{{item.name}}</view>
+      <view wx:for="{{types}}" wx:key="{{item.key}}" data-status='{{item.key}}' data-optOrderNavId='{{item.id}}' bindtap='optOrderNav' class='col {{params.status == item.key? "active":""}}' id="{{item.id}}">{{item.name}}</view>
     </view>
   </view>
 </template>
@@ -86,18 +86,18 @@
 <template name="order-nav">
   <view class='nav_order_type'>
     <view class='order_type'>
-      <scroll-view scroll-x>
-        <view wx:for="{{types}}" wx:key="{{item.key}}" class='col' id="{{item.key}}">
+      <scroll-view scroll-x scroll-into-view="{{optOrderNavId}}">
+        <view wx:for="{{types}}" wx:key="{{item.key}}" class='col' data-status='{{item.key}}' data-optOrderNavId='{{item.id}}' bindtap='optOrderNav' id="{{item.id}}">
           <view class='txt'>
-            <view class='str active'>{{item.name}}</view>
-            <view class='hr'></view>
+            <view class='str {{params.status == item.key? "active":""}}'>{{item.name}}</view>
+            <view class='hru'></view>
           </view>
         </view>
       </scroll-view>
     </view>
     <view class='nav_btn' bindtap='setOpen'>
       <view class='search pic'>
-        <image src="{{CDN}}icon/icon_dn.png" />
+        <image style='display:block' src="{{CDN}}icon/icon_dn.png" />
       </view>
     </view>
   </view>
@@ -105,33 +105,31 @@
 
 <template name="pro-nav">
   <view class='nav_title'>
-    <view class='txt active' data-oType='1' bindtap='optProNav'>销售中(12)</view>
-    <view class='hr'></view>
-    <view class='txt' data-oType='1' bindtap='optProNav'>待上架</view>
-    <view class='hr'></view>
-    <view class='txt' data-oType='1' bindtap='optProNav'>待审核</view>
-    <view class='hr'></view>
-    <view class='nav_btn'>
+    <view class='txt {{params.status == 1? "active":""}}' data-status='1' bindtap='optProNav'>销售中({{countNum[0]}})</view>
+    <view class='hru'></view>
+    <view class='txt {{params.status == 2? "active":""}}' data-status='2' bindtap='optProNav'>待上架({{countNum[1]}})</view>
+    <view class='hru'></view>
+    <view class='txt {{params.status == 3? "active":""}}' data-status='3' bindtap='optProNav'>待审核({{countNum[2]}})</view>
+    <view class='hru'></view>
+    <view class='nav_btn' bindtap='jumpToSearchWord'>
       <view class='search pic'>
         <image src="{{CDN}}icon/icon_search_pro.png" />
       </view>
     </view>
   </view>
+  <view class='keyword' wx:if="{{params.keyword}}">
+    <view class='txt txt-more-multiple'>搜索关键词： {{params.keyword}}</view>
+    <view bindtap='delKeyWord' class='del_icon pic'>
+      <image src="{{CDN}}icon/icon_del_keyword.png" />
+    </view>
+  </view>
 </template>
-<!-- <view class='nav'>
-    <view bindtap='setPageType' data-pageType="1" class='flex1 col active1{{pageType}}'>
-        <view class='bor-right'><image src="{{pageType == 1 ? CDN+'icon/icon_goods_ac.png' : CDN+'icon/icon_goods.png'}}" class="img" />我的商品</view>
-    </view>
-    <view bindtap='setPageType' data-pageType="2" class='flex1 col active2{{pageType}}'>
-        <view class='bor-right'><image src="{{pageType == 1 ? CDN+'icon/icon_order.png' : CDN+'icon/icon_order_ac.png'}}" class="img" />我的订单</view>
-    </view>
-</view>  -->
 
 <view style='position:fixed;top:0;width:100%;z-index:999;'>
-  <template is="{{pageType == 1?'pro-nav':(isOpen?'order-nav-open':'order-nav')}}" data="{{CDN,types}}"></template>
+  <template is="{{pageType == 1?'pro-nav':(isOpen?'order-nav-open':'order-nav')}}" data="{{CDN,types,count,params,countNum,optOrderNavId}}"></template>
 </view>
 
-<view style='height:70rpx;width:100%;'></view>
+<view style="{{params.keyword ? 'height:160rpx;width:100%;':'height:70rpx;width:100%;'}}"></view>
 <view style='border-top:1px solid #e0e0e0;'>
   <view hidden="{{pageType == 2}}">
     <view wx:if="{{list.length > 0}}">

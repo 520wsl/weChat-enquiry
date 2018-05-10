@@ -15,17 +15,7 @@ Page({
   onLoad: function () {
     this.getList()
   },
-  // onShareAppMessage: function () {
-  //   return {
-  //     title: '四喜E伙伴',
-  //     path: '/pages/personal/companyList/companyList'
-  //   }
-  // },
   getList: function () {
-    // if (app.globalData.companies)
-    //   this.setData({
-    //     lists: app.globalData.companies
-    //   })
     app.get('/company/list').then(res => {
       if (res.status == 401) {
         wx.showModal({
@@ -62,13 +52,15 @@ Page({
           if (wx.showLoading) {
             wx.showLoading({ title: '加载中...' });
           }
-          //   setTimeout(() => {
           app.setcompany(event.currentTarget.dataset.aliaccountid, () => {
             if (wx.hideLoading) {
               wx.hideLoading();
             }
           })
-          //   }, 2000);
+          wx.setStorage({
+            key: 'searchList',
+            data: [],
+          })
         } else if (res.cancel) {
           // console.log('用户点击取消')
         }

@@ -20,6 +20,10 @@
 			"current": -1,
 			"list": []
 		},
+		"plugin": {
+			"current": -1,
+			"list": []
+		},
 		"game": {
 			"current": -1,
 			"list": []
@@ -31,7 +35,7 @@
 					"id": 0,
 					"name": "扫码",
 					"pathName": "pages/personal/personal",
-					"query": "scene=action%3De%26data%3Df2355765",
+					"query": "scene=action%3De%26data%3Da023c147",
 					"scene": "1047"
 				}
 			]

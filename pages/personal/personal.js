@@ -15,7 +15,9 @@ Page({
     isShowCompany: false,
     isOpenDebug: false,
     debugCode: '',
-    num: 0
+    num: 0,
+    toggleHandleKey: 'toggleHandle',
+    isToggleHandle: 0
   },
   /**
    * 生命周期函数--监听页面加载
@@ -23,11 +25,17 @@ Page({
   onLoad: function (options) {
     // 我的公司长度大于1时显示选择公司链接
     // this.login();
+    wx.getStorage({
+      key: this.data.toggleHandleKey,
+      success: res => {
+        this.setToggleHandle(res.data)
+      },
+    })
 
     this.getServices();
     // 新增入口
     // scene = 'action=i&data=eyJvcGVuaWQiOiJvdWc4VzBhZDNEazNOTGIxLXBxMXlrbHdCdlNjIiwiYWxpQWNjb3VudElkIjoxMSwiaWQiOjIyfQ==';
-    console.log('接收参数：' + options.action, 'data: ' + options.data);
+    console.log('接收参数-options：' + options.action, 'data: ' + options.data);
 
     let action;
     let data;
@@ -227,6 +235,11 @@ Page({
       });
       app.reset();
       this.data.dbLogin = false;
+      wx.setStorage({
+        key: this.data.toggleHandleKey,
+        data: 0,
+      })
+      this.setToggleHandle(0)
       app.login(() => {
         setTimeout(() => {
           this.data.dbLogin = true;
@@ -319,6 +332,11 @@ Page({
           app.utils.showModel('体验版登录', res.msg)
           return;
         }
+        wx.setStorage({
+          key: this.data.toggleHandleKey,
+          data: 1,
+        })
+        this.setToggleHandle(1)
         app.getUserInfo();
       })
   },
@@ -350,6 +368,11 @@ Page({
           return
         }
       }
+    })
+  },
+  setToggleHandle(e) {
+    this.setData({
+      isToggleHandle:e
     })
   }
 })

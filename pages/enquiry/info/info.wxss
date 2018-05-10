@@ -24,16 +24,24 @@
 }
 
 .top {
-  height: 230rpx;
+  border-color: #55abf6;  
+  background-image: linear-gradient(-225deg, #55abf6 0%, #7b73fe 100%);  
+  padding-bottom: 30rpx;
+}
+.xianxia {
+  width: 138rpx;
+  height: 50rpx;
+  margin-left: 30rpx;
+}
+.info {
   color: #fff;
-  border-color: #55abf6;
-  background-image: linear-gradient(-225deg, #55abf6 0%, #7b73fe 100%);
   display: flex;
   flex-direction: row;
   align-items: center;
   margin-bottom: 23rpx;
   position: relative;
   justify-content: space-between;
+  padding-top: 30rpx;
 }
 
 .headerLeft {
@@ -59,7 +67,8 @@
 }
 
 /*查看订单详情  */
-.check-btn{
+
+.check-btn {
   position: absolute;
   top: 50%;
   right: 36rpx;
@@ -67,18 +76,19 @@
   line-height: 52rpx;
   text-align: center;
   font-size: 11px;
-  color: #FFFFFF;
+  color: #fff;
   transform: translateY(-50%);
-  background: rgba(255,255,255,0.20);
-  border: 1px solid #F8DD32;
+  background: rgba(255, 255, 255, 0.20);
+  border: 1px solid #f8dd32;
   border-radius: 34rpx;
-  box-shadow:0 2px 2px #2a60a0;
+  box-shadow: 0 2px 2px #2a60a0;
   padding: 0 15rpx;
 }
-.check-btn .img{
-  width:10rpx;
-  height:20rpx;
-  margin-bottom:-4rpx;
+
+.check-btn .img {
+  width: 10rpx;
+  height: 20rpx;
+  margin-bottom: -4rpx;
 }
 
 .headerRight {
@@ -203,7 +213,6 @@
 .recordList {
   display: flex;
   padding: 10rpx 0;
-  display: flex;
   justify-content: flex-start;
 }
 
@@ -216,7 +225,7 @@
 
 .statusR {
   color: #333;
-  /* flex: 1 */
+  flex: 1 
 }
 
 /* 补充样式 */
@@ -263,8 +272,8 @@
   margin-left: 15rpx;
 }
 
-.updated{
-    color: #598AED;
+.updated {
+  color: #598aed;
 }
 
 /* 弹窗 */
@@ -330,18 +339,21 @@
 .modal-footer .confirm {
   flex: 1;
   font-size: 32rpx;
-  color: #6495F9;
+  color: #6495f9;
   width: 100%;
   padding: 20rpx 0 30rpx;
   text-align: center;
   border-right: 1rpx solid #e5e5e5;
 }
-.modal-footer .confirm.default{
-  color: #333333;
+
+.modal-footer .confirm.default {
+  color: #333;
 }
-.modal-footer .confirm:last-child{
+
+.modal-footer .confirm:last-child {
   border: none;
 }
+
 .updated {
   color: #598aed;
 }
