@@ -474,7 +474,7 @@
 
 .types .col {
   text-align: center;
-   margin: 5rpx 5rpx; 
+  margin: 5rpx 5rpx;
   width: 216rpx;
   height: 48rpx;
   line-height: 48rpx;
@@ -509,4 +509,13 @@
 .keyword .del_icon {
   width: 24rpx;
   height: 26rpx;
+}
+
+.editPic {
+  padding: 5rpx 15rpx;
+  background: rgba(100, 149, 249, 0.13);
+  border-radius: 33px;
+  color: #6495F9;
+  font-size: 24rpx;
+  margin-left: 18rpx;
 }
