@@ -63,7 +63,7 @@
       <text class='freight'>总金额：(含运费{{shippingFee}})</text>
       <text class='mony'>￥{{totalAmountInt}}<text wx:if="{{totalAmountDecimal}}" class="decimal">.{{totalAmountDecimal}}         </text></text>
       <text class='editPic'>修改价格</text>
-    </view>
+    </view> 
   </navigator>
 </template>
 
