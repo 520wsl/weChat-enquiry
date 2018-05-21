@@ -22,3 +22,4 @@
     <text class="txt">{{msgStr}}</text>
   </view>
 </view>
+<button open-type='contact' plain class='askBtn pic'><image src='{{CDN}}icon/icon_ask.png'></image></button>

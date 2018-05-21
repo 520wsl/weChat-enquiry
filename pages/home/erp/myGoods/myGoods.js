@@ -106,7 +106,7 @@ Page({
   optProNav(e) {
     console.log('e', e)
     let status = e.currentTarget.dataset && e.currentTarget.dataset.status || 1;
-    this.setData({ 'params.status': status, list: [] })
+    this.setData({ 'params.status': status, list: [], 'params.pageNum': 1, 'params.page': 1})
     this.getList()
   },
   optOrderNav(e) {
@@ -114,7 +114,7 @@ Page({
     let status = e.currentTarget.dataset && e.currentTarget.dataset.status || 0;
     let optOrderNavId = e.currentTarget.dataset && e.currentTarget.dataset.optordernavid || 'all';
     console.log('optOrderNavId', optOrderNavId)
-    this.setData({ 'params.status': status, list: [], optOrderNavId: optOrderNavId, isOpen: false })
+    this.setData({ 'params.status': status, list: [], optOrderNavId: optOrderNavId, isOpen: false, 'params.pageNum': 1, 'params.page': 1 })
     this.getOrder()
   },
   getOrder(cb) {
@@ -181,9 +181,9 @@ Page({
   },
   // 获取商品列表数据
   getList(cb) {
-    // searchproductlist
+    // /product/searchproductlist
     app
-      .get('/product/searchproductlist', this.data.params)
+      .get('/product/list', this.data.params)
       .then(res => {
         if (typeof cb == 'function') {
           cb();

@@ -94,6 +94,13 @@
         <text wx:if="{{info.totalAmountDecimal}}" class="decimal">.{{info.totalAmountDecimal}}</text>
       </view>
     </view>
+    <navigator  wx:if="{{info.status == 'waitbuyerpay'}}" class='item-order' url='/pages/home/erp/orderInfo/editOrderPic?orderId={{params.orderId}}'>
+      <view class="txt" style='margin-top:12rpx;  '>
+        <view class='right'>
+          <text class='editPic'>修改价格</text>
+        </view>
+      </view>
+    </navigator> 
   </view>
   <!-- 交易信息 -->
   <view class="trading-mess m-b-20">
@@ -115,3 +122,4 @@
     <view wx:if="{{info.receivingTime}}">收货时间： {{info.receivingTime}}</view>
   </view>
 </view>
+<button open-type='contact' plain class='askBtn pic'><image src='{{CDN}}icon/icon_ask.png'></image></button>
