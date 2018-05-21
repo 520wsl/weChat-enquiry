@@ -31,3 +31,4 @@
     <component-no-data imgUrl="{{CDN + 'record_no_search.png'}}" text="请输入产品关键词" wx:if="{{searchName == '' && searchList.length == 0 && result.length == 0}}"></component-no-data>
   </view>
 </view>
+<button open-type='contact' plain class='askBtn pic'><image src='{{CDN}}icon/icon_ask.png'></image></button>

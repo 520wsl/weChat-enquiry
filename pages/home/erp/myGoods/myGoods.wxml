@@ -8,7 +8,7 @@
 </template>
 
 <template name="item-pro">
-  <navigator url='/pages/home/erp/goodsInfo/goodsInfo?productId={{productId}}' class='item-pro hr'>
+  <navigator url='/pages/home/erp/goodsInfo/goodsInfo?productId={{productId}}' class='item-pro'>
     <view class='pic'>
       <image mode='aspectFit' src="{{productImage ? ALI+productImage: CDN + 'icon-pro.png'}}"></image>
     </view>
@@ -22,6 +22,16 @@
     </view>
     <view class="icon-arrow">
       <image class="img" src="http://1.img.dianjiangla.com/enquiryAssets/icon_right.png"></image>
+    </view>
+  </navigator>
+  <navigator url='/pages/home/erp/goodsInfo/editGoodsInfo?productId={{productId}}'>
+    <view class='procustonstyle'>
+      <view class='pic up'>
+        <image src='{{CDN}}icon/icon_pro_customstyle.png'></image>
+      </view>
+    </view>
+    <view class='customstyle'>
+      <text class='editPic'>自定义风格</text>
     </view>
   </navigator>
 </template>
@@ -51,20 +61,27 @@
   <navigator class='item-order' url='/pages/home/erp/orderInfo/orderInfo?orderId={{id}}'>
     <view class='title'>
       <view class='custome txt-more'>
-        <image src="{{CDN}}icon/icon_customer.png" class="img" />{{buyerLoginId || ''}}</view>
+        <image src="{{CDN}}icon/icon_customer.png" class="img" />{{buyerLoginId || ''}}
+      </view>
       <view class='type txt-more'>{{statusStr || ''}}
         <image src="{{CDN}}icon_right.png" class="img" />
       </view>
     </view>
     <view class='xia-time'>下单时间：{{createTime}}</view>
     <template wx:for="{{productItems}}" wx:key="{{index}}" is="item-order-pro" data="{{...item, CDN, ALI}}" />
+  </navigator>
+
+  <view class='item-order'>
     <view class='total'>
       <text class='num'>{{productItemsNum}}种货品</text>
       <text class='freight'>总金额：(含运费{{shippingFee}})</text>
       <text class='mony'>￥{{totalAmountInt}}<text wx:if="{{totalAmountDecimal}}" class="decimal">.{{totalAmountDecimal}}         </text></text>
-      <text class='editPic'>修改价格</text>
-    </view> 
-  </navigator>
+      <navigator style='display:initial;' wx:if="{{status == 'waitbuyerpay'}}" url='/pages/home/erp/orderInfo/editOrderPic?orderId={{id}}'>
+        <text class='editPic'>修改价格</text>
+      </navigator>
+    </view>
+  </view>
+
 </template>
 
 <template name="order-nav-open">
@@ -126,11 +143,11 @@
   </view>
 </template>
 
-<view style='position:fixed;top:0;width:100%;z-index:999;'>
+<!-- <view style='position:fixed;top:0;width:100%;z-index:999;'>
   <template is="{{pageType == 1?'pro-nav':(isOpen?'order-nav-open':'order-nav')}}" data="{{CDN,types,count,params,countNum,optOrderNavId}}"></template>
-</view>
+</view> -->
 
-<view style="{{params.keyword ? 'height:160rpx;width:100%;':'height:70rpx;width:100%;'}}"></view>
+<!-- <view style="{{params.keyword ? 'height:160rpx;width:100%;':'height:70rpx;width:100%;'}}"></view> -->
 <view style='border-top:1px solid #e0e0e0;'>
   <view hidden="{{pageType == 2}}">
     <view wx:if="{{list.length > 0}}">
@@ -155,3 +172,6 @@
     <template wx:else is="noData" data="{{CDN, ALI}}" />
   </view>
 </view>
+<button open-type='contact' plain class='askBtn pic'>
+  <image src='{{CDN}}icon/icon_ask.png'></image>
+</button>

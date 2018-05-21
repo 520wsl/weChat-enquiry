@@ -80,11 +80,12 @@
 
 .item-pro {
   /* padding: 24rpx 30rpx; */
-  padding: 36rpx 40rpx 38rpx 34rpx;
+  padding: 36rpx 40rpx 0px 34rpx;
   background-color: #fff;
   display: flex;
   /* justify-content: space-between; */
   align-items: center;
+  overflow: hidden;
 }
 
 .item-pro .pic {
@@ -262,7 +263,6 @@
 
 .item-order .price .btn {
   margin-top: 20rpx;
-  font-size: 24rpx;
   color: #999;
   border: 1px solid #e0e0e0;
   text-align: center;
@@ -511,11 +511,24 @@
   height: 26rpx;
 }
 
-.editPic {
-  padding: 5rpx 15rpx;
-  background: rgba(100, 149, 249, 0.13);
-  border-radius: 33px;
-  color: #6495F9;
-  font-size: 24rpx;
-  margin-left: 18rpx;
+.customstyle {
+  height: 70rpx;
+  line-height: 70rpx;
+  background-color: #f9fcff;
+  text-align: right;
+  padding: 0 30rpx;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.procustonstyle {
+  background-color: #fff;
+  height: 20rpx;
+  padding: 10rpx 30rpx 0 30rpx;
+  overflow: hidden;
+}
+
+.procustonstyle .up {
+  width: 24rpx;
+  height: 14rpx;
+  line-height: 14rpx;
 }

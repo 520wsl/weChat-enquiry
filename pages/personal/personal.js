@@ -214,6 +214,12 @@ Page({
       })
     }
   },
+  btnLogin(e) {
+    console.log('btnLogin', e)
+    if (e.detail.errMsg == "getUserInfo:ok") {
+      this.login();
+    }
+  },
   // 点击登录
   login: function () {
     if (this.data.isOpenDebug && (this.data.debugCode.length > 5)) {
@@ -372,7 +378,7 @@ Page({
   },
   setToggleHandle(e) {
     this.setData({
-      isToggleHandle:e
+      isToggleHandle: e
     })
   }
 })

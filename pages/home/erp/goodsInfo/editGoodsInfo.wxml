@@ -1,0 +1,191 @@
+<!--pages/home/erp/goodsInfo/editGoodsInfo.wxml-->
+<!-- 商品详情图片 -->
+<!-- <swiper indicator-dots="true" autoplay="false" interval="5000" duration="500" style="height:748rpx;width:100%;">
+  <block wx:for="{{params.images}}" wx:key="{{index}}">
+    <swiper-item>
+      <image src="{{ALI}}{{item}}" class="slide-image" />
+    </swiper-item>
+  </block>
+</swiper> -->
+<!-- 商品标题和价格 -->
+<!-- <block>
+  <view class="goods">
+    <view class="header">
+      <text class="txt">{{params.subject}}</text>
+    </view>
+    <view class="content">
+      <block wx:if="{{params.minPrice}}">
+        ￥
+        <text class="money">{{params.minformatData.vInt}}<text class="double">.{{params.minformatData.vDouble}}</text></text>
+        -</block>￥
+      <text class="money">{{params.maxformatData.vInt}}<text class="double">.{{params.maxformatData.vDouble}}</text></text>
+      <text class="text">≥{{params.minOrderQuantity}} {{params.unit}}起批</text>
+      <button plain="true" class="share-btn" open-type='share'></button>
+      <image src="/images/icon_share.png" class="share-img"></image>
+    </view>
+    <view class="footer">
+      <view>
+        <text class="txt">库存{{params.amountOnSale}}个</text>
+      </view>
+      <view>
+        <text class="txt" wx:if="{{params.freightTemplate==1}}">卖家包邮</text>
+        <text class="txt" wx:else>运费待议</text>
+      </view>
+      <view>
+        <text class="txt">发货地:{{params.provinceName}}{{params.cityName}}</text>
+      </view>
+    </view>
+  </view>
+</block> -->
+<!-- 商品规格 -->
+<!-- <view class="norm"   wx:if="{{params.skuList}}">
+  <view class="tittle">
+    <image class="img" src="{{CDN}}icon/icon_pro_standard.png" />
+    <text class="txt">产品规格</text>
+  </view>
+  <view class="sub">
+    <view class="{{show ? '' : 'txt-more'}} detail">
+      <view  wx:for="{{params.skuList}}" wx:key="{{index}}" class="{{index < 2||show ? '' : 'hid'}} line">
+        <view class="name">
+          {{item.attributeName}}：
+        </view>
+        <text class="{{show ? '' : 'txt-more'}} txt">{{item.attributeValue}}</text>
+      </view>
+    </view>
+    <view class="{{show ? 'rotate' : ''}} pic" bindtap='showNorm' wx:if="{{params.skuList[0].attributeValue.length>18||params.skuList[1].attributeValue.length>18}}">
+      <image mode="aspectFit" src="{{CDN}}icon_right.png" />
+    </view>
+  </view>
+</view> -->
+<!-- 产品属性 -->
+<!-- <view class="attr" wx:if="{{params.list}}">
+  <view class="tittle">
+    <image class="img" src="{{CDN}}icon/icon_pro_attr.png" />
+    <text class="txt">产品属性</text>
+  </view>
+  <view class="lists">
+    <view class="list" wx:for="{{params.list}}" wx:key="{{index}}">
+      <view class="name">
+        {{item.attributeName}}：
+      </view>
+      <text class="txt">{{item.attributeValue}}</text>
+    </view>
+  </view>
+</view> -->
+<!-- 买家服务 -->
+<!-- <view class="server">
+  <view class="tittle">
+    <image class="img" src="{{CDN}}icon/icon_buyer_server.png" />
+    <text class="txt">买家服务</text>
+  </view>
+  <view class="buyers">
+    <view class="pic">
+      <image mode="aspectFit" src="{{CDN}}icon_true.png" />
+      <text class="txt">免费赊账</text>
+    </view>
+  </view>
+</view>
+<button open-type='contact' plain class='askBtn pic'><image src='{{CDN}}icon/icon_ask.png'></image></button> -->
+
+<view class='edit'>
+  <view class='title hr'>
+    <view class='pic icon'>
+      <image src='{{CDN}}icon/icon_proInfoTitle.png'></image>
+    </view>
+    <text>商品详情</text>
+  </view>
+  <button class='addbtn'>+ 增加商品图片或文本</button>
+
+  <view class='info'>
+    <view class='imgbk'>
+      <navigator url='/pages/home/erp/goodsInfo/searchPic?productId={{productId}}' class='img'>
+        <view class='bg'>
+          <view class='pic addimage'>
+            <image src='{{CDN}}icon/icon_add_pro_image.png'></image>
+          </view>
+          <view>添加图片</view>
+        </view>
+      </navigator>
+      <view class='pic delpro'>
+        <image src='{{CDN}}icon/icon_del_pro_image.png'></image>
+      </view>
+    </view>
+
+    <view class='txt hr'>
+      <text>添加商品描述</text>
+    </view>
+  </view>
+
+  <view class='info'>
+    <view class='imgbk'>
+      <navigator url='/pages/home/erp/goodsInfo/searchPic?productId={{productId}}' class='img'>
+        <view class='bg'>
+          <view class='pic addimage'>
+            <image src='{{CDN}}icon/icon_add_pro_image.png'></image>
+          </view>
+          <view>添加图片</view>
+        </view>
+      </navigator>
+      <view class='pic delpro'>
+        <image src='{{CDN}}icon/icon_del_pro_image.png'></image>
+      </view>
+    </view>
+
+    <view class='txt hr'>
+      <text>添加商品描述</text>
+    </view>
+  </view>
+
+  <view class='info'>
+    <view class='imgbk'>
+      <navigator url='/pages/home/erp/goodsInfo/searchPic?productId={{productId}}' class='img'>
+        <view class='bg'>
+          <view class='pic addimage'>
+            <image src='{{CDN}}icon/icon_add_pro_image.png'></image>
+          </view>
+          <view>添加图片</view>
+        </view>
+      </navigator>
+      <view class='pic delpro'>
+        <image src='{{CDN}}icon/icon_del_pro_image.png'></image>
+      </view>
+    </view>
+
+    <view class='txt hr'>
+      <text>添加商品描述</text>
+    </view>
+  </view>
+
+  <view class='info'>
+    <view class='imgbk'>
+      <navigator url='/pages/home/erp/goodsInfo/searchPic?productId={{productId}}' class='img'>
+        <view class='bg'>
+          <view class='pic addimage'>
+            <image src='{{CDN}}icon/icon_add_pro_image.png'></image>
+          </view>
+          <view>添加图片</view>
+        </view>
+      </navigator>
+      <view class='pic delpro'>
+        <image src='{{CDN}}icon/icon_del_pro_image.png'></image>
+      </view>
+    </view>
+
+    <view class='txt hr'>
+      <text>添加商品描述</text>
+    </view>
+  </view>
+
+  <button class='addbtn'>+ 增加商品图片或文本</button>
+</view>
+<view style='height:96rpx;'></view>
+<view class='btngroup'>
+  <view class='nextbtn'>
+    <view class='leftbtn'>
+      <text>放 弃</text>
+    </view>
+    <view class='rightbtn'>
+      <text>下一步</text>
+    </view>
+  </view>
+</view>

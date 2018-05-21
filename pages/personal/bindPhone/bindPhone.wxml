@@ -31,3 +31,4 @@
     <button wx:if="{{isSubmit}}" bindtap="verifyBindphone" class='btn-bd gradient-bg'>绑定</button>
     <button wx:else class='btn-bd gradient-bg btn-bd-default'>绑定</button>
 </view>
+<button open-type='contact' plain class='askBtn pic'><image src='{{CDN}}icon/icon_ask.png'></image></button>

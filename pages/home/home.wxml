@@ -97,3 +97,4 @@
     <component-no-data class="{{customerarea.length > 0 ? 'hidden' : ''}}" text="小喜正在统计中，暂无相关数据..." type="text"></component-no-data>
   </view>
 </view>
+ <button open-type='contact' plain class='askBtn pic'><image src='{{CDN}}icon/icon_ask.png'></image></button> 

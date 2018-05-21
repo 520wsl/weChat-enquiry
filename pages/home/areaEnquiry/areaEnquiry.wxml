@@ -14,3 +14,4 @@
   </view>
   <component-no-data text="抱歉!没有找到符合条件的记录" wx:if="{{list.length == 0}}"></component-no-data>
 </view>
+<button open-type='contact' plain class='askBtn pic'><image src='{{CDN}}icon/icon_ask.png'></image></button>

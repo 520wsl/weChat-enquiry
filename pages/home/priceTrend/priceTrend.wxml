@@ -22,3 +22,4 @@
   <!-- 没数据 -->
   <component-no-data wx:if="{{list.length == 0}}" text="{{msgStr}}"></component-no-data>
 </view>
+<button open-type='contact' plain class='askBtn pic'><image src='{{CDN}}icon/icon_ask.png'></image></button>

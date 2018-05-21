@@ -19,7 +19,10 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.data.params.orderId = options.orderId;
+    // this.data.params.orderId = options.orderId;
+    this.setData({
+      'params.orderId': options.orderId
+    })
 
     if (wx.showLoading) {
       wx.showLoading({ title: '加载中...' });
