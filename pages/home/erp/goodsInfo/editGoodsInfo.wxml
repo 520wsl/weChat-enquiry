@@ -86,6 +86,60 @@
   </view>
 </view>
 <button open-type='contact' plain class='askBtn pic'><image src='{{CDN}}icon/icon_ask.png'></image></button> -->
+<template name="proinfo-img-default">
+  <view class='imgbk'>
+    <navigator url='/pages/home/erp/goodsInfo/searchPic?index={{index}}' class='img'>
+      <view class='bg'>
+        <view class='pic addimage'>
+          <image src='{{CDN}}icon/icon_add_pro_image.png'></image>
+        </view>
+        <view>添加图片</view>
+      </view>
+    </navigator>
+    <view class='pic delpro' bindtap='delPhotoInfos' data-num='{{index}}' data-type='delModel'>
+      <image src='{{CDN}}icon/icon_del_pro_image.png'></image>
+    </view>
+  </view>
+</template>
+
+<template name="proinfo-img">
+  <view class='showimg'>
+    <navigator url='/pages/home/erp/goodsInfo/searchPic?index={{index}}'>
+      <view class='pic'>
+        <image style='width:750rpx;' mode='widthFix' src='{{imgUrl}}'></image>
+      </view>
+    </navigator>
+    <view class='pic delpro delpro2' bindtap='delPhotoInfos' data-num='{{index}}' data-type='delImg'>
+      <image src='{{CDN}}icon/icon_del_pic.png'></image>
+    </view>
+  </view>
+</template>
+
+<template name="proinfo-txt-default">
+  <view class='txt hr' style='padding-bottom:15rpx;'>
+    <text>添加商品描述</text>
+  </view>
+</template>
+
+<template name="proinfo-txt">
+  <view class='description hr'>
+    <navigator url='/pages/home/erp/goodsInfo/searchPic?index={{index}}' class='txt'>
+      <text>{{description}}</text>
+    </navigator>
+    <view class='btn-txt-del'  bindtap='delPhotoInfos' data-num='{{index}}' data-type='delDescription'>
+      <view class='pic txt-del-img'>
+        <image src='{{CDN}}icon/icon_txt_del.png'></image>
+      </view>
+    </view>
+  </view>
+</template>
+
+<template name="item-proinfo">
+  <view class='info'>
+    <template is="{{imgUrl?'proinfo-img':'proinfo-img-default'}}" data="{{imgUrl,CDN,index}}"></template>
+    <template is="{{description?'proinfo-txt':'proinfo-txt-default'}}" data="{{description,CDN,index}}"></template>
+  </view>
+</template>
 
 <view class='edit'>
   <view class='title hr'>
@@ -94,89 +148,9 @@
     </view>
     <text>商品详情</text>
   </view>
-  <button class='addbtn'>+ 增加商品图片或文本</button>
-
-  <view class='info'>
-    <view class='imgbk'>
-      <navigator url='/pages/home/erp/goodsInfo/searchPic?productId={{productId}}' class='img'>
-        <view class='bg'>
-          <view class='pic addimage'>
-            <image src='{{CDN}}icon/icon_add_pro_image.png'></image>
-          </view>
-          <view>添加图片</view>
-        </view>
-      </navigator>
-      <view class='pic delpro'>
-        <image src='{{CDN}}icon/icon_del_pro_image.png'></image>
-      </view>
-    </view>
-
-    <view class='txt hr'>
-      <text>添加商品描述</text>
-    </view>
-  </view>
-
-  <view class='info'>
-    <view class='imgbk'>
-      <navigator url='/pages/home/erp/goodsInfo/searchPic?productId={{productId}}' class='img'>
-        <view class='bg'>
-          <view class='pic addimage'>
-            <image src='{{CDN}}icon/icon_add_pro_image.png'></image>
-          </view>
-          <view>添加图片</view>
-        </view>
-      </navigator>
-      <view class='pic delpro'>
-        <image src='{{CDN}}icon/icon_del_pro_image.png'></image>
-      </view>
-    </view>
-
-    <view class='txt hr'>
-      <text>添加商品描述</text>
-    </view>
-  </view>
-
-  <view class='info'>
-    <view class='imgbk'>
-      <navigator url='/pages/home/erp/goodsInfo/searchPic?productId={{productId}}' class='img'>
-        <view class='bg'>
-          <view class='pic addimage'>
-            <image src='{{CDN}}icon/icon_add_pro_image.png'></image>
-          </view>
-          <view>添加图片</view>
-        </view>
-      </navigator>
-      <view class='pic delpro'>
-        <image src='{{CDN}}icon/icon_del_pro_image.png'></image>
-      </view>
-    </view>
-
-    <view class='txt hr'>
-      <text>添加商品描述</text>
-    </view>
-  </view>
-
-  <view class='info'>
-    <view class='imgbk'>
-      <navigator url='/pages/home/erp/goodsInfo/searchPic?productId={{productId}}' class='img'>
-        <view class='bg'>
-          <view class='pic addimage'>
-            <image src='{{CDN}}icon/icon_add_pro_image.png'></image>
-          </view>
-          <view>添加图片</view>
-        </view>
-      </navigator>
-      <view class='pic delpro'>
-        <image src='{{CDN}}icon/icon_del_pro_image.png'></image>
-      </view>
-    </view>
-
-    <view class='txt hr'>
-      <text>添加商品描述</text>
-    </view>
-  </view>
-
-  <button class='addbtn'>+ 增加商品图片或文本</button>
+  <button class='addbtn' bindtap='addPhotoInfos' data-type='unshift'>+ 增加商品图片或文本</button>
+  <template wx:for="{{photoInfos}}" wx:key="{{index}}" is="item-proinfo" data="{{CDN,...item,index}}"></template>
+  <button class='addbtn' bindtap='addPhotoInfos' data-type='push'>+ 增加商品图片或文本</button>
 </view>
 <view style='height:96rpx;'></view>
 <view class='btngroup'>

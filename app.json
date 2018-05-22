@@ -1,7 +1,8 @@
 {
   "pages": [
-    "pages/personal/personal",
     "pages/home/erp/goodsInfo/editGoodsInfo",
+    "pages/home/erp/goodsInfo/searchPic",
+    "pages/personal/personal",
     "pages/home/erp/myGoods/myGoods",
     "pages/home/home",
     "pages/enquiry/enquiry",
@@ -26,8 +27,7 @@
     "pages/home/erp/goodsInfo/goodsInfo",
     "pages/share/goodsInfo/goodsInfo",
     "pages/home/erp/myGoods/searchWord",
-    "pages/home/erp/orderInfo/editOrderPic",
-    "pages/home/erp/goodsInfo/searchPic"
+    "pages/home/erp/orderInfo/editOrderPic"
   ],
   "window": {
     "backgroundColor": "#f2f2f2",

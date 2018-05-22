@@ -298,23 +298,43 @@
   position: absolute;
   top: 20rpx;
   right: 22rpx;
-  z-index: 99999;
+  z-index: 1;
+}
+
+.edit .delpro2 {
+  width: 30rpx;
+  height: 36rpx;
 }
 
 .edit .txt {
-  padding: 30rpx 0;
-}
-
-.edit .txt {
-  padding: 30rpx 0;
+  padding-top: 30rpx;
   color: #949494;
   font-size: 28rpx;
 }
-
+.description {
+  overflow: hidden;
+  padding-bottom: 15rpx;
+}
+.description .txt{
+  float: left; 
+}
+.btn-txt-del{
+float: right;
+ width: 60rpx;
+ height: 70rpx;
+ line-height: 40rpx;
+ display: flex;
+ align-items: center;
+}
+.txt-del-img{
+  width: 28rpx;
+  height: 26rpx;
+}
 .btngroup {
   position: fixed;
   bottom: 0rpx;
   width: 100%;
+  z-index: 2
 }
 
 .btngroup .nextbtn {
@@ -337,4 +357,9 @@
   flex: 1;
   background-color: #6495f9;
   color: #fff;
+}
+
+.showimg{
+  overflow: hidden;
+  position: relative;
 }

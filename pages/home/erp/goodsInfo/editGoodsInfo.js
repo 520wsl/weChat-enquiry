@@ -1,5 +1,11 @@
+/*
+ * @Author: Mad Dragon 
+ * @E-Mail: 395548460@qq.com 
+ * @Date: 2018-05-22 10:11:59 
+ * @Last Modified by:   Mad Dragon 
+ * @Last Modified time: 2018-05-22 10:11:59 
+ */
 // pages/home/erp/goodsInfo/editGoodsInfo.js
-// pages/home/erp/goodsInfo/goodsInfo.js
 const app = getApp();
 Page({
   /**
@@ -10,12 +16,91 @@ Page({
     ALI: app.ALI,
     show: false,
     productId: '',
-    params: {}
+    params: {},
+    key: 'photoInfos',
+    photoInfos: [
+      {
+        "description": "",
+        "imgUrl": "",
+        "orderNum": 0
+      },
+      {
+        "description": "打造高端品牌设计 精准营销产品！",
+        "imgUrl": "http://3.img.dianjiangla.com/uploads/1d40c6105b1cef583f5533429c5e0f44117005.jpg",
+        "orderNum": 11115
+      },
+      {
+        "description": "活动海报 专题 中国风设计",
+        "imgUrl": "http://3.img.dianjiangla.com/uploads/2b2188bd2f414ccd0d9e4f5fbd263dab266852.jpg",
+        "orderNum": 11115
+      },
+      {
+        "description": "",
+        "imgUrl": "http://3.img.dianjiangla.com/uploads/995754d0c75630ee7c52d9c27167c5be1096852.jpg",
+        "orderNum": 0
+      },
+      {
+        "description": "活动海报 专题 中国风设计",
+        "imgUrl": "",
+        "orderNum": 0
+      }
+    ]
+  },
+  // 添加新的模块
+  addPhotoInfos(e) {
+    console.log('addPhotoInfos', e)
+    let addType = e.currentTarget.dataset.type || 'push';
+    let newModel = {
+      "description": "",
+      "imgUrl": "",
+      "orderNum": 0
+    }
+    let photoInfos = this.data.photoInfos || [];
+    if (addType == 'unshift') {
+      photoInfos.unshift(newModel)
+    }
+    if (addType == 'push') {
+      photoInfos.push(newModel)
+    }
+    this.setPhotoInfos(photoInfos)
+  },
+  // 删除模块
+  delPhotoInfos(e) {
+    console.log('delPhotoInfos', e)
+    let num = e.currentTarget.dataset.num;
+    let delType = e.currentTarget.dataset.type;
+    let photoInfos = this.data.photoInfos || [];
+    if (num > photoInfos.length) {
+      return;
+    }
+    if (delType == 'delModel') {
+      photoInfos.splice(num, 1);
+    }
+    if (delType == 'delImg') {
+      photoInfos[num]['imgUrl'] = '';
+    }
+    if (delType == 'delDescription') {
+      photoInfos[num]['description'] = '';
+    }
+    this.setPhotoInfos(photoInfos)
+  },
+  // 同步数据
+  setPhotoInfos(data) {
+    this.setData({
+      photoInfos: data
+    })
+    wx.setStorage({
+      key: this.data.key,
+      data: data
+    })
   },
   showNorm() {
     this.setData({
       show: !this.data.show
     });
+  },
+  // 获取photoInfos
+  getPhotoInfos(){
   },
   productList(productId) {
     if (wx.showLoading) {
@@ -33,6 +118,7 @@ Page({
           this.setData({
             params: e.data
           });
+          this.setPhotoInfos(e.data.photoInfos)
         }
         if (e.status == 401) {
           wx.showModal({
@@ -62,7 +148,7 @@ Page({
     this.setData({
       productId: options.productId,
     });
-    // this.productList();
+    this.productList();
   },
 
   /**
