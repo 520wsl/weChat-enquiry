@@ -1,2 +1,35 @@
 <!--pages/home/erp/goodsInfo/searchPic.wxml-->
-<text>pages/home/erp/goodsInfo/searchPic.wxml</text>
+<view class='proname hr'><text>厂家快充2A接线移动 带开关USB充电插线板插排板多功能白色排插座</text></view>
+<view class='content'>
+  <view class='img'>
+    <view bindtap='setImgUrl' data-imgUrl='http://3.img.dianjiangla.com/uploads/d3b1ed58f625f283f073162268368071267337.jpg!286x312' class='pic pro'><image mode='widthFix' src='http://3.img.dianjiangla.com/uploads/d3b1ed58f625f283f073162268368071267337.jpg!286x312'></image></view>
+    <view wx:if="{{imgUrl == 'http://3.img.dianjiangla.com/uploads/d3b1ed58f625f283f073162268368071267337.jpg!286x312'}}" class='pic iconok'><image src='{{CDN}}icon/icon_ok.png'></image></view>
+  </view>
+   <view class='img'>
+    <view class='pic pro'><image mode='widthFix' src='http://3.img.dianjiangla.com/uploads/f8365740af2513bc977aef07e4945df9160471.jpg'></image></view>
+    <view class='pic iconok'><image src='{{CDN}}icon/icon_ok.png'></image></view>
+  </view>
+   <view class='img'>
+    <view class='pic pro'><image mode='widthFix' src='http://3.img.dianjiangla.com/uploads/f8365740af2513bc977aef07e4945df9160471.jpg'></image></view>
+    <view class='pic iconok'><image src='{{CDN}}icon/icon_ok.png'></image></view>
+  </view>
+   <view class='img'>
+    <view class='pic pro'><image mode='widthFix' src='http://3.img.dianjiangla.com/uploads/f8365740af2513bc977aef07e4945df9160471.jpg'></image></view>
+    <view class='pic iconok'><image src='{{CDN}}icon/icon_ok.png'></image></view>
+  </view>
+   <view class='img'>
+    <view class='pic pro'><image mode='widthFix' src='http://3.img.dianjiangla.com/uploads/f8365740af2513bc977aef07e4945df9160471.jpg'></image></view>
+    <view class='pic iconok'><image src='{{CDN}}icon/icon_ok.png'></image></view>
+  </view>
+   <view class='img'>
+    <view class='pic pro'><image mode='widthFix' src='http://3.img.dianjiangla.com/uploads/f8365740af2513bc977aef07e4945df9160471.jpg'></image></view>
+    <view class='pic iconok'><image src='{{CDN}}icon/icon_ok.png'></image></view>
+  </view>
+</view>
+
+<view class='btngroup'>
+  <view class='group'>
+    <view class='preview' bindtap='preview'>预览</view>
+    <view class='submit'>保存</view>
+  </view>
+</view>
