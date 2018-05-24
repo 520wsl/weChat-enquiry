@@ -1,4 +1,14 @@
+/*
+ * @Author: Mad Dragon 
+ * @E-Mail: 395548460@qq.com 
+ * @Date: 2018-05-24 09:51:53 
+ * @Last Modified by:   Mad Dragon 
+ * @Last Modified time: 2018-05-24 09:51:53 
+ */
 /* pages/home/erp/goodsInfo/goodsInfo.wxss */
+page{
+  background-color: #fff;
+}
 .slide-image {
   width: 100%;
   height: 748rpx;

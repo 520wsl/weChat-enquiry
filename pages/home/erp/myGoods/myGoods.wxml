@@ -98,7 +98,7 @@
     <view class='types'>
       <view wx:for="{{types}}" wx:key="{{item.key}}" data-status='{{item.key}}' data-optOrderNavId='{{item.id}}' bindtap='optOrderNav' class='col {{params.status == item.key? "active":""}}' id="{{item.id}}">{{item.name}}</view>
     </view>
-  </view>
+  </view> 
 </template>
 
 <template name="order-nav">
