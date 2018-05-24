@@ -2,8 +2,8 @@
  * @Author: Mad Dragon 
  * @E-Mail: 395548460@qq.com 
  * @Date: 2018-05-22 10:11:59 
- * @Last Modified by:   Mad Dragon 
- * @Last Modified time: 2018-05-22 10:11:59 
+ * @Last Modified by: Mad Dragon
+ * @Last Modified time: 2018-05-24 11:58:46
  */
 // pages/home/erp/goodsInfo/editGoodsInfo.js
 const app = getApp();
@@ -16,46 +16,40 @@ Page({
     ALI: app.ALI,
     show: false,
     productId: '',
-    params: {},
+    pageType: '',
+    styleId: 1,
+    isNext: false,
+    photoInfos: [],
     key: 'photoInfos',
-    photoInfos: [
+    newModel: {
+      "description": "",
+      "imgUrl": "",
+      "orderNum": 0
+    },
+    styles: [
       {
-        "description": "",
-        "imgUrl": "",
-        "orderNum": 0
+        name: '默认风格',
+        imgUrl: 'zdy/zdy-0.png',
+        num: 1
       },
       {
-        "description": "打造高端品牌设计 精准营销产品！",
-        "imgUrl": "http://3.img.dianjiangla.com/uploads/1d40c6105b1cef583f5533429c5e0f44117005.jpg",
-        "orderNum": 11115
+        name: '风格一',
+        imgUrl: 'zdy/zdy-2.png',
+        num: 2
       },
       {
-        "description": "活动海报 专题 中国风设计",
-        "imgUrl": "http://3.img.dianjiangla.com/uploads/2b2188bd2f414ccd0d9e4f5fbd263dab266852.jpg",
-        "orderNum": 11115
+        name: '风格二',
+        imgUrl: 'zdy/zdy-3.png',
+        num: 3
       },
-      {
-        "description": "",
-        "imgUrl": "http://3.img.dianjiangla.com/uploads/995754d0c75630ee7c52d9c27167c5be1096852.jpg",
-        "orderNum": 0
-      },
-      {
-        "description": "活动海报 专题 中国风设计",
-        "imgUrl": "",
-        "orderNum": 0
-      }
     ]
   },
   // 添加新的模块
   addPhotoInfos(e) {
     console.log('addPhotoInfos', e)
     let addType = e.currentTarget.dataset.type || 'push';
-    let newModel = {
-      "description": "",
-      "imgUrl": "",
-      "orderNum": 0
-    }
     let photoInfos = this.data.photoInfos || [];
+    let newModel = this.data.newModel;
     if (addType == 'unshift') {
       photoInfos.unshift(newModel)
     }
@@ -63,6 +57,64 @@ Page({
       photoInfos.push(newModel)
     }
     this.setPhotoInfos(photoInfos)
+  },
+  setNext() {
+    this.setData({
+      isNext: true,
+      styleId: this.data.styleId
+    })
+  },
+  // 设置选中的风格样式
+  setStyle(e) {
+    console.log('setStyle', e)
+    let styleId = e.currentTarget.dataset.styleId || 1;
+    this.setData({
+      styleId: styleId
+    })
+  },
+  submitPhotoInfos() {
+    console.log('setPhotoInfos', this.data.params)
+    if (wx.showLoading) {
+      wx.showLoading({ title: '提交中...' });
+    }
+    let params = {
+      aliProductId: this.data.productId,
+      data: this.data.photoInfos,
+      styleId: this.data.styleId
+    }
+    app
+      .post('/product/setproductstyle', params)
+      .then(e => {
+        if (wx.hideLoading) {
+          wx.hideLoading();
+        }
+        if (e.status == 200) {
+          this.abandonPhotoInfos()
+          return;
+        }
+        if (e.status == 401) {
+          wx.showModal({
+            title: '提示',
+            content: '登录超时或未登录，请重新登录',
+            success: res => {
+              if (res.confirm) {
+                wx.switchTab({
+                  url: '/pages/personal/personal'
+                })
+              } else if (res.cancel) {
+              }
+            }
+          })
+          return;
+        }
+        if (e.status !== 200) {
+          app.utils.showModel('自定义风格', e.msg);
+        }
+      })
+      .catch(res => {
+        console.log(res);
+        app.utils.showModel('自定义风格', res.msg);
+      });
   },
   // 删除模块
   delPhotoInfos(e) {
@@ -94,14 +146,19 @@ Page({
       data: data
     })
   },
+  // 放弃修改
+  abandonPhotoInfos() {
+    this.setPhotoInfos([])
+    wx.redirectTo({
+      url: '/pages/home/erp/goodsInfo/goodsInfo?productId=' + this.data.productId
+    })
+  },
   showNorm() {
     this.setData({
       show: !this.data.show
     });
   },
   // 获取photoInfos
-  getPhotoInfos(){
-  },
   productList(productId) {
     if (wx.showLoading) {
       wx.showLoading({ title: '加载中...' });
@@ -118,7 +175,15 @@ Page({
           this.setData({
             params: e.data
           });
-          this.setPhotoInfos(e.data.photoInfos)
+          if (this.data.pageType == 'edit') {
+            this.getStoragePhotoInfos();
+            return;
+          }
+          if (e.data.photoInfos.length > 0) {
+            this.setPhotoInfos(e.data.photoInfos)
+            return;
+          }
+          this.setPhotoInfos([this.data.newModel])
         }
         if (e.status == 401) {
           wx.showModal({
@@ -147,6 +212,7 @@ Page({
   onLoad: function (options) {
     this.setData({
       productId: options.productId,
+      pageType: options.pageType
     });
     this.productList();
   },
@@ -159,7 +225,21 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () { },
+  onShow: function () {
+    this.getStoragePhotoInfos();
+  },
+  // 获取storage里的数据
+  getStoragePhotoInfos() {
+    wx: wx.getStorage({
+      key: this.data.key,
+      success: res => {
+        console.log('getStoragePhotoInfos', res.data)
+        this.setData({
+          photoInfos: res.data
+        })
+      }
+    })
+  },
 
   /**
    * 生命周期函数--监听页面隐藏

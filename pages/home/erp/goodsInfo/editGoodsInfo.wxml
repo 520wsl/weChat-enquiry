@@ -1,14 +1,14 @@
 <!--pages/home/erp/goodsInfo/editGoodsInfo.wxml-->
 <!-- 商品详情图片 -->
-<!-- <swiper indicator-dots="true" autoplay="false" interval="5000" duration="500" style="height:748rpx;width:100%;">
+<swiper indicator-dots="true" autoplay="false" interval="5000" duration="500" style="height:748rpx;width:100%;">
   <block wx:for="{{params.images}}" wx:key="{{index}}">
     <swiper-item>
       <image src="{{ALI}}{{item}}" class="slide-image" />
     </swiper-item>
   </block>
-</swiper> -->
+</swiper>
 <!-- 商品标题和价格 -->
-<!-- <block>
+<block>
   <view class="goods">
     <view class="header">
       <text class="txt">{{params.subject}}</text>
@@ -16,9 +16,13 @@
     <view class="content">
       <block wx:if="{{params.minPrice}}">
         ￥
-        <text class="money">{{params.minformatData.vInt}}<text class="double">.{{params.minformatData.vDouble}}</text></text>
+        <text class="money">{{params.minformatData.vInt}}
+          <text class="double">.{{params.minformatData.vDouble}}</text>
+        </text>
         -</block>￥
-      <text class="money">{{params.maxformatData.vInt}}<text class="double">.{{params.maxformatData.vDouble}}</text></text>
+      <text class="money">{{params.maxformatData.vInt}}
+        <text class="double">.{{params.maxformatData.vDouble}}</text>
+      </text>
       <text class="text">≥{{params.minOrderQuantity}} {{params.unit}}起批</text>
       <button plain="true" class="share-btn" open-type='share'></button>
       <image src="/images/icon_share.png" class="share-img"></image>
@@ -36,16 +40,16 @@
       </view>
     </view>
   </view>
-</block> -->
+</block>
 <!-- 商品规格 -->
-<!-- <view class="norm"   wx:if="{{params.skuList}}">
+<view class="norm" wx:if="{{params.skuList}}">
   <view class="tittle">
     <image class="img" src="{{CDN}}icon/icon_pro_standard.png" />
     <text class="txt">产品规格</text>
   </view>
   <view class="sub">
     <view class="{{show ? '' : 'txt-more'}} detail">
-      <view  wx:for="{{params.skuList}}" wx:key="{{index}}" class="{{index < 2||show ? '' : 'hid'}} line">
+      <view wx:for="{{params.skuList}}" wx:key="{{index}}" class="{{index < 2||show ? '' : 'hid'}} line">
         <view class="name">
           {{item.attributeName}}：
         </view>
@@ -56,9 +60,9 @@
       <image mode="aspectFit" src="{{CDN}}icon_right.png" />
     </view>
   </view>
-</view> -->
+</view>
 <!-- 产品属性 -->
-<!-- <view class="attr" wx:if="{{params.list}}">
+<view class="attr" wx:if="{{params.list}}">
   <view class="tittle">
     <image class="img" src="{{CDN}}icon/icon_pro_attr.png" />
     <text class="txt">产品属性</text>
@@ -71,9 +75,9 @@
       <text class="txt">{{item.attributeValue}}</text>
     </view>
   </view>
-</view> -->
+</view>
 <!-- 买家服务 -->
-<!-- <view class="server">
+<view class="server">
   <view class="tittle">
     <image class="img" src="{{CDN}}icon/icon_buyer_server.png" />
     <text class="txt">买家服务</text>
@@ -85,10 +89,12 @@
     </view>
   </view>
 </view>
-<button open-type='contact' plain class='askBtn pic'><image src='{{CDN}}icon/icon_ask.png'></image></button> -->
+<button open-type='contact' plain class='askBtn pic'>
+  <image src='{{CDN}}icon/icon_ask.png'></image>
+</button>
 <template name="proinfo-img-default">
   <view class='imgbk'>
-    <navigator url='/pages/home/erp/goodsInfo/searchPic?index={{index}}' class='img'>
+    <navigator url='/pages/home/erp/goodsInfo/album?subscript={{index}}&&productId={{productId}}' class='img'>
       <view class='bg'>
         <view class='pic addimage'>
           <image src='{{CDN}}icon/icon_add_pro_image.png'></image>
@@ -104,7 +110,7 @@
 
 <template name="proinfo-img">
   <view class='showimg'>
-    <navigator url='/pages/home/erp/goodsInfo/searchPic?index={{index}}'>
+    <navigator url='/pages/home/erp/goodsInfo/album?subscript={{index}}&&productId={{productId}}'>
       <view class='pic'>
         <image style='width:750rpx;' mode='widthFix' src='{{imgUrl}}'></image>
       </view>
@@ -116,17 +122,17 @@
 </template>
 
 <template name="proinfo-txt-default">
-  <view class='txt hr' style='padding-bottom:15rpx;'>
+  <navigator url='/pages/home/erp/goodsInfo/editGoodsTxt?subscript={{index}}&&productId={{productId}}' class='txt hr' style='padding-bottom:15rpx;'>
     <text>添加商品描述</text>
-  </view>
+  </navigator>
 </template>
 
 <template name="proinfo-txt">
   <view class='description hr'>
-    <navigator url='/pages/home/erp/goodsInfo/searchPic?index={{index}}' class='txt'>
+    <navigator url='/pages/home/erp/goodsInfo/editGoodsTxt?subscript={{index}}&&productId={{productId}}' class='txt'>
       <text>{{description}}</text>
     </navigator>
-    <view class='btn-txt-del'  bindtap='delPhotoInfos' data-num='{{index}}' data-type='delDescription'>
+    <view class='btn-txt-del' bindtap='delPhotoInfos' data-num='{{index}}' data-type='delDescription'>
       <view class='pic txt-del-img'>
         <image src='{{CDN}}icon/icon_txt_del.png'></image>
       </view>
@@ -136,8 +142,8 @@
 
 <template name="item-proinfo">
   <view class='info'>
-    <template is="{{imgUrl?'proinfo-img':'proinfo-img-default'}}" data="{{imgUrl,CDN,index}}"></template>
-    <template is="{{description?'proinfo-txt':'proinfo-txt-default'}}" data="{{description,CDN,index}}"></template>
+    <template is="{{imgUrl?'proinfo-img':'proinfo-img-default'}}" data="{{imgUrl,CDN,index,productId}}"></template>
+    <template is="{{description?'proinfo-txt':'proinfo-txt-default'}}" data="{{description,CDN,index,productId}}"></template>
   </view>
 </template>
 
@@ -149,16 +155,37 @@
     <text>商品详情</text>
   </view>
   <button class='addbtn' bindtap='addPhotoInfos' data-type='unshift'>+ 增加商品图片或文本</button>
-  <template wx:for="{{photoInfos}}" wx:key="{{index}}" is="item-proinfo" data="{{CDN,...item,index}}"></template>
+  <template wx:for="{{photoInfos}}" wx:key="{{index}}" is="item-proinfo" data="{{CDN,...item,index,productId}}"></template>
   <button class='addbtn' bindtap='addPhotoInfos' data-type='push'>+ 增加商品图片或文本</button>
 </view>
 <view style='height:96rpx;'></view>
 <view class='btngroup'>
-  <view class='nextbtn'>
-    <view class='leftbtn'>
+
+  <view wx:if="{{isNext}}">
+    <view class="sty">
+      <view wx:for="{{styles}}" wx:key="{{item.num}}" class='col' data-style-id='{{item.num}}' bindtap='setStyle'>
+        <view class="pic styimg {{styleId == item.num? 'active':''}}">
+          <image src="{{CDN + item.imgUrl}}"></image>
+        </view>
+        <view class="txt">
+          <text>{{item.name}}</text>
+        </view>
+      </view>
+    </view>
+    <view class='nextbtn'>
+      <view bindtap="abandonPhotoInfos" class='leftbtn'>
+        <text>放 弃</text>
+      </view>
+      <view bindtap="submitPhotoInfos" class='rightbtn'>
+        <text>确 定</text>
+      </view>
+    </view>
+  </view>
+  <view wx:else class='nextbtn'>
+    <view bindtap="abandonPhotoInfos" class='leftbtn'>
       <text>放 弃</text>
     </view>
-    <view class='rightbtn'>
+    <view bindtap="setNext" class='rightbtn'>
       <text>下一步</text>
     </view>
   </view>

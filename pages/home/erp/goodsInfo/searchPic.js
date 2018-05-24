@@ -1,20 +1,29 @@
+/*
+ * @Author: Mad Dragon 
+ * @E-Mail: 395548460@qq.com 
+ * @Date: 2018-05-23 15:02:57 
+ * @Last Modified by: Mad Dragon
+ * @Last Modified time: 2018-05-24 12:30:24
+ */
 // pages/home/erp/goodsInfo/searchPic.js
 const app = getApp();
 Page({
-
   /**
    * 页面的初始数据
    */
   data: {
     CDN: app.CDN,
-    index: '',
+    subscript: '',
     key: 'photoInfos',
     imgUrls: [],
-    imgUrl:'',
+    imgUrl: '',
     photoInfos: [],
+    productId: '',
+    count: 0,
     params: {
+      albumID: '',
       pageNum: 1,
-      pageSize: 10
+      pageSize: 32
     }
   },
 
@@ -22,10 +31,14 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log('options', options)
-    let index = options.index;
+    console.log('searchpic-options', options)
+    let subscript = options.subscript || 0;
+    let albumID = options.albumID;
+    let productId = options.productId || '';
     this.setData({
-      index: index
+      subscript: subscript,
+      productId: productId,
+      'params.albumID': albumID
     })
     wx.getStorage({
       key: this.data.key,
@@ -42,9 +55,19 @@ Page({
       .get('/product/getproductimglist', { ...this.data.params })
       .then(e => {
         if (e.status == 200) {
-          this.setData({
-            imgUrls: e.data.photoInfos
-          });
+          let imgUrls = [];
+          let oldImgUrls = this.data.imgUrls || [];
+          if (e.data.photoInfos && e.data.photoInfos.length > 0) {
+            e.data.photoInfos.map(res => {
+              imgUrls.push(res.url)
+            })
+            oldImgUrls.push(...imgUrls)
+            console.log('imgUrls', oldImgUrls)
+            this.setData({
+              imgUrls: oldImgUrls,
+              count: e.data.count
+            });
+          }
         }
         if (e.status == 401) {
           wx.showModal({
@@ -67,20 +90,42 @@ Page({
       });
   },
   // 设置寻选中的图片路径
-  setImgUrl(e){
-    console.log('setImgUrl',e)
+  setImgUrl(e) {
+    console.log('setImgUrl', this.data.imgUrl, e.currentTarget.dataset.imgurl)
     let imgUrl = e.currentTarget.dataset.imgurl || '';
-    if (imgUrl == this.data.imgUrl){
+    if (imgUrl == this.data.imgUrl) {
       imgUrl = ''
     }
     this.setData({
       imgUrl: imgUrl
     })
+
+  },
+  // 保存修改
+  submit() {
+    let photoInfos = this.data.photoInfos || [];
+    let subscript = this.data.subscript;
+    let imgUrl = this.data.imgUrl || '';
+    let productId = this.data.productId;
+    if (photoInfos.lnegth < subscript || imgUrl.length <= 0) {
+      return;
+    }
+    photoInfos[subscript]['imgUrl'] = imgUrl;
+    console.log('photoInfos', photoInfos, 'subscript', subscript)
+
+    wx.setStorage({
+      key: this.data.key,
+      data: photoInfos,
+    })
+    console.log('productId', productId)
+    wx.redirectTo({
+      url: '/pages/home/erp/goodsInfo/editGoodsInfo?pageType=edit&&productId=' + productId,
+    })
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {},
+  onReady: function () { },
 
   /**
    * 生命周期函数--监听页面显示
@@ -114,7 +159,11 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
+    console.log('searchPic-触底')
+    if (this.data.imgUrls.length < this.data.count) {
+      this.data.params.pageNum++;
+      this.getImgUrls();
+  }
   },
 
   /**
@@ -127,11 +176,7 @@ Page({
     let imgUrl = this.data.imgUrl || '';
     wx.previewImage({
       current: imgUrl, // 当前显示图片的http链接
-      urls: [
-        'http://3.img.dianjiangla.com/uploads/f8365740af2513bc977aef07e4945df9160471.jpg',
-        'http://3.img.dianjiangla.com/uploads/f8365740af2513bc977aef07e4945df9160471.jpg',
-        'http://3.img.dianjiangla.com/uploads/d3b1ed58f625f283f073162268368071267337.jpg!286x312'
-      ] // 需要预览的图片http链接列表
+      urls: this.data.imgUrls // 需要预览的图片http链接列表
     })
   }
 })

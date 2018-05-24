@@ -1,0 +1,21 @@
+<!--pages/home/erp/goodsInfo/album.wxml-->
+<template name="item-album">
+  <navigator url='/pages/home/erp/goodsInfo/searchPic?subscript={{subscript}}&&albumID={{albumID}}&&productId={{productId}}' class="row">
+    <view class="pic proimg">
+      <image src="http://3.img.dianjiangla.com/uploads/d3b1ed58f625f283f073162268368071267337.jpg!286x312"></image>
+    </view>
+    <view class="info hr">
+      <view class="txt">
+        <text>{{name}}</text>
+      </view>
+      <view class="right">
+        <text>{{imageCount}}</text>
+        <image class="img" src="{{CDN}}icon_right.png"></image>
+      </view>
+    </view>
+  </navigator>
+</template>
+
+<view>
+  <template wx:for="{{list}}" wx:key="{{index}}" is="item-album" data="{{CDN,...item,subscript,productId}}"></template>
+</view>
