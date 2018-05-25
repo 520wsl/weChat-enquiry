@@ -13,7 +13,7 @@
     <view class="header">
       <text class="txt">{{params.subject}}</text>
     </view>
-    <view class="content">
+    <!-- <view class="content">
       <block wx:if="{{params.minPrice}}">
         ￥
         <text class="money">{{params.minformatData.vInt}}
@@ -26,7 +26,24 @@
       <text class="text">≥{{params.minOrderQuantity}} {{params.unit}}起批</text>
       <button plain="true" class="share-btn" open-type='share'></button>
       <image src="/images/icon_share.png" class="share-img"></image>
-    </view>
+    </view> -->
+    <view class="prc_share_group">
+        <view class="price">
+          <block wx:if="{{params.minPrice}}">
+            <text class="txt1">¥</text>
+            <text class="txt2">{{params.minformatData.vInt}}</text>
+            <text class="txt1">.{{params.minformatData.vDouble}}</text>
+            <text class="txt2"> 一 </text>
+          </block>
+          <text class="txt1">¥</text>
+          <text class="txt2">{{params.maxformatData.vInt}}</text>
+          <text class="txt1">.{{params.maxformatData.vDouble}}</text>
+          <text class="txt3">≥ {{params.minOrderQuantity}} {{params.unit}}起批</text>
+        </view>
+        <button class="sharebtn pic" plain="true" open-type='share'>
+          <image model="widthFix" src="{{CDN}}icon/icon_share.png"></image>
+        </button>
+      </view>
     <view class="footer">
       <view>
         <text class="txt">库存{{params.amountOnSale}}个</text>
@@ -69,9 +86,7 @@
   </view>
   <view class="lists">
     <view class="list" wx:for="{{params.list}}" wx:key="{{index}}">
-      <view class="name">
-        {{item.attributeName}}：
-      </view>
+      <text>{{item.attributeName}}：</text>
       <text class="txt">{{item.attributeValue}}</text>
     </view>
   </view>
@@ -94,7 +109,7 @@
 </button>
 <template name="proinfo-img-default">
   <view class='imgbk'>
-    <navigator url='/pages/home/erp/goodsInfo/album?subscript={{index}}&&productId={{productId}}' class='img'>
+    <navigator open-type="redirect" url='/pages/home/erp/goodsInfo/album?subscript={{index}}&&productId={{productId}}' class='img'>
       <view class='bg'>
         <view class='pic addimage'>
           <image src='{{CDN}}icon/icon_add_pro_image.png'></image>
@@ -160,28 +175,7 @@
 </view>
 <view style='height:96rpx;'></view>
 <view class='btngroup'>
-
-  <view wx:if="{{isNext}}">
-    <view class="sty">
-      <view wx:for="{{styles}}" wx:key="{{item.num}}" class='col' data-style-id='{{item.num}}' bindtap='setStyle'>
-        <view class="pic styimg {{styleId == item.num? 'active':''}}">
-          <image src="{{CDN + item.imgUrl}}"></image>
-        </view>
-        <view class="txt">
-          <text>{{item.name}}</text>
-        </view>
-      </view>
-    </view>
-    <view class='nextbtn'>
-      <view bindtap="abandonPhotoInfos" class='leftbtn'>
-        <text>放 弃</text>
-      </view>
-      <view bindtap="submitPhotoInfos" class='rightbtn'>
-        <text>确 定</text>
-      </view>
-    </view>
-  </view>
-  <view wx:else class='nextbtn'>
+  <view class='nextbtn'>
     <view bindtap="abandonPhotoInfos" class='leftbtn'>
       <text>放 弃</text>
     </view>

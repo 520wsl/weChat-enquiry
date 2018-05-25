@@ -3,7 +3,7 @@
  * @E-Mail: 395548460@qq.com 
  * @Date: 2018-05-22 10:11:59 
  * @Last Modified by: Mad Dragon
- * @Last Modified time: 2018-05-24 11:58:46
+ * @Last Modified time: 2018-05-25 19:33:18
  */
 // pages/home/erp/goodsInfo/editGoodsInfo.js
 const app = getApp();
@@ -17,32 +17,14 @@ Page({
     show: false,
     productId: '',
     pageType: '',
-    styleId: 1,
-    isNext: false,
+    styleId: 0,
     photoInfos: [],
     key: 'photoInfos',
     newModel: {
       "description": "",
       "imgUrl": "",
       "orderNum": 0
-    },
-    styles: [
-      {
-        name: '默认风格',
-        imgUrl: 'zdy/zdy-0.png',
-        num: 1
-      },
-      {
-        name: '风格一',
-        imgUrl: 'zdy/zdy-2.png',
-        num: 2
-      },
-      {
-        name: '风格二',
-        imgUrl: 'zdy/zdy-3.png',
-        num: 3
-      },
-    ]
+    }
   },
   // 添加新的模块
   addPhotoInfos(e) {
@@ -59,62 +41,9 @@ Page({
     this.setPhotoInfos(photoInfos)
   },
   setNext() {
-    this.setData({
-      isNext: true,
-      styleId: this.data.styleId
+    wx.redirectTo({
+      url: '/pages/home/erp/goodsInfo/goodsInfo?productId=' + this.data.productId + '&&styleId=' + this.data.styleId,
     })
-  },
-  // 设置选中的风格样式
-  setStyle(e) {
-    console.log('setStyle', e)
-    let styleId = e.currentTarget.dataset.styleId || 1;
-    this.setData({
-      styleId: styleId
-    })
-  },
-  submitPhotoInfos() {
-    console.log('setPhotoInfos', this.data.params)
-    if (wx.showLoading) {
-      wx.showLoading({ title: '提交中...' });
-    }
-    let params = {
-      aliProductId: this.data.productId,
-      data: this.data.photoInfos,
-      styleId: this.data.styleId
-    }
-    app
-      .post('/product/setproductstyle', params)
-      .then(e => {
-        if (wx.hideLoading) {
-          wx.hideLoading();
-        }
-        if (e.status == 200) {
-          this.abandonPhotoInfos()
-          return;
-        }
-        if (e.status == 401) {
-          wx.showModal({
-            title: '提示',
-            content: '登录超时或未登录，请重新登录',
-            success: res => {
-              if (res.confirm) {
-                wx.switchTab({
-                  url: '/pages/personal/personal'
-                })
-              } else if (res.cancel) {
-              }
-            }
-          })
-          return;
-        }
-        if (e.status !== 200) {
-          app.utils.showModel('自定义风格', e.msg);
-        }
-      })
-      .catch(res => {
-        console.log(res);
-        app.utils.showModel('自定义风格', res.msg);
-      });
   },
   // 删除模块
   delPhotoInfos(e) {
@@ -149,9 +78,11 @@ Page({
   // 放弃修改
   abandonPhotoInfos() {
     this.setPhotoInfos([])
-    wx.redirectTo({
-      url: '/pages/home/erp/goodsInfo/goodsInfo?productId=' + this.data.productId
-    })
+    wx.navigateBack()
+    // wx.redirectTo({
+    //   // url: '/pages/home/erp/goodsInfo/goodsInfo?productId=' + this.data.productId
+    //   url: '/pages/home/erp/myGoods/myGoods'
+    // })
   },
   showNorm() {
     this.setData({
@@ -166,6 +97,29 @@ Page({
     app
       .get('/product/detail', { productId: this.data.productId })
       .then(e => {
+        if (e.status == 401) {
+          wx.showModal({
+            title: '提示',
+            content: '登录超时或未登录，请重新登录',
+            success: res => {
+              if (res.confirm) {
+                app.reset();
+                wx.switchTab({
+                  url: '/pages/personal/personal'
+                })
+              } else if (res.cancel) {
+              }
+            }
+          })
+          return;
+        }
+        if (!e.data) {
+          if (wx.hideLoading) {
+            wx.hideLoading();
+          }
+          app.utils.showModel('商品详情', '没有找到商品详情');
+          return;
+        }
         if (e.status == 200) {
           if (wx.hideLoading) {
             wx.hideLoading();
@@ -185,22 +139,6 @@ Page({
           }
           this.setPhotoInfos([this.data.newModel])
         }
-        if (e.status == 401) {
-          wx.showModal({
-            title: '提示',
-            content: '登录超时或未登录，请重新登录',
-            success: res => {
-              if (res.confirm) {
-                app.reset();
-                wx.switchTab({
-                  url: '/pages/personal/personal'
-                })
-              } else if (res.cancel) {
-              }
-            }
-          })
-          return;
-        }
       })
       .catch(res => {
         console.log(res);
@@ -210,9 +148,11 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    let productId = options.productId || '';
+    let pageType = options.pageType || '';
     this.setData({
-      productId: options.productId,
-      pageType: options.pageType
+      productId: productId,
+      pageType: pageType
     });
     this.productList();
   },

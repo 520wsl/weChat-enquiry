@@ -1,7 +1,9 @@
 {
   "pages": [
-    "pages/home/erp/goodsInfo/album",
     "pages/personal/personal",
+    "pages/home/erp/goodsInfo/goodsInfo",
+    "pages/share/goodsInfo/goodsInfo",
+    "pages/home/erp/goodsInfo/album",
     "pages/home/erp/goodsInfo/editGoodsInfo",
     "pages/home/erp/goodsInfo/editGoodsTxt",
     "pages/home/erp/goodsInfo/searchPic",
@@ -26,8 +28,6 @@
     "pages/home/areaEnquiry/areaEnquiry",
     "pages/home/erp/orderInfo/orderInfo",
     "pages/home/erp/logisticsInfo/logisticsInfo",
-    "pages/home/erp/goodsInfo/goodsInfo",
-    "pages/share/goodsInfo/goodsInfo",
     "pages/home/erp/myGoods/searchWord",
     "pages/home/erp/orderInfo/editOrderPic"
   ],

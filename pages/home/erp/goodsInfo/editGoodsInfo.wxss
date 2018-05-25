@@ -185,19 +185,12 @@ page{
 }
 
 .attr .lists .list {
-  display: flex;
-  justify-content: flex-start;
-}
-
-.attr .lists .name {
   line-height: 52rpx;
-  flex-shrink: 0;
-  width: 211rpx;
 }
 
 .attr .lists .txt {
   line-height: 52rpx;
-  word-break: break-all;
+  word-break:break-all;
 }
 
 /* <!-- 买家服务 --> */
@@ -295,17 +288,31 @@ page{
 }
 
 .edit .delpro {
+  height: 68rpx;
+  width: 690rpx;
+  position: absolute;
+  top: 0rpx;
+  right: 0rpx;
+  z-index: 1;
+  text-align: right;
+}
+.edit .delpro image{
   width: 88rpx;
   height: 50rpx;
-  position: absolute;
-  top: 20rpx;
-  right: 22rpx;
-  z-index: 1;
+  margin-top: 12rpx;
+ margin-right: 22rpx;  
 }
+.edit .delpro2{
+  background-color: #000;
+  filter: alpha(opacity=50); /*支持 IE 浏览器*/
+ -moz-opacity: 0.50; /*支持 FireFox 浏览器*/
+ opacity: 0.50; /*支持 Chrome, Opera, Safari 等浏览器*/
 
-.edit .delpro2 {
+}
+.edit .delpro2 image{
   width: 30rpx;
   height: 36rpx;
+  margin-top: 15rpx;
 }
 
 .edit .txt {
@@ -320,6 +327,7 @@ page{
 }
 .description .txt{
   float: left; 
+  color: #333;
 }
 .btn-txt-del{
 float: right;
@@ -345,7 +353,8 @@ float: right;
   line-height: 96rpx;
   display: flex;
   justify-content: space-between;
-  border-top: 2px solid #6495f9;
+  border: 1px solid #6495f9;
+  border-bottom: 0rpx;
   background-color: #fff;
   text-align: center;
   font-size: 32rpx;
@@ -396,4 +405,32 @@ float: right;
 .sty .txt{
   height: 50rpx;
   line-height: 50rpx;
+}
+.prc_share_group{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 106rpx;
+}
+.price{
+  flex: 1;
+  color: #E53F31;
+}
+.txt1{
+  font-size: 28rpx;
+}
+.txt2{
+  font-size: 40rpx;
+}
+.txt3{
+  font-size: 24rpx;
+  color: #666;
+  margin-left: 15rpx;
+}
+.sharebtn{
+  border: 0rpx!important;
+  width: 46rpx;
+  height: 44rpx;
+  line-height: 44rpx;
+  padding: 8rpx;
 }
