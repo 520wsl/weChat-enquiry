@@ -3,7 +3,7 @@
  * @E-Mail: 395548460@qq.com 
  * @Date: 2018-05-23 15:02:57 
  * @Last Modified by: Mad Dragon
- * @Last Modified time: 2018-05-24 12:30:24
+ * @Last Modified time: 2018-05-25 14:04:51
  */
 // pages/home/erp/goodsInfo/searchPic.js
 const app = getApp();
@@ -17,6 +17,7 @@ Page({
     key: 'photoInfos',
     imgUrls: [],
     imgUrl: '',
+    name: '',
     photoInfos: [],
     productId: '',
     count: 0,
@@ -35,9 +36,11 @@ Page({
     let subscript = options.subscript || 0;
     let albumID = options.albumID;
     let productId = options.productId || '';
+    let name = options.name || '';
     this.setData({
       subscript: subscript,
       productId: productId,
+      name: name,
       'params.albumID': albumID
     })
     wx.getStorage({
@@ -52,7 +55,7 @@ Page({
   },
   getImgUrls() {
     app
-      .get('/product/getproductimglist', { ...this.data.params })
+      .post('/product/getproductimglist', { ...this.data.params })
       .then(e => {
         if (e.status == 200) {
           let imgUrls = [];
@@ -163,7 +166,7 @@ Page({
     if (this.data.imgUrls.length < this.data.count) {
       this.data.params.pageNum++;
       this.getImgUrls();
-  }
+    }
   },
 
   /**
@@ -171,6 +174,14 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+  // 返回按钮
+  backIndex() {
+    let productId = this.data.productId || 0;
+    let subscript = this.data.subscript || 0;
+    wx.redirectTo({
+      url: '/pages/home/erp/goodsInfo/album?subscript=' + subscript + '&&productId=' + productId
+    });
   },
   preview() {
     let imgUrl = this.data.imgUrl || '';

@@ -3,7 +3,7 @@
  * @E-Mail: 395548460@qq.com 
  * @Date: 2018-05-24 09:16:06 
  * @Last Modified by: Mad Dragon
- * @Last Modified time: 2018-05-24 11:31:12
+ * @Last Modified time: 2018-05-25 13:47:55
  */
 // pages/home/erp/goodsInfo/album.js
 const app = getApp();
@@ -104,7 +104,14 @@ Page({
   onReachBottom: function () {
 
   },
-
+  // 返回按钮
+  backIndex() {
+    let productId = this.data.productId || '';
+    let subscript = this.data.subscript || 0;
+    wx.redirectTo({
+      url: '/pages/home/erp/goodsInfo/editGoodsInfo?pageType=edit&&productId=' + productId
+    });
+  },
   /**
    * 用户点击右上角分享
    */

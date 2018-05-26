@@ -121,3 +121,18 @@ page {
   border: none !important;
   z-index: 2147483647;
 }
+  /*返回  */
+  .btn-back{
+    width: 72rpx;
+    height: 72rpx;
+    position: fixed;
+    top: 24rpx;
+    left: 30rpx;
+  }
+  .btn-back .img{
+    width: 72rpx;
+    height: 72rpx;
+    margin: auto;
+    display: block;
+  }
+  

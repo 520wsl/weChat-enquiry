@@ -1,0 +1,28 @@
+<!--pages/log/wxlog/wxlog.wxml-->
+<template name="item-log">
+  <navigator url="/pages/log/wxlog/wxloginfo?userLogId={{userLogId}}" class="item">
+    <view class="item-top">
+      <view class="icon">
+        <view class="pic">
+          <image src="{{CDN}}log/log_{{type}}.png"></image>
+        </view>
+        <view wx:if="{{stastus == 1}}" class="noread"></view>
+      </view>
+      <view class="title">
+        <view>{{typeStr}}</view>
+        <view class="time">{{gmtCreateStr}}</view>
+      </view>
+      <view class="pic right">
+        <image src="{{CDN}}icon_right.png"></image>
+      </view>
+    </view>
+    <view class="content">
+      <view class="txt-more-multiple">{{messageContent}}</view>
+    </view>
+  </navigator>
+</template>
+
+
+<view class="log">
+  <template wx:for="{{list}}" wx:key="{{index}}" is="item-log" data="{{CDN,...item}}"></template>
+</view>
