@@ -1,0 +1,80 @@
+/*
+ * @Author: Mad Dragon 
+ * @E-Mail: 395548460@qq.com 
+ * @Date: 2018-05-26 11:29:30 
+ * @Last Modified by: Mad Dragon
+ * @Last Modified time: 2018-05-26 14:55:19
+ */
+
+/* pages/log/wxlog/wxlog.wxss */
+
+.log {
+    padding: 0 30rpx;
+    font-size: 28rpx;
+    color: #333;
+}
+
+.log .item {
+    border: 1px solid #C4C2C2;
+    border-radius: 6rpx;
+    margin-top: 12rpx;
+    padding: 20rpx 30rpx;
+    background-color: #fff;
+}
+
+.log .item-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.log .icon {
+    width: 54rpx;
+    height: 56rpx;
+    position: relative;
+}
+
+.log .icon .pic {
+    width: 54rpx;
+    height: 56rpx;
+}
+
+.log .icon .noread {
+    background-color: #FF6A5E;
+    border: 1px solid #FF6A5E;
+    border-radius: 50rpx;
+    width: 14rpx;
+    height: 14rpx;
+    position: absolute;
+    top: 0rpx;
+    right: 0rpx;
+}
+
+.log .item-top .title {
+    line-height: 40rpx;
+    flex: 1;
+    overflow: hidden;
+    padding:15rpx;
+}
+
+.log .item-top .time {
+    color: #999;
+    font-size: 24rpx;
+    line-height: 34rpx;
+}
+
+.log .item-top .right {
+    width: 20rpx;
+    height: 70rpx;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;    
+}
+
+.log .item-top .right image {
+    width: 14rpx;
+    height: 28rpx;
+}
+.log .content{
+  color: #333;
+}
