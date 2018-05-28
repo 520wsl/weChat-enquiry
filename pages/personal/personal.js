@@ -17,7 +17,9 @@ Page({
     debugCode: '',
     num: 0,
     toggleHandleKey: 'toggleHandle',
-    isToggleHandle: 0
+    isToggleHandle: 0,
+    action: '',
+    datas: ''
   },
   /**
    * 生命周期函数--监听页面加载
@@ -38,46 +40,66 @@ Page({
     console.log('接收参数-options：' + options.action, 'data: ' + options.data);
 
     let action;
-    let data;
+    let datas;
 
     let scene = decodeURIComponent(options.scene);
     if (typeof options.scene == "string") {
       let param = scene.split('&');
       action = param[0].split('=')[1];
-      data = param[1].split('=')[1];
+      datas = param[1].split('=')[1];
     }
 
     if (options.action) {
       action = options.action;
-      data = options.data;
+      datas = options.data;
+      this.setData({
+        action: action,
+        datas: datas
+      })
     }
-
+    let customeInfo = app.globalData.customeInfo;
     switch (action) {
       // 扫码
       case 'e':
-        if (!data) {
+        if (!datas) {
           app.utils.showModel('体验版登录', '登录失败，请联系客户重新获取体验码！')
           return;
         }
-        this.toggleHandle(data);
+        this.toggleHandle(datas);
         break;
       // wx消息
       case 'i':
-        if (!data) {
+        if (!datas) {
           app.utils.showModel('微信消息登录', '登录失败，请联系管理处理！')
           return;
         }
-        data = JSON.parse(app.Base64.decode(data));
-        let customeInfo = app.globalData.customeInfo;
+        datas = JSON.parse(app.Base64.decode(datas));
+
         console.log('app全局信息打印', customeInfo);
-        if (customeInfo && customeInfo.aliAccountId === data.aliAccountId) {
+        if (customeInfo && customeInfo.aliAccountId === datas.aliAccountId) {
           wx.navigateTo({
-            url: '/pages/enquiry/info/info?id=' + data.id
+            url: '/pages/enquiry/info/info?id=' + datas.id
           });
           return;
         }
         // 走登录流程
-        this.autoLogin(data.aliAccountId, data.id);
+        this.autoLogin(datas.aliAccountId, datas.id);
+        break;
+      case 'msg':
+        if (!datas) {
+          app.utils.showModel('微信消息登录', '登录失败，请联系管理处理！')
+          return;
+        }
+        datas = JSON.parse(app.Base64.decode(datas));
+        console.log('app全局信息打印-msg', customeInfo);
+        if (customeInfo && customeInfo.aliAccountId === datas.aliAccountId) {
+          wx.navigateTo({
+            url: '/pages/log/wxlog/wxloginfo?userLogId=' + datas.messagelogid
+          });
+          return;
+        }
+        // 走登录流程
+        this.autoLogin(datas.aliAccountId, datas.id);
         break;
     }
   },
@@ -131,9 +153,18 @@ Page({
         return;
       }
       app.globalData.customeInfo = res.data;
-      wx.navigateTo({
-        url: '/pages/enquiry/info/info?id=' + id
-      });
+      if (this.data.action == 'i') {
+        wx.navigateTo({
+          url: '/pages/enquiry/info/info?id=' + id
+        });
+        return;
+      }
+      if (this.data.action == 'msg') {
+        wx.navigateTo({
+          url: '/pages/log/wxlog/wxloginfo?userLogId=' + id
+        });
+        return;
+      }
     })
   },
   // 2.1、 调起客户端小程序设置界面
