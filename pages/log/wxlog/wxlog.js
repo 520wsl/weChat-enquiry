@@ -3,7 +3,7 @@
  * @E-Mail: 395548460@qq.com 
  * @Date: 2018-05-26 14:15:35 
  * @Last Modified by: Mad Dragon
- * @Last Modified time: 2018-05-26 16:15:36
+ * @Last Modified time: 2018-05-26 21:04:59
  */
 // pages/log/wxlog/wxlog.js
 const app = getApp()
@@ -26,8 +26,13 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    this.setData({
+      list:[],
+      'params.pageNum':1
+    })
+    this.getList();
   },
-  getList() {
+  getList(type) {
     app
       .get('/messageuserlog/list', this.data.params)
       .then(res => {
@@ -50,13 +55,19 @@ Page({
           app.utils.showModel('获取消息列表数据', res.msg);
           return;
         }
-        let list = res.data && res.data.list || []
+        let list = []
+        let old = this.data.list;
+        if(type == 'push'){
+          old.push(...res.data.list)
+          list =  old
+        }else{
+          list = res.data && res.data.list || [];
+        }
         list.map(item => {
           console.log(item)
           item['typeStr'] = this.getArrStr(this.data.logTypes, item.type);
           item['gmtCreateStr'] = this.switchTime(item.gmtCreate);
         })
-
         console.log(list)
         this.setData({
           list: list,
@@ -108,7 +119,6 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    this.getList();
   },
 
   /**
@@ -143,7 +153,7 @@ Page({
     // console.log('wxlog-触底')
     if (this.data.list.length < this.data.count) {
       this.data.params.pageNum++;
-      this.getList();
+      this.getList('push');
     }
   },
 

@@ -60,7 +60,7 @@
       },
       {
         "pagePath": "pages/log/wxlog/wxlog",
-        "text": "询盘",
+        "text": "消息",
         "selectedIconPath": "images/log.png",
         "iconPath": "images/log_2.png"
       },
