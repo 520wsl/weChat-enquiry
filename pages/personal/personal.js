@@ -15,7 +15,11 @@ Page({
     isShowCompany: false,
     isOpenDebug: false,
     debugCode: '',
-    num: 0
+    num: 0,
+    toggleHandleKey: 'toggleHandle',
+    isToggleHandle: 0,
+    action: '',
+    datas: ''
   },
   /**
    * 生命周期函数--监听页面加载
@@ -23,55 +27,83 @@ Page({
   onLoad: function (options) {
     // 我的公司长度大于1时显示选择公司链接
     // this.login();
+    wx.getStorage({
+      key: this.data.toggleHandleKey,
+      success: res => {
+        this.setToggleHandle(res.data)
+      },
+    })
 
     this.getServices();
     // 新增入口
     // scene = 'action=i&data=eyJvcGVuaWQiOiJvdWc4VzBhZDNEazNOTGIxLXBxMXlrbHdCdlNjIiwiYWxpQWNjb3VudElkIjoxMSwiaWQiOjIyfQ==';
-    console.log('接收参数：' + options.action, 'data: ' + options.data);
-    // 微信模板消息
-    if (options.action && options.action == 'i'){
-      let secret1 = options.data;
-      if (secret1 == '' || secret1 == null || secret1 == undefined) {
-        app.utils.showModel('微信消息登录', '登录失败，请联系管理处理！')
-        return;
-      }
-      let data = JSON.parse(app.Base64.decode(secret1));
-      // 走登录流程
-      this.autoLogin(data.aliAccountId, data.id);
-    }
-    // 太阳码
-    if (typeof options.scene !== "string") {
-      return;
-    }
+    console.log('接收参数-options：' + options.action, 'data: ' + options.data);
+
+    let action;
+    let datas;
 
     let scene = decodeURIComponent(options.scene);
-    let param = scene.split('&');
-    let actions = param[0].split('=');
-    let secrets = param[1].split('=');
-    switch(actions[1]){
+    if (typeof options.scene == "string") {
+      let param = scene.split('&');
+      action = param[0].split('=')[1];
+      datas = param[1].split('=')[1];
+    }
+
+    if (options.action) {
+      action = options.action;
+      datas = options.data;
+      this.setData({
+        action: action,
+        datas: datas
+      })
+    }
+    let customeInfo = app.globalData.customeInfo;
+    switch (action) {
       // 扫码
       case 'e':
-        let secret = secrets[1];
-        if (!secret) {
+        if (!datas) {
           app.utils.showModel('体验版登录', '登录失败，请联系客户重新获取体验码！')
           return;
         }
-        this.toggleHandle(secret);
+        this.toggleHandle(datas);
         break;
       // wx消息
-      // case 'i':
-      //   let secret1 = secrets[1];
-      //   if (!secret1) {
-      //     app.utils.showModel('微信消息登录', '登录失败，请联系管理处理！')
-      //     return;
-      //   }
-      //   let data = JSON.parse(app.Base64.decode(secrets[1]));
-      //   // 走登录流程
-      //   this.autoLogin(data.aliAccountId, data.id);
-      //   break;
+      case 'i':
+        if (!datas) {
+          app.utils.showModel('微信消息登录', '登录失败，请联系管理处理！')
+          return;
+        }
+        datas = JSON.parse(app.Base64.decode(datas));
+
+        console.log('app全局信息打印', customeInfo);
+        if (customeInfo && customeInfo.aliAccountId === datas.aliAccountId) {
+          wx.navigateTo({
+            url: '/pages/enquiry/info/info?id=' + datas.id
+          });
+          return;
+        }
+        // 走登录流程
+        this.autoLogin(datas.aliAccountId, datas.id);
+        break;
+      case 'msg':
+        if (!datas) {
+          app.utils.showModel('微信消息登录', '登录失败，请联系管理处理！')
+          return;
+        }
+        datas = JSON.parse(app.Base64.decode(datas));
+        console.log('app全局信息打印-msg', customeInfo);
+        if (customeInfo && customeInfo.aliAccountId === datas.aliAccountId) {
+          wx.navigateTo({
+            url: '/pages/log/wxlog/wxloginfo?userLogId=' + datas.messagelogid
+          });
+          return;
+        }
+        // 走登录流程
+        this.autoLogin(datas.aliAccountId, datas.id);
+        break;
     }
   },
-  autoLogin(aliAccountId, id){
+  autoLogin(aliAccountId, id) {
     wx.login({
       success: res => {
         if (!res.code) {
@@ -89,9 +121,11 @@ Page({
     });
   },
   // 1.2、 code 换取 openId 
-  authorize(code, aliAccountId, id){
+  authorize(code, aliAccountId, id) {
     app
-      .post('/auth/authorize', { code: code })
+      .post('/auth/authorize', {
+        code: code
+      })
       .then(res => {
         if (res.status !== 200) {
           utils.showModel('用户授权', '授权失败:' + res.msg)
@@ -119,9 +153,18 @@ Page({
         return;
       }
       app.globalData.customeInfo = res.data;
-      wx.navigateTo({
-        url: '/pages/enquiry/info/info?id=' + id
-      });
+      if (this.data.action == 'i') {
+        wx.navigateTo({
+          url: '/pages/enquiry/info/info?id=' + id
+        });
+        return;
+      }
+      if (this.data.action == 'msg') {
+        wx.navigateTo({
+          url: '/pages/log/wxlog/wxloginfo?userLogId=' + id
+        });
+        return;
+      }
     })
   },
   // 2.1、 调起客户端小程序设置界面
@@ -134,8 +177,7 @@ Page({
           success: (res) => {
             if (res.authSetting['scope.userInfo']) {
               this.getUserInfo(aliAccountId, id);
-            } else {
-            }
+            } else { }
           }
         })
       }
@@ -144,7 +186,9 @@ Page({
   // 6.3 选择公司
   setcompany: function (aliAccountId, id) {
     app
-      .post('/auth/setcompany', { aliAccountId: aliAccountId })
+      .post('/auth/setcompany', {
+        aliAccountId: aliAccountId
+      })
       .then(res => {
         if (res.status !== 200) {
           utils.showModel('', res.msg)
@@ -189,7 +233,9 @@ Page({
       })
     } else {
       this.setData({
-        info: { login: false }
+        info: {
+          login: false
+        }
       })
     }
     if (app.globalData.userInfo && app.globalData.userInfo.avatarUrl) {
@@ -197,6 +243,12 @@ Page({
       this.setData({
         avatarUrl: avatarUrl
       })
+    }
+  },
+  btnLogin(e) {
+    console.log('btnLogin', e)
+    if (e.detail.errMsg == "getUserInfo:ok") {
+      this.login();
     }
   },
   // 点击登录
@@ -220,6 +272,11 @@ Page({
       });
       app.reset();
       this.data.dbLogin = false;
+      wx.setStorage({
+        key: this.data.toggleHandleKey,
+        data: 0,
+      })
+      this.setToggleHandle(0)
       app.login(() => {
         setTimeout(() => {
           this.data.dbLogin = true;
@@ -236,7 +293,7 @@ Page({
       })
       return;
     }
-    console.log('debug : '+this.data.num)
+    console.log('debug : ' + this.data.num)
     this.setData({
       num: 0,
       isOpenDebug: true
@@ -269,27 +326,32 @@ Page({
       content: '确认退出登录？',
       success: res => {
         if (res.confirm) {
-          app
-            .post('/auth/logout')
-            .then(res => {
-              app.reset();
-              this.setData({
-                info: {},
-                avatarUrl: '',
-                companyName: '',
-                isShowCompany: false
-              })
-            })
+          this.logOutApp();
         } else if (res.cancel) {
           return
         }
       }
     })
   },
+  logOutApp: function () {
+    app
+      .post('/auth/logout')
+      .then(res => {
+        app.reset();
+        this.setData({
+          info: {},
+          avatarUrl: '',
+          companyName: '',
+          isShowCompany: false
+        })
+      })
+  },
   // 体验版切换
   toggleHandle(secret) {
     if (wx.showLoading) {
-      wx.showLoading({ title: '加载中...' });
+      wx.showLoading({
+        title: '加载中...'
+      });
     }
     this.setData({
       isTiYan: true
@@ -307,7 +369,47 @@ Page({
           app.utils.showModel('体验版登录', res.msg)
           return;
         }
+        wx.setStorage({
+          key: this.data.toggleHandleKey,
+          data: 1,
+        })
+        this.setToggleHandle(1)
         app.getUserInfo();
       })
+  },
+  // 解除绑定的手机
+  untie() {
+    wx.showModal({
+      title: '提示',
+      content: '是否解除手机绑定?',
+      success: res => {
+        if (res.confirm) {
+          if (wx.showLoading) {
+            wx.showLoading({
+              title: '解绑中...'
+            });
+          }
+          app
+            .post('/auth/unbindwechat')
+            .then(res => {
+              if (wx.hideLoading) {
+                wx.hideLoading();
+              }
+              if (res.status !== 200) {
+                app.utils.showModel('解绑手机', res.msg)
+                return;
+              }
+              this.logOutApp()
+            })
+        } else if (res.cancel) {
+          return
+        }
+      }
+    })
+  },
+  setToggleHandle(e) {
+    this.setData({
+      isToggleHandle: e
+    })
   }
 })

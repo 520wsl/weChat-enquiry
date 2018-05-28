@@ -1,5 +1,9 @@
 /* components/itemEnquiry/itemEnquiry.wxss */
-.content{word-break:break-all;}
+
+.content {
+  word-break: break-all;
+}
+
 /* 副标题 1 */
 
 .second-title {
@@ -20,14 +24,24 @@
 }
 
 .top {
-  height: 230rpx;
+  border-color: #55abf6;  
+  background-image: linear-gradient(-225deg, #55abf6 0%, #7b73fe 100%);  
+  padding-bottom: 30rpx;
+}
+.xianxia {
+  width: 138rpx;
+  height: 50rpx;
+  margin-left: 30rpx;
+}
+.info {
   color: #fff;
-  border-color: #55abf6;
-  background-image: linear-gradient(-225deg, #55abf6 0%, #7b73fe 100%);
   display: flex;
   flex-direction: row;
   align-items: center;
   margin-bottom: 23rpx;
+  position: relative;
+  justify-content: space-between;
+  padding-top: 30rpx;
 }
 
 .headerLeft {
@@ -52,7 +66,38 @@
   color: #f8dd32;
 }
 
-.headerRight1 {
+/*查看订单详情  */
+
+.check-btn {
+  position: absolute;
+  top: 50%;
+  right: 36rpx;
+  height: 52rpx;
+  line-height: 52rpx;
+  text-align: center;
+  font-size: 11px;
+  color: #fff;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.20);
+  border: 1px solid #f8dd32;
+  border-radius: 34rpx;
+  box-shadow: 0 2px 2px #2a60a0;
+  padding: 0 15rpx;
+}
+
+.check-btn .img {
+  width: 10rpx;
+  height: 20rpx;
+  margin-bottom: -4rpx;
+}
+
+.headerRight {
+  width: 184rpx;
+  height: 62rpx;
+  margin-right: 36rpx;
+}
+
+/* .headerRight1 {
   flex: 1;
   text-align: right;
   padding-right: 56rpx;
@@ -83,7 +128,7 @@
   background-size: 110rpx 110rpx;
   background-position: center right;
   background-origin: content-box;
-}
+} */
 
 .mains {
   font-size: 26rpx;
@@ -162,13 +207,13 @@
   height: auto;
   padding: 0 30rpx;
   margin-bottom: 10rpx;
+  padding-bottom: 15rpx;
 }
 
 .recordList {
   display: flex;
-  padding: 26rpx 0;
-  display: flex;
-  justify-content: space-between;
+  padding: 10rpx 0;
+  justify-content: flex-start;
 }
 
 .statusL {
@@ -180,7 +225,7 @@
 
 .statusR {
   color: #333;
-  flex: 1
+  flex: 1 
 }
 
 /* 补充样式 */
@@ -221,11 +266,98 @@
   display: block;
 }
 
-.pic-phone{
-    width: 152rpx;
-    height: 48rpx;
+.pic-phone {
+  width: 112rpx;
+  height: 34rpx;
+  margin-left: 15rpx;
 }
 
-.updated{
-    color: #598AED;
+.updated {
+  color: #598aed;
+}
+
+/* 弹窗 */
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 9999;
+}
+
+.modal-content {
+  width: 560rpx;
+  margin: auto;
+  margin-top: 250rpx;
+  background: #fff;
+  border-radius: 18rpx;
+}
+
+.modal-header {
+  position: relative;
+}
+
+.modal-header .modal-icon {
+  position: absolute;
+  right: 0;
+  top: -60rpx;
+}
+
+.modal-body {
+  padding: 50rpx 30rpx 50rpx;
+}
+
+.modal-body .section {
+  text-align: center;
+  margin-bottom: 52rpx;
+}
+
+.modal-body .section:last-child {
+  margin: 0;
+}
+
+.modal-body .section .title {
+  font-size: 36rpx;
+  color: #333;
+  margin-bottom: 20rpx;
+}
+
+.modal-body .section .text {
+  font-size: 15px;
+  color: #030303;
+  text-align: left;
+}
+
+.modal-footer {
+  display: flex;
+  border-top: 1rpx solid #e5e5e5;
+}
+
+.modal-footer .confirm {
+  flex: 1;
+  font-size: 32rpx;
+  color: #6495f9;
+  width: 100%;
+  padding: 20rpx 0 30rpx;
+  text-align: center;
+  border-right: 1rpx solid #e5e5e5;
+}
+
+.modal-footer .confirm.default {
+  color: #333;
+}
+
+.modal-footer .confirm:last-child {
+  border: none;
+}
+
+.updated {
+  color: #598aed;
+}
+
+.phone-txt {
+  color: #fd7d20;
 }

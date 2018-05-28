@@ -56,17 +56,17 @@ Page({
       title: this.data.label + '询盘记录'
     });
   },
-  onShareAppMessage: function () {
-    let countType = this.data.params.countType;
-    let timeType = this.data.params.timeType;
-    let startTime = this.data.params.startTime;
-    let endTime = this.data.params.endTime;
-    let label = this.data.label;
-    return {
-      title: '四喜E伙伴',
-      path: '/pages/home/enquiry/enquiry?countType=' + countType + '&timeType=' + timeType + '&label=' + label + '&startTime=' + startTime + '&endTime=' + endTime
-    }
-  },
+  // onShareAppMessage: function () {
+  //   let countType = this.data.params.countType;
+  //   let timeType = this.data.params.timeType;
+  //   let startTime = this.data.params.startTime;
+  //   let endTime = this.data.params.endTime;
+  //   let label = this.data.label;
+  //   return {
+  //     title: '四喜E伙伴',
+  //     path: '/pages/home/enquiry/enquiry?countType=' + countType + '&timeType=' + timeType + '&label=' + label + '&startTime=' + startTime + '&endTime=' + endTime
+  //   }
+  // },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作

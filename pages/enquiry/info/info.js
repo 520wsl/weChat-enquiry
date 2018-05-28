@@ -7,6 +7,7 @@ Page({
    */
   data: {
     CDN: app.CDN,
+    orderType:0,
     params: {
       enquiryId: '',
       pageNum: 1,
@@ -29,6 +30,11 @@ Page({
       2: '跟踪',
       3: '流失'
     },
+    statusBtnAmount: {
+      2: '成交',
+      3: '跟踪',
+      4: '流失'
+    },
     saleStatusClass: {
       1: 'headerRight1',
       2: 'headerRight2',
@@ -36,6 +42,8 @@ Page({
     },
     // 买家旺旺
     aliTM: '',
+    // 阿里订单id
+    aliOrderId: '',
     // 跟单记录
     list: [],
     // 买家类型
@@ -69,6 +77,23 @@ Page({
     // 默认项
     acIndex: 0,
     toggle: [],
+    // 是否授权
+    isauth: false,
+    // aliOrderId
+    // aliOrderId: '',
+    // 阿里订单状态
+    aliSaleStatus: '',
+    // 自定义状态
+    statusBtn: '',
+    statusBtnName: {
+      2: '已成交',
+      3: '跟单中',
+      4: '已流失'
+    },
+    // 弹窗
+    modal: false,
+    // 询盘状态(经处理)
+    type: ''
   },
 
   /**
@@ -77,14 +102,71 @@ Page({
   onLoad: function (options) {
     // 请求接口
     this.data.params.enquiryId = options.id;
+    this.data.statusBtn = options.statusBtn;
+    if (options.statusBtn && options.statusBtn != 1) {
+      switch (options.statusBtn) {
+        case '2':
+          this.data.type = 1;
+          break;
+        case '3':
+          this.data.type = 2;
+          break;
+        case '4':
+          this.data.type = 3;
+          break;
+      }
+    } else {
+      this.data.type = options.type;
+    }
+    // 分享入口
+    // if (options.share == '1') {
+    //   this.setModal();
+    //   return;
+    // }
     this.getInfo();
   },
-  onShareAppMessage: function () {
-    return {
-      title: '四喜E伙伴',
-      path: '/pages/enquiry/info/info?id=' + this.data.params.enquiryId
+  // 授权判断
+  auth(type) {
+    // 没有线上订单
+    if (!type) {
+      this.setData({
+        isauth: type
+      });
     }
+    // 有线上订单且授权的
+    app.get('/check/aliauthorize').then(res => {
+      if (res.data) {
+        this.setData({
+          isauth: type
+        });
+      } else {
+      }
+    });
   },
+  // 页面跳转
+  jumpPage() {
+    wx.navigateTo({
+      url: '/pages/home/erp/orderInfo/orderInfo?orderId=' + this.data.aliOrderId
+    });
+  },
+  // 显隐弹窗
+  setModal() {
+    this.setData({
+      modal: !this.data.modal
+    })
+  },
+  // 登录
+  login() {
+    app.login();
+  },
+  // 体验版登录
+  tyLogin() { },
+  // onShareAppMessage: function () {
+  //   return {
+  //     title: '四喜E伙伴',
+  //     path: '/pages/enquiry/info/info?id=' + this.data.params.enquiryId + '&share=1'
+  //   }
+  // },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
@@ -115,10 +197,19 @@ Page({
       phoneNumber: res.currentTarget.dataset.phone
     })
   },
-
+  jumInfo: function () {
+    if (this.data.aliOrderId) {
+      wx.navigateTo({
+        url: '/pages/home/erp/orderInfo/orderInfo?orderId=' + this.data.aliOrderId
+      })
+    }
+  },
   // 获取详情
   getInfo(cb) {
-    app.get('/enquiry/listinfo', this.data.params).then(res => {
+    app.get('/enquiry/listinfo', {
+      ...this.data.params,
+      type: this.data.type
+    }).then(res => {
       if (typeof cb == 'function') {
         cb();
       }
@@ -183,7 +274,9 @@ Page({
           data.list[i]['productNameType'] = isUpdated(obj['productName']['type']);
           data.list[i]['remarkType'] = isUpdated(obj['remark']['type']);
           data.list[i]['typeType'] = isUpdated(obj['type']['type']);
-
+          data.list[i]['wechatType'] = isUpdated(obj['wechat']['type']);
+          data.list[i]['unitType'] = isUpdated(obj['unit']['type']);
+          data.list[i]['specificationType'] = isUpdated(obj['specification']['type']);
         } else {
           data.list[i]['buyerIntentionType'] = 'unchanged';
           data.list[i]['buyerTypeType'] = 'unchanged';
@@ -202,17 +295,33 @@ Page({
           data.list[i]['productNameType'] = 'unchanged';
           data.list[i]['remarkType'] = 'unchanged';
           data.list[i]['typeType'] = 'unchanged';
+          data.list[i]['wechatType'] = 'unchanged';
+          data.list[i]['unitType'] = 'unchanged';
+          data.list[i]['specificationType'] = 'unchanged';
         }
 
       }
       this.data.list.push(...data.list);
+      let aliOrderId = data.aliOrderId;
+      let isauth = false;
+      if (aliOrderId == '' || aliOrderId == null || aliOrderId == undefined) {
+        isauth = false;
+      } else {
+        isauth = true;
+      }
+      this.auth(isauth);
       this.setData({
+        statusBtn: this.data.statusBtn,
+        aliSaleStatus: data.aliSaleStatus,
+        // aliOrderId: data.aliOrderId,
         amount: data.amount,
         saleStatus: data.saleStatus,
         aliTM: data.aliTM,
         list: this.data.list,
+        aliOrderId: data.aliOrderId,
         'params.pageNum': this.data.params.pageNum,
         'params.count': data.count,
+        orderType: data.orderType
       });
 
       this.data.list.forEach((item, index) => {
@@ -328,7 +437,7 @@ var deepDiffMapper = function () {
   }
 }();
 var isUpdated = function (type) {
-  if (type == 'updated' || type == 'deleted'|| type == 'created'){
+  if (type == 'updated' || type == 'deleted' || type == 'created') {
     return 'updated'
   }
   return 'unchanged';

@@ -1,0 +1,47 @@
+/* pages/home/erp/goodsInfo/album.wxss */
+page{
+  background-color: #fff;
+}
+.row {
+  padding: 10rpx 30rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.row .proimg {
+  width: 132rpx;
+  height: 132rpx;
+  overflow: hidden;
+}
+
+.row .info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-left: 30rpx;
+  flex: 1;
+}
+
+.row .txt {
+  font-size: 28rpx;
+  color: #555;
+  height: 160rpx;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+
+.row .right {
+  font-size: 24rpx;
+  color: #999;
+  text-align: right;
+  min-width: 100rpx;
+}
+
+.row .img {
+  width: 14rpx;
+  height: 28rpx;
+  margin-bottom: -3rpx;
+  margin-left: 15rpx;
+}

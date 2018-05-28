@@ -1,0 +1,42 @@
+/* pages/home/erp/goodsInfo/editGoodsTxt.wxss */
+page{
+  background-color: #fff;
+}
+.txt{
+  padding: 30rpx;
+  background-color: #fff;
+}
+.textarea{
+  background-color: #F7F7F7;
+  font-size: 28rpx;
+  line-height: 40rpx;
+  margin: auto;
+  width: 660rpx;
+  height: 460rpx;
+  padding: 15rpx;
+}
+.zsxz{
+  text-align: right;
+  font-size: 28rpx;
+  color: #333;
+  background: #F7F7F7;
+  padding: 20rpx 30rpx;
+}
+.zsxz2{
+  color: #E53F31;
+}
+.btnGroup{
+  position: fixed;
+  bottom: 0rpx;
+  padding-bottom: 20rpx;
+  width: 100%;
+}
+.btn{
+  width: 690rpx;
+  border-radius: 6rpx;
+  background-color: #6495F9;
+  line-height: 88rpx;
+  height: 88rpx;
+  font-size: 32rpx;
+  color: #fff;
+}

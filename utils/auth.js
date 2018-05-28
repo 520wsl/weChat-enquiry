@@ -4,16 +4,16 @@ import { api } from '../utils/api';
 var auth={
     // 1、判断登录是否过期
   ifcheckSession: function () {
-    // console.log('1、判断登录是否过期')
+    console.log('1、判断登录是否过期')
     wx.checkSession({
       success: res => {
         //1-1、session 未过期，并且在本生命周期一直有效
-        // console.log('1-true、session 未过期，并且在本生命周期一直有效')
+        console.log('1-true、session 未过期，并且在本生命周期一直有效')
         this.getUserInfo();
       },
       fail: res => {
         //1-2、登录态过期
-        // console.log('1-flase、登录态过期')
+        console.log('1-flase、登录态过期')
         this.login(); //重新登录
       }
     })
@@ -33,7 +33,7 @@ var auth={
         }
         if (!res.code) {
           utils.showModel('用户登录', '登录失败:' + res.errMsg)
-        //   console.log('1.1-flase、获取用户登录态失败！' + res.errMsg)
+          console.log('1.1-flase、获取用户登录态失败！' + res.errMsg)
           return;
         }
         //发起网络请求
@@ -48,13 +48,13 @@ var auth={
   },
   // 1.2、 code 换取 openId 
   authorize: function (code) {
-    // console.log('1.2、 code 换取 openId,code:', code)
+    console.log('1.2、 code 换取 openId,code:', code)
     api
       .post('/auth/authorize', { code: code })
       .then(res => {
         if (res.status !== 200) {
           utils.showModel('用户授权', '授权失败:' + res.msg)
-        //   console.log('1.2-flase、获取openId失败！' + res.msg)
+          console.log('1.2-flase、获取openId失败！' + res.msg)
           return;
         }
         this.getUserInfo();
@@ -64,11 +64,12 @@ var auth={
   getUserInfo: function () {
     wx.getUserInfo({
       success: res => {
-        // console.log('2、小程序 获取用户信息', res)
+        console.log('2、小程序 获取用户信息', res)
         this.globalData.userInfo = res.userInfo;
         this.accountMy();
       },
       fail: res => {
+        console.log(res)
         this.openSetting();
       }
     })

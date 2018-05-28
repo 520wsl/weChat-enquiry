@@ -12,3 +12,5 @@
       time="{{time}}" navLink="1"></component-king-list>
   </view>
 </view>
+
+<button open-type='contact' plain class='askBtn pic'><image src='{{CDN}}icon/icon_ask.png'></image></button>

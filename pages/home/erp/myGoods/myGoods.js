@@ -10,15 +10,52 @@ Page({
     CDN: app.CDN,
     pageType: 1,
     list: [],
+    countNum: [],
+    optOrderNavId: 'all',
     params: {
       pageNum: 1,
       page: 1,
       pageSize: 8,
-      count: 0
+      count: 0,
+      status: 0,
+      keyword: ''
     },
     count: 0,
     isClear: false,
-    isshowFooter: false
+    isshowFooter: false,
+    isOpen: false,
+    types: [
+      {
+        key: 0,
+        name: '全部',
+        id: 'all'
+      },
+      {
+        key: 1,
+        name: '待付款',
+        id: 'dfk'
+      },
+      {
+        key: 2,
+        name: '待发货',
+        id: 'dfh'
+      },
+      {
+        key: 3,
+        name: '待收货',
+        id: 'dsh'
+      },
+      {
+        key: 4,
+        name: '交易成功',
+        id: 'success'
+      },
+      {
+        key: 5,
+        name: '交易关闭',
+        id: 'close'
+      },
+    ]
   },
   setPageTypeAll(pageType) {
     this.setData({
@@ -41,10 +78,44 @@ Page({
       title: title
     })
   },
+  delKeyWord(){
+    this.setData({
+      'params.keyword':'',
+      list: []
+    })
+    this.getList();
+  },
   // 设置选项卡值
   setPageType(e) {
     let pageType = e.currentTarget.dataset && e.currentTarget.dataset.pagetype || 0;
     this.setPageTypeAll(pageType)
+  },
+  // 设置订单选项卡是否打开扩展
+  setOpen() {
+    let isOpen = !this.data.isOpen;
+    this.setData({
+      isOpen: isOpen
+    });
+  },
+  jumpToSearchWord() {
+    console.log(this.data)
+    wx.navigateTo({
+      url: '/pages/home/erp/myGoods/searchWord?status=' + this.data.params.status + '&keyword=' + this.data.params.keyword,
+    })
+  },
+  optProNav(e) {
+    console.log('e', e)
+    let status = e.currentTarget.dataset && e.currentTarget.dataset.status || 1;
+    this.setData({ 'params.status': status, list: [], 'params.pageNum': 1, 'params.page': 1})
+    this.getList()
+  },
+  optOrderNav(e) {
+    console.log('e', e.currentTarget.dataset)
+    let status = e.currentTarget.dataset && e.currentTarget.dataset.status || 0;
+    let optOrderNavId = e.currentTarget.dataset && e.currentTarget.dataset.optordernavid || 'all';
+    console.log('optOrderNavId', optOrderNavId)
+    this.setData({ 'params.status': status, list: [], optOrderNavId: optOrderNavId, isOpen: false, 'params.pageNum': 1, 'params.page': 1 })
+    this.getOrder()
   },
   getOrder(cb) {
     app
@@ -110,6 +181,7 @@ Page({
   },
   // 获取商品列表数据
   getList(cb) {
+    // /product/searchproductlist
     app
       .get('/product/list', this.data.params)
       .then(res => {
@@ -139,6 +211,10 @@ Page({
           return;
         }
         this.data.count = res.data.count;
+        this.data.countNum = res.data.countNum;
+        this.setData({
+          countNum: res.data.countNum
+        })
         if (!this.data.isClear) {
           this.data.list = [];
         }
@@ -152,7 +228,8 @@ Page({
           this.setData({
             'list': this.data.list,
             isshowFooter: false,
-            count: this.data.count
+            count: this.data.count,
+            countNum: this.data.countNum
           })
         } else {
           this.reset();
@@ -169,10 +246,21 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(' 生命周期函数--监听页面加载', options.pageType)
+    console.log(' 生命周期函数--监听页面加载', options)
     this.data.params.pageNum = 1;
     this.data.params.page = 1;
     this.data.pageType = options.pageType || 1
+    let keyword = options.keyword || '';
+    let status = options.status || 1;
+    if (this.data.pageType == 2) {
+      status = options.status || 0;
+    }
+    console.log('status', status)
+    
+    this.setData({
+      'params.keyword': keyword,
+      'params.status': status
+    })
     this.setPageTypeAll(this.data.pageType);
     // this.init(this.getList);
   },
@@ -195,7 +283,7 @@ Page({
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-
+    this.setData({ isOpen: false });
   },
 
   /**
@@ -261,9 +349,9 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
+  // onShareAppMessage: function () {
 
-  },
+  // },
 
   init(callback) {
     if (wx.showLoading) {
@@ -283,7 +371,8 @@ Page({
   },
   toFixed(v) {
     if (v == '' || v == null || v == undefined) {
-      return v;
+      // return v;
+      return 0;
     }
     return v.toFixed(2);
   }

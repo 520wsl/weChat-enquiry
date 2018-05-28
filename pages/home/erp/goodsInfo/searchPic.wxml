@@ -1,0 +1,20 @@
+<!--pages/home/erp/goodsInfo/searchPic.wxml-->
+<template name="item-pic">
+  <view class='img'>
+    <view bindtap='setImgUrl' data-imgUrl='{{item}}' class='pic pro'><image mode='widthFix' src='{{item}}'></image></view>
+    <view wx:if="{{imgUrl == item}}" class='pic iconok'><image src='{{CDN}}icon/icon_ok.png'></image></view>
+  </view>
+</template>
+
+<view wx:if="{{name}}" class='proname hr'><text>{{name}}</text></view>
+<view class='content'>
+  <template is="item-pic"  wx:for="{{imgUrls}}" wx:key="{{index}}" data="{{CDN,item,imgUrl}}"></template>
+</view>
+<view style="height:90rpx;"></view>
+<view class='btngroup'>
+  <view class='group'>
+    <view class='preview' bindtap='preview'>预览</view>
+    <view bindtap='submit' class="submit {{imgUrl.length <= 0?'submit1':''}}">保存</view>
+  </view>
+</view>
+<view class="btn-back" bindtap='backIndex'><image src="{{CDN + 'icon_return.png'}}" class="img" /></view>

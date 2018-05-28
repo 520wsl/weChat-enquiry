@@ -1,12 +1,18 @@
 <!--pages/personal/personal.wxml-->
 <view class='container'>
   <view class='top'>
+    <view class='untie'>
+      <view class='untie pic' bindtap='untie' wx:if="{{info.login && !isToggleHandle}}">
+        <image src="{{CDN}}/icon/icon_untie.png" />
+      </view>
+    </view>
+
     <view bindtap='debug' class='img-box'>
       <view class='default_heads'>
         <image src='{{avatarUrl}}' class='img' />
       </view>
     </view>
-    <button wx:if="{{!info.login}}" bindtap='login' class='login_btn'>登录</button>
+    <!-- <button wx:if="{{!info.login}}" bindtap='login' class='login_btn'>登录</button> -->
     <text wx:if="{{info.login}}" class='text'>{{companyName}}</text>
   </view>
   <view class='list-box' wx:if="{{isShowCompany}}">
@@ -47,8 +53,11 @@
   <view class='tc_btn_box' wx:if="{{info.login}}">
     <button class='gradient-bg tc_btn' bindtap='logOut'>退 出</button>
   </view>
-  <view wx:if="{{isOpenDebug}}">
-    <input  bindinput="setDebugCode" />
+  <view class='tc_btn_box' wx:if="{{!info.login}}">
+    <button class='gradient-bg tc_btn' open-type="getUserInfo" bindgetuserinfo='btnLogin'>登 录</button>
+  </view>
+  <view wx:if="{{isOpenDebug}}" style='padding:30rpx;'>
+    <input placeholder='请输入体验码!' style='border: 1px solid #E0E0E0;height:90rpx;line-height:90rpx;text-indent:30rpx;' bindinput="setDebugCode" />
   </view>
   <!-- <view class='tc_btn_box' wx:else>
     <button style="" class='gradient-bg tc_btn' bindtap='toggleHandle'>切换体验版</button>

@@ -5,7 +5,7 @@ Page({
     verifyBindphone: function () {
         // console.log({ ...this.data.params })
         let params = { ...this.data.params };
-        if (!params.phone || !/^1[34578]\d{9}$/.test(params.phone)) {
+        if (!params.phone || !/^1[3456789]\d{9}$/.test(params.phone)) {
             app.utils.showModel('绑定手机号', '请填写正确的手机号')
             return;
         }
@@ -205,10 +205,10 @@ Page({
     /**
      * 用户点击右上角分享
      */
-    onShareAppMessage: function () {
-        return {
-            title: '四喜E伙伴',
-            path: '/pages/personal/bindPhone/bindPhone'
-        }
-    },
+    // onShareAppMessage: function () {
+    //     return {
+    //         title: '四喜E伙伴',
+    //         path: '/pages/personal/bindPhone/bindPhone'
+    //     }
+    // },
 })

@@ -55,7 +55,7 @@
   border: 2rpx solid #ecf2fd;
   border-radius: 148rpx;
   background: #ecf2fd;
-  letter-spacing: 10.8rpx;
+  /* letter-spacing: 10.8rpx;需求要求去掉 */
 }
 
 .date-control-1 .time .img{

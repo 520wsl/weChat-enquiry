@@ -99,7 +99,7 @@
     margin-right:15rpx;
 }
 
-.nav-btn .btn1 {
+.nav-btn .btn1, .nav-btn .btn-status2 {
   color: #33cc82;
   border-color: #33cc82;
 }
@@ -110,7 +110,7 @@
 }
 
 .nav-btn .btn3,
-.nav-btn .btn4 {
+.nav-btn .btn4, .nav-btn .btn-status4 {
     color: #f56364;
     border-color: #f56364;
 }
@@ -147,4 +147,8 @@
     line-height: 42rpx;
     height: 42rpx;
     flex: 1;
+}
+.orderline{
+  color: #FC7C1F;
+  font-size: 24rpx;
 }
