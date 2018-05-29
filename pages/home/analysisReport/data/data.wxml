@@ -31,7 +31,7 @@
     <view class='lab lable{{pageType}}'>
         <block wx:for='{{tabList}}' wx:key="index">
             <view class='item-lable'>
-                <view class='item-lable-tu' style='background-color:{{colorType[index]}};'></view>
+                <view class='item-lable-tu' style='background-color:{{item.color}};'></view>
                 <view class='item-lable-txt'>{{item.name}}</view>
             </view>
         </block>
@@ -43,7 +43,7 @@
         <view class='canvas'>
             <view class='title canvas-title'>{{title}}</view>
             <canvas style="width: 100%; min-height: 640rpx;background:#fff;" canvas-id="{{canvasId}}"></canvas>
-            <template is="lable" data="{{tabList,colorType,pageType}}" />
+            <template is="lable" data="{{tabList,pageType,color}}" />
         </view>
         <view class='sjx'>
             <view class='pic'>

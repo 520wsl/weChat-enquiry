@@ -1,5 +1,8 @@
 {
   "navigationBarTitleText": "消息",
   "enablePullDownRefresh": true,
+  "usingComponents": {
+    "component-no-data": "/components/noData/noData"
+  },
   "onReachBottomDistance": 10
 }

@@ -135,4 +135,23 @@ page {
     margin: auto;
     display: block;
   }
-  
+  /* 空数据 */
+
+.no-data {
+  text-align: center;
+  font-size: 28rpx;
+  color: #ccc;
+  margin-top: 212rpx;
+}
+
+.no-data .img {
+  display: block;
+  width: 190rpx;
+  height: 178rpx;
+  margin: auto;
+}
+
+.no-data .txt {
+  margin-top: 40rpx;
+  display: block;
+}
