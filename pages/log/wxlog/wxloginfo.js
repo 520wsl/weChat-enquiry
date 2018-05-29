@@ -3,7 +3,7 @@
  * @E-Mail: 395548460@qq.com 
  * @Date: 2018-05-26 14:15:27 
  * @Last Modified by: Mad Dragon
- * @Last Modified time: 2018-05-26 17:09:09
+ * @Last Modified time: 2018-05-28 14:47:19
  */
 // pages/log/wxlog/wxloginfo.js
 const app = getApp()
@@ -61,7 +61,7 @@ Page({
         if (res.data) {
           info['typeStr'] = this.getArrStr(this.data.logTypes, info.type);
           info['gmtCreateStr'] = this.switchTime(info.gmtCreate);
-          if(info.stastus == 1){
+          if(info.status == 1){
             this.editStatus();
           }
         }

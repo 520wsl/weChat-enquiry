@@ -13,38 +13,34 @@ Page({
         times: [],
         timeArray: [],
         disabled: true,
-        msgStr:'数据加载中，请稍后。。。',
+        msgStr: '数据加载中，请稍后。。。',
         area1: {
             canvasId: 'area1',
             tabType: 'area',
             title: '按总金额统计',
             titles: ['询盘地区', '询盘总数', '总金额', '询盘占比'],
-            tabList: [],
-            colorType: ['#00DACE', '#33CC82', '#FFC444', '#F88133', '#F56364', '#CCB433'],
+            tabList: []
         },
         area2: {
             canvasId: 'area2',
             tabType: 'area',
             title: '按成交金额统计',
             titles: ['询盘地区', '有效询盘数量', '成交金额', '成交占比'],
-            tabList: [],
-            colorType: ['#00DACE', '#33CC82', '#FFC444', '#F88133', '#F56364', '#CCB433'],
+            tabList: []
         },
         product1: {
             canvasId: 'product1',
             tabType: 'product',
             title: '高频产品排行',
             titles: ['产品名称', '询盘数量', '公司报价', '同行报价'],
-            tabList: [],
-            colorType: ['#F56364', '#FFC444', '#F6825C', '#FFECA3', '#FF9938', '#C15266', '#FDDA9D', '#EFA08E', '#DC7A78', '#E8BE5B', '#E5B6B5'],
+            tabList: []
         },
         product2: {
             canvasId: 'product2',
             tabType: 'product',
             title: '已成交高频产品排行',
             titles: ['产品名称', '询盘数量', '公司报价', '同行报价'],
-            tabList: [],
-            colorType: ['#F56364', '#FFC444', '#F6825C', '#FFECA3', '#FF9938', '#C15266', '#FDDA9D', '#EFA08E', '#DC7A78', '#E8BE5B', '#E5B6B5'],
+            tabList: []
         },
         colorType1: ['#00DACE', '#33CC82', '#FFC444', '#F88133', '#F56364', '#CCB433'],
         colorType2: ['#F56364', '#FFC444', '#F6825C', '#FFECA3', '#FF9938', '#C15266', '#FDDA9D', '#EFA08E', '#DC7A78', '#E8BE5B', '#E5B6B5'],
@@ -93,9 +89,9 @@ Page({
             this.getTimes();
         }
     },
-    setMsgStr(){
+    setMsgStr() {
         this.setData({
-            'msgStr':'抱歉!没有找到符合条件的记录'
+            'msgStr': '抱歉!没有找到符合条件的记录'
         })
     },
     // 询盘报告分析-数据分析-区域分布与排行统计-按总金额统计
@@ -109,7 +105,7 @@ Page({
                 orderType: 0
             })
             .then(res => {
-                
+
                 if (res.status == 401) {
                     wx.showModal({
                         title: '提示',
@@ -137,13 +133,10 @@ Page({
                     return;
                 }
                 let data = this.filterZero(res.data)
-                this.setData({
-                    'area1.tabList': data
-                })
                 if (wx.hideLoading) {
                     wx.hideLoading();
                 }
-                this.getEcharts(data, 'area1', this.data.colorType1);
+                this.getEcharts(data, 'area1', this.data.colorType1, 'area1.tabList');
                 this.setMsgStr();
             })
             .catch(res => {
@@ -189,14 +182,11 @@ Page({
                     return;
                 }
                 let data = this.filterZero(res.data)
-                this.setData({
-                    'area2.tabList': data
-                })
 
                 if (wx.hideLoading) {
                     wx.hideLoading();
                 }
-                this.getEcharts(data, 'area2', this.data.colorType1);
+                this.getEcharts(data, 'area2', this.data.colorType1, 'area2.tabList');
                 this.setMsgStr();
             })
             .catch(res => {
@@ -241,14 +231,10 @@ Page({
                     return;
                 }
                 let data = this.filterZero(res.data)
-                this.setData({
-                    'product1.tabList': data
-                })
-
                 if (wx.hideLoading) {
                     wx.hideLoading();
                 }
-                this.getEcharts(data, 'product1', this.data.colorType2);
+                this.getEcharts(data, 'product1', this.data.colorType2, 'product1.tabList');
                 this.setMsgStr();
             })
             .catch(res => {
@@ -293,14 +279,10 @@ Page({
                     return;
                 }
                 let data = this.filterZero(res.data)
-                this.setData({
-                    'product2.tabList': data
-                })
-
                 if (wx.hideLoading) {
                     wx.hideLoading();
                 }
-                this.getEcharts(data, 'product2', this.data.colorType2);
+                this.getEcharts(data, 'product2', this.data.colorType2, 'product2.tabList');
                 this.setMsgStr();
             })
             .catch(res => {
@@ -363,7 +345,7 @@ Page({
     },
 
     // 图表
-    getEcharts(series, canvasId, colorType) {
+    getEcharts(series, canvasId, colorType, tabList) {
         if (!series || series.length == 0) {
             console.log('图标数据：' + series)
             return;
@@ -376,15 +358,41 @@ Page({
         });
         let newSeries = cache.map((item, index) => {
             return {
+                ...item,
                 name: item.name,
                 data: item.percent,
-                color: colorType[item.number % 10],
+                color: colorType[item.number % 11],
                 format: function (val) {
                     return item.percent + '% ';
                 }
             }
         });
-        // console.log(newSeries);
+        switch (canvasId) {
+            case 'area1':
+                this.setData({
+                    'area1.tabList': newSeries
+                })
+                break;
+            case 'area2':
+                this.setData({
+                    'area2.tabList': newSeries
+                })
+                break;
+            case 'product1':
+                this.setData({
+                    'product1.tabList': newSeries
+                })
+                break;
+            case 'product2':
+                this.setData({
+                    'product2.tabList': newSeries
+                })
+                break;
+
+        }
+
+        console.log('newSeries', newSeries);
+        console.log(tabList, this.data[canvasId])
         var windowWidth = 320;
         try {
             var res = wx.getSystemInfoSync();

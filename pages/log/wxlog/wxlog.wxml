@@ -6,7 +6,7 @@
         <view class="pic">
           <image src="{{CDN}}log/log_{{type}}.png"></image>
         </view>
-        <view wx:if="{{stastus == 1}}" class="noread"></view>
+        <view wx:if="{{status == 1}}" class="noread"></view>
       </view>
       <view class="title">
         <view>{{typeStr}}</view>
@@ -26,3 +26,10 @@
 <view class="log">
   <template wx:for="{{list}}" wx:key="{{index}}" is="item-log" data="{{CDN,...item}}"></template>
 </view>
+<view wx:if="{{list.length > 0 && (list.length == count) && isshowFooter}}" class="bottom-line">
+  <view class="line"></view>
+  <view class="line-txt">我是有底线的</view>
+  <view class="line"></view>
+</view>
+<component-no-data text="{{msgStr}}" wx:if="{{list.length == 0}}"></component-no-data>
+<button open-type='contact' plain class='askBtn pic'><image src='{{CDN}}icon/icon_ask.png'></image></button>

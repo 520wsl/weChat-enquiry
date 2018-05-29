@@ -3,7 +3,7 @@
  * @E-Mail: 395548460@qq.com 
  * @Date: 2018-05-26 14:15:35 
  * @Last Modified by: Mad Dragon
- * @Last Modified time: 2018-05-26 21:04:59
+ * @Last Modified time: 2018-05-28 14:35:52
  */
 // pages/log/wxlog/wxlog.js
 const app = getApp()
@@ -14,6 +14,8 @@ Page({
   data: {
     CDN: app.CDN,
     logTypes: app.logTypes,
+    isshowFooter: false,
+    msgStr: '数据加载中，请稍后。。。',
     params: {
       pageNum: 1,
       pageSize: 8
@@ -26,11 +28,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.setData({
-      list:[],
-      'params.pageNum':1
-    })
-    this.getList();
   },
   getList(type) {
     app
@@ -49,18 +46,24 @@ Page({
               }
             }
           });
+          this.setData({
+            msgStr: '抱歉!没有找到符合条件的记录'
+          })
           return;
         }
         if (res.status !== 200) {
+          this.setData({
+            msgStr: '抱歉!没有找到符合条件的记录'
+          })
           app.utils.showModel('获取消息列表数据', res.msg);
           return;
         }
         let list = []
         let old = this.data.list;
-        if(type == 'push'){
+        if (type == 'push') {
           old.push(...res.data.list)
-          list =  old
-        }else{
+          list = old
+        } else {
           list = res.data && res.data.list || [];
         }
         list.map(item => {
@@ -71,11 +74,16 @@ Page({
         console.log(list)
         this.setData({
           list: list,
-          count: res.data.count
+          count: res.data.count,
+          isshowFooter: false,
+          msgStr: '抱歉!没有找到符合条件的记录'
         })
 
       })
       .catch(res => {
+        this.setData({
+          msgStr: '抱歉!没有找到符合条件的记录'
+        })
         console.log('获取消息列表数据', res)
       })
   },
@@ -119,6 +127,15 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    this.setData({
+      list: [],
+      'params.pageNum': 1
+    })
+    this.setData({
+      msgStr: '数据加载中，请稍后。。。'
+    })
+    this.getList();
+
   },
 
   /**
@@ -155,8 +172,15 @@ Page({
       this.data.params.pageNum++;
       this.getList('push');
     }
+    if (!this.data.isshowFooter) {
+      this.setShowFooter();
+    }
   },
-
+  setShowFooter() {
+    this.setData({
+      isshowFooter: true
+    })
+  },
   /**
    * 用户点击右上角分享
    */
