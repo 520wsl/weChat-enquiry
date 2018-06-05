@@ -1,7 +1,14 @@
 {
   "pages": [
     "pages/personal/personal",
+    "pages/log/wxlog/wxlog",
+    "pages/log/wxlog/wxloginfo",
+    "pages/home/erp/goodsInfo/goodsInfo",
+    "pages/share/goodsInfo/goodsInfo",
+    "pages/home/erp/goodsInfo/album",
     "pages/home/erp/goodsInfo/editGoodsInfo",
+    "pages/home/erp/goodsInfo/editGoodsTxt",
+    "pages/home/erp/goodsInfo/searchPic",
     "pages/home/erp/myGoods/myGoods",
     "pages/home/home",
     "pages/enquiry/enquiry",
@@ -23,11 +30,8 @@
     "pages/home/areaEnquiry/areaEnquiry",
     "pages/home/erp/orderInfo/orderInfo",
     "pages/home/erp/logisticsInfo/logisticsInfo",
-    "pages/home/erp/goodsInfo/goodsInfo",
-    "pages/share/goodsInfo/goodsInfo",
     "pages/home/erp/myGoods/searchWord",
-    "pages/home/erp/orderInfo/editOrderPic",
-    "pages/home/erp/goodsInfo/searchPic"
+    "pages/home/erp/orderInfo/editOrderPic"
   ],
   "window": {
     "backgroundColor": "#f2f2f2",
@@ -53,6 +57,12 @@
         "text": "询盘",
         "selectedIconPath": "images/personal.png",
         "iconPath": "images/personal_2.png"
+      },
+      {
+        "pagePath": "pages/log/wxlog/wxlog",
+        "text": "消息",
+        "selectedIconPath": "images/log.png",
+        "iconPath": "images/log_2.png"
       },
       {
         "pagePath": "pages/personal/personal",

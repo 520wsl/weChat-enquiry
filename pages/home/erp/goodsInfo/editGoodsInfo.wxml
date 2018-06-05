@@ -1,28 +1,49 @@
 <!--pages/home/erp/goodsInfo/editGoodsInfo.wxml-->
 <!-- 商品详情图片 -->
-<!-- <swiper indicator-dots="true" autoplay="false" interval="5000" duration="500" style="height:748rpx;width:100%;">
+<swiper indicator-dots="true" autoplay="false" interval="5000" duration="500" style="height:748rpx;width:100%;">
   <block wx:for="{{params.images}}" wx:key="{{index}}">
     <swiper-item>
       <image src="{{ALI}}{{item}}" class="slide-image" />
     </swiper-item>
   </block>
-</swiper> -->
+</swiper>
 <!-- 商品标题和价格 -->
-<!-- <block>
+<block>
   <view class="goods">
     <view class="header">
       <text class="txt">{{params.subject}}</text>
     </view>
-    <view class="content">
+    <!-- <view class="content">
       <block wx:if="{{params.minPrice}}">
         ￥
-        <text class="money">{{params.minformatData.vInt}}<text class="double">.{{params.minformatData.vDouble}}</text></text>
+        <text class="money">{{params.minformatData.vInt}}
+          <text class="double">.{{params.minformatData.vDouble}}</text>
+        </text>
         -</block>￥
-      <text class="money">{{params.maxformatData.vInt}}<text class="double">.{{params.maxformatData.vDouble}}</text></text>
+      <text class="money">{{params.maxformatData.vInt}}
+        <text class="double">.{{params.maxformatData.vDouble}}</text>
+      </text>
       <text class="text">≥{{params.minOrderQuantity}} {{params.unit}}起批</text>
       <button plain="true" class="share-btn" open-type='share'></button>
       <image src="/images/icon_share.png" class="share-img"></image>
-    </view>
+    </view> -->
+    <view class="prc_share_group">
+        <view class="price">
+          <block wx:if="{{params.minPrice}}">
+            <text class="txt1">¥</text>
+            <text class="txt2">{{params.minformatData.vInt}}</text>
+            <text class="txt1">.{{params.minformatData.vDouble}}</text>
+            <text class="txt2"> 一 </text>
+          </block>
+          <text class="txt1">¥</text>
+          <text class="txt2">{{params.maxformatData.vInt}}</text>
+          <text class="txt1">.{{params.maxformatData.vDouble}}</text>
+          <text class="txt3">≥ {{params.minOrderQuantity}} {{params.unit}}起批</text>
+        </view>
+        <button class="sharebtn pic" plain="true" open-type='share'>
+          <image model="widthFix" src="{{CDN}}icon/icon_share.png"></image>
+        </button>
+      </view>
     <view class="footer">
       <view>
         <text class="txt">库存{{params.amountOnSale}}个</text>
@@ -36,16 +57,16 @@
       </view>
     </view>
   </view>
-</block> -->
+</block>
 <!-- 商品规格 -->
-<!-- <view class="norm"   wx:if="{{params.skuList}}">
+<view class="norm" wx:if="{{params.skuList}}">
   <view class="tittle">
     <image class="img" src="{{CDN}}icon/icon_pro_standard.png" />
     <text class="txt">产品规格</text>
   </view>
   <view class="sub">
     <view class="{{show ? '' : 'txt-more'}} detail">
-      <view  wx:for="{{params.skuList}}" wx:key="{{index}}" class="{{index < 2||show ? '' : 'hid'}} line">
+      <view wx:for="{{params.skuList}}" wx:key="{{index}}" class="{{index < 2||show ? '' : 'hid'}} line">
         <view class="name">
           {{item.attributeName}}：
         </view>
@@ -56,24 +77,22 @@
       <image mode="aspectFit" src="{{CDN}}icon_right.png" />
     </view>
   </view>
-</view> -->
+</view>
 <!-- 产品属性 -->
-<!-- <view class="attr" wx:if="{{params.list}}">
+<view class="attr" wx:if="{{params.list}}">
   <view class="tittle">
     <image class="img" src="{{CDN}}icon/icon_pro_attr.png" />
     <text class="txt">产品属性</text>
   </view>
   <view class="lists">
     <view class="list" wx:for="{{params.list}}" wx:key="{{index}}">
-      <view class="name">
-        {{item.attributeName}}：
-      </view>
+      <text>{{item.attributeName}}：</text>
       <text class="txt">{{item.attributeValue}}</text>
     </view>
   </view>
-</view> -->
+</view>
 <!-- 买家服务 -->
-<!-- <view class="server">
+<view class="server">
   <view class="tittle">
     <image class="img" src="{{CDN}}icon/icon_buyer_server.png" />
     <text class="txt">买家服务</text>
@@ -85,7 +104,63 @@
     </view>
   </view>
 </view>
-<button open-type='contact' plain class='askBtn pic'><image src='{{CDN}}icon/icon_ask.png'></image></button> -->
+<button open-type='contact' plain class='askBtn pic'>
+  <image src='{{CDN}}icon/icon_ask.png'></image>
+</button>
+<template name="proinfo-img-default">
+  <view class='imgbk'>
+    <navigator open-type="redirect" url='/pages/home/erp/goodsInfo/album?subscript={{index}}&&productId={{productId}}' class='img'>
+      <view class='bg'>
+        <view class='pic addimage'>
+          <image src='{{CDN}}icon/icon_add_pro_image.png'></image>
+        </view>
+        <view>添加图片</view>
+      </view>
+    </navigator>
+    <view class='pic delpro' bindtap='delPhotoInfos' data-num='{{index}}' data-type='delModel'>
+      <image src='{{CDN}}icon/icon_del_pro_image.png'></image>
+    </view>
+  </view>
+</template>
+
+<template name="proinfo-img">
+  <view class='showimg'>
+    <navigator url='/pages/home/erp/goodsInfo/album?subscript={{index}}&&productId={{productId}}'>
+      <view class='pic'>
+        <image style='width:750rpx;' mode='widthFix' src='{{imgUrl}}'></image>
+      </view>
+    </navigator>
+    <view class='pic delpro delpro2' bindtap='delPhotoInfos' data-num='{{index}}' data-type='delImg'>
+      <image src='{{CDN}}icon/icon_del_pic.png'></image>
+    </view>
+  </view>
+</template>
+
+<template name="proinfo-txt-default">
+  <navigator url='/pages/home/erp/goodsInfo/editGoodsTxt?subscript={{index}}&&productId={{productId}}' class='txt hr' style='padding-bottom:15rpx;'>
+    <text>添加商品描述</text>
+  </navigator>
+</template>
+
+<template name="proinfo-txt">
+  <view class='description hr'>
+    <navigator url='/pages/home/erp/goodsInfo/editGoodsTxt?subscript={{index}}&&productId={{productId}}' class='txt'>
+      <text>{{description}}</text>
+    </navigator>
+    <view class='btn-txt-del' bindtap='delPhotoInfos' data-num='{{index}}' data-type='delDescription'>
+      <view class='pic txt-del-img'>
+        <image src='{{CDN}}icon/icon_txt_del.png'></image>
+      </view>
+    </view>
+  </view>
+</template>
+
+<template name="item-proinfo">
+  <view class='info'>
+    <template is="{{imgUrl?'proinfo-img':'proinfo-img-default'}}" data="{{imgUrl,CDN,index,productId}}"></template>
+    <template is="{{description?'proinfo-txt':'proinfo-txt-default'}}" data="{{description,CDN,index,productId}}"></template>
+  </view>
+</template>
 
 <view class='edit'>
   <view class='title hr'>
@@ -94,97 +169,17 @@
     </view>
     <text>商品详情</text>
   </view>
-  <button class='addbtn'>+ 增加商品图片或文本</button>
-
-  <view class='info'>
-    <view class='imgbk'>
-      <navigator url='/pages/home/erp/goodsInfo/searchPic?productId={{productId}}' class='img'>
-        <view class='bg'>
-          <view class='pic addimage'>
-            <image src='{{CDN}}icon/icon_add_pro_image.png'></image>
-          </view>
-          <view>添加图片</view>
-        </view>
-      </navigator>
-      <view class='pic delpro'>
-        <image src='{{CDN}}icon/icon_del_pro_image.png'></image>
-      </view>
-    </view>
-
-    <view class='txt hr'>
-      <text>添加商品描述</text>
-    </view>
-  </view>
-
-  <view class='info'>
-    <view class='imgbk'>
-      <navigator url='/pages/home/erp/goodsInfo/searchPic?productId={{productId}}' class='img'>
-        <view class='bg'>
-          <view class='pic addimage'>
-            <image src='{{CDN}}icon/icon_add_pro_image.png'></image>
-          </view>
-          <view>添加图片</view>
-        </view>
-      </navigator>
-      <view class='pic delpro'>
-        <image src='{{CDN}}icon/icon_del_pro_image.png'></image>
-      </view>
-    </view>
-
-    <view class='txt hr'>
-      <text>添加商品描述</text>
-    </view>
-  </view>
-
-  <view class='info'>
-    <view class='imgbk'>
-      <navigator url='/pages/home/erp/goodsInfo/searchPic?productId={{productId}}' class='img'>
-        <view class='bg'>
-          <view class='pic addimage'>
-            <image src='{{CDN}}icon/icon_add_pro_image.png'></image>
-          </view>
-          <view>添加图片</view>
-        </view>
-      </navigator>
-      <view class='pic delpro'>
-        <image src='{{CDN}}icon/icon_del_pro_image.png'></image>
-      </view>
-    </view>
-
-    <view class='txt hr'>
-      <text>添加商品描述</text>
-    </view>
-  </view>
-
-  <view class='info'>
-    <view class='imgbk'>
-      <navigator url='/pages/home/erp/goodsInfo/searchPic?productId={{productId}}' class='img'>
-        <view class='bg'>
-          <view class='pic addimage'>
-            <image src='{{CDN}}icon/icon_add_pro_image.png'></image>
-          </view>
-          <view>添加图片</view>
-        </view>
-      </navigator>
-      <view class='pic delpro'>
-        <image src='{{CDN}}icon/icon_del_pro_image.png'></image>
-      </view>
-    </view>
-
-    <view class='txt hr'>
-      <text>添加商品描述</text>
-    </view>
-  </view>
-
-  <button class='addbtn'>+ 增加商品图片或文本</button>
+  <button class='addbtn' bindtap='addPhotoInfos' data-type='unshift'>+ 增加商品图片或文本</button>
+  <template wx:for="{{photoInfos}}" wx:key="{{index}}" is="item-proinfo" data="{{CDN,...item,index,productId}}"></template>
+  <button class='addbtn' bindtap='addPhotoInfos' data-type='push'>+ 增加商品图片或文本</button>
 </view>
 <view style='height:96rpx;'></view>
 <view class='btngroup'>
   <view class='nextbtn'>
-    <view class='leftbtn'>
+    <view bindtap="abandonPhotoInfos" class='leftbtn'>
       <text>放 弃</text>
     </view>
-    <view class='rightbtn'>
+    <view bindtap="setNext" class='rightbtn'>
       <text>下一步</text>
     </view>
   </view>

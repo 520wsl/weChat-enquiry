@@ -1,1 +1,91 @@
+/*
+ * @Author: Mad Dragon 
+ * @E-Mail: 395548460@qq.com 
+ * @Date: 2018-05-24 09:52:05 
+ * @Last Modified by: Mad Dragon
+ * @Last Modified time: 2018-05-24 10:00:00
+ */
 /* pages/home/erp/goodsInfo/searchPic.wxss */
+page{
+  background-color: #fff;
+}
+.proname {
+  background-color: #f9fcfc;
+  font-size: 28rpx;
+  color: #333;
+  text-align: center;
+  padding: 20rpx 30rpx;
+}
+
+.content {
+  background-color: #fff;
+  padding: 8rpx;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.img {
+  width: 178rpx;
+  height: 178rpx;
+  overflow: hidden;
+  position: relative;
+  padding: 3rpx;
+}
+
+.img .pro {
+  width: 178rpx;
+  height: 178rpx;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.img .iconok {
+  width: 48rpx;
+  height: 48rpx;
+  position: absolute;
+  top: 10rpx;
+  right: 10rpx;
+  background: #6495f9;
+  border-radius: 50rpx;
+}
+
+.btngroup {
+  position: fixed;
+  bottom: 0rpx;
+  width: 100%;
+}
+
+.group {
+  background-color: #292d38;
+  height: 90rpx;
+  line-height: 90rpx;
+  display: flex;
+  justify-content: space-between;
+  font-size: 28rpx;
+  padding: 0 30rpx;
+  align-items: center;
+}
+
+.group .preview {
+  color: #fff;
+  width: 80rpx;
+  text-align: center;
+}
+
+.group .submit {
+  color: #fff;
+  width: 120rpx;
+  text-align: center;
+  background-color: #6495f9;
+  height: 60rpx;
+  line-height: 60rpx;
+  border-radius: 6rpx;
+}
+
+.group .submit1 {
+  filter: alpha(opacity=50); /*支持 IE 浏览器*/
+  -moz-opacity: 0.50; /*支持 FireFox 浏览器*/
+  opacity: 0.50; /*支持 Chrome, Opera, Safari 等浏览器*/
+}

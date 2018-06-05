@@ -98,7 +98,7 @@
     <view class='types'>
       <view wx:for="{{types}}" wx:key="{{item.key}}" data-status='{{item.key}}' data-optOrderNavId='{{item.id}}' bindtap='optOrderNav' class='col {{params.status == item.key? "active":""}}' id="{{item.id}}">{{item.name}}</view>
     </view>
-  </view>
+  </view> 
 </template>
 
 <template name="order-nav">
@@ -142,8 +142,8 @@
     </view>
   </view>
 </template>
-
-<!-- <view style='position:fixed;top:0;width:100%;z-index:999;'>
+<!-- 
+<view style='position:fixed;top:0;width:100%;z-index:999;'>
   <template is="{{pageType == 1?'pro-nav':(isOpen?'order-nav-open':'order-nav')}}" data="{{CDN,types,count,params,countNum,optOrderNavId}}"></template>
 </view> -->
 

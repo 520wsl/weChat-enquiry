@@ -1,11 +1,20 @@
 <!--pages/home/analysisReport/data/data.wxml-->
 
-<template name="titles">
+<template name="area-titles">
     <view class='row title'>
         <view class='col flex1'>{{titles[0]}}</view>
         <view class='col flex1'>{{titles[1]}}</view>
         <view class='col flex1'>{{titles[2]}}</view>
         <view class='col flex1'>{{titles[3]}}</view>
+    </view>
+</template>
+
+<template name="product-titles">
+    <view class='row title'>
+        <view class='col flex1'>{{titles[0]}}</view>
+        <view class='col flex1'>{{titles[1]}}</view>
+        <view class='col flex1'>{{titles[2]}}</view>
+        <!-- <view class='col flex1'>{{titles[3]}}</view> -->
     </view>
 </template>
 
@@ -23,7 +32,7 @@
         <view class='col flex1'>{{name}}</view>
         <view class='col flex1'>{{enquiryCount}}</view>
         <view class='col flex1'>{{companyPrice}}</view>
-        <view class='col flex1'>{{tradePrice}}</view>
+        <!-- <view class='col flex1'>{{tradePrice}}</view> -->
     </view>
 </template>
 
@@ -31,7 +40,7 @@
     <view class='lab lable{{pageType}}'>
         <block wx:for='{{tabList}}' wx:key="index">
             <view class='item-lable'>
-                <view class='item-lable-tu' style='background-color:{{colorType[index]}};'></view>
+                <view class='item-lable-tu' style='background-color:{{item.color}};'></view>
                 <view class='item-lable-txt'>{{item.name}}</view>
             </view>
         </block>
@@ -43,7 +52,7 @@
         <view class='canvas'>
             <view class='title canvas-title'>{{title}}</view>
             <canvas style="width: 100%; min-height: 640rpx;background:#fff;" canvas-id="{{canvasId}}"></canvas>
-            <template is="lable" data="{{tabList,colorType,pageType}}" />
+            <template is="lable" data="{{tabList,pageType,color}}" />
         </view>
         <view class='sjx'>
             <view class='pic'>
@@ -52,7 +61,7 @@
         </view>
         <view class='enquiry'>
             <view class='enquiry-tab'>
-                <template is="titles" data="{{titles}}" />
+                <template is="{{tabType}}-titles" data="{{titles}}" />
                 <template wx:for="{{tabList}}" wx:key="{{item}}" is="{{tabType}}" data="{{...item}}" />
             </view>
         </view>

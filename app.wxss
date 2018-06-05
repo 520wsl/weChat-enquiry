@@ -50,6 +50,10 @@ page {
   overflow: hidden;
 }
 
+.pic {
+  text-align: center;
+}
+
 .pic image {
   max-width: 100%;
   max-height: 100%;
@@ -114,6 +118,40 @@ page {
   bottom: 30rpx;
   right: 10rpx;
   padding: 0;
-  border:none!important;
-  z-index: 2147483647
+  border: none !important;
+  z-index: 2147483647;
+}
+  /*返回  */
+  .btn-back{
+    width: 72rpx;
+    height: 72rpx;
+    position: fixed;
+    top: 24rpx;
+    left: 30rpx;
+  }
+  .btn-back .img{
+    width: 72rpx;
+    height: 72rpx;
+    margin: auto;
+    display: block;
+  }
+  /* 空数据 */
+
+.no-data {
+  text-align: center;
+  font-size: 28rpx;
+  color: #ccc;
+  margin-top: 212rpx;
+}
+
+.no-data .img {
+  display: block;
+  width: 190rpx;
+  height: 178rpx;
+  margin: auto;
+}
+
+.no-data .txt {
+  margin-top: 40rpx;
+  display: block;
 }

@@ -1,0 +1,8 @@
+<!--pages/home/erp/goodsInfo/editGoodsTxt.wxml-->
+<view class='txt'>
+  <textarea bindinput='setStr' value='{{str}}' maxlength="250" class='textarea' placeholder='写下商品图片详情描述'></textarea>
+  <view class='zsxz {{cursor == "250"?"zsxz2":"" }}'>{{cursor}}/250</view>
+</view>
+<view wx:if="{{str}}" class='btnGroup'>
+  <button bindtap="submit" class='btn'>保存</button>
+</view>

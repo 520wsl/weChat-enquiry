@@ -1,0 +1,20 @@
+<!--pages/log/wxlog/wxloginfo.wxml-->
+<view class="loginfo">
+  <view class="item-top">
+    <view class="icon pic">
+      <image src="{{CDN}}log/log_{{info.type || 0}}.png"></image>
+    </view>
+    <view class="title">
+      <view>{{info.typeStr}}</view>
+      <view class="time">{{info.gmtCreateStr}}</view>
+    </view>
+  </view>
+  <view class="content">
+    <image src="{{CDN}}log/icon_log.png"></image>
+    <text class="txt">{{info.messageContent}}</text>
+  </view>
+  <view class="back" bindtap="backIndex">
+    <view class="backbtn">返回</view>
+  </view>
+</view>
+<button open-type='contact' plain class='askBtn pic'><image src='{{CDN}}icon/icon_ask.png'></image></button>

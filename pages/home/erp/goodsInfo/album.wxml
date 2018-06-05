@@ -1,0 +1,22 @@
+<!--pages/home/erp/goodsInfo/album.wxml-->
+<template name="item-album">
+  <navigator open-type="redirect" url='/pages/home/erp/goodsInfo/searchPic?subscript={{subscript}}&&albumID={{albumID}}&&productId={{productId}}&&name={{name}}' class="row">
+    <view class="pic proimg">
+      <image src="{{coverImg}}"></image>
+    </view>
+    <view class="info hr">
+      <view class="txt">
+        <text>{{name}}</text>
+      </view>
+      <view class="right">
+        <text>{{imageCount}}</text>
+        <image class="img" src="{{CDN}}icon_right.png"></image>
+      </view>
+    </view>
+  </navigator>
+</template>
+
+<view>
+  <template wx:for="{{list}}" wx:key="{{index}}" is="item-album" data="{{CDN,...item,subscript,productId}}"></template>
+</view>
+<view class="btn-back" bindtap='backIndex'><image src="{{CDN + 'icon_return.png'}}" class="img" /></view>
