@@ -21,12 +21,14 @@ Page({
     action: '',
     datas: '',
     mid: '',
+    logtype: '',
     type: ''
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    console.log('接收参数-options：', options);
     // 我的公司长度大于1时显示选择公司链接
     // this.login();
     wx.getStorage({
@@ -39,9 +41,9 @@ Page({
     this.getServices();
     // 新增入口
     // scene = 'action=i&data=eyJvcGVuaWQiOiJvdWc4VzBhZDNEazNOTGIxLXBxMXlrbHdCdlNjIiwiYWxpQWNjb3VudElkIjoxMSwiaWQiOjIyfQ==';
-    console.log('接收参数-options：' + options.action, 'data: ' + options.data);
 
-    let action, datas, mid, type;
+
+    let action, datas, mid, logtype;
     let arr = {}
 
     let scene = decodeURIComponent(options.scene);
@@ -50,28 +52,30 @@ Page({
       console.log(param)
       param.map(res => {
         let { k, v } = this.splitStr(res)
-        console.log('res=>', res)
-        console.log('k=>v', k, v)
+        // console.log('res=>', res)
+        // console.log('k=>v', k, v)
         arr[k] = v;
       })
       console.log(arr)
       action = arr['action'];
       datas = arr['data'];
-      mid = arr['mid'];
-      type = arr['type'];
     }
 
 
     if (options.action) {
       action = options.action;
       datas = options.data;
+      mid = options.mid;
+      logtype = options.type;
     }
     this.setData({
       action: action,
       datas: datas,
-      mid: mid
+      mid: mid,
+      logtype: logtype
     })
     let customeInfo = app.globalData.customeInfo;
+    console.log('customeInfo', customeInfo)
     switch (action) {
       // 扫码
       case 'e':
@@ -100,21 +104,9 @@ Page({
         this.autoLogin(datas.aliAccountId, datas.id);
         break;
       case 'msg':
-        if (!datas) {
-          app.utils.showModel('微信消息登录', '登录失败，请联系管理处理！')
-          return;
-        }
-        datas = JSON.parse(app.Base64.decode(datas));
-        mid = JSON.parse(app.Base64.decode(mid));
-        console.log('app全局信息打印-msg', 'customeInfo', customeInfo, 'datas', datas, 'mid', mid);
-        if (customeInfo && customeInfo.aliAccountId === datas.aliAccountId) {
-          wx.navigateTo({
-            url: '/pages/log/wxlog/wxloginfo?userLogId=' + mid
-          });
-          return;
-        }
-        // 走登录流程
-        this.autoLogin(datas.aliAccountId, mid);
+        wx.navigateTo({
+          url: '/pages/log/wxlog/wxloginfo?userLogId=' + mid
+        });
         break;
     }
   },

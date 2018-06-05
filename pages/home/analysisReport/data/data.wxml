@@ -1,11 +1,20 @@
 <!--pages/home/analysisReport/data/data.wxml-->
 
-<template name="titles">
+<template name="area-titles">
     <view class='row title'>
         <view class='col flex1'>{{titles[0]}}</view>
         <view class='col flex1'>{{titles[1]}}</view>
         <view class='col flex1'>{{titles[2]}}</view>
         <view class='col flex1'>{{titles[3]}}</view>
+    </view>
+</template>
+
+<template name="product-titles">
+    <view class='row title'>
+        <view class='col flex1'>{{titles[0]}}</view>
+        <view class='col flex1'>{{titles[1]}}</view>
+        <view class='col flex1'>{{titles[2]}}</view>
+        <!-- <view class='col flex1'>{{titles[3]}}</view> -->
     </view>
 </template>
 
@@ -23,7 +32,7 @@
         <view class='col flex1'>{{name}}</view>
         <view class='col flex1'>{{enquiryCount}}</view>
         <view class='col flex1'>{{companyPrice}}</view>
-        <view class='col flex1'>{{tradePrice}}</view>
+        <!-- <view class='col flex1'>{{tradePrice}}</view> -->
     </view>
 </template>
 
@@ -52,7 +61,7 @@
         </view>
         <view class='enquiry'>
             <view class='enquiry-tab'>
-                <template is="titles" data="{{titles}}" />
+                <template is="{{tabType}}-titles" data="{{titles}}" />
                 <template wx:for="{{tabList}}" wx:key="{{item}}" is="{{tabType}}" data="{{...item}}" />
             </view>
         </view>

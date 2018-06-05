@@ -32,14 +32,14 @@ Page({
             canvasId: 'product1',
             tabType: 'product',
             title: '高频产品排行',
-            titles: ['产品名称', '询盘数量', '公司报价', '同行报价'],
+            titles: ['产品名称', '询盘数量', '公司报价'],
             tabList: []
         },
         product2: {
             canvasId: 'product2',
             tabType: 'product',
             title: '已成交高频产品排行',
-            titles: ['产品名称', '询盘数量', '公司报价', '同行报价'],
+            titles: ['产品名称', '询盘数量', '公司报价'],
             tabList: []
         },
         colorType1: ['#00DACE', '#33CC82', '#FFC444', '#F88133', '#F56364', '#CCB433'],

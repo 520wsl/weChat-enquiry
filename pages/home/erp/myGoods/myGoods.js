@@ -182,6 +182,7 @@ Page({
   // 获取商品列表数据
   getList(cb) {
     // /product/searchproductlist
+    // /product/list
     app
       .get('/product/list', this.data.params)
       .then(res => {
