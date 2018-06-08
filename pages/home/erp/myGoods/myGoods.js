@@ -107,7 +107,8 @@ Page({
     console.log('e', e)
     let status = e.currentTarget.dataset && e.currentTarget.dataset.status || 1;
     this.setData({ 'params.status': status, list: [], 'params.pageNum': 1, 'params.page': 1})
-    this.getList()
+    // this.getList()
+    this.init(this.getList);
   },
   optOrderNav(e) {
     console.log('e', e.currentTarget.dataset)
@@ -115,7 +116,8 @@ Page({
     let optOrderNavId = e.currentTarget.dataset && e.currentTarget.dataset.optordernavid || 'all';
     console.log('optOrderNavId', optOrderNavId)
     this.setData({ 'params.status': status, list: [], optOrderNavId: optOrderNavId, isOpen: false, 'params.pageNum': 1, 'params.page': 1 })
-    this.getOrder()
+    // this.getOrder()
+    this.init(this.getOrder);
   },
   getOrder(cb) {
     app
@@ -184,7 +186,7 @@ Page({
     // /product/searchproductlist
     // /product/list
     app
-      .get('/product/list', this.data.params)
+      .get('/product/searchproductlist', this.data.params)
       .then(res => {
         if (typeof cb == 'function') {
           cb();
