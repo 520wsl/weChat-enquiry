@@ -142,12 +142,12 @@
     </view>
   </view>
 </template>
-<!-- 
+ 
 <view style='position:fixed;top:0;width:100%;z-index:999;'>
   <template is="{{pageType == 1?'pro-nav':(isOpen?'order-nav-open':'order-nav')}}" data="{{CDN,types,count,params,countNum,optOrderNavId}}"></template>
-</view> -->
+</view> 
 
-<!-- <view style="{{params.keyword ? 'height:160rpx;width:100%;':'height:70rpx;width:100%;'}}"></view> -->
+ <view style="{{params.keyword ? 'height:160rpx;width:100%;':'height:70rpx;width:100%;'}}"></view> 
 <view style='border-top:1px solid #e0e0e0;'>
   <view hidden="{{pageType == 2}}">
     <view wx:if="{{list.length > 0}}">

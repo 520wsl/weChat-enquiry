@@ -297,8 +297,8 @@ page{
   text-align: right;
 }
 .edit .delpro image{
-  width: 88rpx;
-  height: 50rpx;
+  width: 32rpx;
+  height: 42rpx;
   margin-top: 12rpx;
  margin-right: 22rpx;  
 }
