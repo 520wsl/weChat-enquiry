@@ -48,6 +48,10 @@
           <text class='statusL'>买家职位：</text>
           <text class='statusR {{itemName.positionType}}'>{{itemName.position || ''}}</text>
         </view>
+        <view class='recordList'>
+          <text class='statusL'>买家姓名：</text>
+          <text class='statusR {{itemName.buyerNameType}}'>{{itemName.buyerName || '暂未知'}}</text>
+        </view>
         <view class='recordList' data-phone="{{itemName.phone}}" bindtap='callPhone'>
           <text class='statusL'>联系方式：</text>
           <text class='statusR phone-txt {{itemName.phoneType}}'>{{itemName.phone || ''}}</text>

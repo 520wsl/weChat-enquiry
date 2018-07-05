@@ -277,6 +277,7 @@ Page({
           data.list[i]['wechatType'] = isUpdated(obj['wechat']['type']);
           data.list[i]['unitType'] = isUpdated(obj['unit']['type']);
           data.list[i]['specificationType'] = isUpdated(obj['specification']['type']);
+          data.list[i]['buyerNameType'] = isUpdated(obj['buyerName']['type']);
         } else {
           data.list[i]['buyerIntentionType'] = 'unchanged';
           data.list[i]['buyerTypeType'] = 'unchanged';
@@ -298,6 +299,7 @@ Page({
           data.list[i]['wechatType'] = 'unchanged';
           data.list[i]['unitType'] = 'unchanged';
           data.list[i]['specificationType'] = 'unchanged';
+          data.list[i]['buyerNameTupe'] = 'unchanged'
         }
 
       }

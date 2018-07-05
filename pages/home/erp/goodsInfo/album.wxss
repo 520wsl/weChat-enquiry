@@ -1,7 +1,9 @@
 /* pages/home/erp/goodsInfo/album.wxss */
-page{
+
+page {
   background-color: #fff;
 }
+
 .row {
   padding: 10rpx 30rpx;
   display: flex;
@@ -45,3 +47,60 @@ page{
   margin-bottom: -3rpx;
   margin-left: 15rpx;
 }
+/* 
+.top {
+  width: 100%;
+  position: fixed;
+  overflow: hidden;
+}
+
+.top .nav {
+  height: 70rpx;
+  border: 1px solid #e0e0e0;
+  background-color: #f9fcfc;
+  font-size: 24rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.top .col {
+  flex: 1;
+  text-align: center;
+  height: 70rpx;
+  line-height: 70rpx;
+}
+
+.top .xian {
+  height: 30rpx;
+  width: 1rpx;
+  border-right: 1px solid #e0e0e0;
+}
+
+.top .active {
+  border-bottom: 1px solid #fc7c1f;
+  color: #fc7c1f;
+  font-size: 26rpx;
+}
+
+.videos {
+  padding: 8rpx;
+  display: flex;
+  flex-wrap: wrap;
+}
+.videos .video{
+  width: 236rpx;
+  height: 236rpx;
+  overflow: hidden;
+  margin: 5rpx;
+  position: absolute;
+}
+.iconok {
+  width: 48rpx;
+  height: 48rpx;
+  position: absolute;
+  top: 10rpx;
+  right: 10rpx;
+  background: #6495f9;
+  border-radius: 50rpx;
+} */

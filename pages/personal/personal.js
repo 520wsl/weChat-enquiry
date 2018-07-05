@@ -21,6 +21,7 @@ Page({
     action: '',
     datas: '',
     mid: '',
+    aid: '',
     logtype: '',
     type: ''
   },
@@ -43,7 +44,7 @@ Page({
     // scene = 'action=i&data=eyJvcGVuaWQiOiJvdWc4VzBhZDNEazNOTGIxLXBxMXlrbHdCdlNjIiwiYWxpQWNjb3VudElkIjoxMSwiaWQiOjIyfQ==';
 
 
-    let action, datas, mid, logtype;
+    let action = '', datas = '', mid = '', logtype = '', aid = '';
     let arr = {}
 
     let scene = decodeURIComponent(options.scene);
@@ -66,13 +67,15 @@ Page({
       action = options.action;
       datas = options.data;
       mid = options.mid;
+      aid = options.aid;
       logtype = options.type;
     }
     this.setData({
-      action: action,
-      datas: datas,
-      mid: mid,
-      logtype: logtype
+      action:action,
+      datas:datas,
+      mid:mid,
+      aid:aid,
+      logtype:logtype
     })
     let customeInfo = app.globalData.customeInfo;
     console.log('customeInfo', customeInfo)
@@ -104,9 +107,14 @@ Page({
         this.autoLogin(datas.aliAccountId, datas.id);
         break;
       case 'msg':
-        wx.navigateTo({
-          url: '/pages/log/wxlog/wxloginfo?userLogId=' + mid
-        });
+        if (customeInfo && customeInfo.aliAccountId === aid) {
+          wx.navigateTo({
+            url: '/pages/log/wxlog/wxloginfo?userLogId=' + mid
+          });
+          return;
+        }
+        // 走登录流程
+        this.autoLogin(aid, mid);
         break;
     }
   },
@@ -185,6 +193,7 @@ Page({
   },
   // 2.1、 调起客户端小程序设置界面
   openSetting: function (aliAccountId, id) {
+    console.log('2.1、 调起客户端小程序设置界面')
     wx.showModal({
       content: '检测到您的账号未授权，请先授权。',
       showCancel: false,
@@ -207,7 +216,7 @@ Page({
       })
       .then(res => {
         if (res.status !== 200) {
-          utils.showModel('', res.msg)
+          utils.showModel('切换公司', res.msg)
           return;
         }
         this.getCustome(id)
@@ -265,7 +274,9 @@ Page({
     console.log('btnLogin', e)
     if (e.detail.errMsg == "getUserInfo:ok") {
       this.login();
+      return;
     }
+    app.utils.showModel('小程序登陆', e.detail.errMsg);
   },
   // 点击登录
   login: function () {
@@ -325,6 +336,12 @@ Page({
   toCompany: function () {
     wx.navigateTo({
       url: "./companyList/companyList"
+    })
+  },
+  // 常见问题
+  toFqa: function () {
+    wx.navigateTo({
+      url: "./faq/faq"
     })
   },
   callPhone: function (res) {

@@ -43,7 +43,7 @@
 					"id": 1,
 					"name": "消息",
 					"pathName": "pages/personal/personal",
-					"query": "action=msg&data=&mid=3131&type=6",
+					"query": "action=msg&data=&mid=3131&type=6&aid=2",
 					"scene": "1014"
 				}
 			]

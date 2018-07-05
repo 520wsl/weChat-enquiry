@@ -104,7 +104,7 @@ var auth={
   },
   getCustome: function (cb) {
     api.get('/account/my').then(res => {
-    //   console.log('3、获取客户信息', res)
+      console.log('3、获取客户信息', res)
       if (res.status !== 200) {
         // console.log('获取客户信息失败：' + res.msg)
         // utils.showModel('获取客户信息', '获取客户信息失败：' + res.msg)
@@ -118,7 +118,7 @@ var auth={
   // 4、判断 是否绑定手机
   ifBindPhone: function () {
     let customeInfo = this.globalData.customeInfo;
-    // console.log('4、判断 是否绑定手机: ', customeInfo)
+    console.log('4、判断 是否绑定手机: ', customeInfo)
     if (!customeInfo || !customeInfo.phone) {
       this.showBindPhone();
       return;
@@ -169,7 +169,7 @@ var auth={
   },
   // 6.2、判断有几家客户
   bindCustome: function () {
-    // console.log('6.2、判断有几家客户', this.globalData.companies)
+    console.log('6.2、判断有几家客户', this.globalData.companies)
     let companies = this.globalData.companies;
     let companyName = this.globalData.customeInfo && this.globalData.customeInfo.companyName;
     let num = companies.length;
@@ -197,7 +197,7 @@ var auth={
   },
   // 6.3 选择公司
   setcompany: function (aliAccountId, cb) {
-    // console.log('6.3 选择公司', aliAccountId)
+    console.log('6.3 选择公司', aliAccountId)
     api
       .post('/auth/setcompany', { aliAccountId: aliAccountId })
       .then(res => {

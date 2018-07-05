@@ -14,6 +14,39 @@ page{
   height: 748rpx; 
 }
 
+/* 公共样式 */
+.sub {
+  font-size: 28rpx;
+  margin: 30rpx 30rpx 0rpx 0;
+  padding-bottom: 30rpx;
+  color: #999999;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.sub .detail .line {
+  line-height: 52rpx;
+  display: flex;
+}
+.sub .detail .line .name {
+  flex-shrink: 0;
+}
+.sub .txt {
+  color: #151515;
+  word-break:break-all;
+}
+.sub .pic image {
+  transform: rotate(90deg);
+  transform-origin: center;
+  margin-left: 30rpx;
+  width: 36rpx;
+  height: 28rpx;
+}
+.sub .rotate image{
+  transform: rotate(-90deg);
+  transform-origin: center;
+}
+
 /* 自定义风格一 */
 .sty1{
   padding-bottom: 100rpx;
@@ -53,9 +86,9 @@ page{
 }
 .sty1 .sharebtn{
   border: 0rpx;
-  width: 46rpx;
-  height: 44rpx;
-  line-height: 44rpx;
+  width: 50rpx;
+  height: 50rpx;
+  line-height: 50rpx;
   padding: 8rpx;
 }
 .sty1 .goods .content {
@@ -119,7 +152,7 @@ page{
   background: #ffffff;
   padding-left: 30rpx;
 }
-.sty1 .norm .sub {
+/* .sty1 .norm .sub {
   font-size: 28rpx;
   margin: 30rpx 30rpx 0rpx 0;
   padding-bottom: 30rpx;
@@ -149,7 +182,7 @@ page{
 .sty1 .norm .sub .rotate image{
   transform: rotate(-90deg);
   transform-origin: center;
-}
+} */
 /* <!-- 优惠信息 --> */
 .sty1 .discount {
   margin-top: 20rpx;
@@ -326,9 +359,9 @@ z-index: 3;
 }
 .sty2 .abstract .sharebtn{
   border: 0rpx;
-  width: 46rpx;
-  height: 44rpx;
-  line-height: 44rpx;
+  width: 50rpx;
+  height: 50rpx;
+  line-height: 50rpx;
   padding: 8rpx;
 }
 .sty2 .abstract .footer {
@@ -389,8 +422,12 @@ z-index: 3;
 }
 .sty2 .cpinfo .info-content{
   margin: 30rpx;
+  overflow: hidden;
 }
 .sty2 .cpinfo .info-content image{
+  border: 20rpx solid #1E2B4B;
+}
+.sty2 .cpinfo .info-content video{
   border: 20rpx solid #1E2B4B;
 }
 .sty2 .cpinfo .description{
@@ -474,9 +511,9 @@ padding-bottom: 100rpx;
 }
 .sty3 .sharebtn{
   border: 0rpx;
-  width: 46rpx;
-  height: 44rpx;
-  line-height: 44rpx;
+  width: 50rpx;
+  height: 50rpx;
+  line-height: 50rpx;
   padding: 8rpx;
 }
 .sty3 .footer {
@@ -540,8 +577,12 @@ padding-bottom: 100rpx;
 }
 .sty3 .cpinfo .info-content{
   margin: 30rpx;
+  overflow: hidden;
 }
 .sty3 .cpinfo .info-content image{
+  border: 20rpx solid #B8C0C4;
+}
+.sty3 .cpinfo .info-content video{
   border: 20rpx solid #B8C0C4;
 }
 .sty3 .cpinfo .description{

@@ -22,14 +22,62 @@
   </navigator>
 </template>
 
+<view class='btngroup'>
+  <view class='btngroup-top'>
+    <view>
+      <view bindtap='editStatus' class='btn {{isDisable?"disable":"" }}'>全部已读</view>
+    </view>
 
+    <view class='right-btn'>
+      <picker value="{{params.readFlag}}" range="{{reads}}" bindchange="setReadFlag">
+        <view class='read-btn'>
+          <view>{{reads[params.readFlag]}}</view>
+          <view class='read-pic pic'>
+            <image src='{{CDN}}icon/icon_hui_sanjiao.png'></image>
+          </view>
+        </view>
+      </picker>
+
+      <view class='open pic'>
+        <image src='{{CDN}}icon/icon_down_jiantou.png'></image>
+      </view>
+    </view>
+  </view>
+  <view class='btngroup-buttom'>
+    <view class="time-range">
+      <picker mode="date" value="{{timeSearch.startTime}}" class="{{timeSearch.startTime ? 'ac' : ''}} start-time" start="{{defaultTime.start}}" end="{{defaultTime.end}}" bindchange="startTimeChange">
+        <view class="weui-input">{{timeSearch.startTime ? timeSearch.startTime : '开始日期'}}
+          <view class="arrow-drop"></view>
+        </view>
+      </picker>
+      <text class="txt">至</text>
+      <picker mode="date" value="{{timeSearch.endTime}}" class="{{timeSearch.endTime ? 'ac' : ''}} end-time" start="{{defaultTime.start}}" end="{{defaultTime.end}}" bindchange="endTimeChange">
+        <view class="weui-input">{{timeSearch.endTime ? timeSearch.endTime : '结束日期'}}
+          <view class="arrow-drop"></view>
+        </view>
+      </picker>
+    </view>
+    <!-- <view class='log-type'>最新订单信息提醒</view> -->
+    <picker range='{{logTypes}}' value='{{params.type}}' class="ac log-type" bindchange="setType">
+      <view class="weui-input">{{logTypes[params.type]}}
+        <view class="arrow-drop"></view>
+      </view>
+    </picker>
+  </view>
+</view>
 <view class="log">
+  <!-- <view class='btngroup'>
+    <view bindtap='editStatus' class='btn {{isDisable?"disable":"" }}'>全部已读</view>
+  </view> -->
   <template wx:for="{{list}}" wx:key="{{index}}" is="item-log" data="{{CDN,...item}}"></template>
 </view>
+
 <view wx:if="{{list.length > 0 && (list.length == count) && isshowFooter}}" class="bottom-line">
   <view class="line"></view>
   <view class="line-txt">我是有底线的</view>
   <view class="line"></view>
 </view>
 <component-no-data text="{{msgStr}}" wx:if="{{list.length == 0}}"></component-no-data>
-<button open-type='contact' plain class='askBtn pic'><image src='{{CDN}}icon/icon_ask.png'></image></button>
+<button open-type='contact' plain class='askBtn pic'>
+  <image src='{{CDN}}icon/icon_ask.png'></image>
+</button>

@@ -3,7 +3,7 @@
 <template name="noData">
   <view class="no-data">
     <image src="{{CDN}}/record_no.png" class="img" />
-    <text class="txt"></text>
+    <text class="txt">{{msgStr}}</text>
   </view>
 </template>
 
@@ -58,7 +58,7 @@
 </template>
 
 <template name="item-order">
-  <navigator class='item-order' url='/pages/home/erp/orderInfo/orderInfo?orderId={{id}}'>
+  <navigator class='item-order' style='margin-bottom:0rpx;' url='/pages/home/erp/orderInfo/orderInfo?orderId={{id}}'>
     <view class='title'>
       <view class='custome txt-more'>
         <image src="{{CDN}}icon/icon_customer.png" class="img" />{{buyerLoginId || ''}}
@@ -84,7 +84,7 @@
 
 </template>
 
-<template name="order-nav-open">
+<!-- <template name="order-nav-open">
   <view class='nav_order_type_open'>
     <view class='order_title'>
       <view class='txt active'>选择状态</view>
@@ -99,11 +99,19 @@
       <view wx:for="{{types}}" wx:key="{{item.key}}" data-status='{{item.key}}' data-optOrderNavId='{{item.id}}' bindtap='optOrderNav' class='col {{params.status == item.key? "active":""}}' id="{{item.id}}">{{item.name}}</view>
     </view>
   </view> 
-</template>
+</template> -->
 
 <template name="order-nav">
   <view class='nav_order_type'>
     <view class='order_type'>
+        <view wx:for="{{types}}" wx:key="{{item.key}}" class='col' data-status='{{item.key}}' data-optOrderNavId='{{item.id}}' bindtap='optOrderNav' id="{{item.id}}">
+          <view class='txt'>
+            <view class='str {{params.status == item.key? "active":""}}'>{{item.name}}</view>
+            <view class='hru'></view>
+          </view>
+        </view>
+    </view>
+    <!-- <view class='order_type'>
       <scroll-view scroll-x scroll-into-view="{{optOrderNavId}}">
         <view wx:for="{{types}}" wx:key="{{item.key}}" class='col' data-status='{{item.key}}' data-optOrderNavId='{{item.id}}' bindtap='optOrderNav' id="{{item.id}}">
           <view class='txt'>
@@ -112,12 +120,12 @@
           </view>
         </view>
       </scroll-view>
-    </view>
-    <view class='nav_btn' bindtap='setOpen'>
+    </view> -->
+    <!-- <view class='nav_btn' bindtap='setOpen'>
       <view class='search pic'>
         <image style='display:block' src="{{CDN}}icon/icon_dn.png" />
       </view>
-    </view>
+    </view> -->
   </view>
 </template>
 
@@ -142,12 +150,12 @@
     </view>
   </view>
 </template>
- 
-<view style='position:fixed;top:0;width:100%;z-index:999;'>
-  <template is="{{pageType == 1?'pro-nav':(isOpen?'order-nav-open':'order-nav')}}" data="{{CDN,types,count,params,countNum,optOrderNavId}}"></template>
-</view> 
 
- <view style="{{params.keyword ? 'height:160rpx;width:100%;':'height:70rpx;width:100%;'}}"></view> 
+<view style='position:fixed;top:0;width:100%;z-index:999;'>
+  <template is="{{pageType == 1?'pro-nav':'order-nav'}}" data="{{CDN,types,count,params,countNum,optOrderNavId}}"></template>
+</view>
+
+<view style="{{params.keyword ? 'height:160rpx;width:100%;':'height:70rpx;width:100%;'}}"></view>
 <view style='border-top:1px solid #e0e0e0;'>
   <view hidden="{{pageType == 2}}">
     <view wx:if="{{list.length > 0}}">
@@ -158,7 +166,7 @@
         <view class="line"></view>
       </view>
     </view>
-    <template wx:else is="noData" data="{{CDN, ALI}}" />
+    <template wx:else is="noData" data="{{CDN, ALI,msgStr}}" />
   </view>
   <view hidden="{{pageType == 1}}">
     <view wx:if="{{list.length > 0}}">
@@ -169,9 +177,13 @@
         <view class="line"></view>
       </view>
     </view>
-    <template wx:else is="noData" data="{{CDN, ALI}}" />
+    <template wx:else is="noData" data="{{CDN, ALI, msgStr}}" />
   </view>
 </view>
 <button open-type='contact' plain class='askBtn pic'>
   <image src='{{CDN}}icon/icon_ask.png'></image>
 </button>
+
+<view wx:if="{{isShowGuide}}" class='yd-nav-mb' bindtap='setShowGuide'>
+  <image mode='widthFix' src='{{CDN}}zdy/zyd-zdystyle.png'></image>
+</view>

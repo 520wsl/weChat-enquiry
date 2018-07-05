@@ -3,6 +3,10 @@
  <view bindtap='jumpPage' class="item" data-categoryName="{{item}}">{{item}}</view>
 </template>
 
+<template name = "item-history">
+ <view bindtap='jumpPage' class="item" data-categoryName="{{categoryName}}" data-status="{{status}}">{{categoryName}}</view>
+</template>
+
 
 <view class="search-word">
   <!-- 搜索 -->
@@ -19,7 +23,7 @@
     <!-- 历史记录 -->
       <view wx:if="{{searchList.length > 0 && searchName == ''}}" class="list">
         <view class="item" style='font-weight:bold;' >历史记录</view>
-        <template is="item-txt" wx:for="{{searchList}}" wx:key="{{index}}" data="{{item}}"></template>
+        <template is="item-history" wx:for="{{searchList}}" wx:key="{{index}}" data="{{...item}}"></template>
        
       </view>
     <!-- 搜索列表 -->

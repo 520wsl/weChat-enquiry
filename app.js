@@ -35,15 +35,15 @@ const config = {
     imgSizePro: configA.service.imgSizePro,
     imgSizeEnq: configA.service.imgSizeEnq,
     Base64,
-    // 0: 默认值 1: 询盘通知模板 2: 订单通知模板 3: 阿里活动通知模板 4: 放假通知模板 5: 诚信通到期通知模板 6: 知识维权通知模板
+    // 0: 全部消息通知 1: 询盘通知模板 2: 订单通知模板 3: 阿里活动通知模板 4: 放假通知模板 5: 诚信通到期通知模板 6: 知识维权通知模板
     logTypes: [
-        { key: 0, str: '' },
-        { key: 1, str: '询盘订单通知' },
+        { key: 0, str: '全部消息通知' },
+        { key: 1, str: '最新订单信息提醒' },
         { key: 2, str: '订单通知' },
-        { key: 3, str: '阿里活动通知' },
-        { key: 4, str: '放假通知' },
+        { key: 3, str: '活动状态变更通知' },
+        { key: 4, str: '服务到期提醒' },
         { key: 5, str: '诚信通到期通知' },
-        { key: 6, str: '知识维权通知' }
+        { key: 6, str: '店铺违规通知' }
     ],
     // 发送状态0: 默认状态 1: 未读 2: 发送失败 3: 已读 4:已重发
     logStastus: [

@@ -118,7 +118,8 @@
           <text>商品详情</text>
         </view>
         <view wx:for="{{photoInfos}}" wx:key="{{index}}" class="info-content pic">
-          <image wx:if="{{item.imgUrl}}" style='width:750rpx;' mode='widthFix' src='{{item.imgUrl}}'></image>
+          <image wx:if="{{item.imgUrl && (item.type == 0)}}" style='width:690rpx;' mode='widthFix' src='{{item.imgUrl}}'></image>
+        <video wx:if="{{item.imgUrl && (item.type == 1)}}" id="myVideo" show-fullscreen-btn src="{{item.imgUrl}}" style='width:690rpx;height:690rpx;'></video>
           <view wx:if="{{item.description}}" class="description hr"><text>{{item.description}}</text></view>
         </view>
       </view>
@@ -208,7 +209,8 @@
           <image style="width: 750rpx;" model="widthFix" src="{{CDN}}icon/sty2-cpinfo.png"></image>
         </view>
         <view wx:for="{{photoInfos}}" wx:key="{{index}}" class="info-content pic">
-          <image wx:if="{{item.imgUrl}}" style='width:650rpx;' mode='widthFix' src='{{item.imgUrl}}'></image>
+          <image wx:if="{{item.imgUrl && (item.type == 0)}}" style='width:650rpx;' mode='widthFix' src='{{item.imgUrl}}'></image>
+        <video wx:if="{{item.imgUrl && (item.type == 1)}}" id="myVideo" show-fullscreen-btn src="{{item.imgUrl}}" style='width:650rpx;height:650rpx;'></video>
           <view wx:if="{{item.description}}" class="description hr">{{item.description}}</view>
         </view>
       </view>
@@ -291,7 +293,8 @@
           <image style="width: 750rpx;" model="widthFix" src="{{CDN}}icon/sty3-cpinfo.png"></image>
         </view>
         <view wx:for="{{photoInfos}}" wx:key="{{index}}" class="info-content pic">
-          <image wx:if="{{item.imgUrl}}" style='width:650rpx;' mode='widthFix' src='{{item.imgUrl}}'></image>
+          <image wx:if="{{item.imgUrl && (item.type == 0)}}" style='width:650rpx;' mode='widthFix' src='{{item.imgUrl}}'></image>
+        <video wx:if="{{item.imgUrl && (item.type == 1)}}" id="myVideo" show-fullscreen-btn src="{{item.imgUrl}}" style='width:650rpx;height:650rpx;'></video>
           <view wx:if="{{item.description}}" class="description"><text>{{item.description}}</text></view>
         </view>
       </view>

@@ -69,6 +69,7 @@ Page({
       }
       if (res.status != 200) {
         this.reset();
+        app.utils.showModel('订单详情', res.msg);
         return;
       }
 

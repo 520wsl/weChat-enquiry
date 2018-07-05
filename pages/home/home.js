@@ -3,14 +3,34 @@ import echarts from "../../utils/resources/wxcharts.js";
 
 var columnChart = null;
 var chartData = {
-  setColor: [
-    { start: '#7B73FE', end: '#55ABF6' },
-    { start: '#7B73FE', end: '#55ABF6' },
-    { start: '#7B73FE', end: '#55ABF6' },
-    { start: '#7B73FE', end: '#55ABF6' },
-    { start: '#7B73FE', end: '#55ABF6' },
-    { start: '#7B73FE', end: '#55ABF6' },
-    { start: '#7B73FE', end: '#55ABF6' },
+  setColor: [{
+      start: '#7B73FE',
+      end: '#55ABF6'
+    },
+    {
+      start: '#7B73FE',
+      end: '#55ABF6'
+    },
+    {
+      start: '#7B73FE',
+      end: '#55ABF6'
+    },
+    {
+      start: '#7B73FE',
+      end: '#55ABF6'
+    },
+    {
+      start: '#7B73FE',
+      end: '#55ABF6'
+    },
+    {
+      start: '#7B73FE',
+      end: '#55ABF6'
+    },
+    {
+      start: '#7B73FE',
+      end: '#55ABF6'
+    },
   ]
 };
 
@@ -28,11 +48,10 @@ Page({
     imgUrls: [
       app.CDN + 'banner-4.png?id=20180203'
     ],
-    indicatorDots: false,      //是否显示面板指示点
+    indicatorDots: false, //是否显示面板指示点
 
     // 询盘
-    newEnquire: [
-      {
+    newEnquire: [{
         t1: 'totalValue',
         t2: 'totalCount'
       },
@@ -89,10 +108,7 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
-
-  },
-
+  onLoad: function(options) {},
   onShow() {
     app.enquiryTime = null;
     // 初始化操作
@@ -112,7 +128,7 @@ Page({
       });
     }
   },
-  onPullDownRefresh: function () {
+  onPullDownRefresh: function() {
     this.getEnquire(this.data.enquireTime, () => {
       this.getCustomArea(this.data.customerareaTime);
       wx.stopPullDownRefresh();
@@ -137,7 +153,11 @@ Page({
   // },
 
   // 客户地区
-  getCustomArea({ type = 2, startTime, endTime }) {
+  getCustomArea({
+    type = 2,
+    startTime,
+    endTime
+  }) {
     app.get('/enquiry/customerarea', {
       // type: type,
       startTime,
@@ -179,12 +199,12 @@ Page({
         return;
       }
       formatData.forEach(item => {
-        if(item.sumAllAmount<10000){
-        item.sumAllAmount = item.sumAllAmount.toFixed(2);
-        item.sumGmvAmountFormat = item.sumAllAmount.replace(/\d{1,3}(?=(\d{3})+\.)/g, '$&,');
-      }else{
-        item.sumGmvAmountFormat = app.time.NumberUpperFormat(item.sumAllAmount);
-      }
+        if (item.sumAllAmount < 10000) {
+          item.sumAllAmount = item.sumAllAmount.toFixed(2);
+          item.sumGmvAmountFormat = item.sumAllAmount.replace(/\d{1,3}(?=(\d{3})+\.)/g, '$&,');
+        } else {
+          item.sumGmvAmountFormat = app.time.NumberUpperFormat(item.sumAllAmount);
+        }
       });
       this.setData({
         customerarea: formatData,
@@ -201,7 +221,11 @@ Page({
     });
   },
   // 询盘统计
-  getEnquire({ type = 1, startTime, endTime }, cb) {
+  getEnquire({
+    type = 1,
+    startTime,
+    endTime
+  }, cb) {
     app.get('/enquiry/statistics', {
       // type: type,
       startTime,
@@ -224,8 +248,7 @@ Page({
               wx.switchTab({
                 url: '/pages/personal/personal'
               })
-            } else if (res.cancel) {
-            }
+            } else if (res.cancel) {}
           }
         })
         return;
@@ -239,10 +262,10 @@ Page({
       let formatData = res.data;
       for (let i in formatData) {
         if (formatData[i] && (i == 'enquireValue' || i == 'lossValue' || i == 'totalValue' || i == 'tranValue')) {
-          if(formatData[i]<10000){
-          formatData[i] = formatData[i].toFixed(2);
-          formatData[i] = formatData[i].replace(/\d{1,3}(?=(\d{3})+\.)/g, '$&,');
-          }else{
+          if (formatData[i] < 10000) {
+            formatData[i] = formatData[i].toFixed(2);
+            formatData[i] = formatData[i].replace(/\d{1,3}(?=(\d{3})+\.)/g, '$&,');
+          } else {
             formatData[i] = app.time.NumberUpperFormat(formatData[i]);
           }
         }
@@ -266,13 +289,15 @@ Page({
       return;
     }
     cacheData = cacheData.filter((res, index) => {
-      if(index < 5){
+      if (index < 5) {
         if (res.sumAllAmount > 0) {
           return true;
         }
       }
     });
-    if (cacheData.length == 0) {return;}
+    if (cacheData.length == 0) {
+      return;
+    }
     let windowWidth = this.getWindowWidth();
     let categories = cacheData.map(item => {
       return item.provinceName;
@@ -281,7 +306,10 @@ Page({
       return item.sumAllAmount;
     });
     chartData.setColor = cacheData.map(item => {
-      return { start: '#7B73FE', end: '#55ABF6' };
+      return {
+        start: '#7B73FE',
+        end: '#55ABF6'
+      };
     });
     let subCategories = cacheData.map(item => {
       return item.num + '人';
@@ -297,15 +325,15 @@ Page({
       // subCategoriesColor: 'rgba(0, 0, 0, .3)',
       series: [{
         data: chartData.seriesData,
-        format: function (val) {
-            return String(val).replace(/\d{1,3}(?=(\d{3})+\.)/g, '$&,');
+        format: function(val) {
+          return String(val).replace(/\d{1,3}(?=(\d{3})+\.)/g, '$&,');
         },
         setColor: chartData.setColor,
         isGradation: true,
       }],
       yAxis: {
         gridColor: 'rgba(204, 204, 204, .25)',
-        format: function (val) {
+        format: function(val) {
           return val;
         },
         min: 0
@@ -369,13 +397,13 @@ Page({
     ctx.setFontSize(12);
     ctx.setFillStyle("#6495F9");
     ctx.setTextAlign("center");
-    if (ctx.setTextBaseline){
+    if (ctx.setTextBaseline) {
       ctx.setTextBaseline('middle');
     }
     ctx.moveTo(width / 2, height / 2);
     ctx.fillText(percent + '%', width / 2, height / 2);
   },
-  touchHandler: function (e) {
+  touchHandler: function(e) {
     if (this.data.customerarea.length == 0) {
       return;
     }
@@ -403,7 +431,9 @@ Page({
     //   animationEnquiry: this.animationEnquiry()
     // })
     if (wx.showLoading) {
-      wx.showLoading({ title: '加载中...' });
+      wx.showLoading({
+        title: '加载中...'
+      });
     }
     this.data.enquireTime = e.detail.time;
     this.getEnquire(e.detail.time, () => {

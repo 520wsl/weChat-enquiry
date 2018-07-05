@@ -122,21 +122,25 @@ page {
   border: none !important;
   z-index: 2147483647;
 }
-  /*返回  */
-  .btn-back{
-    width: 72rpx;
-    height: 72rpx;
-    position: fixed;
-    top: 24rpx;
-    left: 30rpx;
-  }
-  .btn-back .img{
-    width: 72rpx;
-    height: 72rpx;
-    margin: auto;
-    display: block;
-  }
-  /* 空数据 */
+
+/*返回  */
+
+.btn-back {
+  width: 72rpx;
+  height: 72rpx;
+  position: fixed;
+  top: 24rpx;
+  left: 30rpx;
+}
+
+.btn-back .img {
+  width: 72rpx;
+  height: 72rpx;
+  margin: auto;
+  display: block;
+}
+
+/* 空数据 */
 
 .no-data {
   text-align: center;
@@ -155,4 +159,23 @@ page {
 .no-data .txt {
   margin-top: 40rpx;
   display: block;
+}
+
+/* 引导页 */
+
+.yd-nav-mb {
+  position: fixed;
+  top: 0.5px;
+  left: 0.5px;
+  right: 0.5px;
+  bottom: 0.5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+   background: rgba(0, 0, 0, 0.5);
+   z-index: 2147483647;
+}
+
+.yd-nav-mb image {
+  width: 690rpx;
 }
