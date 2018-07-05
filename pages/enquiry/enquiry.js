@@ -47,7 +47,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    // console.log('onLoad')
   },
   onShow: function () {
     // 初始化
@@ -63,17 +62,7 @@ Page({
       })
     }
   },
-  onHide() {
-    // this.setData({
-    //   list: []
-    // })
-  },
-  // onShareAppMessage: function () {
-  //   return {
-  //     title: '四喜E伙伴',
-  //     path: '/pages/enquiry/enquiry'
-  //   }
-  // },
+
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
@@ -106,14 +95,14 @@ Page({
       this.setShowFooter();
     }
   },
-  setShowFooter() {
+  setShowFooter () {
     this.setData({
       isshowFooter: true
     })
   },
 
   // 页面滚动
-  onPageScroll(Obj) {
+  onPageScroll (Obj) {
     let width = 375, height = 603, oHeight = 1488;
     try {
       let res = wx.getSystemInfoSync();
@@ -131,7 +120,7 @@ Page({
       rolling(this);
     }
 
-    function rolling(that) {
+    function rolling (that) {
       console.log('rolling')
       let scrollTop = width * 175 / 375;
       if (Obj.scrollTop >= scrollTop) {
@@ -153,7 +142,7 @@ Page({
   },
 
   // 获取列表
-  getList(cb) {
+  getList (cb) {
     app.get('/enquiry/list', this.data.params).then(res => {
       if (typeof cb == 'function') {
         cb();
@@ -240,7 +229,7 @@ Page({
     });
   },
 
-  getScreening(e) {
+  getScreening (e) {
     console.log(e.detail);
     this.data.params.pageNum = 1;
     let index = e.detail.acIndex;
@@ -289,7 +278,7 @@ Page({
       console.error('getSystemInfoSync failed!');
     }
     let height = width * 175 / 375;
-    if (this.data.isFixed && wx.pageScrollTo){
+    if (this.data.isFixed && wx.pageScrollTo) {
       wx.pageScrollTo({
         scrollTop: height + 5,
         duration: 0
@@ -298,7 +287,7 @@ Page({
   },
 
   // 区域统计
-  getAreacount(cb) {
+  getAreacount (cb) {
     app.get('/enquiry/analysecount', this.data.params).then((res) => {
       console.log(res);
       if (typeof cb == 'function') {
@@ -315,9 +304,9 @@ Page({
       let data = res.data;
       if (data) {
         for (let i in data) {
-          if(i!='allCount'&&i!="allCount"&&i!='followCount'&&i!="gmvCount"&&i!="lossCount"&&i!="ranking"){
+          if (i != 'allCount' && i != "allCount" && i != 'followCount' && i != "gmvCount" && i != "lossCount" && i != "ranking") {
             data[i] = app.time.NumberUpperFormat(data[i]);
-           }
+          }
         }
         this.setData({
           areaData: data,
@@ -336,13 +325,13 @@ Page({
     });
   },
 
-  reset() {
+  reset () {
     this.setData({
       areaData: null
     })
   },
 
-  resetList() {
+  resetList () {
     this.setData({
       list: []
     })
@@ -350,7 +339,7 @@ Page({
 
 
   // 开始时间
-  startTimeChange(e) {
+  startTimeChange (e) {
     console.log(e);
     if (this.data.params.endTime && app.time.formatInitTime(e.detail.value, 'x') >= this.data.params.endTime) {
       wx.showModal({
@@ -375,7 +364,7 @@ Page({
   },
 
   // 结束时间
-  endTimeChange(e) {
+  endTimeChange (e) {
     if (this.data.params.startTime && this.data.params.startTime >= app.time.endTime(e.detail.value, 'x')) {
       wx.showModal({
         title: '提示',
@@ -399,7 +388,7 @@ Page({
   },
 
   // 初始化
-  init() {
+  init () {
     if (wx.showLoading) {
       wx.showLoading({ title: '加载中...' });
     }
@@ -412,7 +401,7 @@ Page({
   },
 
   // 时间选择
-  getTimeEnquiry(e) {
+  getTimeEnquiry (e) {
     console.log(e);
     let time = e.detail.time;
     if (time.type == -1) {

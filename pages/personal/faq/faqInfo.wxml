@@ -1,0 +1,4 @@
+<!--pages/personal/faq/faqInfo.wxml-->
+<view>
+  <image style='width:760rpx;max-width:100%;' mode='widthFix' src='{{CDN}}faq/{{faqid}}.png'></image>
+</view>

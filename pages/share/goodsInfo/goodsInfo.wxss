@@ -53,9 +53,9 @@ page{
 }
 .sty1 .sharebtn{
   border: 0rpx;
-  width: 46rpx;
-  height: 44rpx;
-  line-height: 44rpx;
+  width: 50rpx;
+  height: 50rpx;
+  line-height: 50rpx;
   padding: 8rpx;
 }
 .sty1 .goods .content {
@@ -326,9 +326,9 @@ z-index: 3;
 }
 .sty2 .abstract .sharebtn{
   border: 0rpx;
-  width: 46rpx;
-  height: 44rpx;
-  line-height: 44rpx;
+  width: 50rpx;
+  height: 50rpx;
+  line-height: 50rpx;
   padding: 8rpx;
 }
 .sty2 .abstract .footer {
@@ -389,8 +389,12 @@ z-index: 3;
 }
 .sty2 .cpinfo .info-content{
   margin: 30rpx;
+  overflow: hidden;
 }
 .sty2 .cpinfo .info-content image{
+  border: 20rpx solid #1E2B4B;
+}
+.sty2 .cpinfo .info-content video{
   border: 20rpx solid #1E2B4B;
 }
 .sty2 .cpinfo .description{
@@ -474,9 +478,9 @@ padding-bottom: 100rpx;
 }
 .sty3 .sharebtn{
   border: 0rpx;
-  width: 46rpx;
-  height: 44rpx;
-  line-height: 44rpx;
+  width: 50rpx;
+  height: 50rpx;
+  line-height: 50rpx;
   padding: 8rpx;
 }
 .sty3 .footer {
@@ -540,8 +544,12 @@ padding-bottom: 100rpx;
 }
 .sty3 .cpinfo .info-content{
   margin: 30rpx;
+  overflow: hidden;
 }
 .sty3 .cpinfo .info-content image{
+  border: 20rpx solid #B8C0C4;
+}
+.sty3 .cpinfo .info-content video{
   border: 20rpx solid #B8C0C4;
 }
 .sty3 .cpinfo .description{

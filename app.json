@@ -27,11 +27,13 @@
     "pages/home/analysisReport/operating/operating",
     "pages/home/analysisReport/data/data",
     "pages/personal/companyList/companyList",
+    "pages/personal/faq/faq",
     "pages/home/areaEnquiry/areaEnquiry",
     "pages/home/erp/orderInfo/orderInfo",
     "pages/home/erp/logisticsInfo/logisticsInfo",
     "pages/home/erp/myGoods/searchWord",
-    "pages/home/erp/orderInfo/editOrderPic"
+    "pages/home/erp/orderInfo/editOrderPic",
+    "pages/personal/faq/faqInfo"
   ],
   "window": {
     "backgroundColor": "#f2f2f2",

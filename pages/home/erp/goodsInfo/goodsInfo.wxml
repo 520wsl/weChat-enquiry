@@ -75,9 +75,9 @@
         <text class="txt">产品属性</text>
       </view>
       <view class="lists">
-        <view  wx:for="{{params.list}}" wx:key="{{index}}">
-            <text>{{item.attributeName}}：</text>
-            <text class="txt">{{item.attributeValue}}</text>
+        <view wx:for="{{params.list}}" wx:key="{{index}}">
+          <text>{{item.attributeName}}：</text>
+          <text class="txt">{{item.attributeValue}}</text>
         </view>
       </view>
     </view>
@@ -103,8 +103,11 @@
         <text>商品详情</text>
       </view>
       <view wx:for="{{photoInfos}}" wx:key="{{index}}" class="info-content pic">
-        <image wx:if="{{item.imgUrl}}" style='width:750rpx;' mode='widthFix' src='{{item.imgUrl}}'></image>
-        <view wx:if="{{item.description}}" class="description hr"><text>{{item.description}}</text></view>
+        <image wx:if="{{item.imgUrl && (item.type == 0)}}" style='width:690rpx;' mode='widthFix' src='{{item.imgUrl}}'></image>
+        <video wx:if="{{item.imgUrl && (item.type == 1)}}" id="myVideo" show-fullscreen-btn src="{{item.imgUrl}}" style='width:690rpx;height:690rpx;'></video>
+        <view wx:if="{{item.description}}" class="description hr">
+          <text>{{item.description}}</text>
+        </view>
       </view>
     </view>
   </view>
@@ -169,11 +172,22 @@
       <view class="pic title">
         <image style="width: 750rpx;" model="widthFix" src="{{CDN}}icon/sty2-cpgg.png"></image>
       </view>
-      <view class="spec-content">
-        <view wx:for="{{params.skuList}}" wx:key="{{index}}">
+      <view class="spec-content sub">
+        <view class="{{show ? '' : 'txt-more'}} detail">
+          <view wx:for="{{params.skuList}}" wx:key="{{index}}" class="{{index < 2||show ? '' : 'hid'}} line">
+            <view class="name">
+              {{item.attributeName}}：
+            </view>
+            <text class="{{show ? '' : 'txt-more'}} txt">{{item.attributeValue}}</text>
+          </view>
+        </view>
+        <view class="{{show ? 'rotate' : ''}} pic" bindtap='showNorm' wx:if="{{params.skuList[0].attributeValue.length>18||params.skuList[1].attributeValue.length>18}}">
+          <image mode="aspectFit" src="{{CDN}}icon_right.png" />
+        </view>
+        <!-- <view wx:for="{{params.skuList}}" wx:key="{{index}}">
           <text>{{item.attributeName}}：</text>
           <text>{{item.attributeValue}}</text>
-        </view>
+        </view> -->
       </view>
     </view>
     <view wx:if="{{params.list}}" class="spec">
@@ -193,8 +207,11 @@
         <image style="width: 750rpx;" model="widthFix" src="{{CDN}}icon/sty2-cpinfo.png"></image>
       </view>
       <view wx:for="{{photoInfos}}" wx:key="{{index}}" class="info-content pic">
-        <image wx:if="{{item.imgUrl}}" style='width:650rpx;' mode='widthFix' src='{{item.imgUrl}}'></image>
-        <view wx:if="{{item.description}}" class="description hr"><text>{{item.description}}</text></view>
+        <image wx:if="{{item.imgUrl && (item.type == 0)}}" style='width:650rpx;' mode='widthFix' src='{{item.imgUrl}}'></image>
+        <video wx:if="{{item.imgUrl && (item.type == 1)}}" id="myVideo" show-fullscreen-btn src="{{item.imgUrl}}" style='width:650rpx;height:650rpx;'></video>
+        <view wx:if="{{item.description}}" class="description hr">
+          <text>{{item.description}}</text>
+        </view>
       </view>
     </view>
   </view>
@@ -252,10 +269,17 @@
       <view class="pic title">
         <image style="width: 750rpx;" model="widthFix" src="{{CDN}}icon/sty3-cpgg.png"></image>
       </view>
-      <view class="spec-content">
-        <view wx:for="{{params.skuList}}" wx:key="{{index}}">
-          <text>{{item.attributeName}}：</text>
-          <text>{{item.attributeValue}}</text>
+      <view class="spec-content sub">
+        <view class="{{show ? '' : 'txt-more'}} detail">
+          <view wx:for="{{params.skuList}}" wx:key="{{index}}" class="{{index < 2||show ? '' : 'hid'}} line">
+            <view class="name">
+              {{item.attributeName}}：
+            </view>
+            <text class="{{show ? '' : 'txt-more'}} txt">{{item.attributeValue}}</text>
+          </view>
+        </view>
+        <view class="{{show ? 'rotate' : ''}} pic" bindtap='showNorm' wx:if="{{params.skuList[0].attributeValue.length>18||params.skuList[1].attributeValue.length>18}}">
+          <image mode="aspectFit" src="{{CDN}}icon_right.png" />
         </view>
       </view>
     </view>
@@ -276,8 +300,11 @@
         <image style="width: 750rpx;" model="widthFix" src="{{CDN}}icon/sty3-cpinfo.png"></image>
       </view>
       <view wx:for="{{photoInfos}}" wx:key="{{index}}" class="info-content pic">
-        <image wx:if="{{item.imgUrl}}" style='width:650rpx;' mode='widthFix' src='{{item.imgUrl}}'></image>
-        <view wx:if="{{item.description}}" class="description"><text>{{item.description}}</text></view>
+        <image wx:if="{{item.imgUrl && (item.type == 0)}}" style='width:650rpx;' mode='widthFix' src='{{item.imgUrl}}'></image>
+        <video wx:if="{{item.imgUrl && (item.type == 1)}}" id="myVideo" show-fullscreen-btn src="{{item.imgUrl}}" style='width:650rpx;height:650rpx;'></video>
+        <view wx:if="{{item.description}}" class="description">
+          <text>{{item.description}}</text>
+        </view>
       </view>
     </view>
   </view>

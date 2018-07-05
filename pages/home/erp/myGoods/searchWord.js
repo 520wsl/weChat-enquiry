@@ -66,7 +66,7 @@ Page({
   delSearch() {
     this.setData({
       searchName: '',
-      'params.keyword':''
+      'params.keyword': ''
     })
 
     this.data.result = [];
@@ -83,14 +83,31 @@ Page({
   jumpPage(e) {
     let categoryName = e.currentTarget.dataset.categoryname;
     let searchList = this.data.searchList || [];
-    searchList.unshift(categoryName)
+    let status = e.currentTarget.dataset.status || this.data.params.status || '';
+    let isPush = true
+    console.log(searchList.length)
+    for (let i = 0; i < searchList.length; i++) {
+      console.log('categoryName' + [i], searchList[i]['categoryName'])
+      if (searchList[i]['categoryName'] == categoryName) {
+        isPush = false
+      }
+    }
+
+    if (isPush) {
+      searchList.unshift({
+        categoryName,
+        status
+      })
+    }
+
     searchList = searchList.slice(0, 10)
     wx.setStorage({
       key: this.data.storageName,
       data: searchList
     })
+
     wx.redirectTo({
-      url: '/pages/home/erp/myGoods/myGoods?keyword=' + categoryName + '&status=' + this.data.params.status
+      url: '/pages/home/erp/myGoods/myGoods?keyword=' + categoryName + '&status=' + status
     });
     return;
   },

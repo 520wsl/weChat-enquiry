@@ -49,6 +49,11 @@ view {
     vertical-align: middle;
     width: 25%;
 }
+.enquiry-tab .proname {
+  color: #1450CA;
+  font-size: 24rpx;
+  text-decoration:underline;
+}
 
 .enquiry-tab .title {
     background-color: #f3f7f8;

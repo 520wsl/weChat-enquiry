@@ -15,6 +15,8 @@ Page({
     CDN: app.CDN,
     subscript: '',
     key: 'photoInfos',
+    videos: [],
+    pageType: 0,
     imgUrls: [],
     imgUrl: '',
     name: '',
@@ -34,13 +36,15 @@ Page({
   onLoad: function (options) {
     console.log('searchpic-options', options)
     let subscript = options.subscript || 0;
-    let albumID = options.albumID;
+    let albumID = options.albumID || '';
+    let pageType = options.pageType || 0
     let productId = options.productId || '';
     let name = options.name || '';
     this.setData({
-      subscript: subscript,
-      productId: productId,
-      name: name,
+      subscript,
+      productId,
+      pageType,
+      name,
       'params.albumID': albumID
     })
     wx.getStorage({
@@ -50,8 +54,12 @@ Page({
         this.data.photoInfos = res.data;
       },
     })
-
-    this.getImgUrls();
+    if (albumID && (pageType == 0)) {
+      this.getImgUrls();
+    }
+    if (pageType == 1) {
+      this.getVideos();
+    }
   },
   getImgUrls() {
     app
@@ -92,6 +100,49 @@ Page({
         console.log(res);
       });
   },
+  getVideos() {
+    app
+      .get('/product/getproductvideo', { productId: this.data.productId })
+      .then(e => {
+        if (e.status !== 200) {
+          app.utils.showModel('视频列表', e.msg);
+        }
+        if (e.status == 401) {
+          wx.showModal({
+            title: '提示',
+            content: '登录超时或未登录，请重新登录',
+            success: res => {
+              if (res.confirm) {
+                wx.switchTab({
+                  url: '/pages/personal/personal'
+                })
+              } else if (res.cancel) {
+              }
+            }
+          })
+          return;
+        }
+
+        if (e.data <= 0) {
+          return;
+        }
+        let imgUrl = '';
+        let videos = e.data || [];
+        if (videos.length > 0){
+          imgUrl = videos[0]['productVideoUrl'] || '';
+        }
+       
+        this.setData({
+          videos,
+          imgUrl
+        })
+
+      })
+      .catch(res => {
+        console.log(res);
+        app.utils.showModel('视频列表', res.msg);
+      });
+  },
   // 设置寻选中的图片路径
   setImgUrl(e) {
     console.log('setImgUrl', this.data.imgUrl, e.currentTarget.dataset.imgurl)
@@ -109,11 +160,13 @@ Page({
     let photoInfos = this.data.photoInfos || [];
     let subscript = this.data.subscript;
     let imgUrl = this.data.imgUrl || '';
+    let pageType = this.data.pageType || 0;
     let productId = this.data.productId;
     if (photoInfos.lnegth < subscript || imgUrl.length <= 0) {
       return;
     }
     photoInfos[subscript]['imgUrl'] = imgUrl;
+    photoInfos[subscript]['type'] = pageType;
     console.log('photoInfos', photoInfos, 'subscript', subscript)
 
     wx.setStorage({

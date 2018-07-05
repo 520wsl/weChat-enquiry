@@ -1,0 +1,10 @@
+<!--pages/personal/companyList/companyList.wxml-->
+<view class='company'>
+  <view class='list-box'>
+    <view class='list hr' wx:for="{{lists}}" wx:for-index="index" wx:for-item="item" wx:key="index" data-faqid="{{index}}" bindtap='toInfo'>
+      <text class='list_text'>{{item.title}}</text>
+      <image src='{{CDN}}icon_right.png' class='icon_right'/>
+    </view>
+  </view>
+</view>
+<button open-type='contact' plain class='askBtn pic'><image src='{{CDN}}icon/icon_ask.png'></image></button>
