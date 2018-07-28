@@ -17,6 +17,7 @@ Page({
     isshowFooter: false,
     isDisable: true,
     strings: '',
+    isOpen: false,
     msgStr: '数据加载中，请稍后。。。',
     params: {
       type: 0,
@@ -38,8 +39,8 @@ Page({
     count: 0,
     list: [],
     reads: ['全部', '未读', '已读'],
-    // '全部消息通知','最新订单信息提醒','订单通知','活动状态变更通知','服务到期提醒','诚信通到期通知'
-    logTypes: ['全部消息通知', '最新订单信息提醒', '订单通知', '活动状态变更通知', '服务到期提醒', '诚信通到期通知']
+    // '全部消息通知','最新订单信息提醒','订单通知','活动状态变更通知','假期查询提醒','服务到期提醒','店铺违规通知'
+    logTypes: ['全部消息通知', '最新订单信息提醒', '订单通知', '活动状态变更通知', '假期查询提醒', '服务到期提醒', '店铺违规通知']
   },
 
   /**
@@ -54,6 +55,16 @@ Page({
     //   msgStr: '数据加载中，请稍后。。。'
     // })
     // this.getList();
+  },
+  setOpen() {
+    this.setData({
+      isOpen: true
+    })
+  },
+  setHidden() {
+    this.setData({
+      isOpen: false
+    })
   },
   // 开始时间
   startTimeChange(e) {
@@ -77,6 +88,7 @@ Page({
 
     this.data.params.startTime = app.time.formatInitTime(e.detail.value, 'x');
     this.data.params.pageNum = 1;
+    // this.setHidden()
     this.getList();
   },
   // 结束时间
@@ -100,6 +112,7 @@ Page({
 
     this.data.params.endTime = app.time.endTime(e.detail.value, 'x');
     this.data.params.pageNum = 1;
+    // this.setHidden()
     this.getList();
   },
 
@@ -111,6 +124,7 @@ Page({
       'params.readFlag': readFlag
     })
     this.data.params.pageNum = 1;
+    // this.setHidden()
     this.getList();
   },
   // 设置消息类型
@@ -121,6 +135,7 @@ Page({
       'params.type': logType
     })
     this.data.params.pageNum = 1;
+    // this.setHidden()
     this.getList();
   },
   editStatus() {
@@ -161,6 +176,7 @@ Page({
       })
   },
   getList(type) {
+    wx.stopPullDownRefresh()
     app
       .get('/messageuserlog/list', this.data.params)
       .then(res => {
@@ -300,7 +316,7 @@ Page({
       'params.pageNum': 1,
       list: []
     })
-    this.getList();
+    this.getList('down');
   },
 
   /**
