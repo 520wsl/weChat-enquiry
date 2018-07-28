@@ -45,6 +45,14 @@
 					"pathName": "pages/personal/personal",
 					"query": "action=msg&data=&mid=3131&type=6&aid=2",
 					"scene": "1014"
+				},
+				{
+					"id": 2,
+					"name": "订单",
+					"pathName": "pages/personal/personal",
+					"query": "action=o&data=eyJpZCI6IjE3MDI3NTYxOTI4NzE1OTczNSJ9&type=2&aid=2333&mid=321069",
+					"scene": "1043",
+					"referrerInfo": {}
 				}
 			]
 		}

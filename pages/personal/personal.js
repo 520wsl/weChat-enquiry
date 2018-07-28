@@ -28,7 +28,7 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad: function(options) {
     console.log('接收参数-options：', options);
     // 我的公司长度大于1时显示选择公司链接
     // this.login();
@@ -44,7 +44,11 @@ Page({
     // scene = 'action=i&data=eyJvcGVuaWQiOiJvdWc4VzBhZDNEazNOTGIxLXBxMXlrbHdCdlNjIiwiYWxpQWNjb3VudElkIjoxMSwiaWQiOjIyfQ==';
 
 
-    let action = '', datas = '', mid = '', logtype = '', aid = '';
+    let action = '',
+      datas = '',
+      mid = '',
+      logtype = '',
+      aid = '';
     let arr = {}
 
     let scene = decodeURIComponent(options.scene);
@@ -52,7 +56,10 @@ Page({
       let param = scene.split('&');
       console.log(param)
       param.map(res => {
-        let { k, v } = this.splitStr(res)
+        let {
+          k,
+          v
+        } = this.splitStr(res)
         // console.log('res=>', res)
         // console.log('k=>v', k, v)
         arr[k] = v;
@@ -71,11 +78,11 @@ Page({
       logtype = options.type;
     }
     this.setData({
-      action:action,
-      datas:datas,
-      mid:mid,
-      aid:aid,
-      logtype:logtype
+      action: action,
+      datas: datas,
+      mid: mid,
+      aid: aid,
+      logtype: logtype
     })
     let customeInfo = app.globalData.customeInfo;
     console.log('customeInfo', customeInfo)
@@ -88,7 +95,7 @@ Page({
         }
         this.toggleHandle(datas);
         break;
-      // wx消息
+        // wx消息
       case 'i':
         if (!datas) {
           app.utils.showModel('微信消息登录', '登录失败，请联系管理处理！')
@@ -105,6 +112,25 @@ Page({
         }
         // 走登录流程
         this.autoLogin(datas.aliAccountId, datas.id);
+        break;
+        // 订单消息
+      case 'o':
+        if (!datas) {
+          app.utils.showModel('订单消息登录', '登录失败，请联系管理处理！')
+          return;
+        }
+        datas = JSON.parse(app.Base64.decode(datas));
+        console.log('订单消息', datas)
+
+        console.log('app全局信息打印', customeInfo);
+        if (customeInfo && customeInfo.aliAccountId === datas.aid) {
+          wx.navigateTo({
+            url: '/pages/home/erp/orderInfo/orderInfo?orderId=' + datas.id
+          });
+          return;
+        }
+        // 走登录流程
+        this.autoLogin(aid, datas.id);
         break;
       case 'msg':
         if (customeInfo && customeInfo.aliAccountId === aid) {
@@ -125,7 +151,10 @@ Page({
     let params = param.split('=');
     let k = params[0] || '';
     let v = params[1] || '';
-    return { k, v };
+    return {
+      k,
+      v
+    };
   },
   autoLogin(aliAccountId, id) {
     wx.login({
@@ -159,7 +188,7 @@ Page({
       })
   },
   // 2、小程序 获取用户信息
-  getUserInfo: function (aliAccountId, id) {
+  getUserInfo: function(aliAccountId, id) {
     wx.getUserInfo({
       success: res => {
         app.globalData.userInfo = res.userInfo;
@@ -171,7 +200,7 @@ Page({
     })
   },
   // 获取信息
-  getCustome: function (id) {
+  getCustome: function(id) {
     app.get('/account/my').then(res => {
       if (res.status !== 200) {
         return;
@@ -183,6 +212,11 @@ Page({
         });
         return;
       }
+      if (this.data.action == 'o') {
+        wx.navigateTo({
+          url: '/pages/home/erp/orderInfo/orderInfo?orderId=' + id,
+        })
+      }
       if (this.data.action == 'msg') {
         wx.navigateTo({
           url: '/pages/log/wxlog/wxloginfo?userLogId=' + id
@@ -192,7 +226,7 @@ Page({
     })
   },
   // 2.1、 调起客户端小程序设置界面
-  openSetting: function (aliAccountId, id) {
+  openSetting: function(aliAccountId, id) {
     console.log('2.1、 调起客户端小程序设置界面')
     wx.showModal({
       content: '检测到您的账号未授权，请先授权。',
@@ -202,14 +236,14 @@ Page({
           success: (res) => {
             if (res.authSetting['scope.userInfo']) {
               this.getUserInfo(aliAccountId, id);
-            } else { }
+            } else {}
           }
         })
       }
     })
   },
   // 6.3 选择公司
-  setcompany: function (aliAccountId, id) {
+  setcompany: function(aliAccountId, id) {
     app
       .post('/auth/setcompany', {
         aliAccountId: aliAccountId
@@ -225,17 +259,17 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
+  onShow: function() {
     app.enquiryTime = null;
     this.getInfo();
   },
-  onShareAppMessage: function () {
+  onShareAppMessage: function() {
     return {
       title: '四喜E伙伴',
       path: '/pages/personal/personal'
     }
   },
-  getServices: function () {
+  getServices: function() {
     app
       .get('/common/services')
       .then(res => {
@@ -249,7 +283,7 @@ Page({
       })
   },
   //获取页面数据
-  getInfo: function () {
+  getInfo: function() {
     if (app.globalData.customeInfo && app.globalData.customeInfo.companyName) {
       this.setData({
         info: app.globalData.customeInfo,
@@ -279,7 +313,7 @@ Page({
     app.utils.showModel('小程序登陆', e.detail.errMsg);
   },
   // 点击登录
-  login: function () {
+  login: function() {
     if (this.data.isOpenDebug && (this.data.debugCode.length > 5)) {
       this.toggleHandle(this.data.debugCode);
       this.setData({
@@ -311,7 +345,7 @@ Page({
       });
     }
   },
-  debug: function () {
+  debug: function() {
     console.log('111')
     if (this.data.num != 9) {
       let num = this.data.num + 1;
@@ -326,25 +360,25 @@ Page({
       isOpenDebug: true
     })
   },
-  setDebugCode: function (res) {
+  setDebugCode: function(res) {
     this.setData({
       debugCode: res.detail.value
     })
     console.log(res.detail.value)
   },
   // 选择我的公司
-  toCompany: function () {
+  toCompany: function() {
     wx.navigateTo({
       url: "./companyList/companyList"
     })
   },
   // 常见问题
-  toFqa: function () {
+  toFqa: function() {
     wx.navigateTo({
       url: "./faq/faq"
     })
   },
-  callPhone: function (res) {
+  callPhone: function(res) {
     if (!res.currentTarget.dataset.phone) {
       return
     }
@@ -353,7 +387,7 @@ Page({
     })
   },
   // 退出登录事件
-  logOut: function () {
+  logOut: function() {
     wx.showModal({
       title: '提示',
       content: '确认退出登录？',
@@ -366,7 +400,7 @@ Page({
       }
     })
   },
-  logOutApp: function () {
+  logOutApp: function() {
     app
       .post('/auth/logout')
       .then(res => {

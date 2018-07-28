@@ -185,5 +185,5 @@
 </button>
 
 <view wx:if="{{isShowGuide}}" class='yd-nav-mb' bindtap='setShowGuide'>
-  <image mode='widthFix' src='{{CDN}}zdy/zyd-zdystyle.png'></image>
+  <image mode='widthFix' src='{{CDN}}zdy/yd-zdystyle-01.png'></image>
 </view>
