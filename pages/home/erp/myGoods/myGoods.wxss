@@ -275,7 +275,7 @@
 
 .item-order .total {
   height: 80rpx;
-  line-height: 70rpx;
+  line-height: 80rpx;
   text-align: right;
   font-size: 24rpx;
   padding: 0 30rpx;
@@ -402,7 +402,7 @@
 
 .order_type .str {
   flex: 1;
-  padding: 0 60rpx;
+  padding: 0 39rpx;
   font-size: 24rpx;
   color: #333;
   height: 70rpx;
@@ -507,8 +507,8 @@
 }
 
 .keyword .del_icon {
-  width: 24rpx;
-  height: 26rpx;
+  width: 26rpx;
+  height: 34rpx;
 }
 
 .customstyle {

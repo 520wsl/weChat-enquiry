@@ -1,4 +1,5 @@
 <!--pages/home/erp/goodsInfo/editGoodsInfo.wxml-->
+<!-- <button bindtap='setTop'>111</button> -->
 <!-- 商品详情图片 -->
 <swiper indicator-dots="true" autoplay="false" interval="5000" duration="500" style="height:748rpx;width:100%;">
   <block wx:for="{{params.images}}" wx:key="{{index}}">
@@ -28,22 +29,22 @@
       <image src="/images/icon_share.png" class="share-img"></image>
     </view> -->
     <view class="prc_share_group">
-        <view class="price">
-          <block wx:if="{{params.minPrice}}">
-            <text class="txt1">¥</text>
-            <text class="txt2">{{params.minformatData.vInt}}</text>
-            <text class="txt1">.{{params.minformatData.vDouble}}</text>
-            <text class="txt2"> 一 </text>
-          </block>
+      <view class="price">
+        <block wx:if="{{params.minPrice}}">
           <text class="txt1">¥</text>
-          <text class="txt2">{{params.maxformatData.vInt}}</text>
-          <text class="txt1">.{{params.maxformatData.vDouble}}</text>
-          <text class="txt3">≥ {{params.minOrderQuantity}} {{params.unit}}起批</text>
-        </view>
-        <button class="sharebtn pic" plain="true" open-type='share'>
-          <image model="widthFix" src="{{CDN}}icon/icon_share.png"></image>
-        </button>
+          <text class="txt2">{{params.minformatData.vInt}}</text>
+          <text class="txt1">.{{params.minformatData.vDouble}}</text>
+          <text class="txt2"> 一 </text>
+        </block>
+        <text class="txt1">¥</text>
+        <text class="txt2">{{params.maxformatData.vInt}}</text>
+        <text class="txt1">.{{params.maxformatData.vDouble}}</text>
+        <text class="txt3">≥ {{params.minOrderQuantity}} {{params.unit}}起批</text>
       </view>
+      <button class="sharebtn pic" plain="true" open-type='share'>
+        <image model="widthFix" src="{{CDN}}icon/icon_share.png"></image>
+      </button>
+    </view>
     <view class="footer">
       <view>
         <text class="txt">库存{{params.amountOnSale}}个</text>
@@ -104,17 +105,14 @@
     </view>
   </view>
 </view>
-<button open-type='contact' plain class='askBtn pic'>
-  <image src='{{CDN}}icon/icon_ask.png'></image>
-</button>
 <template name="proinfo-img-default">
   <view class='imgbk'>
     <navigator open-type="redirect" url='/pages/home/erp/goodsInfo/album?subscript={{index}}&&productId={{productId}}' class='img'>
       <view class='bg'>
         <view class='pic addimage'>
-          <image src='{{CDN}}icon/icon_add_pro_image.png'></image>
+          <image src='{{CDN}}icon/icon_add_pro_image.png?123456'></image>
         </view>
-        <view>添加图片</view>
+        <view>添加图片或视频</view>
       </view>
     </navigator>
     <view class='pic delpro' bindtap='delPhotoInfos' data-num='{{index}}' data-type='delModel'>
@@ -127,12 +125,25 @@
   <view class='showimg'>
     <navigator url='/pages/home/erp/goodsInfo/album?subscript={{index}}&&productId={{productId}}'>
       <view class='pic'>
-        <image style='width:750rpx;' mode='widthFix' src='{{imgUrl}}'></image>
+        <image style='width:690rpx;' mode='widthFix' src='{{imgUrl}}'></image>
       </view>
     </navigator>
     <view class='pic delpro delpro2' bindtap='delPhotoInfos' data-num='{{index}}' data-type='delImg'>
       <image src='{{CDN}}icon/icon_del_pic.png'></image>
     </view>
+  </view>
+</template>
+
+<template name="proinfo-video">
+  <view class='pic delpro3' bindtap='delPhotoInfos' data-num='{{index}}' data-type='delImg'>
+      <image src='{{CDN}}icon/icon_del_pro_image.png'></image>
+    </view>
+  <view class='showimg'>
+    <navigator url='/pages/home/erp/goodsInfo/album?subscript={{index}}&&productId={{productId}}'>
+      <view class='pic'>
+        <video id="myvideo{{id}}" show-fullscreen-btn src="{{imgUrl}}" style='width:690rpx;height:690rpx;'></video>
+      </view>
+    </navigator>
   </view>
 </template>
 
@@ -157,7 +168,8 @@
 
 <template name="item-proinfo">
   <view class='info'>
-    <template is="{{imgUrl?'proinfo-img':'proinfo-img-default'}}" data="{{imgUrl,CDN,index,productId}}"></template>
+  <!-- {{type == 1}} -->
+    <template is="{{!imgUrl?'proinfo-img-default':type == 1?'proinfo-video':'proinfo-img'}}" data="{{imgUrl,type,id,CDN,index,productId}}"></template>
     <template is="{{description?'proinfo-txt':'proinfo-txt-default'}}" data="{{description,CDN,index,productId}}"></template>
   </view>
 </template>
@@ -169,10 +181,11 @@
     </view>
     <text>商品详情</text>
   </view>
-  <button class='addbtn' bindtap='addPhotoInfos' data-type='unshift'>+ 增加商品图片或文本</button>
+  <button class='addbtn' bindtap='addPhotoInfos' data-type='unshift'>+ 增加商品图片、视频或文本</button>
   <template wx:for="{{photoInfos}}" wx:key="{{index}}" is="item-proinfo" data="{{CDN,...item,index,productId}}"></template>
-  <button class='addbtn' bindtap='addPhotoInfos' data-type='push'>+ 增加商品图片或文本</button>
+  <button class='addbtn' bindtap='addPhotoInfos' data-type='push'>+ 增加商品图片、视频或文本</button>
 </view>
+
 <view style='height:96rpx;'></view>
 <view class='btngroup'>
   <view class='nextbtn'>
@@ -183,4 +196,12 @@
       <text>下一步</text>
     </view>
   </view>
+</view>
+
+<button open-type='contact' plain class='askBtn pic'>
+  <image src='{{CDN}}icon/icon_ask.png'></image>
+</button>
+
+<view wx:if="{{isShowGuide}}" class='yd-nav-mb' bindtap='setShowGuide'>
+  <image mode='widthFix' src='{{CDN}}zdy/zyd-zdystyle-02.png'></image>
 </view>

@@ -9,72 +9,205 @@
 /* pages/log/wxlog/wxlog.wxss */
 
 .log {
-    padding: 0 30rpx;
-    font-size: 28rpx;
-    color: #333;
+  padding: 0 30rpx;
+  font-size: 28rpx;
+  color: #333;
 }
 
 .log .item {
-    border: 1px solid #C4C2C2;
-    border-radius: 6rpx;
-    margin-top: 12rpx;
-    padding: 20rpx 30rpx;
-    background-color: #fff;
+  border: 1px solid #c4c2c2;
+  border-radius: 6rpx;
+  margin-top: 12rpx;
+  padding: 20rpx 30rpx;
+  background-color: #fff;
 }
 
 .log .item-top {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .log .icon {
-    width: 54rpx;
-    height: 56rpx;
-    position: relative;
+  width: 54rpx;
+  height: 56rpx;
+  position: relative;
 }
 
 .log .icon .pic {
-    width: 54rpx;
-    height: 56rpx;
+  width: 54rpx;
+  height: 56rpx;
 }
 
 .log .icon .noread {
-    background-color: #FF6A5E;
-    border: 1px solid #FF6A5E;
-    border-radius: 50rpx;
-    width: 14rpx;
-    height: 14rpx;
-    position: absolute;
-    top: 0rpx;
-    right: 0rpx;
+  background-color: #ff6a5e;
+  border: 1px solid #ff6a5e;
+  border-radius: 50rpx;
+  width: 14rpx;
+  height: 14rpx;
+  position: absolute;
+  top: 0rpx;
+  right: 0rpx;
 }
 
 .log .item-top .title {
-    line-height: 40rpx;
-    flex: 1;
-    overflow: hidden;
-    padding:15rpx;
+  line-height: 40rpx;
+  flex: 1;
+  overflow: hidden;
+  padding: 15rpx;
 }
 
 .log .item-top .time {
-    color: #999;
-    font-size: 24rpx;
-    line-height: 34rpx;
+  color: #999;
+  font-size: 24rpx;
+  line-height: 34rpx;
 }
 
 .log .item-top .right {
-    width: 20rpx;
-    height: 70rpx;
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;    
+  width: 20rpx;
+  height: 70rpx;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
 }
 
 .log .item-top .right image {
-    width: 14rpx;
-    height: 28rpx;
+  width: 14rpx;
+  height: 28rpx;
 }
-.log .content{
+
+.log .content {
   color: #333;
+}
+
+.btngroup {
+  background-color: #fff;
+  border-top: 1px solid #e0e0e0;
+  border-bottom: 1px solid #e0e0e0;
+  padding: 0 20rpx;
+}
+
+.btngroup-top {
+  height: 76rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.btngroup-top .right-btn {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.btngroup-top .read-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding:0 5rpx;
+  height: 50rpx;
+  background: #fff;
+  border: 1px solid #666;
+  border-radius: 39px;
+  font-size: 24rpx;
+  min-width: 120rpx;
+}
+
+.btngroup-top .read-pic {
+  width: 14rpx;
+  height: 8rpx;
+  line-height: 0rpx;
+  margin-left: 10rpx;
+}
+
+.btngroup-top .open {
+  width: 60rpx;
+  height: 50rpx;
+  line-height: 50rpx;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.btngroup-top .open image {
+  width: 28rpx;
+  height: 16rpx;
+  line-height: 0rpx;
+}
+
+.btngroup .btn {
+  width: 150rpx;
+  height: 50rpx;
+  line-height: 50rpx;
+  text-align: center;
+  border: 1px solid #98baff;
+  border-radius: 50rpx;
+  background-color: #fff;
+  font-size: 24rpx;
+  color: #6495f9;
+}
+
+.btngroup .disable {
+  color: #b4b6b6;
+  border: 1px solid #fff;
+}
+
+.btngroup-buttom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.time-range {
+  display: flex;
+  font-size: 26rpx;
+  color: #999;
+  text-align: center;
+  padding: 20rpx 0 15rpx;
+  background: #fff;
+  flex:1;
+  align-items:center;
+  margin-right: 10rpx;
+}
+.start-time,.end-time {
+  flex: 1;
+  /* border-bottom: 1rpx solid #e0e0e0; */
+}
+
+.start-time.ac,.end-time.ac {
+  color: #333333;
+  /* border-color: #fc7c1f; */
+}
+
+.ac .arrow-drop, .ac .arrow-drop {
+  position: relative;
+  width: 14rpx;
+  height: 20rpx;
+  margin-left: 12rpx;
+  display: inline-block;
+  font-size:28rpx;
+}
+
+.ac .arrow-drop::before,
+.ac .arrow-drop::before {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 50%;
+  border-left: 7rpx solid transparent;
+  border-right: 7rpx solid transparent;
+  border-bottom: 7rpx solid transparent;
+  border-top: 7rpx solid #333333;
+}
+
+.time-range .txt {
+  font-size: 28rpx;
+  color: #333;
+  padding: 0 15rpx;
+}
+
+.log-type {
+  font-size: 24rpx;
+  width: 268rpx;
+  border-left: 1px solid #e0e0e0;
+  text-align: center;
 }

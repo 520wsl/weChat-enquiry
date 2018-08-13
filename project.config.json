@@ -35,8 +35,24 @@
 					"id": 0,
 					"name": "扫码",
 					"pathName": "pages/personal/personal",
-					"query": "scene=action%3De%26data%3Da023c147",
-					"scene": "1047"
+					"query": "scene=action%3De%26data%3Da023c147%26type%3Dea023c147%26mid%3Dea023c147",
+					"scene": "1043",
+					"referrerInfo": {}
+				},
+				{
+					"id": 1,
+					"name": "消息",
+					"pathName": "pages/personal/personal",
+					"query": "action=msg&data=&mid=3131&type=6&aid=2",
+					"scene": "1014"
+				},
+				{
+					"id": 2,
+					"name": "订单",
+					"pathName": "pages/personal/personal",
+					"query": "action=o&data=eyJpZCI6IjE3MDI3NTYxOTI4NzE1OTczNSJ9&type=2&aid=2333&mid=321069",
+					"scene": "1043",
+					"referrerInfo": {}
 				}
 			]
 		}

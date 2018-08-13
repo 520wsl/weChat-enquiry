@@ -8,6 +8,9 @@ Page({
   data: {
     ALI: app.ALI,
     CDN: app.CDN,
+    isShowGuide: false,
+    guideStorageKey: 'guide-home-erp-myGoods',
+    msgStr: '数据加载中，请稍后。。。',
     pageType: 1,
     list: [],
     countNum: [],
@@ -24,8 +27,7 @@ Page({
     isClear: false,
     isshowFooter: false,
     isOpen: false,
-    types: [
-      {
+    types: [{
         key: 0,
         name: '全部',
         id: 'all'
@@ -50,11 +52,11 @@ Page({
         name: '交易成功',
         id: 'success'
       },
-      {
-        key: 5,
-        name: '交易关闭',
-        id: 'close'
-      },
+      // {
+      //   key: 5,
+      //   name: '交易关闭',
+      //   id: 'close'
+      // },
     ]
   },
   setPageTypeAll(pageType) {
@@ -78,9 +80,9 @@ Page({
       title: title
     })
   },
-  delKeyWord(){
+  delKeyWord() {
     this.setData({
-      'params.keyword':'',
+      'params.keyword': '',
       list: []
     })
     this.getList();
@@ -106,16 +108,30 @@ Page({
   optProNav(e) {
     console.log('e', e)
     let status = e.currentTarget.dataset && e.currentTarget.dataset.status || 1;
-    this.setData({ 'params.status': status, list: [], 'params.pageNum': 1, 'params.page': 1})
-    this.getList()
+    this.setData({
+      'params.status': status,
+      list: [],
+      'params.pageNum': 1,
+      'params.page': 1
+    })
+    // this.getList()
+    this.init(this.getList);
   },
   optOrderNav(e) {
     console.log('e', e.currentTarget.dataset)
     let status = e.currentTarget.dataset && e.currentTarget.dataset.status || 0;
     let optOrderNavId = e.currentTarget.dataset && e.currentTarget.dataset.optordernavid || 'all';
     console.log('optOrderNavId', optOrderNavId)
-    this.setData({ 'params.status': status, list: [], optOrderNavId: optOrderNavId, isOpen: false, 'params.pageNum': 1, 'params.page': 1 })
-    this.getOrder()
+    this.setData({
+      'params.status': status,
+      list: [],
+      optOrderNavId: optOrderNavId,
+      isOpen: false,
+      'params.pageNum': 1,
+      'params.page': 1
+    })
+    // this.getOrder()
+    this.init(this.getOrder);
   },
   getOrder(cb) {
     app
@@ -143,10 +159,13 @@ Page({
         }
         if (res.status !== 200) {
           this.reset();
+          this.setData({
+            msgStr: '抱歉!没有找到符合条件的记录'
+          })
           app.utils.showModel('获取商品列表数据', res.msg);
           return;
         }
-        this.data.count = res.data.totalRecord;
+        this.data.count = res.data.count;
         if (!this.data.isClear) {
           this.data.list = [];
         }
@@ -166,14 +185,21 @@ Page({
           this.setData({
             'list': this.data.list,
             isshowFooter: false,
-            count: this.data.count
+            count: this.data.count,
+            msgStr: '抱歉!没有找到符合条件的记录'
           })
         } else {
+          this.setData({
+            msgStr: '抱歉!没有找到符合条件的记录'
+          })
           this.reset();
         }
       })
       .catch(res => {
         console.log('获取商品列表数据', res)
+        this.setData({
+          msgStr: '抱歉!没有找到符合条件的记录'
+        })
         if (typeof cb == 'function') {
           cb();
         }
@@ -182,8 +208,9 @@ Page({
   // 获取商品列表数据
   getList(cb) {
     // /product/searchproductlist
+    // /product/list
     app
-      .get('/product/list', this.data.params)
+      .get('/product/searchproductlist', this.data.params)
       .then(res => {
         if (typeof cb == 'function') {
           cb();
@@ -207,14 +234,19 @@ Page({
         }
         if (res.status !== 200) {
           this.reset();
+          this.setData({
+            msgStr: '抱歉!没有找到符合条件的记录'
+          })
           app.utils.showModel('获取商品列表数据', res.msg);
           return;
         }
         this.data.count = res.data.count;
-        this.data.countNum = res.data.countNum;
-        this.setData({
-          countNum: res.data.countNum
-        })
+        if (res.data.countNum) {
+          this.data.countNum = res.data.countNum;
+          this.setData({
+            countNum: res.data.countNum
+          })
+        }
         if (!this.data.isClear) {
           this.data.list = [];
         }
@@ -229,13 +261,20 @@ Page({
             'list': this.data.list,
             isshowFooter: false,
             count: this.data.count,
-            countNum: this.data.countNum
+            countNum: this.data.countNum,
+            msgStr: '抱歉!没有找到符合条件的记录'
           })
         } else {
+          this.setData({
+            msgStr: '抱歉!没有找到符合条件的记录'
+          })
           this.reset();
         }
       })
       .catch(res => {
+        this.setData({
+          msgStr: '抱歉!没有找到符合条件的记录'
+        })
         console.log('获取商品列表数据', res)
         if (typeof cb == 'function') {
           cb();
@@ -245,7 +284,7 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad: function(options) {
     console.log(' 生命周期函数--监听页面加载', options)
     this.data.params.pageNum = 1;
     this.data.params.page = 1;
@@ -256,7 +295,18 @@ Page({
       status = options.status || 0;
     }
     console.log('status', status)
-    
+
+    if (this.data.pageType == 1) {
+      wx.getStorage({
+        key: this.data.guideStorageKey,
+        fail: res => {
+          this.setData({
+            isShowGuide: true
+          })
+        }
+      })
+    }
+
     this.setData({
       'params.keyword': keyword,
       'params.status': status
@@ -264,39 +314,50 @@ Page({
     this.setPageTypeAll(this.data.pageType);
     // this.init(this.getList);
   },
+  setShowGuide() {
+    this.setData({
+      isShowGuide: false
+    })
+    wx.setStorage({
+      key: this.data.guideStorageKey,
+      data: false,
+    })
+  },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {
+  onReady: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
+  onShow: function() {
     // this.getList();
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function () {
-    this.setData({ isOpen: false });
+  onHide: function() {
+    this.setData({
+      isOpen: false
+    });
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function () {
+  onUnload: function() {
 
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function () {
+  onPullDownRefresh: function() {
     this.data.params.pageNum = 1;
     this.data.params.page = 1;
     let pageType = this.data.pageType;
@@ -314,13 +375,14 @@ Page({
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () {
+  onReachBottom: function() {
     if (this.data.list.length < this.data.count) {
       this.data.params.pageNum++;
       this.data.params.page++;
       this.data.isClear = true;
 
       let pageType = this.data.pageType;
+      console.log('页面上拉触底事件的处理函数', this.data)
       if (pageType == 1) {
         this.getList(() => {
           setTimeout(() => {
@@ -355,7 +417,9 @@ Page({
 
   init(callback) {
     if (wx.showLoading) {
-      wx.showLoading({ title: '加载中...' });
+      wx.showLoading({
+        title: '加载中...'
+      });
     }
     callback(() => {
       if (wx.hideLoading) {

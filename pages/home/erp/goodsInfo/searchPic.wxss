@@ -49,6 +49,15 @@ page{
   right: 10rpx;
   background: #6495f9;
   border-radius: 50rpx;
+  z-index: 99;
+}
+
+.videos {
+  width: 710rpx;
+  height: 710rpx;
+  overflow: hidden;
+  position: relative;
+  padding: 12rpx;
 }
 
 .btngroup {

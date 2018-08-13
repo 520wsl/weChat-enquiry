@@ -16,6 +16,9 @@ Page({
     CDN: app.CDN,
     subscript: '',
     productId: '',
+    videoUrl: '',
+    name: '',
+    videoCount: 0,
     list: []
   },
 
@@ -30,9 +33,10 @@ Page({
       subscript: subscript,
       productId: productId
     })
+    this.getVideos();
     this.getList();
   },
-  getList() {
+  getList () {
     app
       .get('/product/getproductalbumlist')
       .then(e => {
@@ -61,6 +65,46 @@ Page({
       .catch(res => {
         console.log(res);
         app.utils.showModel('相册列表', res.msg);
+      });
+  },
+  getVideos () {
+    app
+      .get('/product/getproductvideo', { productId: this.data.productId })
+      .then(e => {
+        if (e.status !== 200) {
+          app.utils.showModel('视频列表', e.msg);
+        }
+        if (e.status == 401) {
+          wx.showModal({
+            title: '提示',
+            content: '登录超时或未登录，请重新登录',
+            success: res => {
+              if (res.confirm) {
+                wx.switchTab({
+                  url: '/pages/personal/personal'
+                })
+              } else if (res.cancel) {
+              }
+            }
+          })
+          return;
+        }
+
+        if (e.data <= 0) {
+          return;
+        }
+
+        let videoUrl = e.data[0]['productVideoUrl'] || '';
+        let videoCount = e.data.length || 0;
+        this.setData({
+          videoUrl,
+          videoCount,
+          name: '商品视频'
+        })
+      })
+      .catch(res => {
+        console.log(res);
+        app.utils.showModel('视频列表', res.msg);
       });
   },
   /**
@@ -105,7 +149,7 @@ Page({
 
   },
   // 返回按钮
-  backIndex() {
+  backIndex () {
     let productId = this.data.productId || '';
     let subscript = this.data.subscript || 0;
     wx.redirectTo({

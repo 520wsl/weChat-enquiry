@@ -20,6 +20,8 @@ Page({
     params: '',
     styleId: 0,
     photoInfos: [],
+    aliAccountId: '',
+    isshowbtn: false,
     isNext: false,
     styles: [
       {
@@ -39,13 +41,13 @@ Page({
       },
     ]
   },
-  showNorm() {
+  showNorm () {
     this.setData({
       show: !this.data.show
     });
   },
   // 获取storage里的数据
-  getStoragePhotoInfos() {
+  getStoragePhotoInfos () {
     wx: wx.getStorage({
       key: this.data.key,
       success: res => {
@@ -56,12 +58,21 @@ Page({
       }
     })
   },
-  productList(productId) {
+  productList (productId) {
     if (wx.showLoading) {
       wx.showLoading({ title: '加载中...' });
     }
+
+    let url = '/product/detail'
+    let params = { productId: this.data.productId }
+
+    if (this.data.aliAccountId) {
+      url = '/product/detail/share'
+      params = { productId: this.data.productId, aliAccountId: this.data.aliAccountId }
+    }
+
     app
-      .get('/product/detail', { productId: this.data.productId })
+      .get(url, params)
       .then(e => {
         if (e.status == 401) {
           wx.showModal({
@@ -110,6 +121,12 @@ Page({
         console.log(res);
       });
   },
+  // 返回按钮
+  backIndex () {
+    wx.switchTab({
+      url: '/pages/home/home'
+    });
+  },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -119,6 +136,15 @@ Page({
     let productId = options.productId || '';
     let styleId = options.styleId;
 
+    let customeInfo = app.globalData.customeInfo;
+    let aliAccountId = options.aliAccountId;
+    let isshowbtn = false;
+
+    if (aliAccountId) {
+      isshowbtn = true;
+    }
+    console.log('isshowbtn', isshowbtn, app.globalData.customeInfo, aliAccountId)
+
     if (styleId >= 0) {
       isNext = true;
       this.setData({
@@ -127,12 +153,14 @@ Page({
       })
     }
     this.setData({
-      productId: productId
+      productId,
+      aliAccountId,
+      isshowbtn
     });
     this.productList();
   },
   // 设置选中的风格样式
-  setStyle(e) {
+  setStyle (e) {
     console.log('setStyle', e)
     let styleId = e.currentTarget.dataset.styleId || 0;
     this.setData({
@@ -140,7 +168,7 @@ Page({
     })
   },
   // 放弃修改
-  abandonPhotoInfos() {
+  abandonPhotoInfos () {
     // this.setData({
     //   isNext: false
     // })
@@ -148,7 +176,7 @@ Page({
     wx.navigateBack()
   },
   // 同步数据
-  setPhotoInfos(data) {
+  setPhotoInfos (data) {
     this.setData({
       photoInfos: data
     })
@@ -157,7 +185,7 @@ Page({
       data: data
     })
   },
-  submitPhotoInfos() {
+  submitPhotoInfos () {
     if (wx.showLoading) {
       wx.showLoading({ title: '提交中...' });
     }
@@ -238,10 +266,10 @@ Page({
   onShareAppMessage: function () {
     return {
       title: '四喜E伙伴',
-      path: '/pages/share/goodsInfo/goodsInfo?productId=' + this.data.productId + '&aliAccountId=' + app.globalData.customeInfo.aliAccountId
+      path: '/pages/home/erp/goodsInfo/goodsInfo?productId=' + this.data.productId + '&aliAccountId=' + app.globalData.customeInfo.aliAccountId
     }
   },
-  formatData(v) {
+  formatData (v) {
     if (v) {
       v = v.toFixed(2);
       let cache = v.split('.');

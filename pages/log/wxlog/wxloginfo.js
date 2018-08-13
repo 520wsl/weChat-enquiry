@@ -3,7 +3,7 @@
  * @E-Mail: 395548460@qq.com 
  * @Date: 2018-05-26 14:15:27 
  * @Last Modified by: Mad Dragon
- * @Last Modified time: 2018-05-26 17:09:09
+ * @Last Modified time: 2018-05-28 14:47:19
  */
 // pages/log/wxlog/wxloginfo.js
 const app = getApp()
@@ -27,6 +27,7 @@ Page({
     this.setData({
       userLogId: userLogId
     })
+    this.getInfo();
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -34,7 +35,7 @@ Page({
   onReady: function () {
 
   },
-  getInfo() {
+  getInfo () {
     app
       .get('/messageuserlog/get', { userLogId: this.data.userLogId })
       .then(res => {
@@ -61,7 +62,7 @@ Page({
         if (res.data) {
           info['typeStr'] = this.getArrStr(this.data.logTypes, info.type);
           info['gmtCreateStr'] = this.switchTime(info.gmtCreate);
-          if(info.stastus == 1){
+          if (info.status == 1) {
             this.editStatus();
           }
         }
@@ -75,7 +76,7 @@ Page({
         console.log('获取消息详情数据', res)
       })
   },
-  editStatus() {
+  editStatus () {
     app
       .post('/messageuserlog/haveread', { userLogId: this.data.userLogId })
       .then(res => {
@@ -108,9 +109,9 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    this.getInfo();
+    // this.getInfo();
   },
-  switchTime(time) {
+  switchTime (time) {
     let yestoday = app.time.isDayType(time, 1);
     var today = app.time.isDayType(time, 2);
     if (yestoday) {
@@ -127,7 +128,7 @@ Page({
       return app.time.formatTime(time, 'MM-DD HH:mm');
     }
   },
-  getArrStr(arr = [], key = "") {
+  getArrStr (arr = [], key = "") {
     let str = '';
     if (key == undefined || key == null) {
       return '';
@@ -140,7 +141,7 @@ Page({
     return str;
   },
   // 返回按钮
-  backIndex() {
+  backIndex () {
     wx.switchTab({
       url: '/pages/log/wxlog/wxlog'
     });
