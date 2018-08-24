@@ -76,9 +76,9 @@
       <text class='num'>{{productItemsNum}}种货品</text>
       <text class='freight'>总金额：(含运费{{shippingFee}})</text>
       <text class='mony'>￥{{totalAmountInt}}<text wx:if="{{totalAmountDecimal}}" class="decimal">.{{totalAmountDecimal}}         </text></text>
-      <navigator style='display:initial;' wx:if="{{status == 'waitbuyerpay'}}" url='/pages/home/erp/orderInfo/editOrderPic?orderId={{id}}'>
+      <!-- <navigator style='display:initial;' wx:if="{{status == 'waitbuyerpay'}}" url='/pages/home/erp/orderInfo/editOrderPic?orderId={{id}}'>
         <text class='editPic'>修改价格</text>
-      </navigator>
+      </navigator> -->
     </view>
   </view>
 

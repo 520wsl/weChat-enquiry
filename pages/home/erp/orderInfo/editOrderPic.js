@@ -15,11 +15,11 @@ Page({
     err2: false,
     // 弹窗
     modal: false,
-    totalAmount: 0,
+    // totalAmount: 0,
     params: {
       orderId: '',
       fee: '',
-      price: ''
+      subItemPriceList: ''
     }
   },
 
@@ -56,16 +56,26 @@ Page({
   },
   // 设置 价格
   setPrice(e) {
-    let price = e.detail.value
-    if (price == '' || price.length < 0) {
+    let itemAmount = e.detail.value
+    let index = e.currentTarget.dataset.index
+    let productItems = this.data.info.productItems || []
+    console.log('setPrice',e,index)
+    if (itemAmount == '' || itemAmount.length < 0) {
+      productItems[index]['itemAmount'] = itemAmount
+      productItems[index]['err1'] = true
       this.setData({
-        err1: true
+        err1:true,
+        'info.productItems': productItems
       });
       return;
     }
+    console.log(productItems[index]['itemAmount'])
+
+    productItems[index]['itemAmount'] = itemAmount
+    productItems[index]['err1'] = false
     this.setData({
-      'params.price': price,
-      err1: false
+      err1: false,
+      'info.productItems': productItems
     });
     this.setTotalAmount()
   },
@@ -75,12 +85,22 @@ Page({
     })
   },
   setTotalAmount() {
-    let totalAmount = parseFloat(this.data.params.fee) + parseFloat(this.data.params.price)
-    totalAmount = this.toFixed(totalAmount)
-    console.log(totalAmount)
-    this.setData({
-      totalAmount: totalAmount
+    // console.log('-----',this.data.info.productItems)
+    this.data.params.subItemPriceList = this.data.info.productItems.map(item => {
+      let arr ={
+        itemAmount: item['itemAmount'],
+        subItemID: item['subItemID']
+      }
+      // arr['itemAmount']= item['itemAmount'];
+      // arr['subItemID'] = item['subItemID'];
+      return arr
     })
+    // let totalAmount = parseFloat(this.data.params.fee) + parseFloat(this.data.params.price)
+    // totalAmount = this.toFixed(totalAmount)
+    // console.log(totalAmount)
+    // this.setData({
+    //   totalAmount: totalAmount
+    // })
   },
   // 显隐弹窗
   setModal() {
@@ -90,16 +110,16 @@ Page({
     this.setData({
       modal: !this.data.modal
     })
-    let price = this.toFixed(parseFloat(this.data.params.price))
-    let fee = this.toFixed(parseFloat(this.data.params.fee))
-    this.setData({
-      'params.price': price,
-      'params.fee': fee
-    })
+    // let price = this.toFixed(parseFloat(this.data.params.price))
+    // let fee = this.toFixed(parseFloat(this.data.params.fee))
+    // this.setData({
+    //   'params.price': price,
+    //   'params.fee': fee
+    // })
   },
   // 详情
   getInfo(cb) {
-    app.get('/aliorder/get', this.data.params).then((res) => {
+    app.get('/aliorder/get', { orderId: this.data.params.orderId}).then((res) => {
       console.log(res);
       if (typeof cb == 'function') {
         cb();
@@ -132,18 +152,27 @@ Page({
       if (data) {
         data.shippingFee = this.toFixed(data.shippingFee);
         data.sumProductPayment = this.toFixed(data.sumProductPayment);
-        data.totalAmount = this.toFixed(data.totalAmount);
-        let nCache = data.totalAmount.split('.');
-        data.totalAmountDecimal = nCache[1];
-        data.totalAmountInt = nCache[0];
+        // data.totalAmount = this.toFixed(data.totalAmount);
+        // let nCache = data.totalAmount.split('.');
+        // data.totalAmountDecimal = nCache[1];
+        // data.totalAmountInt = nCache[0];
         data.productItems.forEach((item) => {
           item.price = this.toFixed(item.price);
         });
+        this.data.params.subItemPriceList  = data.productItems.map(item => {
+          let arr = {
+            itemAmount: item['itemAmount'],
+            subItemID: item['subItemID']
+          }
+          // arr['itemAmount']= item['itemAmount'];
+          // arr['subItemID'] = item['subItemID'];
+          return arr
+        })
         this.setData({
           info: data,
-          'params.price': data.sumProductPayment,
+          // 'params.price': data.sumProductPayment,
           'params.fee': data.shippingFee,
-          totalAmount: data.totalAmount
+          // totalAmount: data.totalAmount
         });
         return;
       }
@@ -157,7 +186,25 @@ Page({
   },
   // 修改价格、运费
   setPic() {
-    app.get('/aliorder/updateorder', this.data.params).then((res) => {
+    let itemAmountToTall = 0;
+    this.data.params.subItemPriceList.map(item =>{
+      itemAmountToTall += item['itemAmount']
+    })
+    if (itemAmountToTall <= 0){
+      wx.showModal({
+        title: '修改价格',
+        content: '修改失败:商品总价必须大于0元！',
+        success: res => {
+          if (res.confirm) {
+            this.getInfo();
+          } else if (res.cancel) {
+            this.getInfo();
+          }
+        }
+      })
+      return ;
+    }
+    app.post('/aliorder/updateorder', this.data.params).then((res) => {
       if (typeof cb == 'function') {
         cb();
       }

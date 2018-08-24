@@ -1,0 +1,46 @@
+<!--pages/enquiry/enquiryOrderInfo.wxml-->
+<view class='order-info'>
+  <view class='state'>
+    <view class='title'></view>
+  </view>
+
+  <view class='person-mess'>
+    <view class='details'>
+      <view class='txt'>
+        <view class='address'>询盘总金额：￥{{info.totalAmount || 0}}</view>
+        <view class='dh' bindtap='callPhone'>
+          <view class='phone'>买家电话：{{info.phone}}</view>
+          <view class='pic pic-phone' wx:if="{{info.phone.length > 0}}">
+            <image src='http://1.img.dianjiangla.com/enquiryAssets//icon/icon_call_phone.png'></image>
+          </view>
+        </view>
+        <view class='name'>联系人：{{info.buyer_name || ''}}</view>
+      </view>
+      <view wx:if="{{info.orderType == 1}}" class='btngroup' bindtap='jumInfo'>
+        <view class='infobtn'>
+          <text>查看订单详情</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+
+<view class='goods-mess m-b-20' style='border-top:5px solid #f2f2f2;'>
+  <view class='title'>
+    <image class='img' src='http://1.img.dianjiangla.com/enquiryAssets/icon/icon_customer.png'></image>
+    {{info.buyerLoginId}}
+  </view>
+
+  <view class='list' style='border-top:1px solid #f2f2f2;'>
+    <itemEnquiry wx:for="{{list}}" wx:key="{{index}}" item="{{item}}"></itemEnquiry>
+  </view>
+  <view wx:if="{{list.length > 0 && (list.length == count) && isshowFooter}}" class="bottom-line">
+    <view class="line"></view>
+    <view class="line-txt">我是有底线的</view>
+    <view class="line"></view>
+  </view>
+  <view wx:if="{{list.length == 0}}" class="no-data">
+    <image src="{{CDN}}record_no.png" class="img" />
+    <text class="txt">{{msgStr}}</text>
+  </view>
+</view>

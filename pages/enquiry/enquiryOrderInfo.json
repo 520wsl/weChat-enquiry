@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "询盘订单",
+  "usingComponents": {
+    "itemEnquiry": "/components/itemEnquiry/itemEnquiry"
+  }
+}
