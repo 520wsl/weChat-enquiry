@@ -1,6 +1,7 @@
 {
   "pages": [
     "pages/personal/personal",
+    "pages/enquiry/enquiryOrderInfo",
     "pages/log/wxlog/wxlog",
     "pages/log/wxlog/wxloginfo",
     "pages/home/erp/goodsInfo/goodsInfo",

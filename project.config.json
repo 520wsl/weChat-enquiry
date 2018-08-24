@@ -29,7 +29,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": -1,
+			"current": 3,
 			"list": [
 				{
 					"id": 0,
@@ -53,6 +53,13 @@
 					"query": "action=o&data=eyJpZCI6IjE3MDI3NTYxOTI4NzE1OTczNSJ9&type=2&aid=2333&mid=321069",
 					"scene": "1043",
 					"referrerInfo": {}
+				},
+				{
+					"id": 3,
+					"name": "询盘订单",
+					"pathName": "pages/personal/personal",
+					"query": "action=o&data=eyJpZCI6IjIwODUwIn0=&type=1&aid=2333&mid=321069",
+					"scene": "1014"
 				}
 			]
 		}

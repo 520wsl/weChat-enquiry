@@ -125,7 +125,8 @@ Page({
         console.log('app全局信息打印', customeInfo);
         if (customeInfo && customeInfo.aliAccountId === datas.aid) {
           wx.navigateTo({
-            url: '/pages/home/erp/orderInfo/orderInfo?orderId=' + datas.id
+            // url: '/pages/home/erp/orderInfo/orderInfo?orderId=' + datas.id
+            url: '/pages/enquiry/enquiryOrderInfo?orderId=' + datas.id
           });
           return;
         }
@@ -214,7 +215,7 @@ Page({
       }
       if (this.data.action == 'o') {
         wx.navigateTo({
-          url: '/pages/home/erp/orderInfo/orderInfo?orderId=' + id,
+          url: '/pages/enquiry/enquiryOrderInfo?orderId=' + id,
         })
       }
       if (this.data.action == 'msg') {
