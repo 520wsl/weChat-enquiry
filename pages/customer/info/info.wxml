@@ -1,0 +1,23 @@
+<!--pages/customer/customerDetail/customerDetail.wxml-->
+<view class='infoTop'>
+  <view class='infoTop-nameIcon'>
+    {{info.nameIcon}}
+  </view>
+  <view>
+    <view class='infoTop-nameRank'>
+      <view class='infoTop-name'>
+        {{info.name}}
+      </view>
+      <view class='infoTop-rankIcon'>
+        LV
+      </view>
+      <view class='infoTop-rank'>
+        {{info.rank}}
+      </view>
+    </view>
+    <view class='infoTop-identity'>
+      {{info.identity}}
+    </view>
+  </view>
+  
+</view>
