@@ -34,7 +34,9 @@
     "pages/home/erp/logisticsInfo/logisticsInfo",
     "pages/home/erp/myGoods/searchWord",
     "pages/home/erp/orderInfo/editOrderPic",
-    "pages/personal/faq/faqInfo"
+    "pages/personal/faq/faqInfo",
+    "pages/customer/info/info",
+    "pages/customer/customer"
   ],
   "window": {
     "backgroundColor": "#f2f2f2",
@@ -66,6 +68,12 @@
         "text": "消息",
         "selectedIconPath": "images/log.png",
         "iconPath": "images/log_2.png"
+      },
+      {
+        "pagePath": "pages/customer/customer",
+        "text": "客户",
+        "selectedIconPath": "images/customer.png",
+        "iconPath": "images/customer_2.png"
       },
       {
         "pagePath": "pages/personal/personal",
