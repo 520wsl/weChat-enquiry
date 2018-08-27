@@ -245,10 +245,16 @@ Page({
         success: res => {
           if (res.confirm) {
             this.setModal()
-            this.getInfo();
+            wx.redirectTo({
+              url: '/pages/home/erp/orderInfo/orderInfo?orderId=' + this.data.params.orderId,
+            })
+            // this.getInfo();
           } else if (res.cancel) {
             this.setModal()
-            this.getInfo();
+            wx.redirectTo({
+              url: '/pages/home/erp/orderInfo/orderInfo?orderId=' + this.data.params.orderId,
+            })
+            // this.getInfo();
           }
         }
       })
