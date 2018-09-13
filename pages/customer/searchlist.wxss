@@ -1,0 +1,8 @@
+/* pages/customer/searchlist.wxss */
+page {
+  background-color: #fff;
+}
+.list {
+  padding: 0 30rpx;
+  padding-bottom:60rpx; 
+}

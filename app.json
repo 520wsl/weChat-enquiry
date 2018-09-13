@@ -1,6 +1,8 @@
 {
   "pages": [
     "pages/personal/personal",
+    "pages/home/setCustomer/setRank",
+    "pages/customer/customer",
     "pages/enquiry/enquiryOrderInfo",
     "pages/log/wxlog/wxlog",
     "pages/log/wxlog/wxloginfo",
@@ -37,6 +39,8 @@
     "pages/personal/faq/faqInfo",
     "pages/customer/customer",
     "pages/customer/info/info",
+    "pages/customer/searchWord",
+    "pages/customer/searchlist",
     "pages/customer/edit/edit"
   ],
   "window": {
@@ -51,8 +55,7 @@
     "selectedColor": "#6495f9",
     "borderStyle": "black",
     "backgroundColor": "#fff",
-    "list": [
-      {
+    "list": [{
         "pagePath": "pages/home/home",
         "text": "首页",
         "selectedIconPath": "images/home.png",

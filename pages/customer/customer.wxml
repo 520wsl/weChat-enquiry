@@ -1,3 +1,124 @@
-<view>
-  <button bindtap='toCustomerDetail'>客户详情</button>
+<view class='nav-select'>
+  <view bindtap='setIsShowSelect' class='select-switch pic'>
+    <image src='{{CDN}}icon/icon_class_select.png'></image>
+  </view>
+  <view class='navs'>
+    <view class='item active'>全部</view>
+    <view class='item'>至尊</view>
+    <view class='item'>VIP</view>
+    <view class='item'>高级</view>
+    <view class='item'>会员</view>
+  </view>
+  <view bindtap='toSearchWord' class='select-icon pic'>
+    <image src='{{CDN}}icon/icon_select.png'></image>
+  </view>
 </view>
+
+<view class='list'>
+  <itemCustomer></itemCustomer>
+</view>
+
+<view class='float-model' wx:if="{{isShowSelect}}">
+  <view class='float-content'>
+    <view class='time-select'>
+      <view class='text'>
+        <text>合作日期</text>
+      </view>
+      <view class="time-range">
+        <picker mode="date" value="{{timeSearch.startTime}}" class="{{timeSearch.startTime ? 'ac' : ''}} start-time" start="{{defaultTime.start}}" end="{{defaultTime.end}}" bindchange="startTimeChange">
+          <view class="weui-input">{{timeSearch.startTime ? timeSearch.startTime : '开始日期'}}
+            <view class="arrow-drop"></view>
+          </view>
+        </picker>
+        <text class="txt">至</text>
+        <picker mode="date" value="{{timeSearch.endTime}}" class="{{timeSearch.endTime ? 'ac' : ''}} end-time" start="{{defaultTime.start}}" end="{{defaultTime.end}}" bindchange="endTimeChange">
+          <view class="weui-input">{{timeSearch.endTime ? timeSearch.endTime : '结束日期'}}
+            <view class="arrow-drop"></view>
+          </view>
+        </picker>
+      </view>
+    </view>
+
+    <view class='tab'>
+      <view class='text'>
+        <text>客户来源</text>
+      </view>
+      <view class='tab-list'>
+        <view class='item-tab active'>
+          <text>线上</text>
+        </view>
+        <view class='item-tab'>
+          <text>线下</text>
+        </view>
+      </view>
+    </view>
+
+    <view class='tab'>
+      <view class='text'>
+        <text>客户等级</text>
+      </view>
+      <view class='tab-list'>
+        <view class='item-tab active'>
+          <text>普通会员</text>
+        </view>
+        <view class='item-tab'>
+          <text>高级会员</text>
+        </view>
+         <view class='item-tab active'>
+          <text>普通会员</text>
+        </view>
+        <view class='item-tab'>
+          <text>高级会员</text>
+        </view>
+         <view class='item-tab active'>
+          <text>普通会员</text>
+        </view>
+        <view class='item-tab'>
+          <text>高级会员</text>
+        </view>
+         <view class='item-tab active'>
+          <text>普通会员</text>
+        </view>
+        <view class='item-tab'>
+          <text>高级会员</text>
+        </view>
+      </view>
+    </view>
+
+    <view class='tab'>
+      <view class='text'>
+        <text>客户身份</text>
+      </view>
+      <view class='tab-list'>
+        <view class='item-tab active'>
+          <text>标签1</text>
+        </view>
+        <view class='item-tab'>
+          <text>标签2</text>
+        </view>
+        <view class='item-tab'>
+          <text>标签2</text>
+        </view>
+        <view class='item-tab'>
+          <text>标签2</text>
+        </view>
+        <view class='item-tab'>
+          <text>标签2</text>
+        </view>
+        <view class='item-tab'>
+          <text>标签2</text>
+        </view>
+      </view>
+    </view>
+
+    <view class='nextbtn'>
+      <view bindtap='setIsShowSelect' class='leftbtn'>
+        <text>放 弃</text>
+      </view>
+      <view bindtap='setIsShowSelect' class='rightbtn'>
+        <text>确 定</text>
+      </view>
+    </view>
+  </view>
+</view>
+<navigator url='/pages/customer/info/info' class='askBtn pic'><image src='{{CDN}}icon/icon_add_customer.png'></image></navigator>

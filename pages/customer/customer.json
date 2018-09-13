@@ -1,3 +1,6 @@
 {
-  
+  "navigationBarTitleText": "客户",
+  "usingComponents": {
+    "itemCustomer": "/components/customer/itemCustomer"
+  }
 }

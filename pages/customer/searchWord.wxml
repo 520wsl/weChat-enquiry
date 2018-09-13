@@ -1,0 +1,11 @@
+<view class="search-word">
+  <!-- 搜索 -->
+  <view class="form">
+    <view class="form-group">
+      <input focus bindinput="searchHandle" class="form-control" value="{{searchName}}" placeholder="产品关键词" />
+      <image wx:if="{{searchName != ''}}" bindtap="delSearch" class="del" src="{{CDN}}/icon_search_del.png"></image>
+    </view>
+    <a bindtap="jumpPage" class="cancle">搜索</a>
+  </view>
+</view>
+<button open-type='contact' plain class='askBtn pic'><image src='{{CDN}}icon/icon_ask.png'></image></button>
