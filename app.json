@@ -1,6 +1,8 @@
 {
   "pages": [
     "pages/personal/personal",
+    "pages/home/setCustomer/setRank",
+    "pages/customer/customer",
     "pages/enquiry/enquiryOrderInfo",
     "pages/log/wxlog/wxlog",
     "pages/log/wxlog/wxloginfo",
@@ -36,7 +38,8 @@
     "pages/home/erp/orderInfo/editOrderPic",
     "pages/personal/faq/faqInfo",
     "pages/customer/info/info",
-    "pages/customer/customer"
+    "pages/customer/searchWord",
+    "pages/customer/searchlist"
   ],
   "window": {
     "backgroundColor": "#f2f2f2",
