@@ -121,7 +121,9 @@
 button::after{
   border: 0;
 }
-
+.list-marginTop{
+  margin-top: 10rpx;
+}
 /* 解绑按钮样式 */
 .untie {
   width: 94rpx;

@@ -25,6 +25,15 @@
     </view>
   </view>
 
+  <view class='list-box' wx:if="{{info.login}}">
+    <view class='list list1'>
+      <view class='horizontal_alignment'>
+        <image src='{{CDN}}icon/icon_log.png' class='icon' />
+        <text class='list_text'>消息</text>
+      </view>
+      <image src='{{CDN}}icon_right.png' class='icon_right' />
+    </view>
+  </view>
   <button open-type="contact" class='list-box contact_btn'>
     <view class='list list1'>
       <view class='horizontal_alignment'>
@@ -58,7 +67,15 @@
       <image src='{{CDN}}icon_right.png' class='icon_right' />
     </view>
   </view>
-
+  <view class='list-box list-marginTop' wx:if="{{info.login}}">
+    <view class='list list1'>
+      <view class='horizontal_alignment'>
+        <image src='{{CDN}}icon/icon_set_quanxian.png' class='icon' />
+        <text class='list_text'>会员等级设置</text>
+      </view>
+      <image src='{{CDN}}icon_right.png' class='icon_right' />
+    </view>
+  </view>
   <view class='tc_btn_box' wx:if="{{info.login}}">
     <button class='gradient-bg tc_btn' bindtap='logOut'>退 出</button>
   </view>
