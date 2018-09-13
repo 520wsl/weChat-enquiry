@@ -1,0 +1,7 @@
+<view class='list'>
+  <itemCustomer></itemCustomer>
+  <itemCustomer></itemCustomer>
+  <itemCustomer></itemCustomer>
+  <itemCustomer></itemCustomer>
+  <itemCustomer></itemCustomer>
+</view>

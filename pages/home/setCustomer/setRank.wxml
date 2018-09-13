@@ -1,0 +1,30 @@
+<template name="item-rank">
+  <view class='item-rank'>
+    <view class='item-title'>
+      <text class='text'>普通会员</text>
+      <text>条件（满足一条即可）</text>
+    </view>
+    <view class='item-list'>
+      <view class='list-item hr'>
+        <view>
+          <text>支付金额（元）</text>
+        </view>
+        <input value='2000.00'></input>
+      </view>
+      <view class='list-item'>
+        <view>
+          <text>支付订单数（笔）</text>
+        </view>
+        <input value='2000.00'></input>
+      </view>
+    </view>
+  </view>
+</template>
+
+
+<view class='list'>
+  <template is="item-rank" />
+  <template is="item-rank" />
+  <template is="item-rank" />
+  <button class='btn-bd gradient-bg'>保 存</button>
+</view>
