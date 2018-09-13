@@ -1,8 +1,16 @@
-/* pages/customer/customerDetail/customerDetail.wxss */
+/* pages/customer/info/info.wxss */
 .infoTop{
   padding: 48rpx 0 0 48rpx;
   background: #fff;
   display: flex;
+  position: relative;
+}
+.infoTop image{
+  width: 14rpx;
+  height: 28rpx;
+  position: absolute;
+  right: 42rpx;
+  top: 114rpx;
 }
 .infoTop-nameIcon{
   width: 120rpx;
@@ -25,30 +33,160 @@
  font-weight: bold;
 }
 .infoTop-rankIcon{
-  font-size: 16rpx;
-  width: 28rpx;
-  height: 28rpx;
-  line-height: 28rpx;
+  font-size: 24rpx;
+  padding: 4rpx 6rpx;
+  line-height: 32rpx;
   text-align: center;
   background: #e4edfe;
   border-radius: 2rpx;
   color: #6495F9;
   margin: 6rpx 10rpx 0 0;
+  font-weight: bold;
 }
 .infoTop-rank{
   color: #6495F9;
   background: #e4edfe;
   text-align: center;
-  font-size: 20rpx;
-  padding: 0 12rpx;
-  border-radius: 14rpx;
-  height: 28rpx;
+  font-size: 24rpx;
+  padding: 4rpx 17rpx;
+  border-radius: 200rpx;
   line-height: 28rpx;
   margin: 6rpx 0 0 0;
+  font-weight: bold;
 }
 .infoTop-identity{
-  font-size: 20rpx;
+  font-size: 24rpx;
   color: #fff;
   padding:0  14rpx;
   background-image: linear-gradient(-199deg, #58A6F6 0%, #7A75FE 100%);
+  display: inline-block;
+  border-radius: 200rpx;
+}
+.infoTop-bottomBg{
+  height: 88rpx;
+  background: #fff;
+  padding-top:8rpx;
+}
+.infoTop-bottomBg image{
+  height: 80rpx;
+  width: 750rpx;
+}
+.info-contact{
+  padding: 0 0 0 28rpx;
+  background: #fff;
+  margin-bottom: 10rpx;
+}
+.info-contact-title .info-line{
+  background: #444;
+  border-radius: 1rpx;
+  height: 24rpx;
+  width: 6rpx;
+  position: absolute;
+  top: 40rpx;
+  left: 28rpx;
+}
+.info-contact-title{
+  border-bottom:  2rpx solid #e8e8e8;
+  font-size: 30rpx;
+  height: 98rpx;
+  line-height: 98rpx;
+  background: #fff;
+  padding-left: 50rpx;
+  position: relative;
+}
+.info-contact-item{
+  display: flex;
+  padding: 40rpx 30rpx 24rpx 0;
+  border-bottom: 2rpx solid #e8e8e8; 
+  justify-content: space-between;
+}
+.info-contact-item image{
+  width: 40rpx;
+  height: 40rpx;
+  margin-right: 16rpx;
+}
+.info-contact-item .item-left{
+  font-size: 28rpx;
+  color: #333;
+  display: flex;
+  align-items: center;
+  height: 40rpx;
+  flex: none;
+}
+.info-contact-item .item-right {
+  flex: none;
+  width: 500rpx;
+}
+.info-contact-item .item-right text{
+  display: block;
+  text-align: right;
+  color: #666;
+  font-size: 26rpx;
+  flex: none;
+  width: 500rpx;
+  word-wrap:break-word;
+}
+.info-contact-item .item-right text:nth-child(2){
+  padding-top: 24rpx;
+}
+.info-trade-title .info-line{
+  background: #444;
+  border-radius: 1rpx;
+  height: 24rpx;
+  width: 6rpx;
+  position: absolute;
+  top: 54rpx;
+  left: 28rpx;
+}
+.info-trade-title{
+  border-bottom:  2rpx solid #e8e8e8;
+  font-size: 30rpx;
+  height: 128rpx;
+  background: #fff;
+  padding: 0 30rpx 0 50rpx;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.trade-info{
+  display: flex;
+  background: #fff;
+  justify-content: space-around;
+  padding: 56rpx 30rpx;
+}
+.trade-info-item text{
+  display: block;
+  text-align: center;
+  font-size: 36rpx;
+  line-height: 48rpx;
+  color: #666;
+  font-weight: bold;
+}
+.trade-info-item .item-title{
+  color: #333;
+  font-size: 26rpx;
+  margin-top: 44rpx;
+}
+.spread-info{
+  margin: 10rpx 0 58rpx 0;
+  padding: 22rpx 0 0 30rpx;
+  background: #fff;
+}
+.spread-info .spread-info-item{
+  border-bottom: 2rpx solid #e8e8e8;
+  display: flex;
+  justify-content: space-between;
+  padding-right: 30rpx;
+  align-items: center;
+}
+.spread-info .spread-info-item text{
+  color: #666;
+  font-size: 26rpx;
+  line-height: 36rpx;
+  padding: 24rpx 0;
+}
+.icon_right{
+  width: 30rpx;
+  height: 16rpx;
 }

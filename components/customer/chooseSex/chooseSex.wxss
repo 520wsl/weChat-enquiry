@@ -1,0 +1,19 @@
+.identity-control{
+  display: flex;
+  align-items: center;
+  justify-content: right;
+}
+.identity-control a{
+  color: #666;
+  font-size: 26rpx;
+}
+.identity-control span{
+  margin-left: 10rpx;
+  height: 0;
+  width: 0;
+  border-style: solid;
+  border-width: 8rpx 10rpx;
+  border-color: #666 transparent transparent transparent;
+  position: relative;
+  top: 4rpx;
+}

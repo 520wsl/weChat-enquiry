@@ -1,5 +1,5 @@
-<!--pages/customer/customerDetail/customerDetail.wxml-->
-<view class='infoTop'>
+<!--pages/customer/info/info.wxml-->
+<view class='infoTop' bindtap='toCustomerEdit'>
   <view class='infoTop-nameIcon'>
     {{info.nameIcon}}
   </view>
@@ -12,12 +12,114 @@
         LV
       </view>
       <view class='infoTop-rank'>
-        {{info.rank}}
+        {{info.level==0?'普通会员':info.level==1?'高级会员':info.level==2?'vip会员':info.level==3?'至尊会员':''}}
       </view>
     </view>
     <view class='infoTop-identity'>
-      {{info.identity}}
+      {{info.type==0?'其他':info.type==1?'淘宝采购商':info.type==2?'淘宝采购商':info.type==3?'经销商':info.type==4?'外贸':''}}
     </view>
   </view>
-  
+  <view >
+    <image src='{{CDN}}icon_right.png'/>
+  </view>
+</view>
+<view class='infoTop-bottomBg'>
+  <image src='{{CDN}}icon/icon_info_bg.png'></image>
+</view>
+<view class='info-contact-title'>
+  <view class='info-line'></view>
+  联系方式
+</view>
+<view class='info-contact'>
+  <view class='info-contact-item'>
+    <view class='item-left'>
+      <image src='{{CDN}}icon/icon_phone.png'></image>
+      电话
+    </view>
+    <view class='item-right'>
+      <text>{{info.mobilePhone}}</text>   
+    </view>
+  </view>
+  <view class='info-contact-item'>
+    <view class='item-left'>
+      <image src='{{CDN}}icon/icon_email.png'></image>
+      电子邮件
+    </view>
+    <view class='item-right'>
+      <text>{{info.mailbox}}</text>
+    </view>
+  </view>
+  <view class='info-contact-item'>
+    <view class='item-left'>
+      <image src='{{CDN}}icon/icon_customer_info.png'></image>
+      公司
+    </view>
+    <view class='item-right'>
+      <text>{{info.company}}</text>
+    </view>
+  </view>
+  <view class='info-contact-item'>
+    <view class='item-left'>
+      <image src='{{CDN}}icon/icon_map.png'></image>
+      联系地址
+    </view>
+    <view class='item-right'>
+      <text wx:if="{{info.address}}">{{info.address}}</text>
+      <text wx:if="{{info.fullAddress}}">{{info.fullAddress}}</text>
+    </view>
+  </view>
+</view>
+<view class='info-trade-title' bindtap='changeTraderSpread'>
+  <view class='info-line'></view>
+  交易信息
+  <image wx:if="{{!tradeSpread}}" src='{{CDN}}icon/icon_down_jiantou.png' class='icon_right' />
+  <image wx:if="{{tradeSpread}}" src='{{CDN}}icon/icon_up_jiantou.png' class='icon_right' />
+</view>
+<view class='trade-info'>
+  <view class='trade-info-item'>
+    <text>{{tradeInfo.orderQuantity}}</text>
+    <text class='item-title'>支付订单数</text>
+  </view>
+  <view class='trade-info-item'>
+    <text>{{tradeInfo.paymentAmount}}</text>
+    <text class='item-title'>支付金额</text>
+  </view>
+  <view class='trade-info-item'>
+    <text>{{tradeInfo.enquiryQuantity}}次</text>
+    <text class='item-title'>询盘次数</text>
+  </view>
+</view>
+<view class='spread-info' wx:if="{{tradeSpread}}">
+  <view class='spread-info-item'>
+    <text>总金额</text>
+    <text>{{tradeInfo.totalAmount}}</text>
+  </view>
+  <view class='spread-info-item'>
+    <text>支付金额</text>
+    <text>{{tradeInfo.paymentAmount}}</text>
+  </view>
+  <view class='spread-info-item'>
+    <text>跟进金额</text>
+    <text>{{tradeInfo.followAmount}}</text>
+  </view>
+  <view class='spread-info-item'>
+    <text>成交占比</text>
+    <text>{{tradeInfo.successProportion}}</text>
+  </view>
+  <view class='spread-info-item'>
+    <text>支付订单数</text>
+    <text>{{tradeInfo.orderQuantity}}</text>
+  </view>
+  <view class='spread-info-item'>
+    <text>询盘次数</text>
+    <text>{{tradeInfo.enquiryQuantity}}</text>
+  </view>
+  <view class='spread-info-item'>
+    <text>支付商品数</text>
+    <text>{{tradeInfo.commodityQuantity}}</text>
+  </view>
+  <view class='spread-info-item'>
+    <text>支付商品件数</text>
+    <text>{{tradeInfo.commodityNum}}</text>
+  </view>
 </view>

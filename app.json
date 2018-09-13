@@ -37,9 +37,11 @@
     "pages/home/erp/myGoods/searchWord",
     "pages/home/erp/orderInfo/editOrderPic",
     "pages/personal/faq/faqInfo",
+    "pages/customer/customer",
     "pages/customer/info/info",
     "pages/customer/searchWord",
-    "pages/customer/searchlist"
+    "pages/customer/searchlist",
+    "pages/customer/edit/edit"
   ],
   "window": {
     "backgroundColor": "#f2f2f2",
@@ -53,8 +55,7 @@
     "selectedColor": "#6495f9",
     "borderStyle": "black",
     "backgroundColor": "#fff",
-    "list": [
-      {
+    "list": [{
         "pagePath": "pages/home/home",
         "text": "首页",
         "selectedIconPath": "images/home.png",

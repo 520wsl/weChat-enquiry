@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "chooseIdentity": "/components/customer/chooseIdentity/chooseIdentity",
+    "chooseSex": "/components/customer/chooseSex/chooseSex"
+  }
+}
