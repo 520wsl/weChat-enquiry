@@ -2,7 +2,6 @@
   "pages": [
     "pages/personal/personal",
     "pages/home/setCustomer/setRank",
-    "pages/customer/customer",
     "pages/enquiry/enquiryOrderInfo",
     "pages/log/wxlog/wxlog",
     "pages/log/wxlog/wxloginfo",
