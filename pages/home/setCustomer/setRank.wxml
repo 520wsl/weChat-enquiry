@@ -1,7 +1,7 @@
 <template name="item-rank">
-  <view class='item-rank'>
+  <view class='item-rank item-rank{{index}}'>
     <view class='item-title'>
-      <text class='text'>普通会员</text>
+      <text class='text'>{{name}}</text>
       <text>条件（满足一条即可）</text>
     </view>
     <view class='item-list'>
@@ -9,22 +9,32 @@
         <view>
           <text>支付金额（元）</text>
         </view>
-        <input value='2000.00'></input>
+        <input  type="digit" data-type='money' data-level='{{level}}' bindblur='setLevel'  value='{{money}}'></input>
       </view>
       <view class='list-item'>
         <view>
           <text>支付订单数（笔）</text>
         </view>
-        <input value='2000.00'></input>
+        <input type="number" data-type='order' data-level='{{level}}' bindblur='setLevel' value='{{order}}'></input>
       </view>
+    </view>
+  </view>
+</template>
+
+<template name="item-rank0">
+  <view class='item-rank item-rank{{index}}'>
+    <view class='item-title'>
+      <text class='text'>{{name}}</text>
+      <text>条件（满足一条即可）</text>
+    </view>
+    <view class='item-list item-list0'>
+      <text>添加即为普通会员</text>
     </view>
   </view>
 </template>
 
 
 <view class='list'>
-  <template is="item-rank" />
-  <template is="item-rank" />
-  <template is="item-rank" />
-  <button class='btn-bd gradient-bg'>保 存</button>
+  <template wx:for="{{list}}" wx:key="{{index}}" is="{{item.index == 0? 'item-rank0':'item-rank'}}" data="{{...item}}" />
+  <button bindtap='saveData' class='btn-bd gradient-bg'>保 存</button>
 </view>

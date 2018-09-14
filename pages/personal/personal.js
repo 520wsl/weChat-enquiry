@@ -379,6 +379,11 @@ Page({
       url: "./faq/faq"
     })
   },
+  setLevel:function(){
+    wx:wx.navigateTo({
+      url: '/pages/home/setCustomer/setRank',
+    })
+  },
   callPhone: function(res) {
     if (!res.currentTarget.dataset.phone) {
       return

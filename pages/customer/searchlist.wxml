@@ -1,7 +1,30 @@
-<view class='list'>
-  <itemCustomer></itemCustomer>
-  <itemCustomer></itemCustomer>
-  <itemCustomer></itemCustomer>
-  <itemCustomer></itemCustomer>
-  <itemCustomer></itemCustomer>
+<template name="itemCustomer">
+<navigator url='/pages/customer/info/info?index={{index}}&&customerId={{customerId}}'>
+<view class='item'>
+  <view class='icon-txt'>
+    <text class='text icon-text{{index}}'>{{customerName}}{{index}}</text>
+  </view>
+  <view class='item-content'>
+    <view class='content'>
+      <text class='top-name'>{{customerName}}</text>
+      <text class='icon'>LV</text>
+      <text class='icon radius'>{{customerLevelLabel[level]}}</text>
+    </view>
+    <view class='btn'>
+      <text class='icon radius'>{{customerTypeLabel[type]}}</text>
+    </view>
+    <view class='phone'>{{telephone}}</view>
+  </view>
+  <image class='img' src='{{CDN}}/icon_right.png'></image>
 </view>
+</navigator>
+</template>
+<view class='list'>
+  <template wx:for="{{list}}" wx:key="{{index}}" is="itemCustomer" data="{{...item,CDN,customerLevelLabel,customerTypeLabel}}" />
+</view>
+<view wx:if="{{list.length > 0 && (list.length == count) && isshowFooter}}" class="bottom-line">
+  <view class="line"></view>
+  <view class="line-txt">我是有底线的</view>
+  <view class="line"></view>
+</view>
+<component-no-data text="{{msgStr}}" wx:if="{{list.length == 0}}"></component-no-data>
