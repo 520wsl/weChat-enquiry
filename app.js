@@ -57,7 +57,7 @@ const config = {
     { key: 2, str: '发送失败' },
     { key: 3, str: '已读' },
     { key: 4, str: '已重发' }
-  ]
+  ],
 }
 // for (var name in api) {
 //   config[name] = api[name]
