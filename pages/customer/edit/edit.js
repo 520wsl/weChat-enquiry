@@ -10,13 +10,13 @@ Page({
     info:{
       name: '',
       mobilePhone: '',
-      type: null,
+      type: 5,
       company: '',
       position: '',
       wechat: '',
       account: '',
       birthday: null,
-      sex: 0,
+      sex: null,
       mailbox: '',
       area: '',
       address: '',
@@ -303,7 +303,7 @@ Page({
   },
   judgeInfo: function(){
     let item = this.data.info
-    if (item.name === '' || item.mobilePhone === '' || item.type === null){
+    if (item.name === '' || item.mobilePhone === '' || item.type === 5){
       this.setData({
         btnDisableBool: true
       })
@@ -322,7 +322,9 @@ Page({
   save: function(){
     app.post('/crm/customer/edit',{...this.data.info}).then(res=>{
       if(res.status!==200){return;}
-
+      wx.navigateTo({
+        url: '/pages/customer/customer'
+      });
     })
   }
 })
