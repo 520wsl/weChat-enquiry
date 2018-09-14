@@ -384,6 +384,11 @@ Page({
       url: '/pages/home/setCustomer/setRank',
     })
   },
+  toMessage: function() {
+    wx.navigateTo({
+      url: "/pages/log/wxlog/wxlog"
+    })
+  },
   callPhone: function(res) {
     if (!res.currentTarget.dataset.phone) {
       return

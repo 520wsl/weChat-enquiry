@@ -54,7 +54,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (query) {
-    let type = query.type
+    let type = query.type || 'add'
     if(type =='edit'){
       wx.setNavigationBarTitle({
         title: '编辑客户信息'
@@ -74,22 +74,44 @@ Page({
       this.setData({
         getAreaArr: res.data
       })
+      let region = this.data.region
       let provinceList = []
-      res.data.map(item=>{
+      res.data.map((item, index)=>{
         if(item.type ==1){
           provinceList.push(item)
+          if (res.data.provinceCode != null && item.provinceId == res.data.provinceCode){
+            region[0] = index
+          }
         }
       })
       let cityList = []
-      res.data.map(item=>{
-        if (item.type == 2 && item.provinceId == provinceList[0].provinceId) {
-          cityList.push(item)
+      res.data.map((item,index)=>{
+        if (res.data.areaCode != null){
+          if (item.type == 2 && item.provinceId == res.data.provinceCode) {
+            cityList.push(item)
+            if (item.cityId == res.data.areaCode) {
+              region[1] = index
+            }
+          }
+        } else {
+          if (item.type == 2 && item.provinceId == provinceList[0].provinceId) {
+            cityList.push(item)
+          }
         }
       })
       let countyList = []
-      res.data.map(item => {
-        if (item.type == 3 && item.cityId == cityList[0].cityId && item.provinceId == cityList[0].provinceId) {
-          countyList.push(item)
+      res.data.map((item,index) => {
+        if (res.data.cityCode != null){
+          if (item.type == 3 && item.cityId == res.data.areaCode && item.provinceId == res.data.provinceCode){
+            countyList.push(item)
+            if(res.data.cityCode == item.countyId){
+              region[2] = index
+            }
+          }
+        } else {
+          if (item.type == 3 && item.cityId == cityList[0].cityId && item.provinceId == cityList[0].provinceId) {
+            countyList.push(item)
+          }
         }
       })
       let arr = []
@@ -98,7 +120,8 @@ Page({
       arr[2] = countyList
       this.setData({
         areaArr: arr,
-        chooseAreaArr: arr
+        chooseAreaArr: arr,
+        region: region
       })
     })
     if(type == 'add'){

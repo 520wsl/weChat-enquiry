@@ -26,7 +26,7 @@
   </view>
 
   <view class='list-box' wx:if="{{info.login}}">
-    <view class='list list1'>
+    <view class='list list1' bindtap="toMessage">
       <view class='horizontal_alignment'>
         <image src='{{CDN}}icon/icon_log.png' class='icon' />
         <text class='list_text'>消息</text>
