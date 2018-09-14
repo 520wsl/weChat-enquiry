@@ -105,6 +105,6 @@
     </view>
   </view>
 </view>
-<navigator url='/pages/customer/info/info' class='askBtn pic'>
+<navigator url='/pages/customer/edit/edit?type=add' class='askBtn pic'>
   <image src='{{CDN}}icon/icon_add_customer.png'></image>
 </navigator>

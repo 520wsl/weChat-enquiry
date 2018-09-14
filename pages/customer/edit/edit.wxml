@@ -25,9 +25,9 @@
   </view>
   <view class='edit-requiredInfo-item'>
     <view>
-      客户身份<span class='red'>*</span> 
+      客户身份<span class='red'>*</span>
     </view>
-    <chooseIdentity bindgetType="getType" active='{{info.type}}'></chooseIdentity>
+    <chooseIdentity bindgetType="getType" active='{{""+info.type+""}}'></chooseIdentity>
   </view>
 </view>
 <view class='edit-requiredInfo'>
