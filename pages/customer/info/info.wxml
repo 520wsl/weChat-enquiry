@@ -1,6 +1,6 @@
 <!--pages/customer/info/info.wxml-->
 <view class='infoTop' bindtap='toCustomerEdit'>
-  <view class='infoTop-nameIcon'>
+  <view class='infoTop-nameIcon icon-text{{index}}'>
     {{info.nameIcon}}
   </view>
   <view>
@@ -85,7 +85,7 @@
     <text class='item-title'>支付金额</text>
   </view>
   <view class='trade-info-item'>
-    <text>{{tradeInfo.enquiryQuantity}}次</text>
+    <text>{{tradeInfo.enquiryQuantity}}</text>
     <text class='item-title'>询盘次数</text>
   </view>
 </view>

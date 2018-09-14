@@ -8,8 +8,8 @@ Page({
   data: {
     CDN: app.CDN,
     info:{
-      name:'李东强',
-      nameIcon:'李',
+      name:'',
+      nameIcon:'',
       level:0,
       type: 2,
       mobilePhone:'1388888888888',
@@ -19,40 +19,53 @@ Page({
       address:'浙江省 杭州市 西湖区浙江省 杭州市 西湖区浙江省 杭州市 西湖区浙江省 杭州市 西湖区'
     },
     tradeInfo:{
-      paymentAmount:'555.555万元',
-      enquiryQuantity:'12555',
-      totalAmount:'6000万元',
-      followAmount: '4000万元',
-      successProportion: '66.66%',
-      orderQuantity: '3',
-      commodityQuantity: '1',
-      commodityNum: '1000'
+      paymentAmount:'0',
+      enquiryQuantity:'0',
+      totalAmount:'0',
+      followAmount: '0',
+      successProportion: '0',
+      orderQuantity: '0',
+      commodityQuantity: '0',
+      commodityNum: '0'
     },
-    tradeSpread:false
+    tradeSpread:false,
+    index: 0
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad:function(query){
-    console.log(app)
     // app.utils.showModel('体验版登录', '登录失败，请联系客户重新获取体验码！')
-    let customerId = query.customerId
+    if(query.index){
+      this.setData({
+        index: query.index
+      })
+    }
+    let customerId = query.customerId || 1751
     if (!customerId){
       return;
     }
-    app.post('crm/customer/detail', { customerId}).then(res=>{
+    app.post('/crm/customer/detail', {customerId}).then(res=>{
       if(res.status != 200){
         return;
       }
       let nameIcon = res.data.name.slice(0, 1)
-      res.data.name = nameIcon + res.data.name
+      res.data.name =  res.data.name
       res.data.nameIcon = nameIcon
       this.setData({
         info: res.data
       })
+      app.post('/crm/customer/transaction/info', { aliAccount: this.data.info.account}).then(res=>{
+        console.log(res)
+        if(res.status !== 200){
+          return;
+        }
+        this.setData({
+          tradeInfo: res.data
+        })
+      })
     })
-    app.post('crm/customer/transaction/info')
   },
 
   changeTraderSpread:function(){
@@ -61,8 +74,9 @@ Page({
     })
   },
   toCustomerEdit:function(){
+    let id = this.data.info.id || 0
     wx.navigateTo({
-      url: "../edit/edit?type="+'edit'
+      url: "../edit/edit?type=" + 'edit' + "&customerId=" + this.data.info.id
     })
   } 
 })

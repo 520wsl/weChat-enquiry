@@ -4,14 +4,14 @@
     <view>
       真实姓名<span class='red'>*</span> 
     </view>
-    <input type='text' name="trueName" value="{{info.trueName}}" bindinput="setTrueName" placeholder="请输入客户真实姓名" placeholder-class='second-title2'
+    <input type='text' name="name" value="{{info.name}}" bindinput="setName" placeholder="请输入客户真实姓名" placeholder-class='second-title2'
         />
   </view>
   <view class='edit-requiredInfo-item borderBottom'>
     <view>
       电话<span class='red'>*</span> 
     </view>
-    <input type='number' maxlength="11" name="phone" value="{{info.phone}}" bindinput="setPhone" placeholder="请输入客户电话" placeholder-class='second-title2'
+    <input type='number' maxlength="11" name="mobilePhone" value="{{info.mobilePhone}}" bindinput="setPhone" placeholder="请输入客户电话" placeholder-class='second-title2'
         />
   </view>
   <view class='edit-requiredInfo-item borderBottom' wx:if="{{type == 'add'}}">
@@ -19,7 +19,7 @@
       客户来源<span class='red'>*</span> 
     </view>
     <view class="identity-control" bindtap="setSource">
-      <a>{{sourceList[info.source].label}}</a>
+      <a>{{info.source == null? '请选择客户来源':sourceList[info.source].label}}</a>
       <span class='arrow'></span>
     </view>
   </view>
@@ -27,7 +27,7 @@
     <view>
       客户身份<span class='red'>*</span> 
     </view>
-    <chooseIdentity bindgetType="getType" active='{{info.customerType}}'></chooseIdentity>
+    <chooseIdentity bindgetType="getType" active='{{info.type}}'></chooseIdentity>
   </view>
 </view>
 <view class='edit-requiredInfo'>
@@ -35,36 +35,36 @@
     <view>
       公司 
     </view>
-    <input type='text' name="company" value="{{info.company}}" placeholder="选填" placeholder-class='second-title2'
+    <input type='text' name="company" value="{{info.company}}" bindinput="setCompany" placeholder="选填" placeholder-class='second-title2'
         />
   </view>
   <view class='edit-requiredInfo-item borderBottom'>
     <view>
       职位 
     </view>
-    <input type='text' name="position" value="{{info.position}}" placeholder="选填" placeholder-class='second-title2'
+    <input type='text' name="position" value="{{info.position}}" bindinput="setPosition" placeholder="选填" placeholder-class='second-title2'
         />
   </view>
   <view class='edit-requiredInfo-item borderBottom'>
     <view>
       微信号
     </view>
-    <input type='text' name="wechat" value="{{info.wechat}}" placeholder="选填" placeholder-class='second-title2'
+    <input type='text' name="wechat" value="{{info.wechat}}" bindinput="setWechat" placeholder="选填" placeholder-class='second-title2'
         />
   </view>
   <view class='edit-requiredInfo-item borderBottom'>
     <view>
       旺旺号 
     </view>
-    <input type='text' name="account" value="{{info.account}}" placeholder="选填" placeholder-class='second-title2'
+    <input type='text' name="account" value="{{info.account}}"  bindinput="setAccount" placeholder="选填" placeholder-class='second-title2'
         />
   </view>
   <view class='edit-requiredInfo-item borderBottom'>
     <view>
       生日
     </view>
-    <picker class='dataPicker' mode='date' bindchange="birthdayChange" end='{{endTime}}'>
-      <text class="{{info.birthday==''?'':'black'}}">{{info.birthday==''?'请选择客户生日':info.birthday}}</text>
+    <picker class='dataPicker' mode='date' bindchange="setBirthday" end='{{endTime}}'>
+      <text class="{{info.birthday==''?'':'black'}}">{{info.birthday == null?'请选择客户生日':info.birthday}}</text>
       <span class="arrow {{info.birthday==''?'borderblack':''}}"></span>
     </picker>
   </view>
@@ -78,38 +78,42 @@
     <view>
       电子邮箱 
     </view>
-    <input type='text' name="eMail" value="{{info.eMail}}" placeholder="选填" placeholder-class='second-title2'
+    <input type='text' name="mailbox" value="{{info.mailbox}}" bindinput="setMailbox" placeholder="选填" placeholder-class='second-title2'
         />
   </view>
   <view class='edit-requiredInfo-item borderBottom'>
     <view>
       所在地区 
     </view>
-    
+    <picker class='dataPicker' mode="multiSelector" bindcancel='cancelChange' bindcolumnchange="columnChange" bindchange="bindAreaChange" value="{{region}}" range="{{areaArr}}" range-key='{{"name"}}'>
+      <a wx:if='{{info.areaCode}}'>{{areaArr[0][region[0]].name}} {{areaArr[1][region[1]].name}}{{areaArr[2].length==0?'':" "+areaArr[2][region[2]].name}}</a>
+      <a wx:if='{{!info.areaCode}}'>请选择用户地区</a>
+      <span class="arrow"></span>
+    </picker>
   </view>
   <view class='edit-requiredInfo-item borderBottom'>
     <view>
       详细地址 
     </view>
-    <input type='text' name="detailAddress" value="{{info.detailAddress}}" placeholder="选填" placeholder-class='second-title2'
+    <input type='text' name="address" value="{{info.address}}" bindinput="setAddress" placeholder="选填" placeholder-class='second-title2'
         />
   </view>
   <view class='edit-requiredInfo-item'>
     <view>
       备注 
     </view>
-    <input type='text' name="remarks" value="{{info.remarks}}" placeholder="选填" placeholder-class='second-title2'
+    <input type='text' name="remark" value="{{info.remark}}" bindinput="setRemark" placeholder="选填" placeholder-class='second-title2'
         />
   </view>
 </view>
 <view class='edit-requiredInfo' wx:if="{{type == 'edit'}}">
   <view class='edit-requiredInfo-item borderBottom'>
     <text>客户来源</text>
-    <text>{{info.source}}</text>
+    <text>{{info.source == 0?'默认':info.source == 1?'线上':info.source == 2?'线下':''}}</text>
   </view>
   <view class='edit-requiredInfo-item borderBottom'>
     <text>客户等级</text>
-    <text>{{info.level == 0?'普通会员':info.level == 1?':高级会员':info.level == 2?'vip会员':info.level == 3?'至尊会员':''}}</text>
+    <text>{{info.level == 0?'普通会员':info.level == 1?'高级会员':info.level == 2?'vip会员':info.level == 3?'至尊会员':''}}</text>
   </view>
   <view class='edit-requiredInfo-item'>
     <text>合作日期</text>
@@ -117,5 +121,5 @@
   </view>
 </view>
 <view class='saveInfo'>
-  <button bindtap='save'>保存</button>
+  <button bindtap='save' disabled='{{btnDisableBool}}'>保存</button>
 </view>
