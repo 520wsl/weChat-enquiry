@@ -68,7 +68,7 @@
     </view>
   </view>
   <view class='list-box list-marginTop' wx:if="{{info.login}}">
-    <view class='list list1'>
+    <view class='list list1' bindtap='setLevel'>
       <view class='horizontal_alignment'>
         <image src='{{CDN}}icon/icon_set_quanxian.png' class='icon' />
         <text class='list_text'>会员等级设置</text>
