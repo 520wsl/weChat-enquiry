@@ -1,30 +1,34 @@
 /* pages/home/setCustomer/setRank.wxss */
-.list{
+
+.list {
   padding: 15rpx 30rpx;
   padding-bottom: 60rpx;
 }
 
-.item-rank{
+.item-rank {
   background-color: #fff;
   border-radius: 15rpx;
   margin-bottom: 60rpx;
 }
-.item-rank .item-title{
+
+.item-rank .item-title {
   display: flex;
   align-items: center;
   justify-content: space-between;
   color: #fff;
-  background-color: #F5B9B9;
-  border-radius: 15rpx 15rpx 0rpx 0rpx; 
+  background-color: #f5b9b9;
+  border-radius: 15rpx 15rpx 0rpx 0rpx;
   padding: 10rpx 30rpx;
   font-size: 30rpx;
 }
-.item-rank .item-title .text{
+
+.item-rank .item-title .text {
   position: relative;
   padding-left: 24rpx;
 }
-.item-rank .item-title .text::before{
-   content: '';
+
+.item-rank .item-title .text::before {
+  content: '';
   position: absolute;
   top: 0;
   left: 0;
@@ -35,28 +39,15 @@
   background: #fff;
 }
 
-.item-rank .item-title1{
-  background-color: #F5B9B9;
-}
-.item-rank .item-title2{
-  background-color: #61A2F9;
-}
-.item-rank .item-title3{
-  background-color: #F96161 ;
-}
-.item-rank .item-title4{
-  background-color: #E1C533;
-}
-
-.item-rank .item-list{
+.item-rank .item-list {
   padding: 30rpx;
   margin-top: 5rpx;
-  border-top: 2px solid #F5B9B9;
+  border-top: 2px solid #f5b9b9;
   font-size: 28rpx;
   color: #333;
 }
 
-.item-list .list-item{
+.item-list .list-item {
   height: 80rpx;
   line-height: 80rpx;
   display: flex;
@@ -64,7 +55,47 @@
   align-items: center;
 }
 
-.item-list .list-item input{
+.item-list .list-item input {
   text-align: right;
   color: #666;
+  flex: 1;
+}
+
+.item-list0 {
+  height: 236rpx;
+  text-align: center;
+  line-height: 236rpx;
+  font-size: 28px;
+  color: #666;
+}
+
+.item-rank0 .item-title {
+  background-color: #f5b9b9;
+}
+
+.item-rank1 .item-title{
+  background-color: #61a2f9;
+}
+
+.item-rank2 .item-title{
+  background-color: #f96161;
+}
+
+.item-rank3 .item-title{
+  background-color: #e1c533;
+}
+
+ .item-rank0 .item-list{
+  border-top:2px solid #f5b9b9;
+}
+
+.item-rank1 .item-list{
+  border-top:2px solid #61a2f9;
+}
+
+.item-rank2 .item-list{
+  border-top:2px solid #f96161;
+}
+.item-rank3 .item-list{
+  border-top:2px solid #e1c533;
 }
