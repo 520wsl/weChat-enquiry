@@ -17,7 +17,6 @@
   height: 120rpx;
   line-height: 120rpx;
   text-align: center;
-  background: #FAD056;
   border-radius: 100%; 
   font-size: 64rpx;
   color: #fff;
@@ -189,4 +188,24 @@
 .icon_right{
   width: 30rpx;
   height: 16rpx;
+}
+
+.icon-text0 {
+  background-color: #a5d3a6;
+}
+
+.icon-text1 {
+  background-color: #89d8fb;
+}
+
+.icon-text2 {
+  background-color: #fad056;
+}
+
+.icon-text3 {
+  background-color: #ff7c6c;
+}
+
+.icon-text4 {
+  background-color: #e3d8e0;
 }
