@@ -29,7 +29,7 @@
 .saveInfo{
   padding: 114rpx 30rpx 64rpx;
 }
-.saveInfo button{
+/* .saveInfo button{
   border: 0 none;
   color: #fff;
   font-size: 32rpx;
@@ -37,7 +37,7 @@
   border-radius: 3rpx;
   height: 88rpx;
   line-height: 88rpx;
-}
+} */
 .dataPicker{
   display: flex;
   align-items: center;
@@ -77,4 +77,7 @@
   border-color: #666 transparent transparent transparent;
   position: relative;
   top: 4rpx;
+}
+.btn-bd-default{
+    background: #CCCCCC;
 }
