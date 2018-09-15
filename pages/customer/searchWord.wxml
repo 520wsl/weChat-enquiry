@@ -2,7 +2,7 @@
   <!-- 搜索 -->
   <view class="form">
     <view class="form-group">
-      <input focus bindinput="searchHandle" class="form-control" value="{{searchName}}" placeholder="产品关键词" />
+      <input focus bindinput="searchHandle" class="form-control" value="{{searchName}}" placeholder="按客户电话姓名搜索" />
       <image wx:if="{{searchName != ''}}" bindtap="delSearch" class="del" src="{{CDN}}/icon_search_del.png"></image>
     </view>
     <a bindtap="jumpPage" class="cancle">搜索</a>

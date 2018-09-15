@@ -340,7 +340,7 @@ Page({
         app.utils.showModel('添加/修改客户', res.msg);
         return;
       }
-      wx.navigateTo({
+      wx.switchTab({
         url: '/pages/customer/customer'
       });
     })
