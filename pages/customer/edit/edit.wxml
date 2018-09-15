@@ -121,5 +121,5 @@
   </view>
 </view>
 <view class='saveInfo'>
-  <button bindtap='save' disabled='{{btnDisableBool}}'>保存</button>
-</view>
+  <button class='btn-bd gradient-bg {{btnDisableBool?"btn-bd-default":""}}' bindtap='saveInfo' disabled='{{btnDisableBool}}'>保存</button>
+</view> 
