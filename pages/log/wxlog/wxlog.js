@@ -47,14 +47,14 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    // this.setData({
-    //   list: [],
-    //   'params.pageNum': 1
-    // })
-    // this.setData({
-    //   msgStr: '数据加载中，请稍后。。。'
-    // })
-    // this.getList();
+    this.setData({
+      list: [],
+      'params.pageNum': 1
+    })
+    this.setData({
+      msgStr: '数据加载中，请稍后。。。'
+    })
+    this.getList();
   },
   setOpen() {
     this.setData({
@@ -283,14 +283,14 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-    this.setData({
-      list: [],
-      'params.pageNum': 1
-    })
-    this.setData({
-      msgStr: '数据加载中，请稍后。。。'
-    })
-    this.getList();
+    // this.setData({
+    //   list: [],
+    //   'params.pageNum': 1
+    // })
+    // this.setData({
+    //   msgStr: '数据加载中，请稍后。。。'
+    // })
+    // this.getList();
 
   },
 

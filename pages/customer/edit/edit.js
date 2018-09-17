@@ -319,9 +319,27 @@ Page({
       }
     }
   },
-  save: function(){
+  saveInfo: function(){
     app.post('/crm/customer/edit',{...this.data.info}).then(res=>{
-      if(res.status!==200){return;}
+      if (res.status == 401) {
+        wx.showModal({
+          title: '提示',
+          content: '登录超时或未登录，请重新登录',
+          success: res => {
+            if (res.confirm) {
+              wx.switchTab({
+                url: '/pages/personal/personal'
+              });
+              return;
+            }
+          }
+        });
+        return;
+      }
+      if (res.status !== 200) {
+        app.utils.showModel('添加/修改客户', res.msg);
+        return;
+      }
       wx.navigateTo({
         url: '/pages/customer/customer'
       });
