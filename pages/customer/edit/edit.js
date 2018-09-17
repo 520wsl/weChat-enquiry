@@ -78,7 +78,7 @@ Page({
         if(item.type ==1){
           provinceList.push(item)
           if (res.data.provinceCode != null && item.provinceId == res.data.provinceCode){
-            region[0] = provinceList.length
+            region[0] = provinceList.length-1
           }
         }
       })
@@ -88,7 +88,7 @@ Page({
           if (item.type == 2 && item.provinceId == res.data.provinceCode) {
             cityList.push(item)
             if (item.cityId == res.data.areaCode) {
-              region[1] = cityList.length
+              region[1] = cityList.length-1
             }
           }
         } else {
@@ -103,7 +103,7 @@ Page({
           if (item.type == 3 && item.cityId == res.data.areaCode && item.provinceId == res.data.provinceCode){
             countyList.push(item)
             if(res.data.cityCode == item.countyId){
-              region[2] = countyList.length
+              region[2] = countyList.length-1
             }
           }
         } else {
