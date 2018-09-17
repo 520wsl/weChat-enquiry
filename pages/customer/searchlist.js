@@ -85,6 +85,7 @@ Page({
         var index = 0
         list = list.map(function(i) {
           i.index = index
+          i.familyName = i.customerName && i.customerName.substring(0, 1) || ''
           if (index < 4) {
             index = index + 1
           } else {
