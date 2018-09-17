@@ -72,54 +72,7 @@ Page({
       this.setData({
         getAreaArr: res.data
       })
-      let region = this.data.region
-      let provinceList = []
-      res.data.map((item, index)=>{
-        if(item.type ==1){
-          provinceList.push(item)
-          if (res.data.provinceCode != null && item.provinceId == res.data.provinceCode){
-            region[0] = provinceList.length-1
-          }
-        }
-      })
-      let cityList = []
-      res.data.map((item,index)=>{
-        if (res.data.areaCode != null){
-          if (item.type == 2 && item.provinceId == res.data.provinceCode) {
-            cityList.push(item)
-            if (item.cityId == res.data.areaCode) {
-              region[1] = cityList.length-1
-            }
-          }
-        } else {
-          if (item.type == 2 && item.provinceId == provinceList[0].provinceId) {
-            cityList.push(item)
-          }
-        }
-      })
-      let countyList = []
-      res.data.map((item,index) => {
-        if (res.data.cityCode != null){
-          if (item.type == 3 && item.cityId == res.data.areaCode && item.provinceId == res.data.provinceCode){
-            countyList.push(item)
-            if(res.data.cityCode == item.countyId){
-              region[2] = countyList.length-1
-            }
-          }
-        } else {
-          if (item.type == 3 && item.cityId == cityList[0].cityId && item.provinceId == cityList[0].provinceId) {
-            countyList.push(item)
-          }
-        }
-      })
-      let arr = []
-      arr[0] = provinceList
-      arr[1] = cityList
-      arr[2] = countyList
-      this.setData({
-        areaArr: arr,
-        region: region
-      })
+      
     })
     if(type == 'add'){
       return;
@@ -128,7 +81,58 @@ Page({
       app.post('/crm/customer/detail', { customerId: query.customerId}).then(res=>{
         if(res.status != 200){ return ;}
         let time = app.time.formatTime(res.data.gmtCreate).split('-')
+        res.data.birthday = app.time.formatTime(res.data.birthday)
         res.data.cooperateDate = time[0]+'年'+time[1]+'月'+time[2]+'日'
+        let getAreaArr = this.data.getAreaArr
+        let region = this.data.region
+        let provinceList = []
+        getAreaArr.map((item, index) => {
+          if (item.type == 1) {
+            provinceList.push(item)
+            console.log(res.data.provinceCode, item.provinceId)
+            if (res.data.provinceCode != null && item.provinceId == res.data.provinceCode) {
+              region[0] = provinceList.length - 1
+            }
+          }
+        })
+        let cityList = []
+        getAreaArr.map((item, index) => {
+          if (res.data.areaCode != null) {
+            if (item.type == 2 && item.provinceId == res.data.provinceCode) {
+              cityList.push(item)
+              if (item.cityId == res.data.areaCode) {
+                region[1] = cityList.length - 1
+              }
+            }
+          } else {
+            if (item.type == 2 && item.provinceId == provinceList[0].provinceId) {
+              cityList.push(item)
+            }
+          }
+        })
+        let countyList = []
+        getAreaArr.map((item, index) => {
+          if (res.data.cityCode != null) {
+            if (item.type == 3 && item.cityId == res.data.areaCode && item.provinceId == res.data.provinceCode) {
+              countyList.push(item)
+              if (res.data.cityCode == item.countyId) {
+                region[2] = countyList.length - 1
+              }
+            }
+          } else {
+            if (item.type == 3 && item.cityId == cityList[0].cityId && item.provinceId == cityList[0].provinceId) {
+              countyList.push(item)
+            }
+          }
+        })
+        let arr = []
+        arr[0] = provinceList
+        arr[1] = cityList
+        arr[2] = countyList
+        this.setData({
+          areaArr: arr,
+          region: region
+        })
         this.setData({
           info: res.data
         })
@@ -259,14 +263,12 @@ Page({
       indexArr[0] = res.detail.value
       indexArr[1] = 0
       indexArr[2] = 0
-      this.setData({
-        region: indexArr
-      })
       let arr = this.data.areaArr
       arr[1] = cityList
       arr[2] = countyList
       this.setData({
-        areaArr: arr
+        areaArr: arr,
+        region: indexArr
       })
     } else if (res.detail.column == 1){
       let countyList = []
@@ -280,13 +282,19 @@ Page({
       indexArr[0] = this.data.region[0]
       indexArr[1] = res.detail.value
       indexArr[2] = 0
-      this.setData({
-        region: indexArr
-      })
       let arr = this.data.areaArr
       arr[2] = countyList
       this.setData({
-        areaArr: arr
+        areaArr: arr,
+        region: indexArr
+      })
+    } else if (res.detail.column == 2){
+      let indexArr = []
+      indexArr[0] = this.data.region[0]
+      indexArr[1] = this.data.region[1]
+      indexArr[2] = res.detail.value
+      this.setData({
+        region: indexArr
       })
     }
   },

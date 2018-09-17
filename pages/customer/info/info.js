@@ -23,7 +23,7 @@ Page({
       enquiryQuantity:'0',
       totalAmount:'0',
       followAmount: '0',
-      successProportion: '0',
+      successProportion: '0%',
       orderQuantity: '0',
       commodityQuantity: '0',
       commodityNum: '0'
@@ -57,12 +57,22 @@ Page({
         info: res.data
       })
       app.post('/crm/customer/transaction/info', { aliAccount: this.data.info.account}).then(res=>{
-        console.log(res)
         if(res.status !== 200){
           return;
         }
+        let tradeInfo={
+          commodityNum: res.data.commodityNum == null ? 0 : res.data.commodityNum,
+          commodityQuantity: res.data.commodityQuantity == null ? 0 : res.data.commodityQuantity,
+          customerAccount: res.data.customerAccount == null ? 0 : res.data.customerAccount,
+          enquiryQuantity: res.data.enquiryQuantity == null ? '0次' : res.data.enquiryQuantity + '次',
+          followAmount: res.data.followAmount == null ? '0万元' : res.data.followAmount + '万元',
+          orderQuantity: res.data.orderQuantity == null ? 0 : res.data.orderQuantity,
+          paymentAmount: res.data.paymentAmount == null ? '0万元' : res.data.paymentAmount + '万元',
+          successProportion: res.data.successProportion == null ? '0%' : res.data.successProportion + '%',
+          totalAmount: res.data.totalAmount == null ? '0万元' : res.data.totalAmount + '万元'
+        }
         this.setData({
-          tradeInfo: res.data
+          tradeInfo: tradeInfo
         })
       })
     })
