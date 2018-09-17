@@ -108,7 +108,7 @@
   </view>
   <view class='spread-info-item'>
     <text>支付订单数</text>
-    <text>{{tradeInfo.orderQuantity}}</text>
+    <text>{{tradeInfo.orderQuantity}}次</text>
   </view>
   <view class='spread-info-item'>
     <text>询盘次数</text>
