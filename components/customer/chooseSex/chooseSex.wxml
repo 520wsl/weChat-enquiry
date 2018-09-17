@@ -1,5 +1,5 @@
 <view class="identity-control" bindtap="open">
   <!-- <text class="text">客户身份筛选</text> -->
-  <a>{{active != null?data[active].label:'请选择客户性别'}}</a>
+  <a>{{active !== null?data[active].label:'请选择客户性别'}}</a>
   <span class='arrow'></span>
 </view>

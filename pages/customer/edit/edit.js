@@ -16,20 +16,18 @@ Page({
       wechat: '',
       account: '',
       birthday: null,
-      sex: null,
+      sex: 0,
       mailbox: '',
       area: '',
       address: '',
       remark: '',
       source: null,
       level: 1,
-      cooperateDate:'2018年06月22日',
+      cooperateDate:'',
       id: null
     },
     region: [0,0,0],
     areaArr: [],
-    chooseAreaArr:[],
-    chooseRegion: [0,0,0],
     endTime: app.time.formatTime(),
     type:'',
     btnDisableBool:true,
@@ -80,7 +78,7 @@ Page({
         if(item.type ==1){
           provinceList.push(item)
           if (res.data.provinceCode != null && item.provinceId == res.data.provinceCode){
-            region[0] = index
+            region[0] = provinceList.length-1
           }
         }
       })
@@ -90,7 +88,7 @@ Page({
           if (item.type == 2 && item.provinceId == res.data.provinceCode) {
             cityList.push(item)
             if (item.cityId == res.data.areaCode) {
-              region[1] = index
+              region[1] = cityList.length-1
             }
           }
         } else {
@@ -105,7 +103,7 @@ Page({
           if (item.type == 3 && item.cityId == res.data.areaCode && item.provinceId == res.data.provinceCode){
             countyList.push(item)
             if(res.data.cityCode == item.countyId){
-              region[2] = index
+              region[2] = countyList.length-1
             }
           }
         } else {
@@ -120,7 +118,6 @@ Page({
       arr[2] = countyList
       this.setData({
         areaArr: arr,
-        chooseAreaArr: arr,
         region: region
       })
     })
@@ -232,27 +229,19 @@ Page({
   },
   bindAreaChange: function(res){
     let item ={}
-    if(this.data.chooseAreaArr[2].length == 0){
-      item = this.data.chooseAreaArr[1][this.data.chooseRegion[2]]
+    if (this.data.areaArr[2].length == 0){
+      item = this.data.areaArr[1][this.data.region[2]]
     } else {
-      item = this.data.chooseAreaArr[2][this.data.chooseRegion[2]]
+      item = this.data.areaArr[2][this.data.region[2]]
     }
     this.setData({
-      region: this.data.chooseRegion,
-      areaArr: this.data.chooseAreaArr,
       'info.provinceCode': item.provinceId,
       'info.areaCode': item.cityId,
       'info.cityCode': item.countyId
     })
   },
-  cancelChange:function(res){
-    this.setData({
-      chooseRegion: this.data.region,
-      chooseAreaArr: this.data.areaArr
-    })
-  },
   columnChange: function(res){
-    let obj = this.data.chooseAreaArr[res.detail.column][res.detail.value]
+    let obj = this.data.areaArr[res.detail.column][res.detail.value]
     if (res.detail.column == 0){
       let cityList = []
       this.data.getAreaArr.map(item => {
@@ -266,38 +255,38 @@ Page({
           countyList.push(item)
         }
       })
-      let indexArr = this.data.chooseRegion
+      let indexArr = this.data.region
       indexArr[0] = res.detail.value
       indexArr[1] = 0
       indexArr[2] = 0
       this.setData({
-        chooseRegion: indexArr
+        region: indexArr
       })
-      let arr = this.data.chooseAreaArr
+      let arr = this.data.areaArr
       arr[1] = cityList
       arr[2] = countyList
       this.setData({
-        chooseAreaArr: arr
+        areaArr: arr
       })
     } else if (res.detail.column == 1){
       let countyList = []
       let index = res.detail.value
       this.data.getAreaArr.map(item => {
-        if (item.type == 3 && item.cityId == this.data.chooseAreaArr[1][index].cityId && item.provinceId == this.data.chooseAreaArr[1][index].provinceId) {
+        if (item.type == 3 && item.cityId == this.data.areaArr[1][index].cityId && item.provinceId == this.data.areaArr[1][index].provinceId) {
           countyList.push(item)
         }
       })
       let indexArr = []
-      indexArr[0] = this.data.chooseRegion[0]
+      indexArr[0] = this.data.region[0]
       indexArr[1] = res.detail.value
       indexArr[2] = 0
       this.setData({
-        chooseRegion: indexArr
+        region: indexArr
       })
-      let arr = this.data.chooseAreaArr
+      let arr = this.data.areaArr
       arr[2] = countyList
       this.setData({
-        chooseAreaArr: arr
+        areaArr: arr
       })
     }
   },
@@ -319,6 +308,40 @@ Page({
       }
     }
   },
+  rest: function(){
+    let info= {
+      name: '',
+      mobilePhone: '',
+      type: 5,
+      company: '',
+      position: '',
+      wechat: '',
+      account: '',
+      birthday: null,
+      sex: 0,
+      mailbox: '',
+      area: '',
+      address: '',
+      remark: '',
+      source: null,
+      level: 1,
+      cooperateDate: '',
+      id: null
+    }
+    let region= [0, 0, 0]
+    let areaArr= []
+    let endTime= app.time.formatTime()
+    let type= ''
+    let btnDisableBool= true
+    this.setData({
+      btnDisableBool: btnDisableBool,
+      type: type,
+      endTime: endTime,
+      areaArr: areaArr,
+      region: region,
+      info: info
+    })
+  },
   saveInfo: function(){
     app.post('/crm/customer/edit',{...this.data.info}).then(res=>{
       if (res.status == 401) {
@@ -338,9 +361,10 @@ Page({
       }
       if (res.status !== 200) {
         app.utils.showModel('添加/修改客户', res.msg);
+        this.rest();
         return;
       }
-      wx.navigateTo({
+      wx.switchTab({
         url: '/pages/customer/customer'
       });
     })
