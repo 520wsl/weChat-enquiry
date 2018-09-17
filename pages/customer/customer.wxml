@@ -2,7 +2,8 @@
 <navigator url='/pages/customer/info/info?index={{index}}&&customerId={{customerId}}'>
 <view class='item'>
   <view class='icon-txt'>
-    <text class='text icon-text{{index}}'>{{customerName}}{{index}}</text>
+    <text wx:if="{{familyName}}" class='text icon-text{{index}}'>{{familyName}}</text>
+    <image mode='widthFix' class='text' wx:else  src='{{CDN}}icon/icon_customer_img.png'></image>
   </view>
   <view class='item-content'>
     <view class='content'>
@@ -89,7 +90,7 @@
         <text>客户身份</text>
       </view>
       <view class='tab-list'>
-        <view wx:for="{{customerType}}" wx:key="{{index}}" bindtap='setCustomerType' data-type='{{item.key}}' class='item-tab  {{paramsCache.type == item.key?"active":""}}'>
+        <view wx:for="{{customerType}}" wx:key="{{index}}" bindtap='setCustomerType' data-index="{{index}}" data-type='{{item.key}}' class='item-tab  {{item.isHave?"active":""}}'>
           <text>{{item.lable}}</text>
         </view>
       </view>
@@ -97,7 +98,7 @@
 
     <view class='nextbtn'>
       <view bindtap='selectClose' class='leftbtn'>
-        <text>放 弃</text>
+        <text>重 置</text>
       </view>
       <view bindtap='selectList' class='rightbtn'>
         <text>确 定</text>
