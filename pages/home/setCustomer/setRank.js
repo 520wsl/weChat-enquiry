@@ -110,15 +110,15 @@ Page({
       })
   },
   validateOrder(order) {
-    if (order > 999999999.99 || order <= 0) {
-      app.utils.showModel('设置金额', '金额不能小于0元 并且 不能大于 999999999.99元');
+    if (money > 9999999 || money < 0) {
+      app.utils.showModel('设置订单数', '订单数不能小于0笔 并且 不能大于 9999999笔');
       return false
     }
     return true
   },
   validateMoney(money) {
-    if (money > 9999999 || money < 0) {
-      app.utils.showModel('设置订单数', '订单数不能小于0笔 并且 不能大于 9999999笔');
+    if (order > 999999999.99 || order <= 0) {
+      app.utils.showModel('设置金额', '金额不能小于0元 并且 不能大于 999999999.99元');
       return false
     }
     return true
