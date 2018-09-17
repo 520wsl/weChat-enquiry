@@ -85,7 +85,7 @@
     <view>
       所在地区 
     </view>
-    <picker class='dataPicker' mode="multiSelector" bindcancel='cancelChange' bindcolumnchange="columnChange" bindchange="bindAreaChange" value="{{region}}" range="{{areaArr}}" range-key='{{"name"}}'>
+    <picker class='dataPicker' mode="multiSelector" bindcolumnchange="columnChange" bindchange="bindAreaChange" value="{{region}}" range="{{areaArr}}" range-key='{{"name"}}'>
       <a wx:if='{{info.areaCode}}'>{{areaArr[0][region[0]].name}} {{areaArr[1][region[1]].name}}{{areaArr[2].length==0?'':" "+areaArr[2][region[2]].name}}</a>
       <a wx:if='{{!info.areaCode}}'>请选择用户地区</a>
       <span class="arrow"></span>

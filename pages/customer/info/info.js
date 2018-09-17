@@ -12,11 +12,11 @@ Page({
       nameIcon:'',
       level:0,
       type: 2,
-      mobilePhone:'1388888888888',
-      mailbox:'5462165464@qq.com',
-      company:'好多蛋糕丢按',
-      fullAddress: '浙江省 杭州市 西湖区 文一西路588号浙江省 杭州市 西湖区 文一西路588号浙江省 杭州市 西湖区 文一西路588号浙江省 杭州市 西湖区 文一西路588号',
-      address:'浙江省 杭州市 西湖区浙江省 杭州市 西湖区浙江省 杭州市 西湖区浙江省 杭州市 西湖区'
+      mobilePhone:'',
+      mailbox:'',
+      company:'',
+      fullAddress: '',
+      address:''
     },
     tradeInfo:{
       paymentAmount:'0',
