@@ -229,7 +229,7 @@ Page({
           })
           return;
         }
-        if (res.status !== 200) {
+        if (res.status != 200) {
           this.setData({
             msgStr: '抱歉!没有找到符合条件的记录'
           })
