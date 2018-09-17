@@ -4,7 +4,7 @@
     <view>
       真实姓名<span class='red'>*</span> 
     </view>
-    <input type='text' name="name" value="{{info.name}}" bindinput="setName" placeholder="请输入客户真实姓名" placeholder-class='second-title2'
+    <input type='text' name="name" value="{{info.name}}" maxlength="8" bindinput="setName" placeholder="请输入客户真实姓名" placeholder-class='second-title2'
         />
   </view>
   <view class='edit-requiredInfo-item borderBottom'>
@@ -35,28 +35,28 @@
     <view>
       公司 
     </view>
-    <input type='text' name="company" value="{{info.company}}" bindinput="setCompany" placeholder="选填" placeholder-class='second-title2'
+    <input type='text' name="company" maxlength="30" value="{{info.company}}" bindinput="setCompany" placeholder="选填" placeholder-class='second-title2'
         />
   </view>
   <view class='edit-requiredInfo-item borderBottom'>
     <view>
       职位 
     </view>
-    <input type='text' name="position" value="{{info.position}}" bindinput="setPosition" placeholder="选填" placeholder-class='second-title2'
+    <input type='text' name="position" maxlength="30" value="{{info.position}}" bindinput="setPosition" placeholder="选填" placeholder-class='second-title2'
         />
   </view>
   <view class='edit-requiredInfo-item borderBottom'>
     <view>
       微信号
     </view>
-    <input type='text' name="wechat" value="{{info.wechat}}" bindinput="setWechat" placeholder="选填" placeholder-class='second-title2'
+    <input type='text' name="wechat" maxlength="30" value="{{info.wechat}}" bindinput="setWechat" placeholder="选填" placeholder-class='second-title2'
         />
   </view>
   <view class='edit-requiredInfo-item borderBottom'>
     <view>
       旺旺号 
     </view>
-    <input type='text' name="account" value="{{info.account}}"  bindinput="setAccount" placeholder="选填" placeholder-class='second-title2'
+    <input type='text' name="account" maxlength="30" value="{{info.account}}"  bindinput="setAccount" placeholder="选填" placeholder-class='second-title2'
         />
   </view>
   <view class='edit-requiredInfo-item borderBottom'>
@@ -78,7 +78,7 @@
     <view>
       电子邮箱 
     </view>
-    <input type='text' name="mailbox" value="{{info.mailbox}}" bindinput="setMailbox" placeholder="选填" placeholder-class='second-title2'
+    <input type='text' name="mailbox" maxlength="30" value="{{info.mailbox}}" bindinput="setMailbox" placeholder="选填" placeholder-class='second-title2'
         />
   </view>
   <view class='edit-requiredInfo-item borderBottom'>
@@ -95,14 +95,14 @@
     <view>
       详细地址 
     </view>
-    <input type='text' name="address" value="{{info.address}}" bindinput="setAddress" placeholder="选填" placeholder-class='second-title2'
+    <input type='text' name="address" maxlength="30" value="{{info.address}}" bindinput="setAddress" placeholder="选填" placeholder-class='second-title2'
         />
   </view>
   <view class='edit-requiredInfo-item'>
     <view>
       备注 
     </view>
-    <input type='text' name="remark" value="{{info.remark}}" bindinput="setRemark" placeholder="选填" placeholder-class='second-title2'
+    <input type='text' name="remark" maxlength="200" value="{{info.remark}}" bindinput="setRemark" placeholder="选填" placeholder-class='second-title2'
         />
   </view>
 </view>
