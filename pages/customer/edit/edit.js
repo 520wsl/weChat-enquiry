@@ -376,7 +376,11 @@ Page({
     })
   },
   saveInfo: function(){
-    // console.log(this.data.)
+    let name = this.data.info.name.replace(/^[a-zA-Z0-9\u4e00-\u9fa5]+$/g, '')
+    if(name != ''){
+      app.utils.showModel('提示', '客户姓名只能输入数字，英文和汉字！');
+      return
+    }
     app.post('/crm/customer/edit',{...this.data.info}).then(res=>{
       if (res.status == 401) {
         wx.showModal({

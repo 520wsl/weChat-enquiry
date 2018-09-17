@@ -64,7 +64,7 @@
       生日
     </view>
     <picker class='dataPicker' mode='date' bindchange="setBirthday" end='{{endTime}}'>
-      <text class="{{info.birthday==''?'':'black'}}">{{info.birthday == null?'请选择客户生日':info.birthday}}</text>
+      <text class="{{info.birthday==''?'':'black'}}">{{info.birthday == ''?'请选择客户生日':info.birthday}}</text>
       <span class="arrow {{info.birthday==''?'borderblack':''}}"></span>
     </picker>
   </view>
