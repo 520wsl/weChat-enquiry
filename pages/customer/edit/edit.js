@@ -22,7 +22,7 @@ Page({
       address: '',
       remark: '',
       source: null,
-      level: 1,
+      level: 0,
       cooperateDate:'',
       id: null
     },
@@ -45,7 +45,8 @@ Page({
         label: '线下'
       }
     ],
-    getAreaArr:[]
+    getAreaArr:[],
+    key:'areaList'
   },
 
   /**
@@ -65,70 +66,93 @@ Page({
     this.setData({
       type:type
     })
-    app.post('/common/area').then(res=>{
-      if(res.status != 200){
-        return;
+    let getAreaArr = []
+    wx.getStorage({
+      key: this.data.key,
+      success:  (res) => {
+        getAreaArr = res.data
+        console.log(getAreaArr)
+        this.setData({
+          getAreaArr: getAreaArr
+        })
+        this.setAreaArr(type, query.customerId, getAreaArr)
+      },
+      fail: ()=>{
+        app.post('/common/area').then(res => {
+          if (res.status != 200) {
+            return;
+          }
+          getAreaArr = res.data
+          wx.setStorage({
+            key: this.data.key,
+            data: res.data
+          })
+          this.setData({
+            getAreaArr: getAreaArr
+          })
+          this.setAreaArr(type, query.customerId, getAreaArr)
+        })
       }
-      this.setData({
-        getAreaArr: res.data
-      })
-      let region = this.data.region
-      let provinceList = []
-      res.data.map((item, index)=>{
-        if(item.type ==1){
-          provinceList.push(item)
-          if (res.data.provinceCode != null && item.provinceId == res.data.provinceCode){
-            region[0] = provinceList.length-1
-          }
-        }
-      })
-      let cityList = []
-      res.data.map((item,index)=>{
-        if (res.data.areaCode != null){
-          if (item.type == 2 && item.provinceId == res.data.provinceCode) {
-            cityList.push(item)
-            if (item.cityId == res.data.areaCode) {
-              region[1] = cityList.length-1
-            }
-          }
-        } else {
-          if (item.type == 2 && item.provinceId == provinceList[0].provinceId) {
-            cityList.push(item)
-          }
-        }
-      })
-      let countyList = []
-      res.data.map((item,index) => {
-        if (res.data.cityCode != null){
-          if (item.type == 3 && item.cityId == res.data.areaCode && item.provinceId == res.data.provinceCode){
-            countyList.push(item)
-            if(res.data.cityCode == item.countyId){
-              region[2] = countyList.length-1
-            }
-          }
-        } else {
-          if (item.type == 3 && item.cityId == cityList[0].cityId && item.provinceId == cityList[0].provinceId) {
-            countyList.push(item)
-          }
-        }
-      })
-      let arr = []
-      arr[0] = provinceList
-      arr[1] = cityList
-      arr[2] = countyList
-      this.setData({
-        areaArr: arr,
-        region: region
-      })
     })
-    if(type == 'add'){
+  },
+  setAreaArr: function (type, customerId, getAreaArr){
+    if (type == 'add') {
       return;
     }
-    if (query.customerId){
-      app.post('/crm/customer/detail', { customerId: query.customerId}).then(res=>{
-        if(res.status != 200){ return ;}
+    if (customerId) {
+      app.post('/crm/customer/detail', { customerId: customerId }).then(res => {
+        if (res.status != 200) { return; }
         let time = app.time.formatTime(res.data.gmtCreate).split('-')
-        res.data.cooperateDate = time[0]+'年'+time[1]+'月'+time[2]+'日'
+        res.data.birthday = app.time.formatTime(res.data.birthday)
+        res.data.cooperateDate = time[0] + '年' + time[1] + '月' + time[2] + '日'
+        let region = this.data.region
+        let provinceList = []
+        getAreaArr.map((item, index) => {
+          if (item.type == 1) {
+            provinceList.push(item)
+            if (res.data.provinceCode != null && item.provinceId == res.data.provinceCode) {
+              region[0] = provinceList.length - 1
+            }
+          }
+        })
+        let cityList = []
+        getAreaArr.map((item, index) => {
+          if (res.data.areaCode != null) {
+            if (item.type == 2 && item.provinceId == res.data.provinceCode) {
+              cityList.push(item)
+              if (item.cityId == res.data.areaCode) {
+                region[1] = cityList.length - 1
+              }
+            }
+          } else {
+            if (item.type == 2 && item.provinceId == provinceList[0].provinceId) {
+              cityList.push(item)
+            }
+          }
+        })
+        let countyList = []
+        getAreaArr.map((item, index) => {
+          if (res.data.cityCode != null) {
+            if (item.type == 3 && item.cityId == res.data.areaCode && item.provinceId == res.data.provinceCode) {
+              countyList.push(item)
+              if (res.data.cityCode == item.countyId) {
+                region[2] = countyList.length - 1
+              }
+            }
+          } else {
+            if (item.type == 3 && item.cityId == cityList[0].cityId && item.provinceId == cityList[0].provinceId) {
+              countyList.push(item)
+            }
+          }
+        })
+        let arr = []
+        arr[0] = provinceList
+        arr[1] = cityList
+        arr[2] = countyList
+        this.setData({
+          areaArr: arr,
+          region: region
+        })
         this.setData({
           info: res.data
         })
@@ -136,6 +160,7 @@ Page({
       })
     }
   },
+  //将修改的值设置到Info中
   setName: function(res){
     this.setData({
       'info.name': res.detail.value
@@ -227,6 +252,7 @@ Page({
       }
     });
   },
+  // 省市区的value发生改变
   bindAreaChange: function(res){
     let item ={}
     if (this.data.areaArr[2].length == 0){
@@ -240,6 +266,7 @@ Page({
       'info.cityCode': item.countyId
     })
   },
+  // 省市区的某一列发生改变
   columnChange: function(res){
     let obj = this.data.areaArr[res.detail.column][res.detail.value]
     if (res.detail.column == 0){
@@ -259,14 +286,12 @@ Page({
       indexArr[0] = res.detail.value
       indexArr[1] = 0
       indexArr[2] = 0
-      this.setData({
-        region: indexArr
-      })
       let arr = this.data.areaArr
       arr[1] = cityList
       arr[2] = countyList
       this.setData({
-        areaArr: arr
+        areaArr: arr,
+        region: indexArr
       })
     } else if (res.detail.column == 1){
       let countyList = []
@@ -277,19 +302,26 @@ Page({
         }
       })
       let indexArr = []
+      let arr = this.data.areaArr
       indexArr[0] = this.data.region[0]
       indexArr[1] = res.detail.value
       indexArr[2] = 0
+      arr[2] = countyList
+      this.setData({
+        areaArr: arr,
+        region: indexArr
+      })
+    } else if (res.detail.column == 2){
+      let indexArr = []
+      indexArr[0] = this.data.region[0]
+      indexArr[1] = this.data.region[1]
+      indexArr[2] = res.detail.value
       this.setData({
         region: indexArr
       })
-      let arr = this.data.areaArr
-      arr[2] = countyList
-      this.setData({
-        areaArr: arr
-      })
     }
   },
+  // 判断必填信息是否填写
   judgeInfo: function(){
     let item = this.data.info
     if (item.name === '' || item.mobilePhone === '' || item.type === 5){
@@ -308,6 +340,7 @@ Page({
       }
     }
   },
+  // 重置信息
   rest: function(){
     let info= {
       name: '',
@@ -343,6 +376,11 @@ Page({
     })
   },
   saveInfo: function(){
+    let name = this.data.info.name.replace(/^[a-zA-Z0-9\u4e00-\u9fa5]+$/g, '')
+    if(name != ''){
+      app.utils.showModel('提示', '客户姓名只能输入数字，英文和汉字！');
+      return
+    }
     app.post('/crm/customer/edit',{...this.data.info}).then(res=>{
       if (res.status == 401) {
         wx.showModal({

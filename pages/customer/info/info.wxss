@@ -5,7 +5,7 @@
   display: flex;
   position: relative;
 }
-.infoTop image{
+.infoTop .icon-right image{
   width: 14rpx;
   height: 28rpx;
   position: absolute;
@@ -13,6 +13,7 @@
   top: 114rpx;
 }
 .infoTop-nameIcon{
+  margin-right: 36rpx;
   width: 120rpx;
   height: 120rpx;
   line-height: 120rpx;
@@ -20,7 +21,14 @@
   border-radius: 100%; 
   font-size: 64rpx;
   color: #fff;
+  overflow: hidden;
+}
+.info-head-image{
   margin-right: 36rpx;
+}
+.info-head-image image{
+  width: 120rpx;
+  height: 120rpx;
 }
 .infoTop-nameRank{
   display: flex;
@@ -49,7 +57,7 @@
   font-size: 24rpx;
   padding: 4rpx 17rpx;
   border-radius: 200rpx;
-  line-height: 28rpx;
+  line-height: 32rpx;
   margin: 6rpx 0 0 0;
   font-weight: bold;
 }
