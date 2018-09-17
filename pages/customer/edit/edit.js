@@ -23,7 +23,7 @@ Page({
       remark: '',
       source: null,
       level: 1,
-      cooperateDate:'2018年06月22日',
+      cooperateDate:'',
       id: null
     },
     region: [0,0,0],
