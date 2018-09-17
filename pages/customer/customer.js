@@ -13,7 +13,7 @@ Page({
       startTime: app.time.getTimeLimit(1, 'months'), // 合作日期开始时间
       endTime: app.time.getTimeLimit(-1), // 合作日期结束时间
       level: -1, // 0:普通会员；1:高级会员；2:vip会员；3:至尊会员
-      type: -1, // 0其它；1淘宝采购商；2经销商；3微商；4外贸
+      type: [-1], // 0其它；1淘宝采购商；2经销商；3微商；4外贸
       source: -1, // 0:默认；1线上；2线下
       pageNum: 1,
       pageSize: 16,
@@ -24,7 +24,7 @@ Page({
       startTime: app.time.getTimeLimit(1, 'months'), // 合作日期开始时间
       endTime: app.time.getTimeLimit(-1), // 合作日期结束时间
       level: -1, // 0:普通会员；1:高级会员；2:vip会员；3:至尊会员
-      type: -1, // 0其它；1淘宝采购商；2经销商；3微商；4外贸
+      type: [-1], // 0其它；1淘宝采购商；2经销商；3微商；4外贸
       source: -1, // 0:默认；1线上；2线下
     },
     // 0:普通会员；1:高级会员；2:vip会员；3:至尊会员
@@ -62,22 +62,28 @@ Page({
     // 0其它；1淘宝采购商；2经销商；3微商；4外贸
     customerType: [{
       key: -1,
-      lable: '全部'
+      lable: '全部',
+      isHave: true
     }, {
       key: 0,
-      lable: '其他'
+      lable: '其他',
+      isHave: false
     }, {
       key: 1,
-      lable: '淘宝采购商'
+      lable: '淘宝采购商',
+      isHave: false
     }, {
       key: 2,
-      lable: '经销商'
+      lable: '经销商',
+      isHave: false
     }, {
       key: 3,
-      lable: '微商'
+      lable: '微商',
+      isHave: false
     }, {
       key: 4,
-      lable: '外贸'
+      lable: '外贸',
+      isHave: false
     }],
     // 时间
     timeSearch: {
@@ -101,9 +107,33 @@ Page({
     this.initList()
   },
   selectClose() {
+    let customerType = this.data.customerType
+    customerType[0].isHave = true
+    for (let i = 1; customerType.length > i; i++) {
+      customerType[i].isHave = false
+    }
+
     this.setData({
+      'params.field': "", // 姓名/电话
+      'params.startTime': app.time.getTimeLimit(1, 'months'), // 合作日期开始时间
+      'params.endTime': app.time.getTimeLimit(-1), // 合作日期结束时间
+      'params.level': -1, // 0:普通会员；1:高级会员；2:vip会员；3:至尊会员
+      'params.type': [-1], // 0其它；1淘宝采购商；2经销商；3微商；4外贸
+      'params.source': -1, // 0:默认；1线上；2线下
+      'params.pageNum': 1,
+      'params.pageSize': 16,
+      'params.tagId': "", // 标签
+      'params.companyId': "",
+      'paramsCache.startTime': app.time.getTimeLimit(1, 'months'), // 合作日期开始时间
+      'paramsCache.endTime': app.time.getTimeLimit(-1), // 合作日期结束时间
+      'paramsCache.level': -1,
+      'paramsCache.type': [-1],
+      'paramsCache.source': -1,
       isShowSelect: false,
+      customerType: customerType
     })
+
+    this.initList();
   },
   selectList() {
     this.setData({
@@ -128,8 +158,27 @@ Page({
   },
   setCustomerType(e) {
     let type = e.currentTarget.dataset.type
+    let index = e.currentTarget.dataset.index
+    let customerType = this.data.customerType
+    let types = []
+    customerType[index].isHave = !customerType[index].isHave
+    if (index == 0) {
+      types.push(-1)
+      customerType[0].isHave = true
+      for (let i = 1; customerType.length > i; i++) {
+        customerType[i].isHave = false
+      }
+    } else {
+      customerType[0].isHave = false
+      for (let i = 1; customerType.length > i; i++) {
+        if (customerType[i].isHave) {
+          types.push(customerType[i].key)
+        }
+      }
+    }
     this.setData({
-      'paramsCache.type': type
+      customerType: customerType,
+      'paramsCache.type': types
     })
   },
   setCustomerLevel(e) {
@@ -248,6 +297,7 @@ Page({
         var index = 0
         list = list.map(function(i) {
           i.index = index
+          i.familyName = i.customerName && i.customerName.substring(0, 1) || ''
           if (index < 4) {
             index = index + 1
           } else {
@@ -276,7 +326,7 @@ Page({
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function () {
+  onPullDownRefresh: function() {
     this.setData({
       'params.pageNum': 1,
       list: []
@@ -287,7 +337,7 @@ Page({
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () {
+  onReachBottom: function() {
     console.log('wxlog-触底')
     if (this.data.list.length < this.data.count) {
       this.data.params.pageNum++;
