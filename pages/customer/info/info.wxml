@@ -1,7 +1,10 @@
 <!--pages/customer/info/info.wxml-->
 <view class='infoTop' bindtap='toCustomerEdit'>
-  <view class='infoTop-nameIcon icon-text{{index}}'>
-    {{info.nameIcon}}
+  <view wx:if="{{info.nameIcon}}" class='infoTop-nameIcon icon-text{{index}}'>
+    <text>{{info.nameIcon}}</text>
+  </view>
+  <view class='info-head-image' wx:if="{{!info.nameIcon}}">
+    <image src='{{CDN}}icon/icon_customer_img.png'></image>
   </view>
   <view>
     <view class='infoTop-nameRank'>
@@ -19,7 +22,7 @@
       {{info.type==0?'其他':info.type==1?'淘宝采购商':info.type==2?'淘宝采购商':info.type==3?'经销商':info.type==4?'外贸':''}}
     </view>
   </view>
-  <view >
+  <view class='icon-right'>
     <image src='{{CDN}}icon_right.png'/>
   </view>
 </view>
