@@ -35,7 +35,7 @@
 }
 .infoTop-nameRank{
   display: flex;
-  width: 430rpx;
+  width: 450rpx;
   flex-wrap: wrap;
 }
 .infoTop-name{

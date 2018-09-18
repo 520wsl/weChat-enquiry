@@ -15,7 +15,7 @@ Page({
       position: '',
       wechat: '',
       account: '',
-      birthday: null,
+      birthday: '',
       sex: 0,
       mailbox: '',
       area: '',
