@@ -97,14 +97,37 @@ Page({
   },
   setAreaArr: function (type, customerId, getAreaArr){
     if (type == 'add') {
+      let provinceList = []
+      getAreaArr.map((item, index) => {
+        if (item.type == 1) {
+          provinceList.push(item)
+        }
+      })
+      let cityList = []
+      getAreaArr.map((item, index) => {
+        if (item.type == 2 && item.provinceId == provinceList[0].provinceId) {
+          cityList.push(item)
+        }
+      })
+      let countyList = []
+      getAreaArr.map((item, index) => {
+        if (item.type == 3 && item.cityId == cityList[0].cityId && item.provinceId == cityList[0].provinceId) {
+          countyList.push(item)
+        }
+      })
+      let arr = []
+      arr[0] = provinceList
+      arr[1] = cityList
+      arr[2] = countyList
+      this.setData({
+        areaArr: arr
+      })
       return;
     }
     if (customerId) {
       app.post('/crm/customer/detail', { customerId: customerId }).then(res => {
         if (res.status != 200) { return; }
-        let time = app.time.formatTime(res.data.gmtCreate).split('-')
-        res.data.birthday = app.time.formatTime(res.data.birthday)
-        res.data.cooperateDate = time[0] + '年' + time[1] + '月' + time[2] + '日'
+        res.data.cooperateDate = app.time.formatTime(res.data.gmtCreate, 'YYYY年MM月DD日')
         let region = this.data.region
         let provinceList = []
         getAreaArr.map((item, index) => {
