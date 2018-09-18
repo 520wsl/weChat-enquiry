@@ -30,8 +30,13 @@
   width: 120rpx;
   height: 120rpx;
 }
+.info-rank{
+  display: flex;
+}
 .infoTop-nameRank{
   display: flex;
+  width: 450rpx;
+  flex-wrap: wrap;
 }
 .infoTop-name{
  font-size: 30rpx;

@@ -15,7 +15,7 @@ Page({
       position: '',
       wechat: '',
       account: '',
-      birthday: null,
+      birthday: '',
       sex: 0,
       mailbox: '',
       area: '',
@@ -79,6 +79,7 @@ Page({
       fail: ()=>{
         app.post('/common/area').then(res => {
           if (res.status != 200) {
+            app.utils.showModel('提示', '暂无省市区列表');
             return;
           }
           getAreaArr = res.data
@@ -319,6 +320,7 @@ Page({
         region: indexArr
       })
     }
+    //将每次改变的值传到this.data.info中
     this.bindAreaChange()
   },
   // 判断必填信息是否填写

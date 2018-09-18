@@ -47,7 +47,23 @@ Page({
       return;
     }
     app.post('/crm/customer/detail', {customerId}).then(res=>{
+      if (res.status == 401) {
+        wx.showModal({
+          title: '提示',
+          content: '登录超时或未登录，请重新登录',
+          success: res => {
+            if (res.confirm) {
+              wx.switchTab({
+                url: '/pages/personal/personal'
+              });
+              return;
+            }
+          }
+        });
+        return;
+      }
       if(res.status != 200){
+        app.utils.showModel('提示', '暂无客户详情');
         return;
       }
       let nameIcon = res.data.name.slice(0, 1)
@@ -58,6 +74,7 @@ Page({
       })
       app.post('/crm/customer/transaction/info', { aliAccount: this.data.info.account}).then(res=>{
         if(res.status !== 200){
+          app.utils.showModel('提示', '暂无客户交易信息');
           return;
         }
         let tradeInfo={

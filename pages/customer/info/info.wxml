@@ -11,11 +11,13 @@
       <view class='infoTop-name'>
         {{info.name}}
       </view>
-      <view class='infoTop-rankIcon'>
-        LV
-      </view>
-      <view class='infoTop-rank'>
-        {{info.level==0?'普通会员':info.level==1?'高级会员':info.level==2?'vip会员':info.level==3?'至尊会员':''}}
+      <view class='info-rank'>
+        <view class='infoTop-rankIcon'>
+          LV
+        </view>
+        <view class='infoTop-rank'>
+          {{info.level==0?'普通会员':info.level==1?'高级会员':info.level==2?'vip会员':info.level==3?'至尊会员':''}}
+        </view>
       </view>
     </view>
     <view class='infoTop-identity'>
