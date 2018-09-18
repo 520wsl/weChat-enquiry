@@ -75,7 +75,7 @@ page {
   width: 85%;
   border-top-left-radius: 6rpx;
   overflow-y: auto;
-  height: 100%;
+  min-height: 50%;
 }
 
 .float-model .text {
@@ -253,7 +253,7 @@ page {
 .list .item .item-content .top-name {
   font-size: 32rpx;
   color: #3c3c3c;
-  min-width: 150rpx;
+  width: 250rpx;
   display: inline-block;
 }
 
