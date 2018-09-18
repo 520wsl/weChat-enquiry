@@ -71,7 +71,6 @@ Page({
       key: this.data.key,
       success:  (res) => {
         getAreaArr = res.data
-        console.log(getAreaArr)
         this.setData({
           getAreaArr: getAreaArr
         })
@@ -256,7 +255,7 @@ Page({
   bindAreaChange: function(res){
     let item ={}
     if (this.data.areaArr[2].length == 0){
-      item = this.data.areaArr[1][this.data.region[2]]
+      item = this.data.areaArr[1][this.data.region[1]]
     } else {
       item = this.data.areaArr[2][this.data.region[2]]
     }
@@ -320,6 +319,7 @@ Page({
         region: indexArr
       })
     }
+    this.bindAreaChange()
   },
   // 判断必填信息是否填写
   judgeInfo: function(){
