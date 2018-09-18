@@ -74,7 +74,6 @@ Page({
       })
       app.post('/crm/customer/transaction/info', { aliAccount: this.data.info.account}).then(res=>{
         if(res.status !== 200){
-          app.utils.showModel('提示', '暂无客户交易信息');
           return;
         }
         let tradeInfo={
