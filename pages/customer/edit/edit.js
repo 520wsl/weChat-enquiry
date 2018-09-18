@@ -97,6 +97,31 @@ Page({
   },
   setAreaArr: function (type, customerId, getAreaArr){
     if (type == 'add') {
+      let provinceList = []
+      getAreaArr.map((item, index) => {
+        if (item.type == 1) {
+          provinceList.push(item)
+        }
+      })
+      let cityList = []
+      getAreaArr.map((item, index) => {
+        if (item.type == 2 && item.provinceId == provinceList[0].provinceId) {
+          cityList.push(item)
+        }
+      })
+      let countyList = []
+      getAreaArr.map((item, index) => {
+        if (item.type == 3 && item.cityId == cityList[0].cityId && item.provinceId == cityList[0].provinceId) {
+          countyList.push(item)
+        }
+      })
+      let arr = []
+      arr[0] = provinceList
+      arr[1] = cityList
+      arr[2] = countyList
+      this.setData({
+        areaArr: arr
+      })
       return;
     }
     if (customerId) {
