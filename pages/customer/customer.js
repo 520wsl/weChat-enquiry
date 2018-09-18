@@ -12,9 +12,9 @@ Page({
       field: "", // 姓名/电话
       startTime: app.time.getTimeLimit(1, 'months'), // 合作日期开始时间
       endTime: app.time.getTimeLimit(-1), // 合作日期结束时间
-      level: -1, // 0:普通会员；1:高级会员；2:vip会员；3:至尊会员
-      type: [-1], // 0其它；1淘宝采购商；2经销商；3微商；4外贸
-      source: -1, // 0:默认；1线上；2线下
+      levels: [], // 0:普通会员；1:高级会员；2:vip会员；3:至尊会员
+      types: [], // 0其它；1淘宝采购商；2经销商；3微商；4外贸
+      source: [], // 0:默认；1线上；2线下
       pageNum: 1,
       pageSize: 16,
       tagId: "", // 标签
@@ -23,48 +23,44 @@ Page({
     paramsCache: {
       startTime: app.time.getTimeLimit(1, 'months'), // 合作日期开始时间
       endTime: app.time.getTimeLimit(-1), // 合作日期结束时间
-      level: -1, // 0:普通会员；1:高级会员；2:vip会员；3:至尊会员
-      type: [-1], // 0其它；1淘宝采购商；2经销商；3微商；4外贸
-      source: -1, // 0:默认；1线上；2线下
+      levels: [], // 0:普通会员；1:高级会员；2:vip会员；3:至尊会员
+      types: [], // 0其它；1淘宝采购商；2经销商；3微商；4外贸
+      source: [], // 0:默认；1线上；2线下
     },
     // 0:普通会员；1:高级会员；2:vip会员；3:至尊会员
     customerLevelLabel: ['普通会员', '高级会员', 'vip会员', '至尊会员'],
     // 0其它；1淘宝采购商；2经销商；3微商；4外贸
     customerTypeLabel: ['其他', '淘宝采购商', '经销商', '微商', '外贸'],
     // 0:默认；1线上；2线下
-    source: [{
-      key: -1,
-      lable: '全部'
-    }, {
+    source: [ {
       key: 1,
-      lable: '线上'
+      lable: '线上',
+      isHave: false
     }, {
       key: 2,
-      lable: '线下'
+      lable: '线下',
+      isHave: false
     }],
     // 0:普通会员；1:高级会员；2:vip会员；3:至尊会员
     customerLevel: [{
-      key: -1,
-      lable: '全部'
-    }, {
       key: 3,
-      lable: '至尊'
+      lable: '至尊',
+      isHave: false
     }, {
       key: 2,
-      lable: 'vip'
+      lable: 'vip',
+      isHave: false
     }, {
       key: 1,
-      lable: '高级'
+      lable: '高级',
+      isHave: false
     }, {
       key: 0,
-      lable: '普通'
+      lable: '普通',
+      isHave: false
     }],
     // 0其它；1淘宝采购商；2经销商；3微商；4外贸
     customerType: [{
-      key: -1,
-      lable: '全部',
-      isHave: true
-    }, {
       key: 0,
       lable: '其他',
       isHave: false
@@ -108,29 +104,37 @@ Page({
   },
   selectClose() {
     let customerType = this.data.customerType
-    customerType[0].isHave = true
-    for (let i = 1; customerType.length > i; i++) {
+    for (let i = 0; customerType.length > i; i++) {
       customerType[i].isHave = false
     }
-
+    // let customerLevel = this.data.customerLevel
+    // for (let i = 0; customerLevel.length > i; i++) {
+    //   customerLevel[i].isHave = false
+    // }
+    let source = this.data.source
+    for (let i = 0; source.length > i; i++) {
+      source[i].isHave = false
+    }
     this.setData({
       'params.field': "", // 姓名/电话
       'params.startTime': app.time.getTimeLimit(1, 'months'), // 合作日期开始时间
       'params.endTime': app.time.getTimeLimit(-1), // 合作日期结束时间
-      'params.level': -1, // 0:普通会员；1:高级会员；2:vip会员；3:至尊会员
-      'params.type': [-1], // 0其它；1淘宝采购商；2经销商；3微商；4外贸
-      'params.source': -1, // 0:默认；1线上；2线下
+      // 'params.levels': [], // 0:普通会员；1:高级会员；2:vip会员；3:至尊会员
+      'params.types': [], // 0其它；1淘宝采购商；2经销商；3微商；4外贸
+      'params.source': [], // 0:默认；1线上；2线下
       'params.pageNum': 1,
       'params.pageSize': 16,
       'params.tagId': "", // 标签
       'params.companyId': "",
       'paramsCache.startTime': app.time.getTimeLimit(1, 'months'), // 合作日期开始时间
       'paramsCache.endTime': app.time.getTimeLimit(-1), // 合作日期结束时间
-      'paramsCache.level': -1,
-      'paramsCache.type': [-1],
-      'paramsCache.source': -1,
+      // 'paramsCache.levels': [],
+      'paramsCache.types': [],
+      'paramsCache.source': [],
       isShowSelect: false,
-      customerType: customerType
+      customerType: customerType,
+      // customerLevel: customerLevel,
+      source: source
     })
 
     this.initList();
@@ -139,8 +143,8 @@ Page({
     this.setData({
       'params.startTime': this.data.paramsCache.startTime,
       'params.endTime': this.data.paramsCache.endTime,
-      'params.level': this.data.paramsCache.level,
-      'params.type': this.data.paramsCache.type,
+      // 'params.levels': this.data.paramsCache.levels,
+      'params.types': this.data.paramsCache.types,
       'params.source': this.data.paramsCache.source,
       isShowSelect: false,
     })
@@ -157,40 +161,49 @@ Page({
     this.getList();
   },
   setCustomerType(e) {
-    let type = e.currentTarget.dataset.type
     let index = e.currentTarget.dataset.index
     let customerType = this.data.customerType
     let types = []
     customerType[index].isHave = !customerType[index].isHave
-    if (index == 0) {
-      types.push(-1)
-      customerType[0].isHave = true
-      for (let i = 1; customerType.length > i; i++) {
-        customerType[i].isHave = false
-      }
-    } else {
-      customerType[0].isHave = false
-      for (let i = 1; customerType.length > i; i++) {
+      for (let i = 0; customerType.length > i; i++) {
         if (customerType[i].isHave) {
           types.push(customerType[i].key)
         }
       }
-    }
+    
     this.setData({
       customerType: customerType,
-      'paramsCache.type': types
+      'paramsCache.types': types
     })
   },
   setCustomerLevel(e) {
-    let level = e.currentTarget.dataset.level
-    this.setData({
-      'paramsCache.level': level
-    })
+    // let index = e.currentTarget.dataset.index
+    // let customerLevel = this.data.customerLevel
+    // let levels = []
+    // customerLevel[index].isHave = !customerLevel[index].isHave
+    // for (let i = 0; customerLevel.length > i; i++) {
+    //   if (customerLevel[i].isHave) {
+    //     levels.push(customerLevel[i].key)
+    //   }
+    // }
+    // this.setData({
+    //   customerLevel: customerLevel,
+    //   'paramsCache.levels': levels
+    // })
   },
   setCustomerSource(e) {
-    let source = e.currentTarget.dataset.source
+    let index = e.currentTarget.dataset.index
+    let source = this.data.source
+    let sources = []
+    source[index].isHave = !source[index].isHave
+    for (let i = 0; source.length > i; i++) {
+      if (source[i].isHave) {
+        sources.push(source[i].key)
+      }
+    }
     this.setData({
-      'paramsCache.source': source
+      source: source,
+      'paramsCache.source': sources
     })
   },
   // 开始时间
@@ -233,9 +246,20 @@ Page({
     this.data.paramsCache.endTime = app.time.endTime(e.detail.value, 'x');
   },
   setLevel(e) {
-    let level = e.currentTarget.dataset.level
+    let index = e.currentTarget.dataset.index
+    let customerLevel = this.data.customerLevel
+    let levels = []
+    for (let i = 0; customerLevel.length > i; i++) {
+      customerLevel[i].isHave = false
+    }
+    if(index != -1){
+      customerLevel[index].isHave = !customerLevel[index].isHave
+      levels = [customerLevel[index].key]
+    }
+
     this.setData({
-      'paramsCache.level': level
+      customerLevel: customerLevel,
+      'params.levels': levels
     })
     this.selectList()
   },
