@@ -127,9 +127,7 @@ Page({
     if (customerId) {
       app.post('/crm/customer/detail', { customerId: customerId }).then(res => {
         if (res.status != 200) { return; }
-        let time = app.time.formatTime(res.data.gmtCreate).split('-')
-        res.data.birthday = app.time.formatTime(res.data.birthday)
-        res.data.cooperateDate = time[0] + '年' + time[1] + '月' + time[2] + '日'
+        res.data.cooperateDate = app.time.formatTime(res.data.gmtCreate, 'YYYY年MM月DD日')
         let region = this.data.region
         let provinceList = []
         getAreaArr.map((item, index) => {
