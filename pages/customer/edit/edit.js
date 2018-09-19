@@ -16,7 +16,7 @@ Page({
       wechat: '',
       account: '',
       birthday: '',
-      birthdayCode:'',
+      birthdayCode:'请选择客户生日',
       sex: 0,
       mailbox: '',
       area: '',
