@@ -87,7 +87,7 @@
     <view>
       详细地址 
     </view>
-    <input type='text' name="address" maxlength="30" value="{{info.address}}" bindinput="setAddress" placeholder="选填" placeholder-class='second-title2'
+    <textarea auto-height name="address" maxlength="30" value="{{info.address}}" bindinput="setAddress" placeholder-class='second-title2'
         />
   </view>
 </template>
@@ -97,7 +97,7 @@
     <view>
       备注 
     </view>
-    <input type='text' name="remark" maxlength="200" value="{{info.remark}}" bindinput="setRemark" placeholder="选填" placeholder-class='second-title2'
+    <textarea auto-height name="remark" maxlength="200" value="{{info.remark}}" bindinput="setRemark" placeholder-class='second-title2'
         />
   </view>
 </template>
