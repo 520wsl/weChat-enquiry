@@ -21,7 +21,7 @@
       </view>
     </view>
     <view class='infoTop-identity'>
-      {{info.type==0?'其他':info.type==1?'淘宝采购商':info.type==2?'淘宝采购商':info.type==3?'经销商':info.type==4?'外贸':''}}
+      {{info.type==0?'其他':info.type==1?'淘宝采购商':info.type==2?'经销商':info.type==3?'微商':info.type==4?'外贸':''}}
     </view>
   </view>
   <view class='icon-right'>
