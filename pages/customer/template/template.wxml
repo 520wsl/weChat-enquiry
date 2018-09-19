@@ -93,7 +93,7 @@
 </template>
 
 <template name="remark">
-  <view class='edit-requiredInfo-item'>
+  <view class='edit-requiredInfo-item borderBottom'>
     <view>
       备注 
     </view>
