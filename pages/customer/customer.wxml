@@ -1,24 +1,24 @@
 <template name="itemCustomer">
-<navigator url='/pages/customer/info/info?index={{index}}&&customerId={{customerId}}'>
-<view class='item'>
-  <view class='icon-txt'>
-    <text wx:if="{{familyName}}" class='text icon-text{{index}}'>{{familyName}}</text>
-    <image mode='widthFix' class='text' wx:else  src='{{CDN}}icon/icon_customer_img.png'></image>
-  </view>
-  <view class='item-content'>
-    <view class='content'>
-      <text class='top-name txt-more'>{{customerName}}</text>
-      <text class='icon'>LV</text>
-      <text class='icon radius'>{{customerLevelLabel[level]}}</text>
+  <navigator url='/pages/customer/info/info?index={{index}}&&customerId={{customerId}}'>
+    <view class='item'>
+      <view class='icon-txt'>
+        <text wx:if="{{familyName}}" class='text icon-text{{index}}'>{{familyName}}</text>
+        <image mode='widthFix' class='text' wx:else src='{{CDN}}icon/icon_customer_img.png'></image>
+      </view>
+      <view class='item-content'>
+        <view class='content'>
+          <text class='top-name txt-more'>{{customerName}}</text>
+          <text class='icon'>LV</text>
+          <text class='icon radius'>{{customerLevelLabel[level]}}</text>
+        </view>
+        <view class='btn'>
+          <text class='icon radius'>{{customerTypeLabel[type]}}</text>
+        </view>
+        <view class='phone'>{{telephone}}</view>
+      </view>
+      <image class='img' src='{{CDN}}/icon_right.png'></image>
     </view>
-    <view class='btn'>
-      <text class='icon radius'>{{customerTypeLabel[type]}}</text>
-    </view>
-    <view class='phone'>{{telephone}}</view>
-  </view>
-  <image class='img' src='{{CDN}}/icon_right.png'></image>
-</view>
-</navigator>
+  </navigator>
 </template>
 
 <view class='nav-select'>
@@ -26,8 +26,8 @@
     <image src='{{CDN}}icon/icon_class_select.png'></image>
   </view>
   <view class='navs'>
-    <view bindtap='setLevel'  bindtap='setLevel' data-level='' data-index="-1"  class='item   {{params.levels.length <= 0?"active":""}}'>全部</view>
-    <view wx:for="{{customerLevel}}" wx:key="{{index}}" bindtap='setLevel' data-index="{{index}}" data-level='{{item.key}}'class='item {{item.isHave?"active":""}}'>{{item.lable}}</view>
+    <view bindtap='setLevel' bindtap='setLevel' data-level='' data-index="-1" class='item   {{params.levels.length <= 0?"active":""}}'>全部</view>
+    <view wx:for="{{customerLevel}}" wx:key="{{index}}" bindtap='setLevel' data-index="{{index}}" data-level='{{item.key}}' class='item {{item.isHave?"active":""}}'>{{item.lable}}</view>
   </view>
   <view bindtap='toSearchWord' class='select-icon pic'>
     <image src='{{CDN}}icon/icon_select.png'></image>
@@ -45,37 +45,38 @@
 <component-no-data text="{{msgStr}}" wx:if="{{list.length == 0}}"></component-no-data>
 <view class='float-model' wx:if="{{isShowSelect}}">
   <view class='float-content'>
-    <view class='time-select'>
-      <view class='text'>
-        <text>合作日期</text>
-      </view>
-      <view class="time-range">
-        <picker mode="date" value="{{timeSearch.startTime}}" class="{{timeSearch.startTime ? 'ac' : ''}} start-time" start="{{defaultTime.start}}" end="{{defaultTime.end}}" bindchange="startTimeChange">
-          <view class="weui-input">{{timeSearch.startTime ? timeSearch.startTime : '开始日期'}}
-            <view class="arrow-drop"></view>
-          </view>
-        </picker>
-        <text class="txt">至</text>
-        <picker mode="date" value="{{timeSearch.endTime}}" class="{{timeSearch.endTime ? 'ac' : ''}} end-time" start="{{defaultTime.start}}" end="{{defaultTime.end}}" bindchange="endTimeChange">
-          <view class="weui-input">{{timeSearch.endTime ? timeSearch.endTime : '结束日期'}}
-            <view class="arrow-drop"></view>
-          </view>
-        </picker>
-      </view>
-    </view>
-
-    <view class='tab'>
-      <view class='text'>
-        <text>客户来源</text>
-      </view>
-      <view class='tab-list'>
-        <view wx:for="{{source}}" wx:key="{{index}}" bindtap='setCustomerSource' data-index="{{index}}" data-source='{{item.key}}' class='item-tab {{item.isHave?"active":""}}'>
-          <text>{{item.lable}}</text>
+    <view class='float-content1'>
+      <view class='time-select'>
+        <view class='text'>
+          <text>合作日期</text>
+        </view>
+        <view class="time-range">
+          <picker mode="date" value="{{timeSearch.startTime}}" class="{{timeSearch.startTime ? 'ac' : ''}} start-time" start="{{defaultTime.start}}" end="{{defaultTime.end}}" bindchange="startTimeChange">
+            <view class="weui-input">{{timeSearch.startTime ? timeSearch.startTime : '开始日期'}}
+              <view class="arrow-drop"></view>
+            </view>
+          </picker>
+          <text class="txt">至</text>
+          <picker mode="date" value="{{timeSearch.endTime}}" class="{{timeSearch.endTime ? 'ac' : ''}} end-time" start="{{defaultTime.start}}" end="{{defaultTime.end}}" bindchange="endTimeChange">
+            <view class="weui-input">{{timeSearch.endTime ? timeSearch.endTime : '结束日期'}}
+              <view class="arrow-drop"></view>
+            </view>
+          </picker>
         </view>
       </view>
-    </view>
 
-    <!-- <view class='tab'>
+      <view class='tab'>
+        <view class='text'>
+          <text>客户来源</text>
+        </view>
+        <view class='tab-list'>
+          <view wx:for="{{source}}" wx:key="{{index}}" bindtap='setCustomerSource' data-index="{{index}}" data-source='{{item.key}}' class='item-tab {{item.isHave?"active":""}}'>
+            <text>{{item.lable}}</text>
+          </view>
+        </view>
+      </view>
+
+      <!-- <view class='tab'>
       <view class='text'>
         <text>客户等级</text>
       </view>
@@ -86,17 +87,17 @@
       </view>
     </view> -->
 
-    <view class='tab'>
-      <view class='text'>
-        <text>客户身份</text>
-      </view>
-      <view class='tab-list'>
-        <view wx:for="{{customerType}}" wx:key="{{index}}" bindtap='setCustomerType' data-index="{{index}}" data-type='{{item.key}}' class='item-tab  {{item.isHave?"active":""}}'>
-          <text>{{item.lable}}</text>
+      <view class='tab'>
+        <view class='text'>
+          <text>客户身份</text>
+        </view>
+        <view class='tab-list'>
+          <view wx:for="{{customerType}}" wx:key="{{index}}" bindtap='setCustomerType' data-index="{{index}}" data-type='{{item.key}}' class='item-tab  {{item.isHave?"active":""}}'>
+            <text>{{item.lable}}</text>
+          </view>
         </view>
       </view>
     </view>
-
     <view class='nextbtn'>
       <view bindtap='selectClose' class='leftbtn'>
         <text>重 置</text>

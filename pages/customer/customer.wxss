@@ -63,11 +63,12 @@ page {
   left: 0.5px;
   right: 0.5px;
   bottom: 0.5px;
+  
   display: flex;
   align-items: flex-end;
   flex-direction: row-reverse;
   background: rgba(0, 0, 0, 0.5);
-  z-index: 2147483647;
+  z-index: 2147483648;
 }
 
 .float-model .float-content {
@@ -75,9 +76,13 @@ page {
   width: 85%;
   border-top-left-radius: 6rpx;
   overflow-y: auto;
-  min-height: 50%;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column
 }
-
+.float-model .float-content1{
+ flex: 1;
+} 
 .float-model .text {
   font-size: 30rpx;
   height: 80rpx;

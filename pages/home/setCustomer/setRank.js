@@ -76,8 +76,7 @@ Page({
 
   },
   saveData() {
-    let params = { ...this.data.params
-    }
+    let params = { ...this.data.params }
     if (!this.validateMoney(params.highMoney) || !this.validateOrder(params.highOrder) || !this.validateMoney(params.vipMoney) || !this.validateOrder(params.vipOrder) || !this.validateMoney(params.supremeMoney) || !this.validateOrder(params.supremeOrder)) {
       return
     }
@@ -110,18 +109,20 @@ Page({
       })
   },
   validateOrder(order) {
-    if (money > 9999999 || money < 0) {
+    let isPass = true
+    if (order > 9999999 || order < 0) {
       app.utils.showModel('设置订单数', '订单数不能小于0笔 并且 不能大于 9999999笔');
-      return false
+      isPass = false
     }
-    return true
+    return isPass
   },
   validateMoney(money) {
-    if (order > 999999999.99 || order <= 0) {
+    let isPass = true
+    if (money > 999999999.99 || money <= 0) {
       app.utils.showModel('设置金额', '金额不能小于0元 并且 不能大于 999999999.99元');
-      return false
+      isPass = false
     }
-    return true
+    return isPass
   },
   setLevel(e) {
     let level = e.currentTarget.dataset.level
@@ -129,10 +130,16 @@ Page({
     let value = parseFloat(e.detail.value)
 
     if (dataType == 'money' && !this.validateMoney(value)) {
+      this.setData({
+        list: { ...this.data.list}
+      })
       return
     }
 
     if (dataType == 'order' && !this.validateOrder(value)) {
+      this.setData({
+        list: { ...this.data.list }
+      })
       return
     }
 
