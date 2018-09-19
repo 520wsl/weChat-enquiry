@@ -15,9 +15,18 @@
   justify-content: space-between;
   align-items: center;
   padding-right: 30rpx;
-  height: 100rpx;
   font-size: 26rpx;
   color: #333;
+}
+.edit-requiredInfo-item textarea{
+  line-height: 60rpx;
+  padding: 20rpx 0;
+  text-align: right;
+  color: #666;
+}
+.edit-requiredInfo-item view{
+  height: 100rpx;
+  line-height: 100rpx;
 }
 .edit-requiredInfo-item input{
   text-align: right;
@@ -25,6 +34,8 @@
 }
 .edit-requiredInfo-item text{
   color: #a6a6a6;
+  height: 100rpx;
+  line-height: 100rpx;
 }
 .saveInfo{
   padding: 114rpx 30rpx 64rpx;
