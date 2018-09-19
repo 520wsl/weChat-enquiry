@@ -1,0 +1,103 @@
+<template name="company">
+  <view class='edit-requiredInfo-item borderBottom'>
+    <view>
+      公司 
+    </view>
+    <input type='text' name="company" maxlength="30" value="{{info.company}}" bindinput="setCompany" placeholder="选填" placeholder-class='second-title2'
+        />
+  </view>
+</template>
+
+<template name="position">
+  <view class='edit-requiredInfo-item borderBottom'>
+    <view>
+      职位 
+    </view>
+    <input type='text' name="position" maxlength="30" value="{{info.position}}" bindinput="setPosition" placeholder="选填" placeholder-class='second-title2'
+        />
+  </view>
+</template>
+
+<template name="wechat">
+  <view class='edit-requiredInfo-item borderBottom'>
+    <view>
+      微信号
+    </view>
+    <input type='text' name="wechat" maxlength="30" value="{{info.wechat}}" bindinput="setWechat" placeholder="选填" placeholder-class='second-title2'
+        />
+  </view>
+</template>
+
+<template name="account">
+  <view class='edit-requiredInfo-item borderBottom'>
+    <view>
+      旺旺号 
+    </view>
+    <input type='text' name="account" maxlength="30" value="{{info.account}}"  bindinput="setAccount" placeholder="选填" placeholder-class='second-title2'
+        />
+  </view>
+</template>
+
+<template name="birthday">
+  <view class='edit-requiredInfo-item borderBottom'>
+    <view>
+      生日
+    </view>
+    <picker class='dataPicker' mode='date' bindchange="setBirthday" end='{{endTime}}'>
+      <text class="{{info.birthday==''?'':'black'}}">{{info.birthdayCode}}</text>
+      <span class="arrow {{info.birthday==''?'borderblack':''}}"></span>
+    </picker>
+  </view>
+</template>
+
+<template name="sex">
+  <view class='edit-requiredInfo-item borderBottom'>
+    <view>
+      性别
+    </view>
+    <chooseSex bindgetSex='getSex' active="{{info.sex}}"></chooseSex>
+  </view>
+</template>
+
+<template name="mailbox">
+  <view class='edit-requiredInfo-item borderBottom'>
+    <view>
+      电子邮箱 
+    </view>
+    <input type='text' name="mailbox" maxlength="30" value="{{info.mailbox}}" bindinput="setMailbox" placeholder="选填" placeholder-class='second-title2'
+        />
+  </view>
+</template>
+
+<template name="areaCode">
+  <view class='edit-requiredInfo-item borderBottom'>
+    <view>
+      所在地区 
+    </view>
+    <picker class='dataPicker' mode="multiSelector" bindcolumnchange="columnChange" bindchange="bindAreaChange" value="{{region}}" range="{{areaArr}}" range-key='{{"name"}}'>
+      <a wx:if='{{info.areaCode}}'>{{areaArr[0][region[0]].name}} {{areaArr[1][region[1]].name}}{{areaArr[2].length==0?'':" "+areaArr[2][region[2]].name}}</a>
+      <a wx:if='{{!info.areaCode}}'>请选择用户地区</a>
+      <span class="arrow"></span>
+    </picker>
+  </view>
+</template>
+
+<template name="address">
+  <view class='edit-requiredInfo-item borderBottom'>
+    <view>
+      详细地址 
+    </view>
+    <input type='text' name="address" maxlength="30" value="{{info.address}}" bindinput="setAddress" placeholder="选填" placeholder-class='second-title2'
+        />
+  </view>
+</template>
+
+<template name="remark">
+  <view class='edit-requiredInfo-item'>
+    <view>
+      备注 
+    </view>
+    <input type='text' name="remark" maxlength="200" value="{{info.remark}}" bindinput="setRemark" placeholder="选填" placeholder-class='second-title2'
+        />
+  </view>
+</template>

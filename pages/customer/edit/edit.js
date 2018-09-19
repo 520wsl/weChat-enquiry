@@ -47,7 +47,39 @@ Page({
       }
     ],
     getAreaArr:[],
-    key:'areaList'
+    key:'areaList',
+    templateList: [
+      {
+        name: 'company'
+      },
+      {
+        name: 'position'
+      },
+      {
+        name: 'wechat'
+      },
+      {
+        name: 'account'
+      },
+      {
+        name: 'birthday'
+      },
+      {
+        name: 'sex'
+      },
+      {
+        name: 'mailbox'
+      },
+      {
+        name: 'areaCode'
+      },
+      {
+        name: 'address'
+      },
+      {
+        name: 'remark'
+      }
+    ]
   },
 
   /**
@@ -97,6 +129,7 @@ Page({
     })
   },
   setAreaArr: function (type, customerId, getAreaArr){
+    console.log(getAreaArr)
     if (type == 'add') {
       let provinceList = []
       getAreaArr.map((item, index) => {
@@ -132,7 +165,7 @@ Page({
         if(res.data.birthday == '' || res.data.birthday == null){
           res.data.birthdayCode = '请选择用户生日'
         } else{
-          res.data.birthdayCode = res.data.birthday
+          res.data.birthdayCode = app.time.formatTime(res.data.birthday)
         }
         let region = this.data.region
         let provinceList = []
@@ -178,6 +211,7 @@ Page({
         arr[0] = provinceList
         arr[1] = cityList
         arr[2] = countyList
+        console.log(arr, region)
         this.setData({
           areaArr: arr,
           region: region,

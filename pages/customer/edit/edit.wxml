@@ -1,4 +1,6 @@
 <!--pages/customer/edit/edit.wxml-->
+<import src="../template/template.wxml" />
+
 <view class='edit-requiredInfo'>
   <view class='edit-requiredInfo-item borderBottom'>
     <view>
@@ -31,7 +33,8 @@
   </view>
 </view>
 <view class='edit-requiredInfo'>
-  <view class='edit-requiredInfo-item borderBottom'>
+  <template wx:for='{{templateList}}' wx:key='{{index}}' is="{{item.name}}" data="{{info,areaArr,region,endTime}}"></template>
+  <!-- <view class='edit-requiredInfo-item borderBottom'>
     <view>
       公司 
     </view>
@@ -104,7 +107,7 @@
     </view>
     <input type='text' name="remark" maxlength="200" value="{{info.remark}}" bindinput="setRemark" placeholder="选填" placeholder-class='second-title2'
         />
-  </view>
+  </view> -->
 </view>
 <view class='edit-requiredInfo' wx:if="{{type == 'edit'}}">
   <view class='edit-requiredInfo-item borderBottom'>
