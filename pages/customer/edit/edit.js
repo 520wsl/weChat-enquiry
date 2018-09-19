@@ -16,6 +16,7 @@ Page({
       wechat: '',
       account: '',
       birthday: '',
+      birthdayCode:'',
       sex: 0,
       mailbox: '',
       area: '',
@@ -128,6 +129,11 @@ Page({
       app.post('/crm/customer/detail', { customerId: customerId }).then(res => {
         if (res.status != 200) { return; }
         res.data.cooperateDate = app.time.formatTime(res.data.gmtCreate, 'YYYY年MM月DD日')
+        if(res.data.birthday == '' || res.data.birthday == null){
+          res.data.birthdayCode = '请选择用户生日'
+        } else{
+          res.data.birthdayCode = res.data.birthday
+        }
         let region = this.data.region
         let provinceList = []
         getAreaArr.map((item, index) => {
@@ -174,9 +180,7 @@ Page({
         arr[2] = countyList
         this.setData({
           areaArr: arr,
-          region: region
-        })
-        this.setData({
+          region: region,
           info: res.data
         })
         this.judgeInfo()
@@ -210,7 +214,8 @@ Page({
   },
   setBirthday: function(res){
     this.setData({
-      'info.birthday': res.detail.value
+      'info.birthday': res.detail.value,
+      'info.birthdayCode': res.detail.value
     })
     this.judgeInfo()
   },
