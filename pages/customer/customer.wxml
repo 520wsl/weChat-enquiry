@@ -8,7 +8,7 @@
       <view class='item-content'>
         <view class='content'>
           <text class='top-name txt-more'>{{customerName}}</text>
-          <text class='icon'>LV</text>
+          <!-- <text class='icon'>LV</text> -->
           <text class='icon radius'>{{customerLevelLabel[level]}}</text>
         </view>
         <view class='btn'>
