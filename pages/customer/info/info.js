@@ -95,8 +95,16 @@ Page({
   },
 
   changeTraderSpread:function(){
+    let tradeSpread = !this.data.tradeSpread 
+    // console.log(tradeSpread)
+    // if (tradeSpread && wx.pageScrollTo){
+    //   wx.pageScrollTo({
+    //     duration: 300,
+    //     scrollTop: 900,
+    //   })
+    // }
     this.setData({
-      tradeSpread: !this.data.tradeSpread
+      tradeSpread: tradeSpread
     })
   },
   toCustomerEdit:function(){

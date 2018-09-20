@@ -21,7 +21,7 @@
       客户来源<span class='red'>*</span> 
     </view>
     <view class="identity-control" bindtap="setSource">
-      <a>{{info.source == null? '请选择客户来源':sourceList[info.source].label}}</a>
+      <a>{{info.source == null? '请选择客户来源':sourceList[info.source-1].label}}</a>
       <span class='arrow'></span>
     </view>
   </view>
