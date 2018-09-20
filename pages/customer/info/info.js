@@ -98,6 +98,23 @@ Page({
     this.setData({
       tradeSpread: !this.data.tradeSpread
     })
+    if (this.data.tradeSpread && wx.pageScrollTo){
+      console.log(111)
+      wx.pageScrollTo({
+        duration: 300,
+        scrollTop: 900,
+        success: function () {
+          console.log('success')
+        },
+        fail: function () {
+          console.log('fail')
+        }
+      })
+    }
+    wx.pageScrollTo({
+      duration: 300,
+      scrollTop: 0
+    })
   },
   toCustomerEdit:function(){
     let id = this.data.info.id || 0

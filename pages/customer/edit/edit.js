@@ -305,7 +305,7 @@ Page({
         let index = res.tapIndex
         if (index === '' || index === null || index === undefined) return;
         this.setData({
-          'info.source': index
+          'info.source': this.data.sourceList[index].type
         });
         this.judgeInfo()
       },
