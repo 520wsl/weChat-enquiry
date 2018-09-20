@@ -463,12 +463,21 @@ Page({
       }
       if (res.status !== 200) {
         app.utils.showModel('添加/修改客户', res.msg);
-        this.rest();
         return;
       }
-      wx.switchTab({
-        url: '/pages/customer/customer'
-      });
+      this.rest();
+      // wx.switchTab({
+      //   url: '/pages/customer/customer'
+      // });
+      let num = 0
+      if(this.data.type == 'add'){
+        num = 1
+      } else {
+        num = 2
+      }
+      wx.navigateBack({
+        delta: num
+      })
     })
   }
 })
