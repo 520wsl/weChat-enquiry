@@ -466,18 +466,9 @@ Page({
         return;
       }
       this.rest();
-      // wx.switchTab({
-      //   url: '/pages/customer/customer'
-      // });
-      let num = 0
-      if(this.data.type == 'add'){
-        num = 1
-      } else {
-        num = 2
-      }
-      wx.navigateBack({
-        delta: num
-      })
+      wx.navigateTo({
+        url: '/pages/customer/customer'
+      });
     })
   }
 })
