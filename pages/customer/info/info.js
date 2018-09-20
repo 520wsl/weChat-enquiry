@@ -42,7 +42,7 @@ Page({
         index: query.index
       })
     }
-    let customerId = query.customerId || 1751
+    let customerId = query.customerId 
     if (!customerId){
       return;
     }
