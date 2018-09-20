@@ -28,7 +28,7 @@
   <view class='list-box' wx:if="{{info.login && info.aliAccountId == '2333'}}">
     <view class='list list1' bindtap="toCustomer">
       <view class='horizontal_alignment'>
-        <image src='{{CDN}}icon/icon_log.png' class='icon' />
+        <image src='{{CDN}}icon/icon_customer_p.png' class='icon' />
         <text class='list_text'>客户</text>
       </view>
       <image src='{{CDN}}icon_right.png' class='icon_right' />

@@ -1,24 +1,4 @@
-<template name="itemCustomer">
-<navigator url='/pages/customer/info/info?index={{index}}&&customerId={{customerId}}'>
-<view class='item'>
-  <view class='icon-txt'>
-    <text class='text icon-text{{index}}'>{{familyName}}</text>
-  </view>
-  <view class='item-content'>
-    <view class='content'>
-      <text class='top-name txt-more'>{{customerName}}</text>
-      <!-- <text class='icon'>LV</text> -->
-      <text class='icon radius'>{{customerLevelLabel[level]}}</text>
-    </view>
-    <view class='btn'>
-      <text class='icon radius'>{{customerTypeLabel[type]}}</text>
-    </view>
-    <view class='phone'>{{telephone}}</view>
-  </view>
-  <image class='img' src='{{CDN}}/icon_right.png'></image>
-</view>
-</navigator>
-</template>
+<import src='/template/customerTpl.wxml'/>
 <view class='list'>
   <template wx:for="{{list}}" wx:key="{{index}}" is="itemCustomer" data="{{...item,CDN,customerLevelLabel,customerTypeLabel}}" />
 </view>

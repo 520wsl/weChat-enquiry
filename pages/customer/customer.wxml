@@ -1,33 +1,12 @@
-<template name="itemCustomer">
-  <navigator url='/pages/customer/info/info?index={{index}}&&customerId={{customerId}}'>
-    <view class='item'>
-      <view class='icon-txt'>
-        <text wx:if="{{familyName}}" class='text icon-text{{index}}'>{{familyName}}</text>
-        <image mode='widthFix' class='text' wx:else src='{{CDN}}icon/icon_customer_img.png'></image>
-      </view>
-      <view class='item-content'>
-        <view class='content'>
-          <text class='top-name txt-more'>{{customerName}}</text>
-          <!-- <text class='icon'>LV</text> -->
-          <text class='icon radius'>{{customerLevelLabel[level]}}</text>
-        </view>
-        <view class='btn'>
-          <text class='icon radius'>{{customerTypeLabel[type]}}</text>
-        </view>
-        <view class='phone'>{{telephone}}</view>
-      </view>
-      <image class='img' src='{{CDN}}/icon_right.png'></image>
-    </view>
-  </navigator>
-</template>
+<import src='/template/customerTpl.wxml'/>
 
 <view class='nav-select'>
   <view bindtap='setIsShowSelect' class='select-switch pic'>
     <image src='{{CDN}}icon/icon_class_select.png'></image>
   </view>
   <view class='navs'>
-    <view bindtap='setLevel' bindtap='setLevel' data-level='' data-index="-1" class='item   {{params.levels.length <= 0?"active":""}}'>全部</view>
-    <view wx:for="{{customerLevel}}" wx:key="{{index}}" bindtap='setLevel' data-index="{{index}}" data-level='{{item.key}}' class='item {{item.isHave?"active":""}}'>{{item.lable}}</view>
+    <view bindtap='setLevel' bindtap='setLevel' data-level='' data-index="-1" class='items   {{params.levels.length <= 0?"active":""}}'>全部</view>
+    <view wx:for="{{customerLevel}}" wx:key="{{index}}" bindtap='setLevel' data-index="{{index}}" data-level='{{item.key}}' class='items {{item.isHave?"active":""}}'>{{item.lable}}</view>
   </view>
   <view bindtap='toSearchWord' class='select-icon pic'>
     <image src='{{CDN}}icon/icon_select.png'></image>
