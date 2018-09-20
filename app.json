@@ -67,12 +67,6 @@
         "iconPath": "images/personal_2.png"
       },
       {
-        "pagePath": "pages/customer/customer",
-        "text": "客户",
-        "selectedIconPath": "images/customer.png",
-        "iconPath": "images/customer_2.png"
-      },
-      {
         "pagePath": "pages/personal/personal",
         "text": "我的",
         "selectedIconPath": "images/enquiry.png",

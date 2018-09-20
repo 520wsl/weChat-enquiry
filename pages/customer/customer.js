@@ -95,12 +95,14 @@ Page({
     isDisable: false,
     isshowFooter: false
   },
-  onLoad: function(e) {},
+  onLoad: function(e) {
+    this.initList()
+  },
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-    this.initList()
+    // this.initList()
   },
   selectClose() {
     let customerType = this.data.customerType

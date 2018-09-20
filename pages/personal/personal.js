@@ -389,6 +389,11 @@ Page({
       url: "/pages/log/wxlog/wxlog"
     })
   },
+  toCustomer: function() {
+    wx.navigateTo({
+      url: "/pages/customer/customer"
+    })
+  },
   callPhone: function(res) {
     if (!res.currentTarget.dataset.phone) {
       return
