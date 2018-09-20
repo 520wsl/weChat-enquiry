@@ -131,13 +131,11 @@ Page({
       // 'paramsCache.levels': [],
       'paramsCache.types': [],
       'paramsCache.source': [],
-      isShowSelect: false,
+      // isShowSelect: false,
       customerType: customerType,
       // customerLevel: customerLevel,
       source: source
     })
-
-    this.initList();
   },
   selectList() {
     this.setData({

@@ -9,13 +9,13 @@
         <view>
           <text>支付金额（元）</text>
         </view>
-        <input  type="digit" data-type='money' data-level='{{level}}' bindblur='setLevel'  value='{{money}}'></input>
+        <input maxlength='11'  type="digit" data-type='money' data-level='{{level}}' bindinput='setLevel'  value='{{money}}'></input>
       </view>
       <view class='list-item'>
         <view>
           <text>支付订单数（笔）</text>
         </view>
-        <input type="number" data-type='order' data-level='{{level}}' bindblur='setLevel' value='{{order}}'></input>
+        <input maxlength='7' type="number" data-type='order' data-level='{{level}}' bindinput='setLevel' value='{{order}}'></input>
       </view>
     </view>
   </view>
