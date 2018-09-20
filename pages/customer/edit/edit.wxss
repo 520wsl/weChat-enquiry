@@ -24,9 +24,11 @@
   text-align: right;
   color: #666;
 }
-.edit-requiredInfo-item view{
+.edit-requiredInfo-item >view:nth-child(1){
   height: 100rpx;
   line-height: 100rpx;
+  width: 140rpx;
+  flex: none;
 }
 .edit-requiredInfo-item input{
   text-align: right;

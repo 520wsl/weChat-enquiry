@@ -463,10 +463,10 @@ Page({
       }
       if (res.status !== 200) {
         app.utils.showModel('添加/修改客户', res.msg);
-        this.rest();
         return;
       }
-      wx.switchTab({
+      this.rest();
+      wx.navigateTo({
         url: '/pages/customer/customer'
       });
     })
