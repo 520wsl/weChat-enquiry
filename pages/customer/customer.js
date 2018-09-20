@@ -149,11 +149,12 @@ Page({
     this.initList();
   },
   initList() {
+    if (wx.showLoading) {
+      wx.showLoading({ title: '加载中...' });
+    }
     this.setData({
       list: [],
-      'params.pageNum': 1
-    })
-    this.setData({
+      'params.pageNum': 1,
       msgStr: '数据加载中，请稍后。。。'
     })
     this.getList();
@@ -299,6 +300,9 @@ Page({
             msgStr: '抱歉!没有找到符合条件的记录'
           })
           return;
+        }
+        if (wx.hideLoading) {
+          wx.hideLoading();
         }
         if (res.status != 200) {
           this.setData({
