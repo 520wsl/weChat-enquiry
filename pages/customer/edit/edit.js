@@ -33,10 +33,10 @@ Page({
     type:'',
     btnDisableBool:true,
     sourceList:[
-      {
-        type: 0,
-        label: '默认'
-      },
+      // {
+      //   type: 0,
+      //   label: '默认'
+      // },
       {
         type: 1,
         label: '线上'
