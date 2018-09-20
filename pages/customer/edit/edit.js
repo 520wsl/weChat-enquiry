@@ -129,7 +129,6 @@ Page({
     })
   },
   setAreaArr: function (type, customerId, getAreaArr){
-    console.log(getAreaArr)
     if (type == 'add') {
       let provinceList = []
       getAreaArr.map((item, index) => {
@@ -211,7 +210,6 @@ Page({
         arr[0] = provinceList
         arr[1] = cityList
         arr[2] = countyList
-        console.log(arr, region)
         this.setData({
           areaArr: arr,
           region: region,
