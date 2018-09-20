@@ -95,25 +95,16 @@ Page({
   },
 
   changeTraderSpread:function(){
+    let tradeSpread = !this.data.tradeSpread 
+    // console.log(tradeSpread)
+    // if (tradeSpread && wx.pageScrollTo){
+    //   wx.pageScrollTo({
+    //     duration: 300,
+    //     scrollTop: 900,
+    //   })
+    // }
     this.setData({
-      tradeSpread: !this.data.tradeSpread
-    })
-    if (this.data.tradeSpread && wx.pageScrollTo){
-      console.log(111)
-      wx.pageScrollTo({
-        duration: 300,
-        scrollTop: 900,
-        success: function () {
-          console.log('success')
-        },
-        fail: function () {
-          console.log('fail')
-        }
-      })
-    }
-    wx.pageScrollTo({
-      duration: 300,
-      scrollTop: 0
+      tradeSpread: tradeSpread
     })
   },
   toCustomerEdit:function(){
