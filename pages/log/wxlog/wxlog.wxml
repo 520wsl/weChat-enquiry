@@ -38,10 +38,10 @@
         </view>
       </picker>
 
-      <view wx:if="{{isOpen}}"  bindtap='setHidden' class='open pic'>
+      <view wx:if="{{isOpen}}" bindtap='setHidden' class='open pic'>
         <image src='{{CDN}}icon/icon_up_jiantou.png'></image>
       </view>
-       <view wx:else  bindtap='setOpen' class='open pic'>
+      <view wx:else bindtap='setOpen' class='open pic'>
         <image src='{{CDN}}icon/icon_down_jiantou.png'></image>
       </view>
     </view>
@@ -75,11 +75,8 @@
   <template wx:for="{{list}}" wx:key="{{index}}" is="item-log" data="{{CDN,...item}}"></template>
 </view>
 
-<view wx:if="{{list.length > 0 && (list.length == count) && isshowFooter}}" class="bottom-line">
-  <view class="line"></view>
-  <view class="line-txt">我是有底线的</view>
-  <view class="line"></view>
-</view>
+<template wx:if="{{list.length > 0 && (list.length == count) && isshowFooter}}" is="baseLine"></template>
+
 <component-no-data text="{{msgStr}}" wx:if="{{list.length == 0}}"></component-no-data>
 <button open-type='contact' plain class='askBtn pic'>
   <image src='{{CDN}}icon/icon_ask.png'></image>

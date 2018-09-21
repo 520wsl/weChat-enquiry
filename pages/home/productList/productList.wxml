@@ -1,4 +1,6 @@
 <!--pages/home/productList/productList.wxml-->
+<import src='/template/partsTpl.wxml' />
+
 <view class="product-list {{isFixed ? 'fixed' : ''}}">
   <!-- 搜索 -->
   <component-searching url="{{searchUrl}}" label="{{searchLabel}}"></component-searching>
@@ -14,11 +16,9 @@
   <view class="list">
     <component-item-product class="item" wx:for="{{list}}" wx:key="{{index}}" item="{{item}}" order="{{index}}"></component-item-product>
   </view>
-  <view wx:if="{{list.length > 0 && (list.length == count) && isshowFooter}}" class="bottom-line">
-    <view class="line"></view>
-    <view class="line-txt">我是有底线的</view>
-    <view class="line"></view>
-  </view>
+
+  <template  wx:if="{{list.length > 0 && (list.length == count) && isshowFooter}}" is="baseLine"></template>
+
   <!-- 没数据 -->
   <component-no-data text="{{msgStr}}" wx:if="{{list.length == 0}}"></component-no-data>
 </view>
@@ -41,4 +41,6 @@
     </view>
   </view>
 </view>
-<button open-type='contact' plain class='askBtn pic'><image src='{{CDN}}icon/icon_ask.png'></image></button>
+<button open-type='contact' plain class='askBtn pic'>
+  <image src='{{CDN}}icon/icon_ask.png'></image>
+</button>

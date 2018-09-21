@@ -1,5 +1,7 @@
 <!--pages/home/winKing/winKing.wxml-->
 
+<import src='/template/partsTpl.wxml' />
+
 <view class="header">
   <text class="text">标王详情</text>
   <view class="king-time" wx:if="{{nowMonth==12}}">
@@ -21,13 +23,12 @@
 <component-no-data text="您还未开启标王之旅哦！" wx:if="{{winKing.length == 0 || winKing == null}}"></component-no-data>
 <view wx:else>
   <view wx:for="{{winKing}}" wx:key="{{index}}">
-    <component-king-list keyword="{{item.keyword}}" isobtain="{{item.isobtain}}" finalprice="{{item.finalprice}}" dealcompany="{{item.dealcompany}}"
-      time="{{time}}" navLink="1"></component-king-list>
+    <component-king-list keyword="{{item.keyword}}" isobtain="{{item.isobtain}}" finalprice="{{item.finalprice}}" dealcompany="{{item.dealcompany}}" time="{{time}}" navLink="1"></component-king-list>
   </view>
-  <view class="bottom-line" wx:if="{{winKing.length > 2}}">
-    <view class="line"></view>
-    <view class="line-txt">我是有底线的</view>
-    <view class="line"></view>
-  </view>
+
+  <template wx:if="{{winKing.length > 2}}" is="baseLine"></template>
+
 </view>
-<button open-type='contact' plain class='askBtn pic'><image src='{{CDN}}icon/icon_ask.png'></image></button>
+<button open-type='contact' plain class='askBtn pic'>
+  <image src='{{CDN}}icon/icon_ask.png'></image>
+</button>

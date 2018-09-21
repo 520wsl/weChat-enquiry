@@ -5,29 +5,10 @@
   <view class="order-mess m-b-20">
     <view wx:if="{{info.id}}">订单号： {{info.id}}</view>
     <view wx:if="{{info.createTime}}">下单时间： {{info.createTime}}</view>
-    <!-- <view wx:if="{{info.payTime}}">付款时间： {{info.payTime}}</view>
-    <view wx:if="{{info.allDeliveredTime}}">发货时间： {{info.allDeliveredTime}}</view>
-    <view wx:if="{{info.receivingTime}}">收货时间： {{info.receivingTime}}</view> -->
   </view>
   <!-- 商品信息 -->
   <view class="goods-mess m-b-20">
     <view class="list">
-      <!-- <view wx:if="{{!isOpen}}" bindtap="goGoodsInfo" class="item" data-product="{{info.productItems[0].productID}}">
-        <view class="img">
-          <image src="{{info.productItems[0].productImgUrl || CDN+'icon-pro.png'}}"></image>
-        </view>
-        <view class="txt">
-          <view class="txt-name">
-            <view class="left">{{info.productItems[0].name || ''}}</view>
-            <view class="right">￥{{info.productItems[0].price || 0}}</view>
-          </view>
-          <view class="txt-attr">
-            <view class="left txt-more">{{info.productItems[0].skuInfos || ''}}</view>
-            <view class="right">{{info.productItems[0].quantity+info.productItems[0].unit}}</view>
-          </view>
-          <view wx:if="{{info.productItems[0].refundStatus}}" class="btn">退款中</view>
-        </view>
-      </view> -->
       <block wx:for="{{info.productItems}}" wx:key="{{index}}">
         <view bindtap="goGoodsInfo" class="item" data-product="{{item.productID}}">
           <view class="img">
@@ -60,19 +41,6 @@
       </block>
     </view>
   </view>
-  <!-- 价格信息 -->
-  <!-- <view class='item-order'>
-    <view class='total'>
-      <text class='num'>{{info.totalRecord}}种货品</text>
-      <text class='freight'>总金额：(含运费{{info.shippingFee}})</text>
-      <text class='mony'>￥{{info.totalAmountInt}}<text wx:if="{{info.totalAmountDecimal}}" class="decimal">.{{info.totalAmountDecimal}}</text></text>
-    </view>
-    <view class='probtn' bindtap='openPro' wx:if="{{info.totalRecord > 1}}">
-      <view class="pic openbtn {{isOpen? 'openbtn1':''}}">
-        <image src="{{CDN}}icon_right.png" />
-      </view>
-    </view>
-  </view> -->
   <view class='edit'>
     <view class='row'>
       <view class='txt'>修改货品运费(元)：</view>
@@ -97,26 +65,11 @@
 <view class="modal" wx:if="{{modal}}">
   <view class="modal-content">
     <view class="modal-header">
-      <!-- <icon type='cancel' color='#fff' class='modal-icon' bindtap='setModal' /> -->
     </view>
     <view class="modal-body">
       <view class="section">
         <view class="text">您确定修改货品价格和货品运费吗？</view>
       </view>
-      <!-- <view class='body-content'>
-        <view class='col'>
-          <text>货品总价：</text>
-          <text>￥{{params.price || 0}}</text>
-        </view>
-        <view class='col'>
-          <text>运　　费：</text>
-          <text>￥{{params.fee || 0}}</text>
-        </view>
-        <view class='col co2'>
-          <text>总 金 额 ：</text>
-          <text>￥{{totalAmount || 0}}</text>
-        </view>
-      </view> -->
     </view>
     <view class="modal-footer">
       <view bindtap='setModal' class="default confirm">取消</view>

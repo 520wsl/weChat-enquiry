@@ -6,7 +6,6 @@
     "pages/log/wxlog/wxlog",
     "pages/log/wxlog/wxloginfo",
     "pages/home/erp/goodsInfo/goodsInfo",
-    "pages/share/goodsInfo/goodsInfo",
     "pages/home/erp/goodsInfo/album",
     "pages/home/erp/goodsInfo/editGoodsInfo",
     "pages/home/erp/goodsInfo/editGoodsTxt",

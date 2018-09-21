@@ -43,22 +43,6 @@
             <view class="right">
               <view class="head">{{item.productName}}
               </view>
-              <!-- <view bindtap='clickHandle' data-index="{{index}}" class="body {{show[index] == true ? '' : 'rotate'}}">包含1条规则
-                <image mode="aspectFit" src="{{CDN}}icon_right.png" />
-              </view> -->
-              <!-- <view class="{{show[index] == true ? '' : 'hid'}} footer"> -->
-                <!-- <block wx:for="{{item.rules}}" wx:key="{{index}}"> -->
-                <!-- <block>
-                  <view class="line">
-                    <view>{{item.left}}
-                    </view>
-                    <view>¥{{item.mid}}
-                    </view>
-                    <view>{{item.right}}{{item.uint}}
-                    </view>
-                  </view>
-                </block>
-              </view> -->
             </view>
           </view>
         </block>

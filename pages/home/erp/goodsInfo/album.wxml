@@ -32,37 +32,9 @@
   </navigator>
 </template>
 
-<!-- <template name="pro-video">
-  <view class='video'>
-    <view bindtap='setUrl' data-url='{{videos}}'>
-      <video id="myVideo" show-fullscreen-btn src="{{videos}}" style='width:236rpx;height:236rpx;' ></video>
-    </view>
-    <view wx:if="{{url == videos}}" class='pic iconok'>
-      <image src='{{CDN}}icon/icon_ok.png'></image>
-    </view>
-  </view>
-</template> -->
-
 <view>
-  <!-- <view class="top">
-    <view class="nav">
-      <view bindtap='setPageType' data-page-type='0' class="col {{pageType == 0?'active':''}}">
-        <text>商品相册</text>
-      </view>
-      <view class='xian'></view>
-      <view bindtap='setPageType' data-page-type='1' class="col {{pageType == 1?'active':''}}">
-        <text>商品视频</text>
-      </view>
-    </view>
-  </view>
-  <view style='height:70rpx;'></view>
-  <view wx:if="{{pageType == 0}}"> -->
   <template wx:if="{{videoCount > 0}}" is="item-videos" data="{{CDN,videoCount,videoUrl,name,subscript,productId}}"></template>
   <template wx:for="{{list}}" wx:key="{{index}}" is="item-album" data="{{CDN,...item,subscript,productId}}"></template>
-  <!-- </view>
-  <view wx:else class='videos'>
-    <template is="pro-video" data="{{CDN,videos,url,subscript,productId}}"></template>
-  </view> -->
 </view>
 <view class="btn-back" bindtap='backIndex'>
   <image src="{{CDN + 'icon_return.png'}}" class="img" />

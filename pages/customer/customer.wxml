@@ -1,4 +1,5 @@
 <import src='/template/customerTpl.wxml'/>
+<import src='/template/partsTpl.wxml'/>
 
 <view class='nav-select'>
   <view bindtap='setIsShowSelect' class='select-switch pic'>
@@ -16,11 +17,9 @@
 <view class='list'>
   <template wx:for="{{list}}" wx:key="{{index}}" is="itemCustomer" data="{{...item,CDN,customerLevelLabel,customerTypeLabel}}" />
 </view>
-<view wx:if="{{list.length > 0 && (list.length == count) && isshowFooter}}" class="bottom-line">
-  <view class="line"></view>
-  <view class="line-txt">我是有底线的</view>
-  <view class="line"></view>
-</view>
+
+<template wx:if="{{list.length > 0 && (list.length == count) && isshowFooter}}" is="baseLine"></template>
+
 <component-no-data text="{{msgStr}}" wx:if="{{list.length == 0}}"></component-no-data>
 <view class='float-model' wx:if="{{isShowSelect}}">
   <view class='float-content'>

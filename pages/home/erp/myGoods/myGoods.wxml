@@ -1,5 +1,7 @@
 <!--pages/home/erp/myGoods/myGoods.wxml-->
 <!-- 我的商品 -->
+<import src='/template/partsTpl.wxml' />
+
 <template name="noData">
   <view class="no-data">
     <image src="{{CDN}}/record_no.png" class="img" />
@@ -76,56 +78,21 @@
       <text class='num'>{{productItemsNum}}种货品</text>
       <text class='freight'>总金额：(含运费{{shippingFee}})</text>
       <text class='mony'>￥{{totalAmountInt}}<text wx:if="{{totalAmountDecimal}}" class="decimal">.{{totalAmountDecimal}}         </text></text>
-      <!-- <navigator style='display:initial;' wx:if="{{status == 'waitbuyerpay'}}" url='/pages/home/erp/orderInfo/editOrderPic?orderId={{id}}'>
-        <text class='editPic'>修改价格</text>
-      </navigator> -->
     </view>
   </view>
 
 </template>
 
-<!-- <template name="order-nav-open">
-  <view class='nav_order_type_open'>
-    <view class='order_title'>
-      <view class='txt active'>选择状态</view>
-      <view bindtap='setOpen' class='nav_btn'>
-        <view class='search pic'>
-          <image src="{{CDN}}icon/icon_up.png" />
-        </view>
-      </view>
-    </view>
-
-    <view class='types'>
-      <view wx:for="{{types}}" wx:key="{{item.key}}" data-status='{{item.key}}' data-optOrderNavId='{{item.id}}' bindtap='optOrderNav' class='col {{params.status == item.key? "active":""}}' id="{{item.id}}">{{item.name}}</view>
-    </view>
-  </view> 
-</template> -->
-
 <template name="order-nav">
   <view class='nav_order_type'>
     <view class='order_type'>
-        <view wx:for="{{types}}" wx:key="{{item.key}}" class='col' data-status='{{item.key}}' data-optOrderNavId='{{item.id}}' bindtap='optOrderNav' id="{{item.id}}">
-          <view class='txt'>
-            <view class='str {{params.status == item.key? "active":""}}'>{{item.name}}</view>
-            <view class='hru'></view>
-          </view>
+      <view wx:for="{{types}}" wx:key="{{item.key}}" class='col' data-status='{{item.key}}' data-optOrderNavId='{{item.id}}' bindtap='optOrderNav' id="{{item.id}}">
+        <view class='txt'>
+          <view class='str {{params.status == item.key? "active":""}}'>{{item.name}}</view>
+          <view class='hru'></view>
         </view>
-    </view>
-    <!-- <view class='order_type'>
-      <scroll-view scroll-x scroll-into-view="{{optOrderNavId}}">
-        <view wx:for="{{types}}" wx:key="{{item.key}}" class='col' data-status='{{item.key}}' data-optOrderNavId='{{item.id}}' bindtap='optOrderNav' id="{{item.id}}">
-          <view class='txt'>
-            <view class='str {{params.status == item.key? "active":""}}'>{{item.name}}</view>
-            <view class='hru'></view>
-          </view>
-        </view>
-      </scroll-view>
-    </view> -->
-    <!-- <view class='nav_btn' bindtap='setOpen'>
-      <view class='search pic'>
-        <image style='display:block' src="{{CDN}}icon/icon_dn.png" />
       </view>
-    </view> -->
+    </view>
   </view>
 </template>
 
@@ -160,22 +127,14 @@
   <view hidden="{{pageType == 2}}">
     <view wx:if="{{list.length > 0}}">
       <template wx:for="{{list}}" wx:key="{{item.productId}}" is="item-pro" data="{{...item,CDN, ALI}}" />
-      <view wx:if="{{(list.length == count) && isshowFooter}}" class="bottom-line">
-        <view class="line"></view>
-        <view class="line-txt">我是有底线的</view>
-        <view class="line"></view>
-      </view>
+      <template wx:if="{{(list.length == count) && isshowFooter}}" is="baseLine"></template>
     </view>
     <template wx:else is="noData" data="{{CDN, ALI,msgStr}}" />
   </view>
   <view hidden="{{pageType == 1}}">
     <view wx:if="{{list.length > 0}}">
       <template wx:for="{{list}}" wx:key="{{index}}" is="item-order" data="{{...item, CDN, ALI}}" />
-      <view wx:if="{{(list.length == count) && isshowFooter}}" class="bottom-line">
-        <view class="line"></view>
-        <view class="line-txt">我是有底线的</view>
-        <view class="line"></view>
-      </view>
+      <template wx:if="{{(list.length == count) && isshowFooter}}" is="baseLine"></template>
     </view>
     <template wx:else is="noData" data="{{CDN, ALI, msgStr}}" />
   </view>
