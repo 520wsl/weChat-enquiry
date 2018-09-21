@@ -7,7 +7,7 @@ Page({
    */
   data: {
     CDN: app.CDN,
-    info:{
+    info: {
       name: '',
       mobilePhone: '',
       type: 5,
@@ -16,7 +16,7 @@ Page({
       wechat: '',
       account: '',
       birthday: '',
-      birthdayCode:'请选择客户生日',
+      birthdayCode: '请选择客户生日',
       sex: 0,
       mailbox: '',
       area: '',
@@ -24,15 +24,15 @@ Page({
       remark: '',
       source: null,
       level: 0,
-      cooperateDate:'',
+      cooperateDate: '',
       id: null
     },
-    region: [0,0,0],
+    region: [0, 0, 0],
     areaArr: [],
     endTime: app.time.formatTime(),
-    type:'',
-    btnDisableBool:true,
-    sourceList:[
+    type: '',
+    btnDisableBool: true,
+    sourceList: [
       // {
       //   type: 0,
       //   label: '默认'
@@ -46,38 +46,87 @@ Page({
         label: '线下'
       }
     ],
-    getAreaArr:[],
-    key:'areaList',
-    templateList: [
-      {
-        name: 'company'
+    getAreaArr: [],
+    key: 'areaList',
+    templateList: [{
+        name: 'company',
+        inputType: 'input',
+        leftName: '公司',
+        functionName: 'setCompany',
+        maxlength: 30,
+        value: ''
       },
       {
-        name: 'position'
+        name: 'position',
+        leftName: '职位',
+        functionName: 'setPosition',
+        inputType: 'input',
+        maxlength: 30,
+        value: ''
       },
       {
-        name: 'wechat'
+        name: 'wechat',
+        leftName: '微信号',
+        functionName: 'setWechat',
+        inputType: 'input',
+        maxlength: 30,
+        value: ''
       },
       {
-        name: 'account'
+        name: 'account',
+        leftName: '旺旺号',
+        functionName: 'setAccount',
+        inputType: 'input',
+        maxlength: 30,
+        value: ''
       },
       {
-        name: 'birthday'
+        name: 'birthday',
+        leftName: '生日',
+        functionName: 'setBirthday',
+        inputType: 'dataPicker',
+        value: '',
+        birthdayCode: '请选择客户生日',
+        endTime: app.time.formatTime()
       },
       {
-        name: 'sex'
+        name: 'sex',
+        leftName: '性别',
+        functionName: 'getSex',
+        inputType: 'select',
+        maxlength: 30,
+        value: 0
       },
       {
-        name: 'mailbox'
+        name: 'mailbox',
+        leftName: '电子邮箱',
+        functionName: 'setMailbox',
+        inputType: 'input',
+        maxlength: 30,
+        value: ''
       },
       {
-        name: 'areaCode'
+        name: 'areaCode',
+        leftName: '公司',
+        functionName: 'setPosition',
+        inputType: 'addressPicker',
+        maxlength: 30
       },
       {
-        name: 'address'
+        name: 'address',
+        leftName: '详细地址',
+        functionName: 'setAddress',
+        inputType: 'textarea',
+        maxlength: 30,
+        value: ''
       },
       {
-        name: 'remark'
+        name: 'remark',
+        leftName: '备注',
+        functionName: 'setRemark',
+        inputType: 'textarea',
+        maxlength: 200,
+        value: ''
       }
     ]
   },
@@ -85,31 +134,31 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (query) {
+  onLoad: function(query) {
     let type = query.type || 'add'
-    if(type =='edit'){
+    if (type == 'edit') {
       wx.setNavigationBarTitle({
         title: '编辑客户信息'
       })
-    } else if(type == 'add'){
+    } else if (type == 'add') {
       wx.setNavigationBarTitle({
         title: '新增客户'
       })
     }
     this.setData({
-      type:type
+      type: type
     })
     let getAreaArr = []
     wx.getStorage({
       key: this.data.key,
-      success:  (res) => {
+      success: (res) => {
         getAreaArr = res.data
         this.setData({
           getAreaArr: getAreaArr
         })
         this.setAreaArr(type, query.customerId, getAreaArr)
       },
-      fail: ()=>{
+      fail: () => {
         app.post('/common/area').then(res => {
           if (res.status != 200) {
             app.utils.showModel('提示', '暂无省市区列表');
@@ -128,27 +177,27 @@ Page({
       }
     })
   },
-  setAreaArr: function (type, customerId, getAreaArr){
+  setAreaArr: function(type, customerId, getAreaArr) {
     if (type == 'add') {
-      let provinceList = []
+      let provinceList = [],
+        cityList = [],
+        countyList = [],
+        arr = []
       getAreaArr.map((item, index) => {
         if (item.type == 1) {
           provinceList.push(item)
         }
       })
-      let cityList = []
       getAreaArr.map((item, index) => {
         if (item.type == 2 && item.provinceId == provinceList[0].provinceId) {
           cityList.push(item)
         }
       })
-      let countyList = []
       getAreaArr.map((item, index) => {
         if (item.type == 3 && item.cityId == cityList[0].cityId && item.provinceId == cityList[0].provinceId) {
           countyList.push(item)
         }
       })
-      let arr = []
       arr[0] = provinceList
       arr[1] = cityList
       arr[2] = countyList
@@ -158,16 +207,35 @@ Page({
       return;
     }
     if (customerId) {
-      app.post('/crm/customer/detail', { customerId: customerId }).then(res => {
-        if (res.status != 200) { return; }
-        res.data.cooperateDate = app.time.formatTime(res.data.gmtCreate, 'YYYY年MM月DD日')
-        if(res.data.birthday == '' || res.data.birthday == null){
-          res.data.birthdayCode = '请选择用户生日'
-        } else{
-          res.data.birthdayCode = app.time.formatTime(res.data.birthday)
+      app.post('/crm/customer/detail', {
+        customerId: customerId
+      }).then(res => {
+        if (res.status != 200) {
+          return;
         }
-        let region = this.data.region
-        let provinceList = []
+        res.data.cooperateDate = app.time.formatTime(res.data.gmtCreate, 'YYYY年MM月DD日')
+        if (res.data.birthday == '' || res.data.birthday == null) {
+          res.data.birthdayCode = '请选择用户生日'
+        } else {
+          res.data.birthdayCode = app.time.formatTime(res.data.birthday)
+          res.data.birthday = app.time.formatTime(res.data.birthday)
+        }
+        let templateList = this.data.templateList,
+          region = this.data.region,
+          provinceList = [],
+          cityList = [],
+          countyList = [],
+          arr = []
+        templateList.forEach(item => {
+          item.value = res.data[item.name]
+          if (item.name == 'birthday') {
+            item.birthdayCode = res.data.birthdayCode
+            item.birthday = res.data.birthday
+          }
+        })
+        this.setData({
+          templateList: templateList
+        })
         getAreaArr.map((item, index) => {
           if (item.type == 1) {
             provinceList.push(item)
@@ -176,7 +244,6 @@ Page({
             }
           }
         })
-        let cityList = []
         getAreaArr.map((item, index) => {
           if (res.data.areaCode != null) {
             if (item.type == 2 && item.provinceId == res.data.provinceCode) {
@@ -191,7 +258,6 @@ Page({
             }
           }
         })
-        let countyList = []
         getAreaArr.map((item, index) => {
           if (res.data.cityCode != null) {
             if (item.type == 3 && item.cityId == res.data.areaCode && item.provinceId == res.data.provinceCode) {
@@ -206,7 +272,6 @@ Page({
             }
           }
         })
-        let arr = []
         arr[0] = provinceList
         arr[1] = cityList
         arr[2] = countyList
@@ -219,81 +284,105 @@ Page({
       })
     }
   },
+  setTemplateList: function(str, value) {
+    let templateList = this.data.templateList
+    templateList.forEach(item => {
+      if (str == 'birthday' && item.name == str) {
+        item.birthday = value
+        item.birthdayCode = value
+      } else if (item.name == str) {
+        item.value = value
+      }
+    })
+    this.setData({
+      templateList: templateList
+    })
+  },
   //将修改的值设置到Info中
-  setName: function(res){
+  setName: function(res) {
     this.setData({
       'info.name': res.detail.value
     })
     this.judgeInfo()
   },
-  setPhone: function(res){
+  setPhone: function(res) {
     this.setData({
       'info.mobilePhone': res.detail.value
     })
     this.judgeInfo()
   },
-  getType: function(res){
+  getType: function(res) {
     this.setData({
       'info.type': res.detail.label.type
     })
     this.judgeInfo()
   },
-  getSex: function(res){
+  getSex: function(res) {
     this.setData({
       'info.sex': res.detail.label.type
     })
+    this.setTemplateList('sex', res.detail.label.type)
     this.judgeInfo()
   },
-  setBirthday: function(res){
+  setBirthday: function(res) {
+    console.log(res)
     this.setData({
       'info.birthday': res.detail.value,
       'info.birthdayCode': res.detail.value
     })
+    this.setTemplateList('birthday', res.detail.value)
     this.judgeInfo()
   },
-  setCompany: function(res){
+  setCompany: function(res) {
     this.setData({
       'info.company': res.detail.value
     })
+    this.setTemplateList('company', res.detail.value)
     this.judgeInfo()
   },
-  setPosition: function(res){
+  setPosition: function(res) {
     this.setData({
       'info.position': res.detail.value
     })
+    this.setTemplateList('position', res.detail.value)
     this.judgeInfo()
   },
-  setWechat: function (res) {
+  setWechat: function(res) {
     this.setData({
       'info.wechat': res.detail.value
     })
+    this.setTemplateList('wechat', res.detail.value)
     this.judgeInfo()
   },
-  setAccount: function (res) {
+  setAccount: function(res) {
     this.setData({
       'info.account': res.detail.value
     })
+    this.setTemplateList('account', res.detail.value)
     this.judgeInfo()
   },
-  setMailbox: function (res) {
+  setMailbox: function(res) {
     this.setData({
       'info.mailbox': res.detail.value
     })
+    this.setTemplateList('mailbox', res.detail.value)
     this.judgeInfo()
   },
-  setAddress: function (res) {
+  setAddress: function(res) {
     this.setData({
       'info.address': res.detail.value
     })
+    this.setTemplateList('address', res.detail.value)
     this.judgeInfo()
   },
-  setRemark: function (res) {
+  setRemark: function(res) {
     this.setData({
       'info.remark': res.detail.value
     })
+    this.setTemplateList('remark', res.detail.value)
     this.judgeInfo()
   },
-  setSource: function(){
+  setSource: function() {
     let itemList = this.data.sourceList.map((res) => {
       return res.label;
     });
@@ -313,9 +402,9 @@ Page({
     });
   },
   // 省市区的value发生改变
-  bindAreaChange: function(res){
-    let item ={}
-    if (this.data.areaArr[2].length == 0){
+  bindAreaChange: function(res) {
+    let item = {}
+    if (this.data.areaArr[2].length == 0) {
       item = this.data.areaArr[1][this.data.region[1]]
     } else {
       item = this.data.areaArr[2][this.data.region[2]]
@@ -327,42 +416,42 @@ Page({
     })
   },
   // 省市区的某一列发生改变
-  columnChange: function(res){
+  columnChange: function(res) {
     let obj = this.data.areaArr[res.detail.column][res.detail.value]
-    if (res.detail.column == 0){
-      let cityList = []
+    if (res.detail.column == 0) {
+      let cityList = [],
+        countyList = [],
+        indexArr = this.data.region,
+        arr = this.data.areaArr
       this.data.getAreaArr.map(item => {
         if (item.type == 2 && item.provinceId == obj.provinceId) {
           cityList.push(item)
         }
       })
-      let countyList = []
       this.data.getAreaArr.map(item => {
         if (item.type == 3 && item.cityId == cityList[0].cityId && item.provinceId == cityList[0].provinceId) {
           countyList.push(item)
         }
       })
-      let indexArr = this.data.region
       indexArr[0] = res.detail.value
       indexArr[1] = 0
       indexArr[2] = 0
-      let arr = this.data.areaArr
       arr[1] = cityList
       arr[2] = countyList
       this.setData({
         areaArr: arr,
         region: indexArr
       })
-    } else if (res.detail.column == 1){
-      let countyList = []
-      let index = res.detail.value
+    } else if (res.detail.column == 1) {
+      let countyList = [],
+        index = res.detail.value,
+        indexArr = [],
+        arr = this.data.areaArr
       this.data.getAreaArr.map(item => {
         if (item.type == 3 && item.cityId == this.data.areaArr[1][index].cityId && item.provinceId == this.data.areaArr[1][index].provinceId) {
           countyList.push(item)
         }
       })
-      let indexArr = []
-      let arr = this.data.areaArr
       indexArr[0] = this.data.region[0]
       indexArr[1] = res.detail.value
       indexArr[2] = 0
@@ -371,7 +460,7 @@ Page({
         areaArr: arr,
         region: indexArr
       })
-    } else if (res.detail.column == 2){
+    } else if (res.detail.column == 2) {
       let indexArr = []
       indexArr[0] = this.data.region[0]
       indexArr[1] = this.data.region[1]
@@ -384,9 +473,9 @@ Page({
     this.bindAreaChange()
   },
   // 判断必填信息是否填写
-  judgeInfo: function(){
+  judgeInfo: function() {
     let item = this.data.info
-    if (item.name === '' || item.mobilePhone === '' || item.type === 5){
+    if (item.name === '' || item.mobilePhone === '' || item.type === 5) {
       this.setData({
         btnDisableBool: true
       })
@@ -403,8 +492,8 @@ Page({
     }
   },
   // 重置信息
-  rest: function(){
-    let info= {
+  rest: function() {
+    let info = {
       name: '',
       mobilePhone: '',
       type: 5,
@@ -412,22 +501,36 @@ Page({
       position: '',
       wechat: '',
       account: '',
-      birthday: null,
+      birthday: '',
+      birthdayCode: '请选择客户生日',
       sex: 0,
       mailbox: '',
       area: '',
       address: '',
       remark: '',
       source: null,
-      level: 1,
+      level: 0,
       cooperateDate: '',
       id: null
-    }
-    let region= [0, 0, 0]
-    let areaArr= []
-    let endTime= app.time.formatTime()
-    let type= ''
-    let btnDisableBool= true
+    },
+      templateList = this.data.templateList,
+      region = [0, 0, 0],
+      areaArr = [],
+      endTime = app.time.formatTime(),
+      type = '',
+      btnDisableBool = true
+    templateList.forEach(item => {
+      if (item.name == 'sex') {
+        item.value = 0
+      } else if (item.name == 'areaCode') {
+
+      } else if (item.name == 'birthday') {
+        item.birthdayCode = '请选择客户生日'
+        item.birthday = ''
+      } else {
+        item.value = ''
+      }
+    })
     this.setData({
       btnDisableBool: btnDisableBool,
       type: type,
@@ -437,13 +540,14 @@ Page({
       info: info
     })
   },
-  saveInfo: function(){
+  saveInfo: function() {
     let name = this.data.info.name.replace(/^[a-zA-Z0-9\u4e00-\u9fa5]+$/g, '')
-    if(name != ''){
+    if (name != '') {
       app.utils.showModel('提示', '客户姓名只能输入数字，英文和汉字！');
       return
     }
-    app.post('/crm/customer/edit',{...this.data.info}).then(res=>{
+    app.post('/crm/customer/edit', { ...this.data.info
+    }).then(res => {
       if (res.status == 401) {
         wx.showModal({
           title: '提示',

@@ -1,0 +1,53 @@
+<template name="input">
+  <view class='edit-requiredInfo-item borderBottom'>
+    <view>
+      {{leftName}} 
+    </view>
+    <input type='text' name="{{name}}" maxlength="{{maxlength}}" value="{{value}}" bindinput="{{functionName}}" placeholder="选填" placeholder-class='second-title2'
+        />
+  </view>
+</template>
+
+<template name="dataPicker">
+  <view class='edit-requiredInfo-item borderBottom'>
+    <view>
+      {{leftName}} 
+    </view>
+    <picker class='dataPicker' mode='date' bindchange="{{functionName}}" value='{{birthday}}' end='{{endTime}}'>
+      <text class="{{birthday==''?'':'black'}}">{{birthdayCode}}</text>
+      <span class="arrow {{birthday==''?'borderblack':''}}"></span>
+    </picker>
+  </view>
+</template>
+
+<template name="textarea">
+  <view class='edit-requiredInfo-item borderBottom'>
+    <view>
+      {{leftName}} 
+    </view>
+    <textarea auto-height name="{{name}}" maxlength="30" value="{{value}}" bindinput="{{functionName}}" placeholder-class='second-title2'
+        />
+  </view>
+</template>
+
+<template name="select">
+  <view class='edit-requiredInfo-item borderBottom'>
+    <view>
+      {{leftName}}
+    </view>
+    <chooseSex bindgetSex='{{functionName}}' active="{{value}}"></chooseSex>
+  </view>
+</template>
+
+<template name="addressPicker">
+  <view class='edit-requiredInfo-item borderBottom'>
+    <view>
+      所在地区 
+    </view>
+    <picker class='dataPicker' mode="multiSelector" bindcolumnchange="columnChange" bindchange="bindAreaChange" value="{{region}}" range="{{areaArr}}" range-key='{{"name"}}'>
+      <a wx:if='{{info.areaCode}}'>{{areaArr[0][region[0]].name}} {{areaArr[1][region[1]].name}}{{areaArr[2].length==0?'':" "+areaArr[2][region[2]].name}}</a>
+      <a wx:if='{{!info.areaCode}}'>请选择用户地区</a>
+      <span class="arrow"></span>
+    </picker>
+  </view>
+</template>
