@@ -1,4 +1,6 @@
 <!--pages/enquiry/enquiryOrderInfo.wxml-->
+<import src='/template/partsTpl.wxml' />
+
 <view class='order-info'>
   <view class='state'>
     <view class='title'></view>
@@ -34,11 +36,9 @@
   <view class='list' style='border-top:1px solid #f2f2f2;'>
     <itemEnquiry wx:for="{{list}}" wx:key="{{index}}" item="{{item}}"></itemEnquiry>
   </view>
-  <view wx:if="{{list.length > 0 && (list.length == count) && isshowFooter}}" class="bottom-line">
-    <view class="line"></view>
-    <view class="line-txt">我是有底线的</view>
-    <view class="line"></view>
-  </view>
+
+  <template wx:if="{{list.length > 0 && (list.length == count) && isshowFooter}}" is="baseLine"></template>
+
   <view wx:if="{{list.length == 0}}" class="no-data">
     <image src="{{CDN}}record_no.png" class="img" />
     <text class="txt">{{msgStr}}</text>

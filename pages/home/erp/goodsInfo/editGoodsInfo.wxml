@@ -14,20 +14,6 @@
     <view class="header">
       <text class="txt">{{params.subject}}</text>
     </view>
-    <!-- <view class="content">
-      <block wx:if="{{params.minPrice}}">
-        ￥
-        <text class="money">{{params.minformatData.vInt}}
-          <text class="double">.{{params.minformatData.vDouble}}</text>
-        </text>
-        -</block>￥
-      <text class="money">{{params.maxformatData.vInt}}
-        <text class="double">.{{params.maxformatData.vDouble}}</text>
-      </text>
-      <text class="text">≥{{params.minOrderQuantity}} {{params.unit}}起批</text>
-      <button plain="true" class="share-btn" open-type='share'></button>
-      <image src="/images/icon_share.png" class="share-img"></image>
-    </view> -->
     <view class="prc_share_group">
       <view class="price">
         <block wx:if="{{params.minPrice}}">

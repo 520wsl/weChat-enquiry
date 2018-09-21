@@ -46,9 +46,6 @@
       </view>
     </view>
   </view>
-  <!-- <view class="border-img m-b-20">
-    <image class="img" src="{{CDN}}bg_border_bottom.png"></image>
-  </view>  -->
   <!-- 商品信息 -->
   <view class="goods-mess m-b-20" style='margin-top:10rpx;'>
     <view class="title">
@@ -76,10 +73,6 @@
   </view>
   <!-- 价格信息 -->
   <view class="price-mess m-b-20">
-    <!-- <view class="txt">
-      <view class="left">店铺优惠</view>
-      <view class="right">￥0.00</view>
-    </view> -->
     <view class="txt">
       <view class="left">货品总价（含优惠）</view>
       <view class="right">￥{{info.sumProductPayment || 0}}</view>

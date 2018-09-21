@@ -1,0 +1,7 @@
+<template name="baseLine">
+  <view class="bottom-line">
+    <view class="line"></view>
+    <view class="line-txt">我是有底线的</view>
+    <view class="line"></view>
+  </view>
+</template>

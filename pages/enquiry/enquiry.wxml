@@ -1,4 +1,6 @@
 <!--pages/enquiry/enquiry.wxml-->
+<import src='/template/partsTpl.wxml'/>
+
 <view class="enquiry {{isFixed ? 'fixed' : ''}}">
   <view class="time-group">
   <view class="time-range">
@@ -20,11 +22,9 @@
   <view class='list'>
     <itemEnquiry wx:for="{{list}}" wx:key="{{index}}" item="{{item}}"></itemEnquiry>
   </view>
-  <view wx:if="{{list.length > 0 && (list.length == count) && isshowFooter}}" class="bottom-line">
-    <view class="line"></view>
-    <view class="line-txt">我是有底线的</view>
-    <view class="line"></view>
-  </view>
+  
+<template wx:if="{{list.length > 0 && (list.length == count) && isshowFooter}}" is="baseLine"></template>
+
   <view wx:if="{{list.length == 0}}" class="no-data">
     <image src="{{CDN}}record_no.png" class="img" />
     <text class="txt">{{msgStr}}</text>
