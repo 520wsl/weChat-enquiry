@@ -288,7 +288,7 @@ Page({
     let templateList = this.data.templateList
     templateList.forEach(item => {
       if (str == 'birthday' && item.name == str) {
-        item.value = value
+        item.birthday = value
         item.birthdayCode = value
       } else if (item.name == str) {
         item.value = value
