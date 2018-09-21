@@ -1,0 +1,45 @@
+.edit-requiredInfo-item{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-right: 30rpx;
+  font-size: 26rpx;
+  color: #333;
+}
+.edit-requiredInfo-item textarea{
+  line-height: 60rpx;
+  padding: 20rpx 0;
+  text-align: right;
+  color: #666;
+}
+.edit-requiredInfo-item >view:nth-child(1){
+  height: 100rpx;
+  line-height: 100rpx;
+  width: 140rpx;
+  flex: none;
+}
+.edit-requiredInfo-item input{
+  text-align: right;
+  color: #666;
+}
+.edit-requiredInfo-item text{
+  color: #a6a6a6;
+  height: 100rpx;
+  line-height: 100rpx;
+}
+.edit-requiredInfo-item .black{
+  color: #666;
+}
+.arrow{
+  margin-left: 10rpx;
+  height: 0;
+  width: 0;
+  border-style: solid;
+  border-width: 8rpx 10rpx;
+  border-color: #666 transparent transparent transparent;
+  position: relative;
+  top: 20rpx;
+}
+.borderblack{
+  border-color: #a6a6a6 transparent transparent transparent;
+}
