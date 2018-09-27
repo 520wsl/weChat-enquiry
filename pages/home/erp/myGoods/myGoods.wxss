@@ -103,7 +103,7 @@
 }
 
 .xia-time {
-  font-size: 12px;
+  font-size: 24rpx;
   /* font-size: 10px; */
   color: #999;
   padding-left: 30rpx;

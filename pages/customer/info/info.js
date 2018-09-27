@@ -76,16 +76,31 @@ Page({
         if(res.status !== 200){
           return;
         }
-        let tradeInfo={
-          commodityNum: res.data.commodityNum == null ? 0 : res.data.commodityNum,
-          commodityQuantity: res.data.commodityQuantity == null ? 0 : res.data.commodityQuantity,
-          customerAccount: res.data.customerAccount == null ? 0 : res.data.customerAccount,
-          enquiryQuantity: res.data.enquiryQuantity == null ? '0次' : res.data.enquiryQuantity + '次',
-          followAmount: res.data.followAmount == null ? '0万元' : res.data.followAmount + '万元',
-          orderQuantity: res.data.orderQuantity == null ? 0 : res.data.orderQuantity,
-          paymentAmount: res.data.paymentAmount == null ? '0万元' : res.data.paymentAmount + '万元',
-          successProportion: res.data.successProportion == null ? '0%' : res.data.successProportion + '%',
-          totalAmount: res.data.totalAmount == null ? '0万元' : res.data.totalAmount + '万元'
+        // let tradeInfo={
+        //   commodityNum: res.data.commodityNum == null ? 0 : res.data.commodityNum,
+        //   commodityQuantity: res.data.commodityQuantity == null ? 0 : res.data.commodityQuantity,
+        //   customerAccount: res.data.customerAccount == null ? 0 : res.data.customerAccount,
+        //   enquiryQuantity: res.data.enquiryQuantity == null ? '0次' : res.data.enquiryQuantity + '次',
+        //   followAmount: res.data.followAmount == null ? '0万元' : res.data.followAmount + '万元',
+        //   orderQuantity: res.data.orderQuantity == null ? 0 : res.data.orderQuantity,
+        //   paymentAmount: res.data.paymentAmount == null ? '0万元' : res.data.paymentAmount + '万元',
+        //   successProportion: res.data.successProportion == null ? '0%' : res.data.successProportion + '%',
+        //   totalAmount: res.data.totalAmount == null ? '0万元' : res.data.totalAmount + '万元'
+        // }
+        let tradeInfo = res.data;
+        for (let i in tradeInfo) {
+          if (tradeInfo[i]){
+            if (i == 'followAmount' || i == 'paymentAmount' || i == 'totalAmount') {
+              if (tradeInfo[i] < 10000) {
+                tradeInfo[i] = tradeInfo[i].toFixed(2);
+                tradeInfo[i] = tradeInfo[i].replace(/\d{1,3}(?=(\d{3})+\.)/g, '$&,');
+              } else {
+                tradeInfo[i] = app.time.NumberUpperFormat(tradeInfo[i]);
+              }
+            }
+          }else {
+            tradeInfo[i] = 0 
+          } 
         }
         this.setData({
           tradeInfo: tradeInfo

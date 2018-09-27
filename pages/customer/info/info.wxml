@@ -109,7 +109,7 @@
   </view>
   <view class='spread-info-item'>
     <text>成交占比</text>
-    <text>{{tradeInfo.successProportion}}</text>
+    <text>{{tradeInfo.successProportion}}%</text>
   </view>
   <view class='spread-info-item'>
     <text>支付订单数</text>
